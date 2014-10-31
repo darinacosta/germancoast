@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Louisiana's German Coast</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!--CSS for the mapping components -->
+    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">   
+    <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
+    <style type="text/css">
+      
+
+      body{
+        background-color: black;
+        color: white;
+        font-family: "Andale Mono", AndaleMono, monospace;
+        height:100%;
+        font-size:16px;
+      }
+
+       #map-header{
+        background-color:rgb(36, 44, 36);
+        text-align:center;
+        font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
+        letter-spacing: 10px;
+      }
+
+      #mapDiv {
+        min-height: 200px; 
+        max-height: 550px; 
+      }
+
+      #map-container{
+        border-bottom: 1px solid rgb(100, 107, 100);
+        background-color:black;
+      }
+
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        color: white;
+        cursor: default;
+        background-color: black;
+        border: 1px solid rgb(100, 107, 100);
+        border-bottom-color: transparent;
+      }
+
+      .nav-tabs {
+        border-bottom: 1px solid rgb(100, 107, 100);
+        background-color: rgb(36, 44, 36);
+        padding-left:20px;
+      }
+
+      .nav-tabs a{
+        color:white;
+      }
+
+      .nav-tabs > li > a{
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        line-height: 0;
+      }
+      
+      .nav-tabs > li > a:hover{
+        background-color: rgb(100, 107, 100);
+      }
+    </style>
+
+    <!-- HTML5 IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+      <script src="../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Step 2. Add HTML to define the layout of the page and the map -->
+    <div class="col-m-12" id='map-header'>
+      LOUISIANA'S GERMAN COAST
+    </div>
+    
+    </div>
+    <div class="row row-map">
+      <div class="col-m-12 no-col-padding" id="map-container">
+        <div id="mapDiv"></div>
+      </div>
+    </div>
+  <div class="tabbable">
+    <ul class="nav nav-tabs" id="tabset">
+      <li class="active home-location-button"><a href="#homePane" data-toggle="tab">HOME</a></li>
+      <li><a href="#labranchePane" data-toggle="tab" class="labranche-location-button">LABRANCHE</a></li>
+      <li><a href="#pane3" data-toggle="tab" class="norco-location-button">NORCO</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="homePane" class="tab-pane active">
+        <div class="col-md-12" id="home-bottom-row">
+          <h3>The Swamps & Refineries of Southwestern Lake Pontchartrain</h3>
+          Louisiana's German Coast is a complex mosaic of denuded swamplands, oil infrastructure, and industrial skylines. 
+          This page hosts a short series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
+          geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
+          the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
+          <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
+          <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extended
+          into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
+          and the telltale<a class="geometry-link" id="radial-geofeature-event"> radial canals</a> of cypress logging.
+        </div>
+
+        <div id="home-module-row">
+          <a href="#" id="gotolabranche">
+            <div class="col-md-3 vignette-descrip labranche-location-button">
+              <h3>LaBranche</h3>
+              <p>The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the canal-dredging, erosion, and speculative real-estate ventures that have consumed neighboring ecosystems. </p>
+            </div>
+          </a>
+          <div class="col-md-3 vignette-descrip norco-location-button">
+            <h3>Norco</h3>
+            <p>Many geological and economic factors have contributed to the growth and development of this hyper-industrialized landscape.</p>
+          </div>
+          <div class="col-md-3 vignette-descrip">
+            <h3>1811</h3>
+            <p>This module is still being developed.</p>
+          </div>
+          <div class="col-md-3 vignette-descrip">
+            <h3>1915</h3>
+            <p>This module is still being developed.</p>
+          </div>
+        </div>
+     
+      </div>
+      <div id="labranchePane" class="tab-pane">
+      <h4>Pane 2 Content</h4>
+        <p> and so on ...</p>
+      </div>
+      <div id="pane3" class="tab-pane">
+        <h4>Pane 3 Content</h4>
+      </div>
+    </div><!-- /.tab-content -->
+  </div><!-- /.tabbable -->
+    
+    
+    <!-- Step 3. Add JS to load the responsive map -->
+    <script type="text/javascript">
+        var package_path = "//esri.github.com/bootstrap-map-js/src/js";
+        var dojoConfig = {
+            packages: [{
+                name: "application",
+                location: package_path
+            }]
+        };
+
+    </script>
+    <script src="http://js.arcgis.com/3.10compact"></script>
+    <!-- jQuery (for Bootstrap's JavaScript plugins) -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="js/riverParishMap.js"></script>
+    <script>
+    $('#gotolabranche').click(function() {
+          $('#tabset a[href="#labranchePane"]').tab('show');
+        });
+    </script>
+    <!-- Include all  plugins or individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
