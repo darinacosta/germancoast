@@ -12,9 +12,10 @@
     <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
     <style type="text/css">
       
+     @media all{
 
       body{
-        background-color: black;
+        background-color: rgb(16, 16, 16);
         color: white;
         font-family: "Andale Mono", AndaleMono, monospace;
         height:100%;
@@ -22,10 +23,12 @@
       }
 
        #map-header{
+        font-size:20px;
         background-color:rgb(36, 44, 36);
         text-align:center;
         font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
         letter-spacing: 10px;
+        border-bottom: 1px solid rgb(90, 90, 90);
       }
 
       #mapDiv {
@@ -34,20 +37,20 @@
       }
 
       #map-container{
-        border-bottom: 1px solid rgb(100, 107, 100);
+        border-bottom: 1px solid rgb(90, 90, 90);
         background-color:black;
       }
 
       .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
         color: white;
         cursor: default;
-        background-color: black;
+        background-color: rgb(16, 16, 16);
         border: 1px solid rgb(100, 107, 100);
         border-bottom-color: transparent;
       }
 
       .nav-tabs {
-        border-bottom: 1px solid rgb(100, 107, 100);
+        border-bottom: 1px solid rgb(90, 90, 90);
         background-color: rgb(36, 44, 36);
         padding-left:20px;
       }
@@ -66,6 +69,44 @@
       .nav-tabs > li > a:hover{
         background-color: rgb(100, 107, 100);
       }
+
+      .geometry-link{
+        color:#3C8E56;
+        cursor: pointer;
+      }
+
+      .geometry-link:hover {
+        color: rgb(255, 243, 20);
+        text-decoration: none;
+      }
+
+      #home-module-row a{
+        color:white;
+      }
+
+      /*Content (Media All)*/
+
+      #developments-table{
+        text-align:left;
+        width:80%;
+        min-width:250px;
+      }
+
+      #home-bottom-row{
+        border-bottom: 1px solid rgb(90, 90, 90);
+        padding-bottom:10px;
+      }
+
+      @media all and (max-width:670px){
+        
+        #map-header{
+          font-size:15px;
+        }
+
+      }
+
+  
+    }
     </style>
 
     <!-- HTML5 IE8 support of HTML5 elements and media queries -->
@@ -105,7 +146,7 @@
           <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
           <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extended
           into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
-          and the telltale<a class="geometry-link" id="radial-geofeature-event"> radial canals</a> of cypress logging.
+          and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.
         </div>
 
         <div id="home-module-row">
@@ -131,8 +172,53 @@
      
       </div>
       <div id="labranchePane" class="tab-pane">
-      <h4>Pane 2 Content</h4>
-        <p> and so on ...</p>
+      
+
+        <div class="col-md-3">
+        <table id="developments-table">
+          <tr>
+            <td><b><u>NAME</b></u></td>
+            <td><b><u>ACREAGE</b></u></td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link labranche">LaBranche Industrial Park</span></td>
+            <td>539.87</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link westlake">Great West Lake</span></td>
+            <td>1518.29</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link beltway">Beltway Industrial Park</span></td>
+            <td>80.76</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link cloverleaf">Cloverleaf</span></td>
+            <td>93.04</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link shining">Shining Shores</span></td>
+            <td>143.25</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link james">James Park</span></td>
+            <td>58.9</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link monte">Monte Verde</span></td>
+            <td>40.65</td>
+          </tr>
+          <tr>
+            <td><span class="geometry-link lakeland">Lakeland Gardens</span></td>
+            <td>1223.57</td>
+          </tr>
+        </table>
+        </div>
+
+
+
+
+
       </div>
       <div id="pane3" class="tab-pane">
         <h4>Pane 3 Content</h4>
