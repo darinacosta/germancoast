@@ -4,10 +4,10 @@
   <head>
     <title>Louisiana's German Coast</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Bootstrap -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    
+    <link rel="stylesheet" type="text/css" href="./css/magnificent.css">
 
-    <!--CSS for the mapping components -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">   
     <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
     <style type="text/css">
@@ -19,6 +19,7 @@
         color: white;
         font-family: "Andale Mono", AndaleMono, monospace;
         height:100%;
+        width:100%;
         font-size:16px;
       }
 
@@ -49,10 +50,16 @@
         border-bottom-color: transparent;
       }
 
+      .row{
+        margin-right: 0px;
+        margin-left: 0px;
+      }
+
       .nav-tabs {
         border-bottom: 1px solid rgb(90, 90, 90);
         background-color: rgb(36, 44, 36);
         padding-left:20px;
+        margin-bottom:10px;
       }
 
       .nav-tabs a{
@@ -84,6 +91,10 @@
         color:white;
       }
 
+      h3{
+        margin-top:10px;
+      }
+
       /*Content (Media All)*/
 
       #developments-table{
@@ -97,11 +108,16 @@
         padding-bottom:10px;
       }
 
+      #mobile-labranche-dev-menu{
+        margin: 15px 0;
+      }
+
       @media all and (max-width:670px){
         
         #map-header{
           font-size:15px;
         }
+
 
       }
 
@@ -129,13 +145,16 @@
         <div id="mapDiv"></div>
       </div>
     </div>
+
   <div class="tabbable">
     <ul class="nav nav-tabs" id="tabset">
       <li class="active home-location-button"><a href="#homePane" data-toggle="tab">HOME</a></li>
       <li><a href="#labranchePane" data-toggle="tab" class="labranche-location-button">LABRANCHE</a></li>
-      <li><a href="#pane3" data-toggle="tab" class="norco-location-button">NORCO</a></li>
+      <li><a href="#norcoPane" data-toggle="tab" class="norco-location-button">NORCO</a></li>
     </ul>
     <div class="tab-content">
+
+      <!--HOME-->
       <div id="homePane" class="tab-pane active">
         <div class="col-md-12" id="home-bottom-row">
           <h3>The Swamps & Refineries of Southwestern Lake Pontchartrain</h3>
@@ -160,74 +179,60 @@
             <h3>Norco</h3>
             <p>Many geological and economic factors have contributed to the growth and development of this hyper-industrialized landscape.</p>
           </div>
-          <div class="col-md-3 vignette-descrip">
+          <div class="col-md-3 vignette-descrip" style="color:grey;">
             <h3>1811</h3>
-            <p>This module is still being developed.</p>
+            <p>This module is still under development.</p>
           </div>
-          <div class="col-md-3 vignette-descrip">
+          <div class="col-md-3 vignette-descrip" style="color:grey;">
             <h3>1915</h3>
-            <p>This module is still being developed.</p>
+            <p>This module is still under development.</p>
           </div>
         </div>
      
       </div>
+
+      <!--Labranche-->
+
       <div id="labranchePane" class="tab-pane">
       
 
-        <div class="col-md-3">
-        <table id="developments-table">
-          <tr>
-            <td><b><u>NAME</b></u></td>
-            <td><b><u>ACREAGE</b></u></td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link labranche">LaBranche Industrial Park</span></td>
-            <td>539.87</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link westlake">Great West Lake</span></td>
-            <td>1518.29</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link beltway">Beltway Industrial Park</span></td>
-            <td>80.76</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link cloverleaf">Cloverleaf</span></td>
-            <td>93.04</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link shining">Shining Shores</span></td>
-            <td>143.25</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link james">James Park</span></td>
-            <td>58.9</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link monte">Monte Verde</span></td>
-            <td>40.65</td>
-          </tr>
-          <tr>
-            <td><span class="geometry-link lakeland">Lakeland Gardens</span></td>
-            <td>1223.57</td>
-          </tr>
-        </table>
+        <div class="col-md-4">
+
+          <div id="mobile-development-selector">
+            <h4>Real Estate Speculation in the LaBranche Wetlands</h4>
+            <i>[Description of speculative real estate ventures in LaBranche in the 1970s]</i>
+              <div class="dropdown" id='mobile-labranche-dev-menu'>
+                <button class="btn btn-default dropdown-toggle" type="button" id="mobile-labranche-dev-menu-button" data-toggle="dropdown">
+                  Select a development for additional context
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class='geometry-link labranche'>LaBranche Industrial Park (539.87 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link westlake">Great West Lake (1518.29 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link beltway">Beltway Industrial Park (80.76 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link cloverleaf">Cloverleaf (93.04 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link shining">Shining Shores (143.25 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link james">James Park (58.9 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link monte">Monte Verde (40.65 acres)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link lakeland">Lakeland Gardens (1223.57)</a></li>
+                </ul>
+              </div> 
+            </div>          
         </div>
 
-
-
-
-
+        <div class="col-md-8" id="labranche-context"></div>
       </div>
-      <div id="pane3" class="tab-pane">
-        <h4>Pane 3 Content</h4>
+
+     <!--Norco-->
+
+      <div id="norcoPane" class="tab-pane">
+        <a id="landuse-switch-test">LAND USE SWITCH TEST</a><br>
+          <a href="https://www.youtube.com/watch?v=hERXpPDzFwg" class="video-link">VIDEO TEST</a>
       </div>
     </div><!-- /.tab-content -->
   </div><!-- /.tabbable -->
     
     
-    <!-- Step 3. Add JS to load the responsive map -->
     <script type="text/javascript">
         var package_path = "//esri.github.com/bootstrap-map-js/src/js";
         var dojoConfig = {
@@ -242,12 +247,20 @@
     <!-- jQuery (for Bootstrap's JavaScript plugins) -->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="js/riverParishMap.js"></script>
-    <script>
-    $('#gotolabranche').click(function() {
-          $('#tabset a[href="#labranchePane"]').tab('show');
-        });
-    </script>
+    
     <!-- Include all  plugins or individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="./js/magnificent.js"></script>
+    <script>
+      $('#gotolabranche').click(function() {
+        $('#tabset a[href="#labranchePane"]').tab('show');  
+      });
+
+      $(document).ready(function() {
+        $("#cover").fadeOut(1100); 
+        $('.image-link').magnificPopup({type:'image'});
+        $('.video-link').magnificPopup({type:'iframe'});
+      }); 
+    </script>
   </body>
 </html>

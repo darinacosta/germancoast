@@ -277,7 +277,6 @@
     $('#'+args['module']+'-module').css('display','block');
     hideAllLayers();
     map.centerAndZoom(args['coordinates'], args['zoom']);
-    $('.btn').css('background-color','rgb(36, 44, 36)');
     $('#labranche-map-title').text(args['title']);
     $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
     eval(args['module'] + '()');
