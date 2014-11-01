@@ -70,11 +70,17 @@
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
         border-radius: 0;
-        line-height: 0;
+        line-height: .5;
       }
       
       .nav-tabs > li > a:hover{
         background-color: rgb(100, 107, 100);
+        border-color:transparent;
+      }
+
+      .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+        background-color: rgb(100, 107, 100);
+        border-color: transparent;
       }
 
       .geometry-link{
@@ -117,11 +123,17 @@
         margin: 15px 0;
       }
 
-      @media (max-height:900px){
+      @media (max-height:800px){
         #mapDiv{
-          height:300px !important;
+          max-height:300px;
         }
       }
+
+      /*@media (max-height:770px){
+        #mapDiv{
+          max-height:270px;
+        }
+      }*/
 
       @media all and (max-width:670px){
         
@@ -156,14 +168,17 @@
       </div>
     </div>
 
-    
-
   <div class="tabbable">
     <ul class="nav nav-tabs" id="tabset">
       <li class="active home-location-button"><a href="#homePane" data-toggle="tab">HOME</a></li>
       <li><a href="#labranchePane" data-toggle="tab" class="labranche-location-button">LABRANCHE</a></li>
-      <li><a href="#norcoPane" data-toggle="tab" class="norco-location-button">NORCO</a></li>
-      <li><a href="#ambientPane" data-toggle="tab" class="norco-location-button">AMBIENT</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">NORCO <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button">Physical Growth</a></li>
+        <li><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link" data-toggle="tab">The Shell Explosion of 1985 <span class="glyphicon glyphicon-film"></span></a></li>
+        </ul><!-- end of dropdown menu -->
+      </li>
     </ul>
     <div class="tab-content">
 
@@ -238,7 +253,7 @@
 
      <!--Norco-->
 
-      <div id="norcoPane" class="tab-pane">
+      <div id="norcoLandusePane" class="tab-pane">
         <div class="col-md-3 col-xs-3">
         </div>
         <div class="col-md-9">
@@ -249,7 +264,7 @@
             </video>
           </div>
           <a id="landuse-switch-test">LAND USE SWITCH TEST</a><br>
-            <a href="https://www.youtube.com/watch?v=hERXpPDzFwg" class="video-link">VIDEO TEST</a>
+            <a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link">VIDEO TEST</a>
           </div>
 
       </div>
