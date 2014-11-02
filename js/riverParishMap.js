@@ -84,12 +84,6 @@
           "href": "http://verylongroad.com/gis/services/plantation_test_v1.jpg"  
         });
 
-        layerJson = [
-                  {'layersType': 'norco',
-                    'layers': [floodLanduse, landuse, shellProperties]},
-                  {'layersType':'labranche',
-                    'layers': [developments]}]
-
         //Colors
         var selected = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, 
               new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
@@ -108,6 +102,19 @@
           logo:false,
           showInfoWindowOnClick:false  
         });
+
+        //Define Image Layers
+        map.addLayer(plantationLayer);  
+        plantationLayer.addImage(plantationImage);
+        plantationLayer.hide();
+
+        layerJson = [
+                  {'layersType': 'norco',
+                    'layers': [floodLanduse, 
+                    landuse, shellProperties, 
+                    plantationLayer]},
+                  {'layersType':'labranche',
+                    'layers': [developments]}]
 
 
         map.on("load", function() {
@@ -208,8 +215,7 @@
 
 
       function norco(){
-        map.addLayer(plantationLayer);  
-        plantationLayer.addImage(plantationImage);
+        plantationLayer.show();
         //landuse.show();
         /*var landuseClicked = 0
         $('#landuse-switch-test').on("click", function(){
