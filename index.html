@@ -179,6 +179,19 @@
         .nav-tabs > li {
             float:none;
         }
+
+      .row-map.sticky {
+         position: fixed;
+         top: 0;
+         z-index:999;
+      }
+
+      #map-placeholder{
+        height:211px;
+        display:none;
+      }
+
+
       }
 
 
@@ -220,6 +233,7 @@
         <div id="mapDiv"></div>
       </div>
     </div>
+    <div id="map-placeholder"></div>
 
       <!--HOME-->
       <div id="homePane" class="tab-pane active">
@@ -352,18 +366,26 @@
         $('.video-link').magnificPopup({type:'iframe'});
       }); 
 
+      //Tooltips
       $('[data-toggle="popover"]').popover({
           trigger: 'hover',
           'placement': 'bottom'
       });
 
-      $('.geometry-link').tooltip({
-        'show': true,
-        'placement': 'top',
-        'title': "Map link",
-      });
 
-      $('#userNameField').tooltip('show');
+      //Mapscroll
+      var $window = $(window),
+       $mapRow = $('.row-map'),
+       elTop = $mapRow.offset().top;
+
+     $window.scroll(function() {
+        $mapRow.toggleClass('sticky', $window.scrollTop() > elTop);
+        if ($window.scrollTop() > elTop){
+          $('#map-placeholder').css({display: 'block'});
+        }else{
+          $('#map-placeholder').css({display: 'none'});
+        }
+      });
 
     </script>
   </body>
