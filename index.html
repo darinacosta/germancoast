@@ -88,6 +88,33 @@
         border-color: transparent;
       }
 
+      .dropdown-menu{
+        background-color:rgb(100, 107, 100);
+      }
+
+      .dropdown.active{
+        background-color:rgb(16, 16, 16);
+      }
+
+      .dropdown.active.open>.dropdown-menu{
+        background-color: rgb(16, 16, 16);
+      }
+
+      .dropdown-menu>li>a{
+        color:white;
+      }
+
+      .dropdown-menu>.active>a{
+        background-color: #414141;
+      }
+
+      .popover.bottom>.arrow{
+        display:none;
+      }
+
+      .tooltip > .tooltip-inner {background-color: rgb(100, 107, 100);}
+      .tooltip > .tooltip-arrow { border-bottom-color:rgb(100, 107, 100); }
+
       .geometry-link{
         color:#3C8E56;
         cursor: pointer;
@@ -139,13 +166,21 @@
         }
       }*/
 
-      @media all and (max-width:670px){
-        
-        #map-header{
-          font-size:15px;
-        }
+      @media (max-width: 480px) { 
 
+      .nav-tabs {
+        padding-left:0px;
       }
+      
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        border: transparent;
+      }
+
+        .nav-tabs > li {
+            float:none;
+        }
+      }
+
 
   
     }
@@ -173,7 +208,8 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">NORCO <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button">Growth</a></li>
-        <li><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link" data-toggle="tab">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+        <li><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link"><span data-toggle="popover"
+        data-content="Interview with several residents about the Shell Oil Refinery explosion of 1988.">Explosion <span class="glyphicon glyphicon-film"></span></span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
     </ul>
@@ -192,11 +228,11 @@
           The rim of southwestern Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
           This page hosts a short series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
           geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
-          the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
-          <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
-          <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extended
-          into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
-          and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.<br>
+          the <a class="geometry-link" id="parishline-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
+          <a class="geometry-link" id="erosion-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>saltwater erosion</a> along the shores of the lake; 
+          <a id="ej-geofeature-event" class="geometry-link"><span class="glyphicon glyphicon-map-marker"></span>residential areas sandwiched between refineries</a>; others that extended
+          into <a class="geometry-link" id="suburb-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>precarious floodplains</a>;
+          and the telltale <a class="geometry-link" id="radial-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>radial canals</a> of cypress logging.<br>
           <hr style="width:30%">
         </div>
 
@@ -315,6 +351,20 @@
         $('.image-link').magnificPopup({type:'image'});
         $('.video-link').magnificPopup({type:'iframe'});
       }); 
+
+      $('[data-toggle="popover"]').popover({
+          trigger: 'hover',
+          'placement': 'bottom'
+      });
+
+      $('.geometry-link').tooltip({
+        'show': true,
+        'placement': 'top',
+        'title': "Map link",
+      });
+
+      $('#userNameField').tooltip('show');
+
     </script>
   </body>
 </html>
