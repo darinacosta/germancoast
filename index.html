@@ -44,8 +44,8 @@
 
       #map-container{
         border-bottom: 1px solid rgb(90, 90, 90);
-        background-color:rgb(16, 16, 16);
         margin-bottom:10px;
+        background-color: rgb(16, 16, 16);
       }
 
       .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
@@ -111,9 +111,6 @@
       .popover.bottom>.arrow{
         display:none;
       }
-
-      .tooltip > .tooltip-inner {background-color: rgb(100, 107, 100);}
-      .tooltip > .tooltip-arrow { border-bottom-color:rgb(100, 107, 100); }
 
       .geometry-link{
         color:#3C8E56;
@@ -183,12 +180,13 @@
       .row-map.sticky {
          position: fixed;
          top: 0;
-         z-index:999;
+         z-index: 9999;
       }
 
       #map-placeholder{
         height:211px;
         display:none;
+        z-index:0;
       }
 
 
@@ -382,8 +380,10 @@
         $mapRow.toggleClass('sticky', $window.scrollTop() > elTop);
         if ($window.scrollTop() > elTop){
           $('#map-placeholder').css({display: 'block'});
+          $('.map').css({'overflow': 'visible'});
         }else{
           $('#map-placeholder').css({display: 'none'});
+          $('.map').css({'overflow': 'hidden'});
         }
       });
 
