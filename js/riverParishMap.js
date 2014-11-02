@@ -24,6 +24,8 @@
       "esri/geometry/Extent",
       "esri/layers/GraphicsLayer",
       "esri/graphic", 
+      "esri/layers/MapImage", 
+      "esri/layers/MapImageLayer",
       "esri/tasks/GeometryService",
       "esri/tasks/query",
       "esri/tasks/QueryTask",
@@ -45,6 +47,8 @@
         Extent,
         GraphicsLayer,
         Graphic,
+        MapImage, 
+        MapImageLayer,
         GeometryService,
         Query,
         QueryTask,
@@ -72,6 +76,13 @@
         var shellPropertiesUrl = 'http://verylongroad.com/gis/services/shell_properties_v1.kmz'
         var shellProperties = new KMLLayer(shellPropertiesUrl, {"opacity": 0.7})
         
+        plantationLayer = new MapImageLayer({ "id": "river_parish_plantations_v1",
+        "opacity": 0.5 });  
+        var plantationExtent = new Extent({ "xmin": -10180219.4529657810926437, "ymin": 3465453.2601955365389585, "xmax": -10015220.5453406143933535, "ymax": 3562852.9017185945995152, "spatialReference": { "EPSG": 4326 }});  
+        var plantationImage = new MapImage({  
+          "extent": plantationExtent,  
+          "href": "http://verylongroad.com/gis/services/plantation_test_v1.jpg"  
+        });
 
         layerJson = [
                   {'layersType': 'norco',
@@ -97,6 +108,7 @@
           logo:false,
           showInfoWindowOnClick:false  
         });
+
 
         map.on("load", function() {
           //after map loads, connect to listen to mouse move & drag events
@@ -196,8 +208,10 @@
 
 
       function norco(){
-        landuse.show();
-        var landuseClicked = 0
+        map.addLayer(plantationLayer);  
+        plantationLayer.addImage(plantationImage);
+        //landuse.show();
+        /*var landuseClicked = 0
         $('#landuse-switch-test').on("click", function(){
           if(landuseClicked == 0){
             landuse.hide();
@@ -208,10 +222,7 @@
             landuse.show();
             landuseClicked = landuseClicked - 1
           }
-        });
-        //$('#norco-top-panel').html('The Norco module is still under development. '+
-         // 'Explore land speculation in the LaBranche Wetlands by clicking the "Labranche" button.');
-        //<img src="i/landuse_v1.jpg" width="100%">
+        });*/
       }//End Norco
 
       /*/////////////////////////////////////*/
@@ -296,7 +307,7 @@
     activateModule({'module':'norco',
       'title':'NORCO INDUSTRIAL GROWTH',
       'coordinates':[-90.4108, 30.0039], 
-      'zoom':13
+      'zoom':11
     });
   });
 
