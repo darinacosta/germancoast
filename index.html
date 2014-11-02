@@ -23,7 +23,7 @@
         font-size:16px;
       }
 
-      h1{
+      h1, h3{
         margin-top:10px;
         font-size:24px;
       }
@@ -216,7 +216,7 @@
     <ul class="nav nav-tabs" id="tabset">
       <li class="active home-location-button"><a href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMPS & SUBURBS <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
         <ul class="dropdown-menu">
         <li><a href="#labranchePane" data-toggle="tab" class="labranche-location-button"><span data-toggle="popover"
         data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems.">Speculation</span></a></li>
@@ -225,7 +225,7 @@
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">REFINERIES & DISASTERS <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button">Growth</a></li>
         <li><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link"><span data-toggle="popover"
@@ -265,11 +265,11 @@
 
         <div id="home-module-row">
           <div class="col-md-4 vignette-descrip labranche-location-button">
-            <div class="center-header"><h4>SWAMPS & SUBURBS</h4></div>
+            <div class="center-header"><h4>SWAMP & SUBURB</h4></div>
             <p>The cypress swamps and marsh prairies of the LaBranche Wetlands have managed to survive the canal-dredging, erosion, and speculative real-estate ventures that have consumed neighboring ecosystems.</p>
           </div>
           <div class="col-md-4 vignette-descrip norco-location-button">
-            <div class="center-header"><h4>REFINERIES & DISASTERS</h4></div>
+            <div class="center-header"><h4>INDUSTRY & DISASTER</h4></div>
             <p>Many geological and economic factors have contributed to the growth and development of this hyper-industrialized landscape.</p>
           </div>
           <div class="col-md-4 vignette-descrip" style="color:grey;">
@@ -289,21 +289,21 @@
 
           <div id="mobile-development-selector">
             <h4>Real Estate Speculation in the LaBranche Wetlands</h4>
-            <i>[Description of speculative real estate ventures in LaBranche in the 1970s]</i>
+            <i> Select a development for additional context</i>
               <div class="dropdown" id='mobile-labranche-dev-menu'>
                 <button class="btn btn-default dropdown-toggle" type="button" id="mobile-labranche-dev-menu-button" data-toggle="dropdown">
-                  Select a development for additional context
+                  ...
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class='geometry-link labranche'>LaBranche Industrial Park (539.87 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link westlake">Great West Lake (1518.29 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link beltway">Beltway Industrial Park (80.76 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link cloverleaf">Cloverleaf (93.04 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link shining">Shining Shores (143.25 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link james">James Park (58.9 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link monte">Monte Verde (40.65 acres)</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link lakeland">Lakeland Gardens (1223.57)</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class='geometry-link labranche'>LaBranche Industrial Park</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link westlake">Great West Lake</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link beltway">Beltway Industrial Park</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link cloverleaf">Cloverleaf</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link shining">Shining Shores</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link james">James Park</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link monte">Monte Verde</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link lakeland">Lakeland Gardens</a></li>
                 </ul>
               </div> 
             </div>          
@@ -315,19 +315,20 @@
      <!--Norco-->
 
       <div id="norcoLandusePane" class="tab-pane">
-        <div class="col-md-12">
-          <h3>A History of Levee Domination</h4>
-          <div class="video-wrap">
-            <video width="100%" style="max-width:300px" autoplay="autoplay" loop> 
-              <source src="http://verylongroad.com/media/norco_flaring_v1.webm" type="video/webm">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          The history of industrial development is a history of power dynamics that have determined who owns the high ground natural levees of the Mississippi River. 
-          <a id="landuse-switch-test">LAND USE SWITCH TEST</a><br>
-            <a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link">VIDEO TEST</a>
-          </div>
-
+        <div id="norco-slide-1">
+          <div class="col-md-12">
+            <div class="video-wrap" style="margin-top:12px">
+              <video width="100%" style="max-width:300px" autoplay="autoplay" loop> 
+                <source src="http://verylongroad.com/media/norco_flaring_v1.webm" type="video/webm">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <h3>From Plantation to Refinery</h4>
+            <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle plantation land, a legacy of Louisiana's once-robust 19th century sugar industry. The river itself provided access to Gulf oil fields, as well as serving as a coolant for machinery and a toxic waste sink.</p>
+            <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.
+            <a id="landuse-switch-test">LAND USE SWITCH TEST</a><br>
+            </div>
+        </div>
       </div>
 
     <!--Ambient-->
@@ -383,7 +384,7 @@
       //Mapscroll
       var $window = $(window),
        $mapRow = $('.row-map'),
-       elTop = $mapRow.offset().top;
+       elTop = $mapRow.offset().top + 20;
 
      $window.scroll(function() {
         $mapRow.toggleClass('sticky', $window.scrollTop() > elTop);
