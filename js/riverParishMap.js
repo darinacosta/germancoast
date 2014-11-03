@@ -19,6 +19,7 @@
     require(["esri/map", 
       "esri/geometry/webMercatorUtils",
       "dojo/dom",
+      "dojo/dom-construct",
       "application/bootstrapmap", 
       "esri/layers/KMLLayer",
       "esri/geometry/Extent",
@@ -36,12 +37,14 @@
       "esri/symbols/SimpleFillSymbol", 
       "esri/symbols/SimpleLineSymbol", 
       "esri/Color",
+      "dijit/form/HorizontalSlider",
       "dojo/_base/array",
       "esri/layers/FeatureLayer",
       "dojo/domReady!"], 
       function(Map,
         webMercatorUtils,
         dom, 
+        domConstruct,
         BootstrapMap, 
         KMLLayer,
         Extent,
@@ -59,6 +62,7 @@
         SimpleFillSymbol,
         SimpleLineSymbol,
         Color,
+        HorizontalSlider,
         arrayUtils,
         FeatureLayer
         ) {
@@ -76,8 +80,7 @@
         var shellPropertiesUrl = 'http://verylongroad.com/gis/services/shell_properties_v1.kmz'
         var shellProperties = new KMLLayer(shellPropertiesUrl, {"opacity": 0.7})
         
-        plantationLayer = new MapImageLayer({ "id": "river_parish_plantations_v1",
-        "opacity": 0.5 });  
+        plantationLayer = new MapImageLayer({ "id": "river_parish_plantations_v1"});  
         var plantationExtent = new Extent({ "xmin": -10180219.4529657810926437, "ymin": 3465453.2601955365389585, "xmax": -10015220.5453406143933535, "ymax": 3562852.9017185945995152, "spatialReference": { "EPSG": 4326 }});  
         var plantationImage = new MapImage({  
           "extent": plantationExtent,  
@@ -215,7 +218,28 @@
 
 
       function norco(){
+        
+        function addOpacityControl(layer) {
+          var targetElem = dojo.byId("opacity_control");
+          var sliderElem = domConstruct.create("div", {id: "opacity_slider"}, targetElem, "first");
+          opacityControl = new HorizontalSlider({
+              name: "slider",
+              value: 1,
+              minimum: 0,
+              maximum: 1,
+              showButtons: true,
+              intermediateChanges: true,
+              style: "width: 250px; margin-right: auto; margin-left: auto;",
+              onChange: function(value) {
+                  plantationLayer.setOpacity(value);
+                  // Refresh seems to be required for IE:
+                  //dynamicLayer.refresh();
+              }
+          }, "opacity_slider");
+          opacityControl.startup();
+        }
         plantationLayer.show();
+        addOpacityControl(plantationLayer);
         //landuse.show();
         /*var landuseClicked = 0
         $('#landuse-switch-test').on("click", function(){

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <link rel="stylesheet" type="text/css" href="./css/magnificent.css">
-
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.0/js/dojo/dijit/themes/claro/claro.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">   
     <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
@@ -268,11 +268,11 @@
         <div id="home-module-row">
           <div class="col-md-4 vignette-descrip labranche-location-button">
             <div class="center-header"><h4>SWAMP & SUBURB</h4></div>
-            <p>The cypress swamps and marsh prairies of the LaBranche Wetlands have managed to survive the canal-dredging, erosion, and speculative real-estate ventures that have consumed neighboring ecosystems.</p>
+            <p>...</p>
           </div>
           <div class="col-md-4 vignette-descrip norco-location-button">
             <div class="center-header"><h4>INDUSTRY & DISASTER</h4></div>
-            <p>Many geological and economic factors have contributed to the growth and development of this hyper-industrialized landscape.</p>
+            <p>...</p>
           </div>
           <div class="col-md-4 vignette-descrip" style="color:grey;">
             <div class="center-header"><h4>SLAVERY & REVOLT</h4></div>
@@ -319,16 +319,25 @@
       <div id="norcoLandusePane" class="tab-pane">
         <div id="norco-slide-1">
           <div class="col-md-12">
-            <div class="video-wrap" style="margin-top:12px">
+            <!--div class="video-wrap" style="margin-top:12px">
               <video width="100%" style="max-width:300px" autoplay="autoplay" loop> 
                 <source src="http://verylongroad.com/media/norco_flaring_v1.webm" type="video/webm">
                 Your browser does not support the video tag.
-              </video>
+              </video-->
+            <div class="col-md-12" style="text-align:center;">
+              <h3>From Plantation to Refinery</h3>
+              <div class="claro" style="padding: 15px 0;">
+                <div id="opacity_control"></div>
+              </div>
+              <hr>
             </div>
-            <h3>From Plantation to Refinery</h4>
-            <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle plantation land, a legacy of Louisiana's once-robust 19th century sugar industry. The river itself provided access to Gulf oil fields, as well as serving as a coolant for machinery and a toxic waste sink.</p>
+            <div class="col-md-3 col-sm-3" style="text-align:center; padding:0 15px 15px 0;">
+              <img style="max-width:210px;width:100%;" src="./i/plantation_toc_v1.jpg">
+            </div>
+            <div class="col-md-9 col-sm-9">
+            <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields. It could also serve as a coolant for machinery, and a toxic waste sink.</p>
             <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.
-            <a id="landuse-switch-test">LAND USE SWITCH TEST</a><br>
+            <!--a id="landuse-switch-test">LAND USE SWITCH TEST</a><br-->
             </div>
         </div>
       </div>
