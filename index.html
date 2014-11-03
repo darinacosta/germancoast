@@ -42,6 +42,7 @@
       #mapDiv {
         min-height: 200px; 
         max-height: 400px; 
+        position:relative;
       }
 
       #map-container{
@@ -210,10 +211,6 @@
   <body>
     
 
-    <!-- Step 2. Add HTML to define the layout of the page and the map >
-    <div class="col-m-12" id='map-header'>
-      LOUISIANA'S GERMAN COAST
-    </div-->
     <div class="tabbable">
     <ul class="nav nav-tabs" id="tabset">
       <li class="active home-location-button"><a href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -243,9 +240,17 @@
     </ul>
     <div class="tab-content">
     
+
+    <!--MAP-->
     <div class="row row-map">
       <div class="col-m-12 no-col-padding" id="map-container">
-        <div id="mapDiv"></div>
+        <div id="mapDiv">
+          <div style="position:absolute; width:100%; top:40%; z-index:100;">
+          <div style="text-align:center; width:126px; height:22px; margin: 0 auto;">
+            <img id="loadingImg" src="i/loading.gif"/>
+          </div>
+        </div>
+        </div>
       </div>
     </div>
     <div id="map-placeholder"></div>

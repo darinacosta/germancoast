@@ -103,8 +103,28 @@
           center: [-90.4008, 30.0339], // longitude, latitude
           zoom: 12,
           logo:false,
-          showInfoWindowOnClick:false  
+          showInfoWindowOnClick:false,
+          isScrollWheelZoom:false,
+          smartNavigation: false  
         });
+
+        //HANDLE LOADING
+        loading = dojo.byId("loadingImg");
+        dojo.connect(map, "onUpdateStart", showLoading);
+        dojo.connect(map, "onUpdateEnd", hideLoading);
+
+        function showLoading() {
+          esri.show(loading);
+          map.disableMapNavigation();
+          map.hideZoomSlider();
+        }
+
+        function hideLoading(error) {
+          esri.hide(loading);
+          map.enableMapNavigation();
+          map.showZoomSlider();
+        }
+
 
         //Define Image Layers
         map.addLayer(plantationLayer);  
