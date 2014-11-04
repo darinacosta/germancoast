@@ -1,3 +1,8 @@
+  var tvStatic = new Image();
+  tvStatic.src = 'i/tv_static.gif';
+  $(tvStatic).load(function(){
+    $(".map-container").hide().fadeIn('slow');
+  });
 
   //Controls
   function adjustRowHeight(extraHeight){
@@ -109,6 +114,13 @@
         });
 
         //HANDLE LOADING
+
+        map.on("load", function(){
+          $("#mapDiv").hide().fadeIn('slow');
+          $("#map-container").css("background-image","none");
+        });
+        
+
         loading = dojo.byId("loadingImg");
         dojo.connect(map, "onUpdateStart", showLoading);
         dojo.connect(map, "onUpdateEnd", hideLoading);
