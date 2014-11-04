@@ -114,8 +114,9 @@
         //HANDLE LOADING
 
         map.on("load", function(){
-          $("#mapDiv").fadeIn('slow');
-          //$("#map-container").css("background-image","none");
+          $("#mapDiv").css('visibility','visible').hide().fadeIn('slow', function(){
+            $("#map-container").css("background-image","none");
+          })
         });
         
 
