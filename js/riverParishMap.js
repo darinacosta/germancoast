@@ -1,8 +1,6 @@
-  var tvStatic = new Image();
-  tvStatic.src = 'i/tv_static.gif';
-  $(tvStatic).load(function(){
-    $(".map-container").hide().fadeIn('slow');
-  });
+
+    $("#map-container").css("background-image","url('i/tv_static.gif')");
+  $("#mapDiv").css('visibility','hidden');
 
   //Controls
   function adjustRowHeight(extraHeight){
@@ -116,8 +114,8 @@
         //HANDLE LOADING
 
         map.on("load", function(){
-          $("#mapDiv").hide().fadeIn('slow');
-          $("#map-container").css("background-image","none");
+          $("#mapDiv").fadeIn('slow');
+          //$("#map-container").css("background-image","none");
         });
         
 
