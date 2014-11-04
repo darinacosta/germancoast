@@ -116,26 +116,25 @@
         map.on("load", function(){
           $("#mapDiv").css('visibility','visible').hide().fadeIn('slow', function(){
             $("#map-container").css("background-image","none");
-          })
+
+            loading = dojo.byId("loadingImg");
+            dojo.connect(map, "onUpdateStart", showLoading);
+            dojo.connect(map, "onUpdateEnd", hideLoading);
+             
+            function showLoading() {
+              esri.show(loading);
+              map.disableMapNavigation();
+              map.hideZoomSlider();
+            }
+               
+            function hideLoading(error) {
+              esri.hide(loading);
+              map.enableMapNavigation();
+              map.showZoomSlider();
+            }
+
+          });  
         });
-        
-
-        loading = dojo.byId("loadingImg");
-        dojo.connect(map, "onUpdateStart", showLoading);
-        dojo.connect(map, "onUpdateEnd", hideLoading);
-
-        function showLoading() {
-          esri.show(loading);
-          map.disableMapNavigation();
-          map.hideZoomSlider();
-        }
-
-        function hideLoading(error) {
-          esri.hide(loading);
-          map.enableMapNavigation();
-          map.showZoomSlider();
-        }
-
 
         //Define Image Layers
         map.addLayer(plantationLayer);  
@@ -271,19 +270,6 @@
         }
         plantationLayer.show();
         addOpacityControl(plantationLayer);
-        //landuse.show();
-        /*var landuseClicked = 0
-        $('#landuse-switch-test').on("click", function(){
-          if(landuseClicked == 0){
-            landuse.hide();
-            floodLanduse.show();
-            landuseClicked = landuseClicked + 1
-          }else{
-            floodLanduse.hide();
-            landuse.show();
-            landuseClicked = landuseClicked - 1
-          }
-        });*/
       }//End Norco
 
       /*/////////////////////////////////////*/
