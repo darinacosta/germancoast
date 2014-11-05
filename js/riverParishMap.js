@@ -78,10 +78,13 @@
         var landuse = new KMLLayer(landuseUrl, {"opacity": 0.5})
 
         var floodLanduseUrl = 'http://verylongroad.com/gis/services/norco_land_uses_500yrfloodplain_DISSOLVE_v1.kmz'
-        var floodLanduse = new KMLLayer(floodLanduseUrl, {"opacity": 0.5})
+        var floodLanduse = new KMLLayer(floodLanduseUrl, {"opacity": 0.5});
         
         var shellPropertiesUrl = 'http://verylongroad.com/gis/services/shell_properties_v1.kmz'
-        var shellProperties = new KMLLayer(shellPropertiesUrl, {"opacity": 0.7})
+        var shellProperties = new KMLLayer(shellPropertiesUrl, {"opacity": 0.7});
+
+        var hurricaneLayerUrl = 'http://verylongroad.com/gis/services/west_indian_hurricane_v1.kmz'
+        var hurricaneLayer = new KMLLayer(hurricaneLayerUrl, {"opacity": 1});
         
         plantationLayer = new MapImageLayer({ "id": "river_parish_plantations_v1"});  
         var plantationExtent = new Extent({ "xmin": -10180219.4529657810926437, "ymin": 3465453.2601955365389585, "xmax": -10015220.5453406143933535, "ymax": 3562852.9017185945995152, "spatialReference": { "EPSG": 4326 }});  
@@ -147,7 +150,10 @@
                     landuse, shellProperties, 
                     plantationLayer]},
                   {'layersType':'labranche',
-                    'layers': [developments]}]
+                    'layers': [developments]},
+                  {'layersType':'hurricane',
+                    'layers': [hurricaneLayer]}
+                    ]
 
 
         map.on("load", function() {
@@ -240,7 +246,13 @@
       $("#parishline-geofeature-event").on("click", function(){
         map.centerAndZoom([-90.279, 30.032], 14);
       }); 
+          /*///////////////////////////////////////*/
+         /*/////////////////1915//////////////////*/
+        /*///////////////////////////////////////*/
 
+        function hurricane(){
+
+        }
 
         /*///////////////////////////////////////*/
        /*/////////////////NORCO/////////////////*/
@@ -341,6 +353,16 @@
   };
 
   //Buttons
+
+  $('.hurricane').on("click",function(){
+    activateModule({'module': 'hurricane',
+      'title':'hurricane',
+      'coordinates':[-90.335, 30.015], 
+      'zoom':10
+    });
+    hurricaneLayer.show();
+  });
+
   $('.labranche-location-button').on("click",function(){
     activateModule({'module': 'labranche',
       'title':'LABRANCHE WETLANDS',
