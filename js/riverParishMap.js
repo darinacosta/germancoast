@@ -12,10 +12,6 @@
   $( window ).resize(function() {
     adjustRowHeight(43);
   });
-  
-  //button control
-  var activebutton = 'norco';
-  var labrancheActivated = 'no';
 
   var trepagnierContext = 'The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>'
     
@@ -92,16 +88,6 @@
           "extent": plantationExtent,  
           "href": "http://verylongroad.com/gis/services/plantation_test_v1.jpg"  
         });
-
-        //Colors
-        var selected = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, 
-              new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-              new Color([200,200,0]), 2), new Color([130,150,0,0.5])
-            );
-        var unselected = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, 
-              new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-              new Color([150,0,0]), 1), new Color([100,40,0,0.7])
-            );
 
 
         var map = BootstrapMap.create("mapDiv",{
@@ -246,13 +232,25 @@
       $("#parishline-geofeature-event").on("click", function(){
         map.centerAndZoom([-90.279, 30.032], 14);
       }); 
-          /*///////////////////////////////////////*/
-         /*/////////////////1915//////////////////*/
+
+
         /*///////////////////////////////////////*/
+       /*//////////////HURRICANE////////////////*/
+      /*///////////////////////////////////////*/
+      var hurricaneLine = new SimpleLineSymbol(
+          SimpleLineSymbol.STYLE_DASH,
+          new Color([255,0,0]), 5);
 
-        function hurricane(){
+      hurricaneLayer.on("load", function(evt) {
+          evt.layer.getLayers()[0].graphics.forEach(function(g) {
+            g.setSymbol(hurricaneLine)
+          });
+      });
 
-        }
+      function hurricane(){
+        
+
+      }
 
         /*///////////////////////////////////////*/
        /*/////////////////NORCO/////////////////*/
@@ -287,6 +285,15 @@
       /*/////////////////////////////////////*/
      /*//////////////LABRANCHE//////////////*/
     /*/////////////////////////////////////*/
+
+    var selected = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, 
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+      new Color([200,200,0]), 2), new Color([130,150,0,0.5])
+    );
+    var unselected = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, 
+      new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+      new Color([150,0,0]), 1), new Color([100,40,0,0.7])
+    );
      
     /*Collect Layer Information*/
     var geometries = [];
@@ -357,8 +364,8 @@
   $('.hurricane').on("click",function(){
     activateModule({'module': 'hurricane',
       'title':'hurricane',
-      'coordinates':[-90.335, 30.015], 
-      'zoom':10
+      'coordinates':[-89.411, 30.077], 
+      'zoom':9
     });
     hurricaneLayer.show();
   });
