@@ -365,7 +365,7 @@
     activateModule({'module': 'hurricane',
       'title':'hurricane',
       'coordinates':[-89.411, 30.077], 
-      'zoom':9
+      'zoom':6
     });
     hurricaneLayer.show();
   });

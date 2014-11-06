@@ -51,6 +51,10 @@
         background-color: rgb(16, 16, 16);
       }
 
+      #map-accordion{
+        display:none;
+      }
+
       #loadingImg{
         display:none;
       }
@@ -201,6 +205,10 @@
          z-index: 9999;
       }
 
+      #map-accordion{
+        display:block;
+      }
+
       #map-placeholder{
         height:211px;
         display:none;
@@ -257,7 +265,13 @@
     
 
     <!--MAP-->
-    <div class="row row-map">
+    <div class="panel panel-default" data-toggle="collapse" data-parent="#accordion" data-target="#map-row" id="map-accordion">
+        <a class="accordion-toggle">
+          Map <span class="caret"></span>
+        </a>
+      </div>
+    </div>
+    <div class="row row-map" id="map-row">
       <div class="col-m-12 no-col-padding" id="map-container">
         <div style="position:absolute; width:100%; top:20%; z-index:100;">
           <div style="text-align:center; width:126px; height:22px; margin: 0 auto;">
@@ -339,11 +353,6 @@
       <div id="norcoLandusePane" class="tab-pane">
         <div id="norco-slide-1">
           <div class="col-md-12">
-            <!--div class="video-wrap" style="margin-top:12px">
-              <video width="100%" style="max-width:300px" autoplay="autoplay" loop> 
-                <source src="http://verylongroad.com/media/norco_flaring_v1.webm" type="video/webm">
-                Your browser does not support the video tag.
-              </video-->
             <div class="col-md-12" style="text-align:center;">
               <h3>From Plantation to Refinery</h3>
               <div class="claro" style="padding: 15px 0;">
@@ -365,7 +374,6 @@
 
       <!--Hurricane-->
       <div id="hurricanePane" class="tab-pane">
-        TEST
       </div>
 
     <!--Ambient-->
@@ -374,10 +382,7 @@
           <audio controls loop id="player1" src="audio/industrialsound.ogg" type="audio/ogg">Your browser does not support the audio element.</audio>
         </div-->
 
-
       </div>
-
-      
 
     </div><!-- /.tab-content -->
   </div><!-- /.tabbable -->
