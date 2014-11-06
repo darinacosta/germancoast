@@ -47,7 +47,6 @@
 
       #map-container{
         border-bottom: 1px solid rgb(90, 90, 90);
-        margin-bottom:10px;
         background-color: rgb(16, 16, 16);
       }
 
@@ -199,20 +198,8 @@
 
       @media (max-width: 480px) { 
 
-      .row-map.sticky {
-         position: fixed;
-         top: 0;
-         z-index: 9999;
-      }
-
       #map-accordion{
         display:block;
-      }
-
-      #map-placeholder{
-        height:211px;
-        display:none;
-        z-index:0;
       }
     }
   }
@@ -265,13 +252,8 @@
     
 
     <!--MAP-->
-    <div class="panel panel-default" data-toggle="collapse" data-parent="#accordion" data-target="#map-row" id="map-accordion">
-        <a class="accordion-toggle">
-          Map <span class="caret"></span>
-        </a>
-      </div>
-    </div>
-    <div class="row row-map" id="map-row">
+
+    <div class="row row-map in" id="map-row">
       <div class="col-m-12 no-col-padding" id="map-container">
         <div style="position:absolute; width:100%; top:20%; z-index:100;">
           <div style="text-align:center; width:126px; height:22px; margin: 0 auto;">
@@ -282,8 +264,11 @@
         </div>
       </div>
     </div>
-    <div id="map-placeholder"></div>
-
+    <div id="map-display-container" style="width:100%;height:20px">
+      <div data-toggle="collapse" data-target="#map-row" style="font-size:10px;float:right; width:130px; padding:2px; text-align:center;background-color:rgb(36, 44, 36);border:1px solid rgb(90, 90, 90);border-top:0; border-right:0; cursor:pointer;">
+        <i>Map Display</i> <span class="glyphicon glyphicon-chevron-down"></span> <span class="glyphicon glyphicon-chevron-up"></span> 
+      </div>
+    </div>
       <!--HOME-->
       <div id="homePane" class="tab-pane active">
         <div class="col-md-12" id="home-bottom-row">
@@ -441,6 +426,7 @@
           $('.map').css({'overflow': 'hidden'});
         }
       });
+
 
     </script>
   </body>
