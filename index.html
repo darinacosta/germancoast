@@ -359,6 +359,8 @@
 
       <!--Hurricane-->
       <div id="hurricanePane" class="tab-pane">
+        <div id="player"></div>
+        <div id="youtube-api-test"></div>
       </div>
 
     <!--Ambient-->
@@ -384,6 +386,37 @@
         };
 
     </script>
+    <script>
+    /***********HURRICANE VIDEO CONTROL**************/
+
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: 'hERXpPDzFwg',
+            playerVars: {'autoplay': 0, 
+                         'autohide': 1,
+                         'controls': 0,
+                         'modestbranding': 1
+                       }
+          });
+        }
+      
+      var done = false;
+
+      function stopVideo() {
+        player.stopVideo();
+      }
+
+    /****************END YOUTUBE VIDEO CONTROL***********/
+  </script>
     <script src="http://js.arcgis.com/3.10compact"></script>
     <!-- jQuery (for Bootstrap's JavaScript plugins) -->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>

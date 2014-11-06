@@ -1,17 +1,8 @@
 
-    $("#map-container").css("background-image","url('i/tv_static.gif')");
+  $("#map-container").css("background-image","url('i/tv_static.gif')");
   $("#mapDiv").css('visibility','hidden');
 
-  //Controls
-  function adjustRowHeight(extraHeight){
-    var topDivHeight = $("#map-header").height() + $(".map-container").height()+extraHeight;
-    var totalHeight = $(document).height();
-    $('.bottom-row').height(totalHeight - topDivHeight);
-  };
-
-  $( window ).resize(function() {
-    adjustRowHeight(43);
-  });
+  
 
   var trepagnierContext = 'The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>'
     
@@ -250,7 +241,32 @@
       function hurricane(){
         
 
+         /************VIDEO MAP CONTROL*********/
+         var videotime = 0;
+
+          function updateTime() {
+          var oldTime = videotime;
+          if(player && player.getCurrentTime) {
+            videotime = player.getCurrentTime();
+          }
+          if(videotime !== oldTime) {
+            onProgress(videotime);
+            }
+          }
+          timeupdater = setInterval(updateTime, 100);
+
+
+          function onProgress(currentTime) {
+            if(currentTime > 2) {
+              map.centerAndZoom([-89.411, 30.077], 7);
+             hurricaneLayer.show();
+             map.setExtent(map.extent)
+            } if(currentTime > 15){
+              console.log('15');
+          }
+        }
       }
+      
 
         /*///////////////////////////////////////*/
        /*/////////////////NORCO/////////////////*/
@@ -367,7 +383,6 @@
       'coordinates':[-89.411, 30.077], 
       'zoom':6
     });
-    hurricaneLayer.show();
   });
 
   $('.labranche-location-button').on("click",function(){
