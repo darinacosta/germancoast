@@ -367,17 +367,18 @@
       <!--Hurricane-->
       <div id="hurricanePane" class="tab-pane">
         <row>
-          <div class="col-md-4" id="hurricane-video-left" style="text-align:center"><i>Click play to begin the West Indian Hurricane Module</i>
+          <div class="col-md-4" id="hurricane-video-left" style="text-align:center" class="hurricane-panel"><i>Click play to begin the West Indian Hurricane Module</i>
           </div>
           <div class="col-md-4" style="text-align:center">
             <video id="hurricane-video" controls style="max-width:375px;width:100%;">
-              <source src="video/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
-              <source src="movie.ogg" type="video/ogg">
+              <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
+              <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
+
             Your browser does not support the video tag.
             </video>
-            <div id="hurricane-video-text" style="font-style:italic;"></div>
+            <div id="hurricane-video-text" class="hurricane-panel" style="font-style:italic;"></div>
           </div>
-          <div class="col-md-4" id="hurricane-video-right" style="text-align:center">
+          <div class="col-md-4" id="hurricane-video-right" class="hurricane-panel" style="text-align:center">
           </div>
         </row>
         <!--div id="player"></div>
@@ -408,40 +409,9 @@
 
     </script>
     <script>
-    var video = document.getElementById("hurricane-video");
+    var hurricaneVideo = document.getElementById("hurricane-video");
     //  display the current and remaining times
     </script>
-    <!--script>
-    /***********HURRICANE VIDEO CONTROL**************/
-
-        var tag = document.createElement('script');
-
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-          player = new YT.Player('player', {
-            height: '390',
-            width: '640',
-            videoId: 'hERXpPDzFwg',
-            playerVars: {'autoplay': 0, 
-                         'autohide': 1,
-                         'controls': 0,
-                         'modestbranding': 1
-                       }
-          });
-        }
-      
-      var done = false;
-
-      function stopVideo() {
-        player.stopVideo();
-      }
-
-    /****************END YOUTUBE VIDEO CONTROL***********/
-  </script-->
     <script src="http://js.arcgis.com/3.10compact"></script>
     <!-- jQuery (for Bootstrap's JavaScript plugins) -->
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>

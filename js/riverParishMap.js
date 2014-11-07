@@ -239,27 +239,31 @@
       });
 
       function hurricane(){
-        video.addEventListener("timeupdate", function () {
+
+        hurricaneVideo.addEventListener("timeupdate", function () {
           //  Current time  
-          var vTime = video.currentTime;
-            if (vTime > 1 && vTime < 3){
-              $('#hurricane-video-text').html('');
+          var vTime = hurricaneVideo.currentTime;
+          if (vTime < 5){
+              $('#hurricane-video-left').text('  ');
            }else if (vTime > 9.7 && vTime < 11){
             map.centerAndZoom([-90.405, 30.001], 16);
             $('#hurricane-video-text').text('Shell Oil Refinery');
             //hurricaneLayer.show();
             $('#hurricane-video-left').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/shell_at_the_tracks_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
 
-          }else if (vTime > 27 && vTime < 31){
+          }else if (vTime > 26 && vTime < 29){
             $('#hurricane-video-text').text('Bonnet Carre Spillway @ I10');
-            map.centerAndZoom([-90.383, 30.063], 16);
+            map.centerAndZoom([-90.383, 30.063], 15);
             $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
            }else if (vTime > 47 && vTime < 51){
             $('#hurricane-video-text').text('Residential Norco');
-            map.centerAndZoom([-90.412, 30.005 ], 16);
+            map.centerAndZoom([-90.412, 30.005 ], 15);
           }
         }, false);
         
+
+
+
 
       }
       
