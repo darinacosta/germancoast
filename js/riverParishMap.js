@@ -239,16 +239,36 @@
       });
 
       function hurricane(){
-        var hurricaneVideoStatus = 'pause'
+        var hurricaneVideoStatus = 'paused'
+
+        $('a.newpage').on("click", function(){
+          $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
+          hurricaneVideo.pause();
+          hurricaneVideoStatus='paused';
+        });
+
         $('#hurricane-play').on("click", function(){
-          if (hurricaneVideoStatus=='pause'){
+          if (hurricaneVideoStatus=='paused'){
             hurricaneVideo.play();
-            hurricaneVideoStatus='play';
+            hurricaneVideoStatus='playing';
             $('#hurricane-play').html('<span class="glyphicon glyphicon-pause"></span>');
-          }else if (hurricaneVideoStatus=='play'){
+          }else if (hurricaneVideoStatus=='playing'){
             $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
             hurricaneVideo.pause();
-            hurricaneVideoStatus='pause';
+            hurricaneVideoStatus='paused';
+          }
+        });
+        
+        $('#hurricane-replay').on("click", function(){
+          hurricaneVideo.currentTime = '0';
+          hurricaneVideo.play();
+          $('.hurricane-panel').html(' ');
+          hideAllLayers();
+          map.centerAndZoom([-90.4108, 30.0039], 13);
+          if (hurricaneVideoStatus=='paused'){
+            $('#hurricane-play').html('<span class="glyphicon glyphicon-pause"></span>');
+          }else if (hurricaneVideoStatus=='playing'){
+            $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
           }
         });
         
@@ -263,7 +283,6 @@
             $('#hurricane-video-text').text('Shell Oil Refinery');
             //hurricaneLayer.show();
             $('#hurricane-video-left').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/shell_at_the_tracks_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
-
           }else if (vTime > 26 && vTime < 29){
             $('#hurricane-video-text').text('Bonnet Carre Spillway @ I10');
             map.centerAndZoom([-90.383, 30.063], 15);

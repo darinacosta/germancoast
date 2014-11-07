@@ -38,16 +38,16 @@
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li data-toggle="popover"
-          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button">Speculation</a></li>
-          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane"><span>Hurricane</span></a></li>
+          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane newpage"><span>Hurricane</span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button">Growth</a></li>
+          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
         <li data-toggle="popover"
-        data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+        data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link newpage">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
@@ -169,7 +169,7 @@
       <!--Hurricane-->
       <div id="hurricanePane" class="tab-pane">
         <row>
-          <div class="col-md-4" id="hurricane-video-left" style="text-align:center" class="hurricane-panel">
+          <div class="col-md-4 hurricane-panel" id="hurricane-video-left" style="text-align:center">
           </div>
           <div class="col-md-4" style="text-align:center;">
             <div id="hurricane-video-wrapper" style="position:relative; margin:0 auto; max-width:375px">
@@ -180,14 +180,14 @@
               Your browser does not support the video tag.
               </video>
               <div style="position:absolute;">
-                <span id="hurricane-play"><span class="glyphicon glyphicon-play"></span></span> 
+                <span id="hurricane-play"><span class="glyphicon glyphicon-play"></span></span> <span id="hurricane-replay" class="glyphicon glyphicon-repeat"></span> 
               </div>
-              <div class="hurricane-panel" style="font-style:italic; margin: 0 20px 20px 20px;">
+              <div class="hurricane-panel" style="font-style:italic; margin: 0 5px 0 25px;">
                 <span id="hurricane-video-text" style="font-style:italic; color:grey;">Click play to activate this module.</span>
               </div>
             </div>
           </div>
-          <div class="col-md-4" id="hurricane-video-right" class="hurricane-panel" style="text-align:center">
+          <div class="col-md-4 hurricane-panel" id="hurricane-video-right" style="text-align:center">
           </div>
         </row>
         <!--div id="player"></div>
@@ -263,6 +263,17 @@
           $('.map').css({'overflow': 'hidden'});
         }
       });
+
+       //Analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-56503938-1', 'auto');
+      ga('send', 'pageview');
+
+
 
 
     </script>
