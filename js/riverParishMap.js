@@ -239,32 +239,28 @@
       });
 
       function hurricane(){
+        video.addEventListener("timeupdate", function () {
+          //  Current time  
+          var vTime = video.currentTime;
+            if (vTime > 1 && vTime < 3){
+              $('#hurricane-video-text').html('');
+           }else if (vTime > 9.7 && vTime < 11){
+            map.centerAndZoom([-90.405, 30.001], 16);
+            $('#hurricane-video-text').text('Shell Oil Refinery');
+            //hurricaneLayer.show();
+            $('#hurricane-video-left').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/shell_at_the_tracks_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
+
+          }else if (vTime > 27 && vTime < 31){
+            $('#hurricane-video-text').text('Bonnet Carre Spillway @ I10');
+            map.centerAndZoom([-90.383, 30.063], 16);
+            $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
+           }else if (vTime > 47 && vTime < 51){
+            $('#hurricane-video-text').text('Residential Norco');
+            map.centerAndZoom([-90.412, 30.005 ], 16);
+          }
+        }, false);
         
 
-         /************VIDEO MAP CONTROL*********/
-         var videotime = 0;
-
-          function updateTime() {
-          var oldTime = videotime;
-          if(player && player.getCurrentTime) {
-            videotime = player.getCurrentTime();
-          }
-          if(videotime !== oldTime) {
-            onProgress(videotime);
-            }
-          }
-          timeupdater = setInterval(updateTime, 100);
-
-
-          function onProgress(currentTime) {
-            if(currentTime > 2) {
-              map.centerAndZoom([-89.411, 30.077], 7);
-             hurricaneLayer.show();
-             map.setExtent(map.extent)
-            } if(currentTime > 15){
-              console.log('15');
-          }
-        }
       }
       
 
@@ -380,8 +376,8 @@
   $('.hurricane').on("click",function(){
     activateModule({'module': 'hurricane',
       'title':'hurricane',
-      'coordinates':[-89.411, 30.077], 
-      'zoom':6
+      'coordinates':[-90.4108, 30.0039],  
+      'zoom':13
     });
   });
 
