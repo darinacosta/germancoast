@@ -12,210 +12,12 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">   
     <link rel="stylesheet" type="text/css" href="http://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">   
-    <style type="text/css">
-      
-     @media all{
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
-      body{
-        background-color: black; /*rgb(16, 16, 16);*/
-        color: white;
-        font-family: "Andale Mono", AndaleMono, monospace;
-        height:100%;
-        width:100%;
-        font-size:16px;
-      }
-
-      h1, h3{
-        margin-top:10px;
-        font-size:24px;
-      }
-
-       #map-header{
-        font-size:20px;
-        background-color:rgb(36, 44, 36);
-        text-align:center;
-        font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
-        letter-spacing: 10px;
-        border-bottom: 1px solid rgb(90, 90, 90);
-      }
-
-      #mapDiv {
-        min-height: 200px; 
-        max-height: 400px; 
-        position:relative;
-      }
-
-      #map-container{
-        border-bottom: 1px solid rgb(90, 90, 90);
-        background-color: rgb(16, 16, 16);
-      }
-
-      #map-accordion{
-        display:none;
-      }
-
-      #loadingImg{
-        display:none;
-      }
-
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-        color: white;
-        cursor: default;
-        background-color: rgb(16, 16, 16);
-        border: 1px solid rgb(100, 107, 100);
-        border-bottom-color: transparent;
-      }
-
-      .row{
-        margin-right: 0px;
-        margin-left: 0px;
-      }
-
-      .nav-tabs {
-        border-bottom: 1px solid rgb(90, 90, 90);
-        background-color: rgb(36, 44, 36);
-        padding-left:20px;
-      }
-
-      .nav-tabs > li{
-        font-size: 14px;
-      }
-
-      .nav-tabs a{
-        color:white;
-      }
-
-      .nav-tabs > li > a{
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-        line-height: 1.2;
-      }
-      
-      .nav-tabs > li > a:hover{
-        background-color: rgb(100, 107, 100);
-        border-color:transparent;
-      }
-
-      .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
-        background-color: rgb(100, 107, 100);
-        border-color: transparent;
-      }
-
-      .dropdown-menu{
-        background-color:rgb(100, 107, 100);
-      }
-
-      .dropdown.active{
-        background-color:rgb(16, 16, 16);
-      }
-
-      .dropdown.active.open>.dropdown-menu{
-        background-color: rgb(16, 16, 16);
-      }
-
-      .dropdown-menu>li>a{
-        color:white;
-      }
-
-      .dropdown-menu>.active>a{
-        background-color: #414141;
-      }
-
-      .popover.bottom>.arrow{
-        display:none;
-      }
-
-      .popover-content{
-        color:rgb(58, 58, 58);
-        font-size:12px;
-      }
-
-      .geometry-link{
-        color:#3C8E56;
-        cursor: pointer;
-      }
-
-      .geometry-link:hover {
-        color: rgb(255, 243, 20);
-        text-decoration: none;
-      }
-
-      .center-header{
-        text-align:center;
-      }
-
-      #home-module-row a{
-        color:white;
-      }
-
-
-      .video-wrap {
-        float: left;
-        margin: 0 20px 5px 0;
-      }
-
-      /*Content (Media All)*/
-
-      #developments-table{
-        text-align:left;
-        width:80%;
-        min-width:250px;
-      }
-
-      #home-bottom-row{
-      }
-
-      #mobile-labranche-dev-menu{
-        margin: 15px 0;
-      }
-
-      @media (max-width: 1000px){
-
-        #hurricane-video-left, #hurricane-video-right{
-          display:none;
-        }
-      }
-
-      @media (max-height:800px){
-        #mapDiv{
-          max-height:300px;
-        }
-      }
-
-      /*@media (max-height:770px){
-        #mapDiv{
-          max-height:270px;
-        }
-      }*/
-
-      @media all and (max-width: 705px) { 
-
-      .nav-tabs {
-        padding-left:0px;
-      }
-      
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-        border: transparent;
-      }
-
-        .nav-tabs > li {
-            float:none;
-        }
-
-      @media (max-width: 480px) { 
-
-      #map-accordion{
-        display:block;
-      }
-    }
-  }
-}
-</style>
-<script>
-  var tvStatic = new Image();
-  tvStatic.src = 'i/tv_static.gif';
-</script>
+    <script>
+      var tvStatic = new Image();
+      tvStatic.src = 'i/tv_static.gif';
+    </script>
 
     <!-- HTML5 IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -235,9 +37,7 @@
         <ul class="dropdown-menu">
           <li data-toggle="popover"
           data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button">Speculation</a></li>
-          <li data-toggle="popover"
-          data-content="Longtime St. John Parish resident Donald Tregre discusses the parallels between the West Indian Hurricane (1915) and Hurricane Isaac (2012). Most footage was filmed in the parishes of St. John, St. Charles, and Plaquemines at or near the time of Hurricane Isaac."><a href="http://www.youtube.com/watch?v=hERXpPDzFwg" class="video-link"><span>1915 <span class="glyphicon glyphicon-film"></span></span></a></li>
-          <li data-toggle="popover" data-content="[...]"><a href="#hurricanePane" data-toggle="tab" class="hurricane"><span>1915 Course</span></a></li>
+          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Features an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane"><span>Hurricane</span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
@@ -313,7 +113,7 @@
       <div id="labranchePane" class="tab-pane">
       
 
-        <div class="col-md-4">
+        <div class="col-md-2">
 
           <div id="mobile-development-selector">
             <h4>Real Estate Speculation in the LaBranche Wetlands</h4>
@@ -337,7 +137,7 @@
             </div>          
         </div>
 
-        <div class="col-md-8" id="labranche-context"></div>
+        <div class="col-md-10" id="labranche-context"></div>
       </div>
 
      <!--Norco-->
@@ -367,16 +167,23 @@
       <!--Hurricane-->
       <div id="hurricanePane" class="tab-pane">
         <row>
-          <div class="col-md-4" id="hurricane-video-left" style="text-align:center" class="hurricane-panel"><i>Click play to begin the West Indian Hurricane Module</i>
+          <div class="col-md-4" id="hurricane-video-left" style="text-align:center" class="hurricane-panel">
           </div>
-          <div class="col-md-4" style="text-align:center">
-            <video id="hurricane-video" controls style="max-width:375px;width:100%;">
-              <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
-              <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
+          <div class="col-md-4" style="text-align:center;">
+            <div id="hurricane-video-wrapper" style="position:relative; margin:0 auto; max-width:375px">
+              <video id="hurricane-video" style="max-width:375px;width:100%;">
+                <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
+                <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
 
-            Your browser does not support the video tag.
-            </video>
-            <div id="hurricane-video-text" class="hurricane-panel" style="font-style:italic;"></div>
+              Your browser does not support the video tag.
+              </video>
+              <div style="position:absolute;">
+                <span id="hurricane-play"><span class="glyphicon glyphicon-play"></span></span> 
+              </div>
+              <div class="hurricane-panel" style="font-style:italic; margin: 0 20px 20px 20px;">
+                <span id="hurricane-video-text" style="font-style:italic; color:grey;">Click play to activate this module.</span>
+              </div>
+            </div>
           </div>
           <div class="col-md-4" id="hurricane-video-right" class="hurricane-panel" style="text-align:center">
           </div>
