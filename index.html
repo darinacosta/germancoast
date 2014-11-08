@@ -73,9 +73,9 @@
         </div>
       </div>
     </div>
-    <div id="map-display-container" style="width:100%;height:20px">
-      <div data-toggle="collapse" data-target="#map-row" style="font-size:10px;float:right; width:130px; padding:2px; text-align:center;background-color:rgb(36, 44, 36);border:1px solid rgb(90, 90, 90);border-top:0; border-right:0; cursor:pointer;">
-        <i>Map Display</i> <span class="glyphicon glyphicon-chevron-down"></span> <span class="glyphicon glyphicon-chevron-up"></span> 
+    <div id="map-display-button-container">
+      <div data-toggle="collapse" data-target="#map-row" id="map-display-button">
+        <div id="map-display-status">Map Display <span class="glyphicon glyphicon-chevron-down"></span> <span class="glyphicon glyphicon-chevron-up"></span></div>
       </div>
     </div>
       <!--HOME-->
@@ -153,9 +153,8 @@
           <div class="col-md-12">
             <div class="col-md-12" style="text-align:center;">
               <h3>From Plantation to Refinery</h3>
-              <div class="claro" style="padding: 15px 0;">
-                <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
-                <div id="opacity_control"></div>
+              <div style="padding: 15px 0;">
+                <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
               </div>
               <hr>
             </div>
@@ -177,17 +176,19 @@
 
       <div id="hurricanePane" class="tab-pane">
         <row>
-          <div class="col-md-4 hurricane-panel" id="hurricane-video-left" style="text-align:center">
+          <div id="hurricane-panel-left" class="col-md-4" style="text-align:center;font-style:italic; color:grey;">
+            <div id="hurricane-video-left" class="hurricane-panel">
+            </div>
+          <div id="hurricane-text-left" class="hurricane-panel"></div>
           </div>
           <div class="col-md-4" style="text-align:center;">
             <div id="hurricane-video-wrapper" style="position:relative; margin:0 auto; max-width:375px">
-              <video id="hurricane-video" style="max-width:375px;width:100%;">
+              <video controls id="hurricane-video" style="max-width:375px;width:100%;">
                 <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
                 <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
-
-              Your browser does not support the video tag.
+                Your browser does not support the video tag.
               </video>
-              <div id="hurricane-video-control">
+              <div id="hurricane-video-control" style="padding:25px;">
                 <div style="float: left;">
                   <span id="hurricane-play"><span class="glyphicon glyphicon-play"></span></span> 
                   <span id="hurricane-replay" class="glyphicon glyphicon-repeat"></span></div>  <div style="float: right;">
@@ -195,11 +196,14 @@
                 </div>
               </div>
               <div class="hurricane-panel" style="font-style:italic; margin: 20px 5px 0 25px;">
-                <span id="hurricane-video-text" style="font-style:italic; color:grey;">Click play to activate this module.</span>
+                <span id="hurricane-video-text" style="font-style:italic; color:grey;"></span>
               </div>
             </div>
           </div>
-          <div class="col-md-4 hurricane-panel" id="hurricane-video-right" style="text-align:center">
+          <div id="hurricane-panel-right" class="col-md-4" style="text-align:center;font-style:italic; color:grey;">
+            <div id="hurricane-video-right" class="hurricane-panel">
+            </div>
+            <div id="hurricane-text-right" class="hurricane-panel"></div>
           </div>
         </row>
         <!--div id="player"></div>
@@ -218,69 +222,48 @@
   </div><!-- /.tabbable -->
   
     
-    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
-        var package_path = "//esri.github.com/bootstrap-map-js/src/js";
-        var dojoConfig = {
-            packages: [{
-                name: "application",
-                location: package_path
-            }]
-        };
+      var package_path = "//esri.github.com/bootstrap-map-js/src/js";
+      var dojoConfig = {
+          packages: [{
+              name: "application",
+              location: package_path
+          }]
+      };
 
-    </script>
-    <script>
-    var hurricaneVideo = document.getElementById("hurricane-video");
-    var hurricaneVolumeBar = document.getElementById("hurricane-volume-bar");
+      var hurricaneVideo = document.getElementById("hurricane-video");
+      var hurricaneVolumeBar = document.getElementById("hurricane-volume-bar");
 
-    //  display the current and remaining times
+      hurricaneVolumeBar.addEventListener("change", function() {
+            hurricaneVideo.volume = hurricaneVolumeBar.value;
+          }, false);
+
+
     </script>
     <script src="http://js.arcgis.com/3.10compact"></script>
     <!-- jQuery (for Bootstrap's JavaScript plugins) -->
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="js/riverParishMap.js"></script>
     
     <!-- Include all  plugins or individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="./js/magnificent.js"></script>
     <script>
+    $(document).ready(function() {
 
-       hurricaneVolumeBar.addEventListener("change", function() {
-          hurricaneVideo.volume = hurricaneVolumeBar.value;
-        }, false);
-
-      $('#gotolabranche').click(function() {
-        $('#tabset a[href="#labranchePane"]').tab('show');  
-      });
-
-      $(document).ready(function() {
+        //Activate Magnificent Popup
         $("#cover").fadeOut(1100); 
         $('.image-link').magnificPopup({type:'image'});
         $('.video-link').magnificPopup({type:'iframe'});
+
       }); 
 
-      //Tooltips
+    //Tooltips
       $('[data-toggle="popover"]').popover({
           trigger: 'hover',
           'placement': 'bottom'
       });
 
-
-      //Mapscroll
-      var $window = $(window),
-       $mapRow = $('.row-map'),
-       elTop = $mapRow.offset().top + 20;
-
-     $window.scroll(function() {
-        $mapRow.toggleClass('sticky', $window.scrollTop() > elTop);
-        if ($window.scrollTop() > elTop){
-          $('#map-placeholder').css({display: 'block'});
-          $('.map').css({'overflow': 'visible'});
-        }else{
-          $('#map-placeholder').css({display: 'none'});
-          $('.map').css({'overflow': 'hidden'});
-        }
-      });
 
        //Analytics
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -290,8 +273,6 @@
 
       ga('create', 'UA-56503938-1', 'auto');
       ga('send', 'pageview');
-
-
 
 
     </script>

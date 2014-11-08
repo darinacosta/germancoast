@@ -20,6 +20,7 @@
       "esri/tasks/GeometryService",
       "esri/tasks/query",
       "esri/tasks/QueryTask",
+      "esri/dijit/OverviewMap",
       "esri/dijit/Popup",
       "esri/dijit/PopupTemplate",
       "esri/dijit/InfoWindow",
@@ -45,6 +46,7 @@
         GeometryService,
         Query,
         QueryTask,
+        OverviewMap,
         Popup,
         PopupTemplate,
         InfoWindow,
@@ -90,6 +92,16 @@
           isScrollWheelZoom:false,
           smartNavigation: false  
         });
+
+        var overviewMapDijit = new OverviewMap({
+          map: map,
+          visible: false,
+          width: 200,
+          height: 150
+        });
+
+        overviewMapDijit.startup();
+
 
         //HANDLE LOADING
 
@@ -239,7 +251,7 @@
       });
 
       function hurricane(){
-
+        //if (hurricaneVideo.readyState != 0){hurricaneVideo.currentTime = '0';};
         var hurricaneVideoStatus = 'paused';
 
         $('a.newpage').on("click", function(){
@@ -278,19 +290,23 @@
           //  Current time  
           var vTime = hurricaneVideo.currentTime;
           if (vTime < 5){
-              $('#hurricane-video-text').text('  ');
-           }else if (vTime > 9.7 && vTime < 11){
+              $('#hurricane-video-left, #hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/static_v1.webm" type="video/webm">Your browser does not support the video tag.</video>')
+           }else if (vTime > 7.7 && vTime < 9.7){
             map.centerAndZoom([-90.405, 30.001], 16);
-            $('#hurricane-video-text').text('Shell Oil Refinery');
+            window.setTimeout(function () {
+              $('#hurricane-text-left').text('Shell Oil Refinery')
+            }, 2200);
             //hurricaneLayer.show();
             $('#hurricane-video-left').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/shell_at_the_tracks_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
           }else if (vTime > 26 && vTime < 29){
-            $('#hurricane-video-text').text('Bonnet Carre Spillway @ I10');
-            map.centerAndZoom([-90.383, 30.063], 15);
             $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
+            window.setTimeout(function () {
+              $('#hurricane-text-right').text('Bonnet Carre Spillway @ I10');
+            }, 2700);
+            map.centerAndZoom([-90.383, 30.063], 15);
            }else if (vTime > 47 && vTime < 51){
-            $('#hurricane-video-text').text('Residential Norco');
             map.centerAndZoom([-90.412, 30.005 ], 15);
+            $( ".hurricane-panel" ).fadeOut( "slow")
           }
         }, false);
         
