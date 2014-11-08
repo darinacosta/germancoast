@@ -239,7 +239,8 @@
       });
 
       function hurricane(){
-        var hurricaneVideoStatus = 'paused'
+
+        var hurricaneVideoStatus = 'paused';
 
         $('a.newpage').on("click", function(){
           $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
@@ -247,7 +248,7 @@
           hurricaneVideoStatus='paused';
         });
 
-        $('#hurricane-play').on("click", function(){
+        $('#hurricane-video,#hurricane-play').on("click", function(){
           if (hurricaneVideoStatus=='paused'){
             hurricaneVideo.play();
             hurricaneVideoStatus='playing';
@@ -293,8 +294,6 @@
           }
         }, false);
         
-
-
 
 
       }
