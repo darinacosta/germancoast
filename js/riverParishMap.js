@@ -306,27 +306,12 @@
 
       function norco(){
         
-        function addOpacityControl(layer) {
-          var targetElem = dojo.byId("opacity_control");
-          var sliderElem = domConstruct.create("div", {id: "opacity_slider"}, targetElem, "first");
-          opacityControl = new HorizontalSlider({
-              name: "slider",
-              value: 1,
-              minimum: 0,
-              maximum: 1,
-              showButtons: true,
-              intermediateChanges: true,
-              style: "width: 250px; margin-right: auto; margin-left: auto;",
-              onChange: function(value) {
-                  plantationLayer.setOpacity(value);
-                  // Refresh seems to be required for IE:
-                  //dynamicLayer.refresh();
-              }
-          }, "opacity_slider");
-          opacityControl.startup();
-        }
         plantationLayer.show();
-        addOpacityControl(plantationLayer);
+        $('#opacity-bar').on("input", function() {
+            plantationLayer.show();
+            opacityValue = $(this).val();
+            plantationLayer.setOpacity(opacityValue);
+          });
       }//End Norco
 
       /*/////////////////////////////////////*/
