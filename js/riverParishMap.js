@@ -302,7 +302,7 @@
             $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
             window.setTimeout(function () {
               $('#hurricane-text-right').text('Bonnet Carre Spillway @ I10');
-            }, 2700);
+            }, 2900);
             map.centerAndZoom([-90.383, 30.063], 15);
            }else if (vTime > 47 && vTime < 51){
             map.centerAndZoom([-90.412, 30.005 ], 15);
