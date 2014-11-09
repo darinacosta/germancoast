@@ -93,6 +93,7 @@
           smartNavigation: false  
         });
 
+
         var overviewMapDijit = new OverviewMap({
           map: map,
           visible: false,
@@ -240,6 +241,14 @@
         /*///////////////////////////////////////*/
        /*//////////////HURRICANE////////////////*/
       /*///////////////////////////////////////*/
+
+      var overviewMapDijit2 = new OverviewMap({
+          map: map,
+          //visible: false,
+          height: 300
+        }, dom.byId('overviewMapDiv'));
+        overviewMapDijit2.startup();
+
       var hurricaneLine = new SimpleLineSymbol(
           SimpleLineSymbol.STYLE_DASH,
           new Color([255,0,0]), 5);
@@ -285,28 +294,28 @@
           }
         });
         
-
+        function populateHurricanePanelRight(video, text){
+          $('#hurricane-text-right').text('');
+          $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'" type="video/webm">Your browser does not support the video tag.</video>');
+          window.setTimeout(function () {
+            $('#hurricane-text-right').text(text);
+          }, 2900);
+        }
+        
         hurricaneVideo.addEventListener("timeupdate", function () {
           //  Current time  
           var vTime = hurricaneVideo.currentTime;
           if (vTime < 5){
-              $('#hurricane-video-left, #hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/static_v1.webm" type="video/webm">Your browser does not support the video tag.</video>')
+              $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/static_v1.webm" type="video/webm">Your browser does not support the video tag.</video>')
            }else if (vTime > 7.7 && vTime < 9.7){
             map.centerAndZoom([-90.405, 30.001], 16);
-            window.setTimeout(function () {
-              $('#hurricane-text-left').text('Shell Oil Refinery')
-            }, 2200);
-            //hurricaneLayer.show();
-            $('#hurricane-video-left').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/shell_at_the_tracks_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
+            populateHurricanePanelRight('shell_at_the_tracks_v1.webm', 'Shell Oil Refinery');
           }else if (vTime > 26 && vTime < 29){
-            $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm">Your browser does not support the video tag.</video>');
-            window.setTimeout(function () {
-              $('#hurricane-text-right').text('Bonnet Carre Spillway @ I10');
-            }, 2900);
+            populateHurricanePanelRight('I-10_traffic_v1.webm', 'Bonnet Carre Spillway @ I10');
             map.centerAndZoom([-90.383, 30.063], 15);
            }else if (vTime > 47 && vTime < 51){
             map.centerAndZoom([-90.412, 30.005 ], 15);
-            $( ".hurricane-panel" ).fadeOut( "slow")
+            $( ".hurricane-panel" ).fadeOut( "slow");
           }
         }, false);
         

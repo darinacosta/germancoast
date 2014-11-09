@@ -198,8 +198,22 @@
         text-align:center;
       }
 
+      @media (min-width:1210px){
+        #hurricane-text-right{
+          margin-top:65px;
+        }
 
-      @media (max-width: 1000px){
+        #hurricane-video-control{
+          margin-top:45px;
+        }
+
+        #hurricanePane{
+          padding-top:10px;
+        }
+
+      }
+
+      @media (max-width: 1210px){
 
         #hurricane-panel-left, #hurricane-panel-right{
           display:none;
@@ -207,6 +221,10 @@
 
         #viewport-too-small{
           display:block;
+        }
+
+        #hurricane-video-component-wrapper{
+          width:100%;
         }
       }
 

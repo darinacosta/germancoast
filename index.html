@@ -52,9 +52,10 @@
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
-        <a class="dropdown-toggle inactive" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a class="inactive"><i>This vignette is still being developed.</i></a></li>
+          <li><a class="inactive"><i>1811</i></a></li>
+          <li><a class="inactive"><i>Maroon</i></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
     </ul>
@@ -179,13 +180,15 @@
         <row>
           <div id="hurricane-panel-left" class="col-md-4" style="text-align:center;font-style:italic; color:grey;">
             <div id="hurricane-video-left" class="hurricane-panel">
+              <div id="overviewMapDiv"></div>
             </div>
           <div id="hurricane-text-left" class="hurricane-panel"></div>
           </div>
-          <div class="col-md-4" style="text-align:center;">
+          <div class="col-md-4" style="text-align:center;" id="hurricane-video-component-wrapper">
             <div id="hurricane-video-wrapper" style="position:relative; margin:0 auto; max-width:375px">
-              <video controls id="hurricane-video" style="max-width:375px;width:100%;">
-                <source src="http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv" type="video/ogg">
+              <video controls id="hurricane-video" style="max-width:375px;width:100%;" preload="none">
+                <source src="https://ia601404.us.archive.org/26/items/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
+                <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
                 <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
