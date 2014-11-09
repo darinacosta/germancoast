@@ -33,13 +33,14 @@
 
     <div class="tabbable">
     <ul class="nav nav-tabs" id="tabset">
-      <li class="active home-location-button"><a href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li class="active home-location-button newpage"><a href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li data-toggle="popover"
           data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
           <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane newpage"><span>Hurricane</span></a></li>
+          <li data-toggle="popover" data-content=""><a class="hurricane newpage inactive"><span>Crash</span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
@@ -47,13 +48,13 @@
         <ul class="dropdown-menu">
           <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
         <li data-toggle="popover"
-        data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a href="https://www.youtube.com/watch?v=wsWbq2-g2is" class="video-link newpage">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+        data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
+        <a class="dropdown-toggle inactive" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><i>This module is under development</i></li>
+          <li><a class="inactive"><i>This vignette is still being developed.</i></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
     </ul>
@@ -104,7 +105,7 @@
           </div>
           <div class="col-md-4 vignette-descrip" style="color:grey;">
             <div class="center-header"><h4>SLAVERY & REVOLT</h4></div>
-            <p>This module is under development.</p>
+            <p>This vignette is under development.</p>
           </div>
         </div>
      
@@ -184,7 +185,7 @@
           <div class="col-md-4" style="text-align:center;">
             <div id="hurricane-video-wrapper" style="position:relative; margin:0 auto; max-width:375px">
               <video controls id="hurricane-video" style="max-width:375px;width:100%;">
-                <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
+                <source src="http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv" type="video/ogg">
                 <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -206,16 +207,9 @@
             <div id="hurricane-text-right" class="hurricane-panel"></div>
           </div>
         </row>
-        <!--div id="player"></div>
-        <div id="youtube-api-test"></div-->
-      </div>
-
-    <!--Ambient-->
-      <div id="ambientPane" class="tab-pane">
-        <!--div class="col-md-12">
-          <audio controls loop id="player1" src="audio/industrialsound.ogg" type="audio/ogg">Your browser does not support the audio element.</audio>
-        </div-->
-
+        <div class="col-md-12" id="viewport-too-small">
+          Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+        </div>
       </div>
 
     </div><!-- /.tab-content -->
