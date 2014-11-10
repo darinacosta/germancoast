@@ -294,28 +294,46 @@
           }
         });
         
-        function populateHurricanePanelRight(video, text){
-          $('#hurricane-text-right').text('');
-          $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'" type="video/webm">Your browser does not support the video tag.</video>');
+        function populateHurricanePanelRight(divNum, video, text){
+          $('#hurricane-text-right-'+divNum).text('');
+          $('#hurricane-video-right-'+divNum).html('<video muted style="max-width:375px;width:100%;max-height:211px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'" type="video/webm">Your browser does not support the video tag.</video>');
           window.setTimeout(function () {
-            $('#hurricane-text-right').text(text);
-          }, 2900);
+            $('#hurricane-text-right-'+divNum).text(text);
+          }, 3200);
+        }
+
+        function populateHurricanePanelImageRight(divNum, img, text){
+          $('#hurricane-video-right-'+divNum).html(img);
+          $('#hurricane-text-right-'+divNum).text(text);
         }
         
         hurricaneVideo.addEventListener("timeupdate", function () {
           //  Current time  
           var vTime = hurricaneVideo.currentTime;
           if (vTime < 5){
-              $('#hurricane-video-right').html('<video style="max-width:375px;width:100%;max-height:211px" style="max-width:300px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/static_v1.webm" type="video/webm">Your browser does not support the video tag.</video>')
+              $('#hurricane-video-right-1').html('<video style="max-width:375px;width:100%;max-height:211px;" style="max-width:300px" autoplay="autoplay" loop><source src="http://verylongroad.com/media/static_v1.webm" type="video/webm">Your browser does not support the video tag.</video>')
            }else if (vTime > 7.7 && vTime < 9.7){
             map.centerAndZoom([-90.405, 30.001], 16);
-            populateHurricanePanelRight('shell_at_the_tracks_v1.webm', 'Shell Oil Refinery');
+            populateHurricanePanelRight('1','shell_at_the_tracks_v1.webm', 'Shell Oil Refinery');
           }else if (vTime > 26 && vTime < 29){
-            populateHurricanePanelRight('I-10_traffic_v1.webm', 'Bonnet Carre Spillway @ I10');
+            populateHurricanePanelRight('1','I-10_traffic_v1.webm', 'Bonnet Carre Spillway @ I10');
+            populateHurricanePanelRight('2','dad_on_roof_v1.webm', 'Norco during the approach of Hurricane Isaac');
             map.centerAndZoom([-90.383, 30.063], 15);
            }else if (vTime > 47 && vTime < 51){
+            $('.hurricane-right-1').css('display','none');
+            $('.hurricane-right-2').css('display','block');
+            populateHurricanePanelImageRight('1', '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 15);
-            $( ".hurricane-panel" ).fadeOut( "slow");
+          }else if (vTime > 70 && vTime < 73){
+            hurricaneLayer.show();
+            $('.hurricane-right-1').fadeIn('slow');
+            $('.hurricane-right-2').css('display','none');
+            populateHurricanePanelImageRight('2', '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding-top:15%;">', 'Baton Rouge State Times Advocate, October 3, 1915');
+            map.centerAndZoom([-90.412, 30.005 ], 6);
+          }else if (vTime > 90.7 && vTime < 93.7){
+            $('.hurricane-right-2').fadeIn('slow');
+            $('.hurricane-right-1').css('display','none');
+            map.centerAndZoom([-90.4268, 30.1077 ], 15);
           }
         }, false);
         

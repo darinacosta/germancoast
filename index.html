@@ -179,20 +179,22 @@
       <div id="hurricanePane" class="tab-pane">
         <row>
           <div id="hurricane-panel-left" class="col-md-4" style="text-align:center;font-style:italic; color:grey;">
-            <div id="hurricane-video-left" class="hurricane-panel">
+            <div id="hurricane-video-left">
               <div id="overviewMapDiv"></div>
             </div>
           <div id="hurricane-text-left" class="hurricane-panel"></div>
           </div>
           <div class="col-md-4" style="text-align:center;" id="hurricane-video-component-wrapper">
-            <div id="hurricane-video-wrapper" style="position:relative; margin:0 auto; max-width:375px">
-              <video controls id="hurricane-video" style="max-width:375px;width:100%;" preload="none">
-                <source src="https://ia601404.us.archive.org/26/items/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
-                <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
-                <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <div id="hurricane-video-control" style="padding:25px;">
+            <div id="hurricane-video-wrapper">
+              <div id="hurricane-video-inner-wrapper">
+                <video controls id="hurricane-video" style="max-width:375px;width:100%;" preload="none">
+                  <source src="https://ia601404.us.archive.org/26/items/westindianhurricane/Interview_with_Donald_Treger_2013mp4.ogv" type="video/ogg">
+                  <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
+                  <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div id="hurricane-video-control">
                 <div style="float: left;">
                   <span id="hurricane-play"><span class="glyphicon glyphicon-play"></span></span> 
                   <span id="hurricane-replay" class="glyphicon glyphicon-repeat"></span></div>  <div style="float: right;">
@@ -204,10 +206,15 @@
               </div>
             </div>
           </div>
-          <div id="hurricane-panel-right" class="col-md-4" style="text-align:center;font-style:italic; color:grey;">
-            <div id="hurricane-video-right" class="hurricane-panel">
+          <div id="hurricane-panel-right" class="col-md-4">
+            <div id="hurricane-video-right-1" class="hurricane-panel hurricane-right-1" style="width:375px;height:211px;border:1px solid rgb(42, 42, 42);overflow:hidden;margin:0 auto;text-align:center;">
+              <div style="background-color:rgb(16, 16, 16);width:100%;height:211px;"></div>
             </div>
-            <div id="hurricane-text-right" class="hurricane-panel"></div>
+            <div id="hurricane-video-right-2" class="hurricane-panel hurricane-right-2" style="width:375px;height:211px;border:1px solid rgb(42, 42, 42);overflow:hidden;margin:0 auto;display:none;">
+              <div style="background-color:rgb(16, 16, 16);width:100%;height:211px;"></div>
+            </div>
+            <div id="hurricane-text-right-1" class="hurricane-panel hurricane-right-1 hurricane-text-right"></div>
+            <div id="hurricane-text-right-2" class="hurricane-panel hurricane-right-2 hurricane-text-right" style="display:none;"></div>
           </div>
         </row>
         <div class="col-md-12" id="viewport-too-small">
