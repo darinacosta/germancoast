@@ -412,15 +412,27 @@
           executeDevelopmentEvent(selector, id, context);
         });/*End selector click*/
       };/*End polyCLick*/
-         
-      polyClick('.labranche', 0, trepagnierContext);
-      polyClick('.westlake', 1, 'Testing testing');
-      polyClick('.cloverleaf', 2);
-      polyClick('.beltway', 3);
-      polyClick('.shining', 4);
-      polyClick('.james', 5);
-      polyClick('.monte', 6);
-      polyClick('.lakeland', 7);
+
+      $('#mobile-labranche-dev-menu').on("click", 
+      "a[role='menuitem']", function( event ) {
+        if ($(event.target).hasClass('labranche')){
+          executeDevelopmentEvent('.labranche', 0, trepagnierContext);
+        }else if($(event.target).hasClass('westlake')){
+          executeDevelopmentEvent('.westlake', 1, 'Testing testing');
+        }else if($(event.target).hasClass('cloverleaf')){
+          executeDevelopmentEvent('.cloverleaf', 2);
+        }else if($(event.target).hasClass('beltway')){
+          executeDevelopmentEvent('.beltway', 3);
+        }else if($(event.target).hasClass('shining')){
+          executeDevelopmentEvent('.shining', 4);
+        }else if($(event.target).hasClass('james')){
+          executeDevelopmentEvent('.james', 5);
+        }else if($(event.target).hasClass('monte')){
+          executeDevelopmentEvent('.monte', 6);
+        }else if($(event.target).hasClass('lakeland')){
+          executeDevelopmentEvent('.lakeland', 7);
+        }
+      });
     }//End LaBranche
 
      /***************************/
