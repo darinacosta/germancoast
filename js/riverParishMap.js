@@ -439,39 +439,33 @@
     eval(args['module'] + '()');
   };
 
-  //Buttons
-
-  $('.hurricane').on("click",function(){
-    activateModule({'module': 'hurricane',
-      'title':'hurricane',
-      'coordinates':[-90.4108, 30.0039],  
-      'zoom':13
-    });
+  //HEADER MENU
+  $( "#page-container" ).on( "click", "a[href^='#']", function(event) {
+    if ($(event.target).hasClass('hurricane')){
+      activateModule({'module': 'hurricane',
+        'title':'hurricane',
+        'coordinates':[-90.4108, 30.0039],  
+        'zoom':13
+      });
+    }else if ($(event.target).hasClass('labranche-location-button')){
+      activateModule({'module': 'labranche',
+        'title':'LABRANCHE WETLANDS',
+        'coordinates':[-90.335, 30.015], 
+        'zoom':12
+      });
+      developments.show();
+    }else if ($(event.target).hasClass('norco-location-button')){ 
+      activateModule({'module':'norco',
+        'title':'NORCO INDUSTRIAL GROWTH',
+        'coordinates':[-90.4108, 30.0039], 
+        'zoom':11
+      });
+    }else if ($(event.target).hasClass('home-location-button')){ 
+      activateModule({'module':'home',
+        'title':'LOUISIANA\'S GERMAN COAST',
+        'coordinates':[-90.4008, 30.0339], 
+        'zoom':12
+      });
+    }
   });
-
-  $('.labranche-location-button').on("click",function(){
-    activateModule({'module': 'labranche',
-      'title':'LABRANCHE WETLANDS',
-      'coordinates':[-90.335, 30.015], 
-      'zoom':12
-    });
-    developments.show();
-  });
-
-  $('.norco-location-button').on("click",function(){
-    activateModule({'module':'norco',
-      'title':'NORCO INDUSTRIAL GROWTH',
-      'coordinates':[-90.4108, 30.0039], 
-      'zoom':11
-    });
-  });
-
-  $('.home-location-button').on("click",function(){
-    activateModule({'module':'home',
-      'title':'LOUISIANA\'S GERMAN COAST',
-      'coordinates':[-90.4008, 30.0339], 
-      'zoom':12
-    });
-  });
-
 });
