@@ -338,7 +338,7 @@
             hurricaneLayer.show();
             $('.hurricane-right-1').fadeIn('slow');
             $('.hurricane-right-2').css('display','none');
-            populateHurricanePanelImageRight('2', '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:45px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
+            populateHurricanePanelImageRight('2', '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 6);
           }else if (vTime > 90.7 && vTime < 93.7){
             $('.hurricane-right-2').fadeIn('slow');
