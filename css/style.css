@@ -60,6 +60,10 @@
         background-color:rgb(126, 33, 48);
       }
 
+      div#overviewMapDiv.esriOverviewMap div.ovwContainer{
+        background-color:black;
+      }
+
       #loadingImg{
         display:none;
       }
