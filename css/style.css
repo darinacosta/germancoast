@@ -69,7 +69,7 @@
       }
 
       div#overviewMapDiv.esriOverviewMap div.ovwContainer{
-        background-color:black;
+        background-color:transparent;
       }
 
       #loadingImg{

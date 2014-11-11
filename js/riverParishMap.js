@@ -213,23 +213,23 @@
       /*///////////////////////////////////////*/
 
       $( "#home-bottom-row" ).on( "click", "a[class='geometry-link']", function( event ) {
-          switch(event.target.id){
-            case 'radial-geofeature-event':
-              map.centerAndZoom([-90.377, 30.269], 14);
-              break;
-            case 'erosion-geofeature-event':
-              map.centerAndZoom([-90.330, 30.046], 14);
-              break;
-            case 'ej-geofeature-event':
-              map.centerAndZoom([-90.414, 30.004 ], 14);
-              break;
-            case 'suburb-geofeature-event':
-              map.centerAndZoom([-90.446, 30.088],14);
-              break;
-            case 'parishline-geofeature-event':
-              map.centerAndZoom([-90.279, 30.032], 14);
-              break;
-          }
+        switch(event.target.id){
+          case 'radial-geofeature-event':
+            map.centerAndZoom([-90.377, 30.269], 14);
+            break;
+          case 'erosion-geofeature-event':
+            map.centerAndZoom([-90.330, 30.046], 14);
+            break;
+          case 'ej-geofeature-event':
+            map.centerAndZoom([-90.414, 30.004 ], 14);
+            break;
+          case 'suburb-geofeature-event':
+            map.centerAndZoom([-90.446, 30.088],14);
+            break;
+          case 'parishline-geofeature-event':
+            map.centerAndZoom([-90.279, 30.032], 14);
+            break;
+        }
       });
 
 
@@ -255,39 +255,47 @@
       });
 
       function hurricane(){
-        //if (hurricaneVideo.readyState != 0){hurricaneVideo.currentTime = '0';};
+
+        //use time count to prevent divs from repeatedly populating
+        var timeCount = 0;
         var hurricaneVideoStatus = 'paused';
+        var $playButton = $('#hurricane-play');
+        var $rightPanelOne = $('.hurricane-right-1');
+        var $rightPanelTwo = $('.hurricane-right-2');
+        var $rightTextOne =  $('#hurricane-text-right-1');
+        var $rightTextTwo =  $('#hurricane-text-right-2');
 
         $('a.newpage').on("click", function(){
-          $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
+          $playButton.html('<span class="glyphicon glyphicon-play"></span>');
           hurricaneVideo.pause();
           hurricaneVideoStatus='paused';
         });
 
-        $('#hurricane-video,#hurricane-play').on("click", function(){
+        $('#hurricane-video, #hurricane-play').on("click", function(){
           if (hurricaneVideoStatus=='paused'){
             hurricaneVideo.play();
             hurricaneVideoStatus='playing';
-            $('#hurricane-play').html('<span class="glyphicon glyphicon-pause"></span>');
+            $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
           }else if (hurricaneVideoStatus=='playing'){
-            $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
+            $playButton.html('<span class="glyphicon glyphicon-play"></span>');
             hurricaneVideo.pause();
             hurricaneVideoStatus='paused';
           }
         });
         
         $('#hurricane-replay').on("click", function(){
+          timeCount = 0;
           hurricaneVideo.currentTime = '0';
           hurricaneVideo.play();
-          $('.hurricane-right-1').css('display','block');
-          $('.hurricane-right-2').css('display','none');
+          $rightPanelOne.css('display','block');
+          $rightPanelTwo.css('display','none');
           $('.hurricane-panel').html(' ');
           hideAllLayers();
           map.centerAndZoom([-90.4108, 30.0039], 13);
           if (hurricaneVideoStatus=='paused'){
-            $('#hurricane-play').html('<span class="glyphicon glyphicon-pause"></span>');
+            $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
           }else if (hurricaneVideoStatus=='playing'){
-            $('#hurricane-play').html('<span class="glyphicon glyphicon-play"></span>');
+            $playButton.html('<span class="glyphicon glyphicon-play"></span>');
           }
         });
         
@@ -304,40 +312,49 @@
         }
 
         function populateHurricanePanelImageRight(divNum, img, text){
-          $('#hurricane-video-right-'+divNum).html(img);
-          $('#hurricane-text-right-'+divNum).text(text);
+          if (divNum == 1){
+            var video = $rightPanelOne;
+            var text = $rightTextOne;
+          }else if (divNum == 2){
+            var video = $rightPanelTwo;
+            var text = $rightTextTwo;
+          }
+          video.html(img);
+          text.text(text);
         }
         
         hurricaneVideo.addEventListener("timeupdate", function () {
           //  Current time  
           var vTime = hurricaneVideo.currentTime;
-          if (vTime < 5){
+          if (vTime < 5 && timeCount == 0){
+            console.log('cache check');
             populateHurricanePanelRight('1', 'static_v1', '');
             populateHurricanePanelRight('2','shell_at_the_tracks_v1', 'Shell Oil Refinery');
+            timeCount = 1;
           }else if (vTime > 7.7 && vTime < 9.7){
             map.centerAndZoom([-90.405, 30.001], 16);
-            $('.hurricane-right-1').css('display','none');
-            $('.hurricane-right-2').css('display','block');
+            $rightPanelOne.css('display','none');
+            $rightPanelTwo.css('display','block');
             populateHurricanePanelRight('1','I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
           }else if (vTime > 26 && vTime < 29){
-            $('.hurricane-right-1').css('display','block');
-            $('.hurricane-right-2').css('display','none');
+            $rightPanelOne.css('display','block');
+            $rightPanelTwo.css('display','none');
             populateHurricanePanelRight('2','dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
             map.centerAndZoom([-90.383, 30.063], 15);
-           }else if (vTime > 47 && vTime < 51){
-            $('.hurricane-right-2').fadeIn('slow');
-            $('.hurricane-right-1').css('display','none');
+          }else if (vTime > 47 && vTime < 51){
+            $rightPanelTwo.fadeIn('slow');
+            $rightPanelOne.css('display','none');
             populateHurricanePanelImageRight('1', '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 15);
           }else if (vTime > 70 && vTime < 73){
             hurricaneLayer.show();
-            $('.hurricane-right-1').fadeIn('slow');
-            $('.hurricane-right-2').css('display','none');
+            $rightPanelOne.fadeIn('slow');
+            $rightPanelTwo.css('display','none');
             populateHurricanePanelImageRight('2', '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 6);
           }else if (vTime > 90.7 && vTime < 93.7){
-            $('.hurricane-right-2').fadeIn('slow');
-            $('.hurricane-right-1').css('display','none');
+            $rightPanelTwo.fadeIn('slow');
+            $rightPanelOne.css('display','none');
             map.centerAndZoom([-90.4268, 30.1077 ], 15);
           }
         }, false);
@@ -392,26 +409,20 @@
                       "ymax": g.geometry._extent.ymax});
 
         });/*End KML Geoms*/
-
+    
     });/*End developments.on*/
 
     function labranche(){
 
       function executeDevelopmentEvent(selector, id, context){
-          resetSymbols();
-          graphics[id].setSymbol(selected);
-          $('.geometry-link').css('text-decoration','none');
-          $(selector).css('text-decoration','underline');
-          var extent = new Extent(extents[id]);
-          map.setExtent(extent);
-          $('#labranche-context').html(context);
+        resetSymbols();
+        graphics[id].setSymbol(selected);
+        $('.geometry-link').css('text-decoration','none');
+        $(selector).css('text-decoration','underline');
+        var extent = new Extent(extents[id]);
+        map.setExtent(extent);
+        $('#labranche-context').html(context);
       };
-
-      function polyClick(selector, id, context){
-        $(selector).on('click',function(){
-          executeDevelopmentEvent(selector, id, context);
-        });/*End selector click*/
-      };/*End polyCLick*/
 
       $('#mobile-labranche-dev-menu').on("click", 
       "a[role='menuitem']", function( event ) {
