@@ -211,31 +211,26 @@
         /*///////////////////////////////////////*/
        /*//////////////////HOME/////////////////*/
       /*///////////////////////////////////////*/
-      
 
-      $('#radial-geofeature-event').on("click", function(){
-        map.centerAndZoom([-90.377, 30.269], 14);
+      $( "#home-bottom-row" ).on( "click", "a[class='geometry-link']", function( event ) {
+          switch(event.target.id){
+            case 'radial-geofeature-event':
+              map.centerAndZoom([-90.377, 30.269], 14);
+              break;
+            case 'erosion-geofeature-event':
+              map.centerAndZoom([-90.330, 30.046], 14);
+              break;
+            case 'ej-geofeature-event':
+              map.centerAndZoom([-90.414, 30.004 ], 14);
+              break;
+            case 'suburb-geofeature-event':
+              map.centerAndZoom([-90.446, 30.088],14);
+              break;
+            case 'parishline-geofeature-event':
+              map.centerAndZoom([-90.279, 30.032], 14);
+              break;
+          }
       });
-
-      $('#radial-geofeature-event').on("click", function(){
-        map.centerAndZoom([-90.377, 30.269], 14);
-      });
-
-      $('#erosion-geofeature-event').on("click", function(){
-        map.centerAndZoom([-90.330, 30.046], 14);
-      }); 
-
-      $('#ej-geofeature-event').on("click", function(){
-        map.centerAndZoom([-90.414, 30.004 ], 14);
-      }); 
-
-      $('#suburb-geofeature-event').on("click", function(){
-        map.centerAndZoom([-90.446, 30.088],14);
-      });
-      
-      $("#parishline-geofeature-event").on("click", function(){
-        map.centerAndZoom([-90.279, 30.032], 14);
-      }); 
 
 
         /*///////////////////////////////////////*/
