@@ -201,6 +201,10 @@
         background-color:rgb(16, 16, 16);
       }
 
+      .pointer{
+        cursor:pointer;
+      }
+
       /*Content (Media All)*/
 
       #developments-table{

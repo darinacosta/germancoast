@@ -260,8 +260,10 @@
         var timeCount = 0;
         var hurricaneVideoStatus = 'paused';
         var $playButton = $('#hurricane-play');
-        var $rightPanelOne = $('.hurricane-right-1');
-        var $rightPanelTwo = $('.hurricane-right-2');
+        var $rightPanelOne = $('.hurricane-right-1')
+        var $rightPanelTwo = $('.hurricane-right-2')
+        var $rightVideoOne = $('#hurricane-video-right-1');
+        var $rightVideoTwo = $('#hurricane-video-right-2');
         var $rightTextOne =  $('#hurricane-text-right-1');
         var $rightTextTwo =  $('#hurricane-text-right-2');
 
@@ -284,13 +286,12 @@
         });
         
         $('#hurricane-replay').on("click", function(){
-          timeCount = 0;
           hurricaneVideo.currentTime = '0';
-          hurricaneVideo.play();
+          $('.hurricane-panel').html(' ');
           $rightPanelOne.css('display','block');
           $rightPanelTwo.css('display','none');
-          $('.hurricane-panel').html(' ');
           hideAllLayers();
+          hurricaneVideo.play();
           map.centerAndZoom([-90.4108, 30.0039], 13);
           if (hurricaneVideoStatus=='paused'){
             $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
@@ -300,24 +301,35 @@
         });
         
         function populateHurricanePanelRight(divNum, video, text){
-          $('#hurricane-text-right-'+divNum).text('');
+          var videoPanel
+          var textPanel
+          if (divNum == 1){
+            videoPanel = $rightVideoOne;
+            textPanel = $rightTextOne;
+          }else if (divNum == 2){
+            videoPanel = $rightVideoTwo;
+            textPanel = $rightTextTwo;
+          }
+          //textPanel.text('');
           if (video == 'shell_at_the_tracks_v1'||video == 'I-10_traffic_v1'){
-            $('#hurricane-video-right-'+divNum).html('<video muted style="max-width: 380px;max-height: 275px;position: absolute;top: -32px;right: 2px;" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'.webm" type="video/webm"><source src="http://verylongroad.com/media/' + video +'.ogv" type="video/ogg">Your browser does not support the video tag.</video>');
+            videoPanel.html('<video muted style="max-width: 380px;max-height: 275px;position: absolute;top: -32px;right: 2px;" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'.webm" type="video/webm"><source src="http://verylongroad.com/media/' + video +'.ogv" type="video/ogg">Your browser does not support the video tag.</video>');
           }else{
-            $('#hurricane-video-right-'+divNum).html('<video muted style="max-width:375px;width:100%;max-height:211px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'.webm" type="video/webm"><source src="http://verylongroad.com/media/' + video +'.ogv" type="video/ogg">Your browser does not support the video tag.</video>');
+            videoPanel.html('<video muted style="max-width:375px;width:100%;max-height:211px" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/' + video +'.webm" type="video/webm"><source src="http://verylongroad.com/media/' + video +'.ogv" type="video/ogg">Your browser does not support the video tag.</video>');
           }
           window.setTimeout(function () {
-            $('#hurricane-text-right-'+divNum).text(text);
+            textPanel.text(text);
           }, 3200);
         }
 
         function populateHurricanePanelImageRight(divNum, img, text){
+          var imgPanel
+          var textPanel
           if (divNum == 1){
-            var video = $rightPanelOne;
-            var text = $rightTextOne;
+            imgPanel = $rightVideoOne;
+            textPanel = $rightTextOne;
           }else if (divNum == 2){
-            var video = $rightPanelTwo;
-            var text = $rightTextTwo;
+            imgPanel = $rightVideoTwo;
+            textPanel = $rightTextTwo;
           }
           video.html(img);
           text.text(text);
@@ -326,31 +338,29 @@
         hurricaneVideo.addEventListener("timeupdate", function () {
           //  Current time  
           var vTime = hurricaneVideo.currentTime;
-          if (vTime < 5 && timeCount == 0){
-            console.log('cache check');
-            populateHurricanePanelRight('1', 'static_v1', '');
-            populateHurricanePanelRight('2','shell_at_the_tracks_v1', 'Shell Oil Refinery');
-            timeCount = 1;
+          if (vTime < 5){
+            populateHurricanePanelRight(1, 'static_v1', ' ');
+            populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
           }else if (vTime > 7.7 && vTime < 9.7){
             map.centerAndZoom([-90.405, 30.001], 16);
             $rightPanelOne.css('display','none');
             $rightPanelTwo.css('display','block');
-            populateHurricanePanelRight('1','I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
+            populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
           }else if (vTime > 26 && vTime < 29){
             $rightPanelOne.css('display','block');
             $rightPanelTwo.css('display','none');
-            populateHurricanePanelRight('2','dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
+            populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
             map.centerAndZoom([-90.383, 30.063], 15);
           }else if (vTime > 47 && vTime < 51){
             $rightPanelTwo.fadeIn('slow');
             $rightPanelOne.css('display','none');
-            populateHurricanePanelImageRight('1', '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
+            populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 15);
           }else if (vTime > 70 && vTime < 73){
             hurricaneLayer.show();
             $rightPanelOne.fadeIn('slow');
             $rightPanelTwo.css('display','none');
-            populateHurricanePanelImageRight('2', '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
+            populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 6);
           }else if (vTime > 90.7 && vTime < 93.7){
             $rightPanelTwo.fadeIn('slow');
