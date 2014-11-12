@@ -478,17 +478,17 @@
   function activateModule(args){
     /*args: 'module', 'title', 'coordinates', 'zoom'*/
     window.scrollTo(0, 0);
+    map.centerAndZoom(args['coordinates'], args['zoom']);
+    hideAllLayers();
     $('.module').css('display','none');
     $('#'+args['module']+'-module').css('display','block');
-    hideAllLayers();
-    map.centerAndZoom(args['coordinates'], args['zoom']);
     $('#labranche-map-title').text(args['title']);
     $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
     eval(args['module'] + '()');
   };
 
   //HEADER MENU
-  $( "#page-container" ).on( "click", "a[href^='#']", function(event) {
+  $( "#tabset" ).on( "click", "a[href^='#']", function(event) {
     if ($(event.target).hasClass('hurricane')){
       activateModule({'module': 'hurricane',
         'title':'hurricane',
