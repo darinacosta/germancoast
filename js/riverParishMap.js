@@ -331,8 +331,8 @@
             imgPanel = $rightVideoTwo;
             textPanel = $rightTextTwo;
           }
-          video.html(img);
-          text.text(text);
+          imgPanel.html(img);
+          textPanel.text(text);
         }
         
         hurricaneVideo.addEventListener("timeupdate", function () {
@@ -363,9 +363,18 @@
             populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
             map.centerAndZoom([-90.412, 30.005 ], 6);
           }else if (vTime > 90.7 && vTime < 93.7){
-            $rightPanelTwo.fadeIn('slow');
+            $rightPanelTwo.css('display','block');
             $rightPanelOne.css('display','none');
             map.centerAndZoom([-90.4268, 30.1077 ], 15);
+            populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
+          }else if (vTime > 106 && vTime < 108){
+            $rightPanelOne.css('display','block');
+            $rightPanelTwo.css('display','none');
+            map.centerAndZoom([-90.412, 30.005 ], 8);
+            populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
+          }else if (vTime > 106 && vTime < 108){
+            $rightPanelTwo.css('display','block');
+            $rightPanelOne.css('display','none');
           }
         }, false);
         
@@ -377,6 +386,12 @@
         /*///////////////////////////////////////*/
        /*/////////////////NORCO/////////////////*/
       /*///////////////////////////////////////*/
+
+      var slideCount = 0
+
+      function nextNorcoSlide(){
+        console.log('contact')
+      }
 
 
       function norco(){

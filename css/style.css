@@ -245,6 +245,36 @@
         font-size:12px;
       }
 
+      /*JQUERY*/
+
+      /*http://keith-wood.name/uiTabs.html#tabs-bottom*/
+
+      tabs-bottom { 
+          position: relative; 
+          padding-bottom: 3em; 
+      } 
+      tabs-bottom .ui-tabs-nav { 
+          position: absolute; 
+          left: 0.25em; 
+          right: 0.25em; 
+          bottom: 0.25em; 
+          padding: 0em 0.2em 0.2em; 
+      } 
+      tabs-bottom .ui-tabs-nav li { 
+          border-top: none; 
+          border-bottom: 1px solid #ccc; 
+          -moz-border-radius: 0px 0px 4px 4px; 
+          -webkit-border-radius: 0px 0px 4px 4px; 
+          border-radius: 0px 0px 4px 4px; 
+      } 
+      tabs-bottom .ui-tabs-nav li.ui-tabs-selected, 
+      tabs-bottom .ui-tabs-nav li.ui-state-active { 
+          top: -1px; 
+      }
+
+
+      /*******************MEDIA QUERIES***************/
+
       @media (min-width:1210px){
 
         #hurricanePane{
