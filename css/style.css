@@ -120,6 +120,10 @@
         border-color: transparent;
       }
 
+      ul.customstack>li.active>a, ul.customstack>li.active>a:hover{
+        border-bottom-color:inherit;
+      }
+
       .dropdown-menu{
         background-color:rgb(100, 107, 100);
       }
