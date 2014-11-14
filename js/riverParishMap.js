@@ -384,7 +384,7 @@
       
 
         /*///////////////////////////////////////*/
-       /*/////////////////NORCO/////////////////*/
+       /******************NORCO******************/
       /*///////////////////////////////////////*/
 
       var slideCount = 0
@@ -395,13 +395,35 @@
 
 
       function norco(){
+
+        $opacityBar = $('#opacity-bar');
+        $norcoMenu = $('#norco-menu');
         
         plantationLayer.show();
-        $('#opacity-bar').on("input", function() {
+        $opacityBar.on("input", function() {
             plantationLayer.show();
             opacityValue = $(this).val();
             plantationLayer.setOpacity(opacityValue);
           });
+
+        $norcoMenu.on("click",  "a[href^='#']", function(event){
+          console.log('norco clicked');
+          if ($(event.target).hasClass('plantation')){
+            hideAllLayers();
+            plantationLayer.show();
+            map.centerAndZoom([-90.4108, 30.0039], 11);
+          }else if ($(event.target).hasClass('levee-domination')){
+            hideAllLayers();
+            map.centerAndZoom([-90.405, 30.001], 14);
+            landuse.show();
+          }else if ($(event.target).hasClass('ex-town')){
+            hideAllLayers();
+            map.centerAndZoom([-90.405, 30.001], 15);
+            shellProperties.show();
+          }
+        });
+
+
       }//End Norco
 
       /*/////////////////////////////////////*/

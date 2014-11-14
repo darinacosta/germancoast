@@ -120,8 +120,8 @@
         border-color: transparent;
       }
 
-      ul.customstack>li.active>a, ul.customstack>li.active>a:hover{
-        border-bottom-color:inherit;
+      .nav-tabs#norco-menu>li.active>a, .nav-tabs#norco-menu>li.active>a:hover, .nav-tabs>li.active>a:focus{
+        border-bottom: 1px solid rgb(100, 107, 100);
       }
 
       .dropdown-menu{
