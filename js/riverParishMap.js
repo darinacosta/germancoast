@@ -294,9 +294,9 @@
           hurricaneVideo.play();
           map.centerAndZoom([-90.4108, 30.0039], 13);
           if (hurricaneVideoStatus=='paused'){
-            $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
-          }else if (hurricaneVideoStatus=='playing'){
             $playButton.html('<span class="glyphicon glyphicon-play"></span>');
+          }else if (hurricaneVideoStatus=='playing'){
+            $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
           }
         });
         
