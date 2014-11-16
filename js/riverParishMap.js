@@ -254,10 +254,7 @@
           });
       });
 
-      function hurricane(){
-
-        //use time count to prevent divs from repeatedly populating
-        var timeCount = 0;
+      var timeCount = 0;
         var hurricaneVideoStatus = 'paused';
         var $playButton = $('#hurricane-play');
         var $rightPanelOne = $('.hurricane-right-1')
@@ -299,6 +296,10 @@
             $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
           }
         });
+
+      function hurricane(){
+
+        //use time count to prevent divs from repeatedly populating
         
         function populateHurricanePanelRight(divNum, video, text){
           var videoPanel
