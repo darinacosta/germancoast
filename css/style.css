@@ -120,7 +120,7 @@
         border-color: transparent;
       }
 
-      .nav-tabs#norco-menu>li.active>a, .nav-tabs#norco-menu>li.active>a:hover, .nav-tabs>li.active>a:focus{
+      .nav-tabs.norco-menu>li.active>a, .nav-tabs.norco-menu>li.active>a:hover, .nav-tabs>li.active>a:focus{
         border-bottom: 1px solid rgb(100, 107, 100);
       }
 
