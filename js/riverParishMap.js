@@ -398,7 +398,7 @@
       function norco(){
 
         $opacityBar = $('#opacity-bar');
-        $norcoMenu = $('#norco-menu');
+        $norcoMenu = $('.norco-menu');
         
         plantationLayer.show();
         $opacityBar.on("input", function() {
