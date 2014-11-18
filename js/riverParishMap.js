@@ -60,27 +60,27 @@
         ) {
 
         //Layers 
-        var developmentsUrl = 'http://verylongroad.com/gis/services/labranche_service_v7.kmz'
-        var developments = new KMLLayer(developmentsUrl, {"opacity": 0.7});
+        var developmentsUrl = 'http://verylongroad.com/gis/services/labranche_service_v7.kmz',
+            developments = new KMLLayer(developmentsUrl, {"opacity": 0.7}),
         
-        var landuseUrl = 'http://verylongroad.com/gis/services/norco_land_uses_complete_v1.kmz'
-        var landuse = new KMLLayer(landuseUrl, {"opacity": 0.5})
+            landuseUrl = 'http://verylongroad.com/gis/services/norco_land_uses_complete_v1.kmz',
+            landuse = new KMLLayer(landuseUrl, {"opacity": 0.5}),
 
-        var floodLanduseUrl = 'http://verylongroad.com/gis/services/norco_land_uses_500yrfloodplain_DISSOLVE_v1.kmz'
-        var floodLanduse = new KMLLayer(floodLanduseUrl, {"opacity": 0.5});
+            floodLanduseUrl = 'http://verylongroad.com/gis/services/norco_land_uses_500yrfloodplain_DISSOLVE_v1.kmz',
+            floodLanduse = new KMLLayer(floodLanduseUrl, {"opacity": 0.5}),
         
-        var shellPropertiesUrl = 'http://verylongroad.com/gis/services/shell_properties_v1.kmz'
-        var shellProperties = new KMLLayer(shellPropertiesUrl, {"opacity": 0.7});
+            shellPropertiesUrl = 'http://verylongroad.com/gis/services/shell_properties_v1.kmz',
+            shellProperties = new KMLLayer(shellPropertiesUrl, {"opacity": 0.7}),
 
-        var hurricaneLayerUrl = 'http://verylongroad.com/gis/services/west_indian_hurricane_v1.kmz'
-        var hurricaneLayer = new KMLLayer(hurricaneLayerUrl, {"opacity": 1});
+            hurricaneLayerUrl = 'http://verylongroad.com/gis/services/west_indian_hurricane_v1.kmz',
+            hurricaneLayer = new KMLLayer(hurricaneLayerUrl, {"opacity": 1}),
         
-        plantationLayer = new MapImageLayer({ "id": "river_parish_plantations_v1"});  
-        var plantationExtent = new Extent({ "xmin": -10180219.4529657810926437, "ymin": 3465453.2601955365389585, "xmax": -10015220.5453406143933535, "ymax": 3562852.9017185945995152, "spatialReference": { "EPSG": 4326 }});  
-        var plantationImage = new MapImage({  
-          "extent": plantationExtent,  
-          "href": "http://verylongroad.com/gis/services/plantation_test_v1.jpg"  
-        });
+            plantationLayer = new MapImageLayer({ "id": "river_parish_plantations_v1"}), 
+            plantationExtent = new Extent({ "xmin": -10180219.4529657810926437, "ymin": 3465453.2601955365389585, "xmax": -10015220.5453406143933535, "ymax": 3562852.9017185945995152, "spatialReference": { "EPSG": 4326 }}),
+            plantationImage = new MapImage({  
+              "extent": plantationExtent,  
+              "href": "http://verylongroad.com/gis/services/plantation_test_v1.jpg"  
+            });
 
 
         var map = BootstrapMap.create("mapDiv",{
@@ -256,14 +256,14 @@
 
       var timeCount = 0;
         var hurricaneVideoStatus = 'paused';
-        var $playButton = $('#hurricane-play');
-        var $rightPanelOne = $('.hurricane-right-1')
-        var $rightPanelTwo = $('.hurricane-right-2')
-        var $rightVideoOne = $('#hurricane-video-right-1');
-        var $rightVideoTwo = $('#hurricane-video-right-2');
-        var $rightTextOne =  $('#hurricane-text-right-1');
-        var $rightTextTwo =  $('#hurricane-text-right-2');
-
+            $playButton = $('#hurricane-play'),
+            $rightPanelOne = $('.hurricane-right-1'),
+            $rightPanelTwo = $('.hurricane-right-2'),
+            $rightVideoOne = $('#hurricane-video-right-1'),
+            $rightVideoTwo = $('#hurricane-video-right-2'),
+            $rightTextOne =  $('#hurricane-text-right-1'),
+            $rightTextTwo =  $('#hurricane-text-right-2');
+  
         $('a.newpage').on("click", function(){
           $playButton.html('<span class="glyphicon glyphicon-play"></span>');
           hurricaneVideo.pause();
@@ -419,7 +419,7 @@
             landuse.show();
           }else if ($(event.target).hasClass('ex-town')){
             hideAllLayers();
-            map.centerAndZoom([-90.405, 30.001], 15);
+            map.centerAndZoom([-90.415, 30.001], 15);
             shellProperties.show();
           }
         });
@@ -511,7 +511,7 @@
   };
 
   //HEADER MENU
-  $( "#tabset" ).on( "click", "a[href^='#']", function(event) {
+  $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
     if ($(event.target).hasClass('hurricane')){
       activateModule({'module': 'hurricane',
         'title':'hurricane',

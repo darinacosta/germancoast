@@ -39,7 +39,7 @@
     </div>
   <div id="page-container">
     <div class="tabbable">
-      <ul class="nav nav-tabs" id="tabset">
+      <ul class="nav nav-tabs hidden-xs main-menu" id="tabset">
         <li class="active home-location-button newpage"><a href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
@@ -66,7 +66,37 @@
           </ul><!-- end of dropdown menu -->
         </li>
       </ul>
+
+     <!--MOBILE NAV-->
+     
+      <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset">
+        <li class="active home-location-button newpage"><a href="#homePane" data-toggle="tab">The German Coast</span></a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select Module <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li data-toggle="popover"
+            data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+            <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane newpage"><span>Hurricane</span></a></li>
+            <li data-toggle="popover" data-content=""><a class="hurricane newpage inactive"><span>Crash</span></a></li>
+            <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+            <li data-toggle="popover"
+            data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+            <li><a class="inactive"><i>1811</i></a></li>
+            <li><a class="inactive"><i>Maroon</i></a></li>
+          </ul><!-- end of dropdown menu -->
+        </li>
+      </ul>
+
+       <!--/MOBILE NAV-->
+
       <div class="tab-content">
+
+
+
+
+
+
+    
       
 
       <!--MAP-->
@@ -170,7 +200,7 @@
               
               <div class="col-md-2 hidden-sm hidden-xs">
                 <ul class="nav nav-tabs nav-stacked customstack norco-menu" style="padding-left:0px;background-color:transparent;border-bottom: transparent;">
-                  <li class="active in"><a href="#pane1" class="plantation" data-toggle="tab">From Plantation to Refinery</a></li>
+                  <li class="active in"><a href="#pane1" class="plantation" data-toggle="tab">Plantation to Refinery</a></li>
                   <li><a href="#pane2" class="levee-domination" data-toggle="tab">Levee Domination</a></li>
                   <li><a href="#pane3" data-toggle="tab" class="ex-town">Ex-town</a></li>
                 </ul>
@@ -178,15 +208,17 @@
 
               <!-- small viewport dropdown -->
               <div class="col-sm-12 hidden-md hidden-lg">
-                <ul class="nav nav-pills norco-menu">
-                  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">...</a>
-                    <ul class="dropdown-menu">
-                      <li class="active in"><a href="#pane1" class="plantation" data-toggle="tab">From Plantation to Refinery</a></li>
-                      <li><a href="#pane2" class="levee-domination" data-toggle="tab">Levee Domination</a></li>
-                      <li><a href="#pane3" data-toggle="tab" class="ex-town">Ex-town</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                <div id="norco-dropdown-wrap" style="margin: 0 auto;width: 100px;line-height:15px;">
+                  <ul class="nav nav-pills norco-menu">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown">Epoch <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li class="active in"><a href="#pane1" class="plantation" data-toggle="tab">Plantation to Refinery</a></li>
+                        <li><a href="#pane2" class="levee-domination" data-toggle="tab">Levee Domination</a></li>
+                        <li><a href="#pane3" data-toggle="tab" class="ex-town">Ex-town</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
              
               <div class="col-md-10">
