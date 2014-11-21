@@ -398,7 +398,7 @@
       function norco(){
 
         $opacityBar = $('#opacity-bar');
-        $norcoMenu = $('.norco-menu');
+        $norcoLandUsePane = $('#norcoLandusePane');
         
         plantationLayer.show();
         $opacityBar.on("input", function() {
@@ -407,7 +407,7 @@
             plantationLayer.setOpacity(opacityValue);
           });
 
-        $norcoMenu.on("click",  "a[href^='#']", function(event){
+        $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
           console.log('norco clicked');
           if ($(event.target).hasClass('plantation')){
             hideAllLayers();
@@ -421,6 +421,9 @@
             hideAllLayers();
             map.centerAndZoom([-90.415, 30.001], 15);
             shellProperties.show();
+          }else if ($(event.target).hasClass('land-use-switch')){
+            floodLanduse.show();
+            landuse.hide();
           }
         });
 
