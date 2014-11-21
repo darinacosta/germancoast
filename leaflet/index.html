@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Quick Start Guide Example</title>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <style>
+    .esri-leaflet-logo{
+      display:none;
+    }
+
+    body {
+            padding: 0;
+            margin: 0;
+        }
+    html, body, #map {
+        height: 100%;
+        width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="home-container" class="col-md-3 col-xs-6" style="position:absolute;top:70px;left:30px;padding:15px;background: rgba(36, 44, 36,.60);color: #fff;text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);"><h3>Louisiana's German Coast</h3>
+  The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
+            This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
+            geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
+            the <a class="geometry-link" id="parishline-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
+            <a class="geometry-link" id="erosion-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>saltwater erosion</a> along the shores of the lake; 
+            <a id="ej-geofeature-event" class="geometry-link"><span class="glyphicon glyphicon-map-marker"></span>residential areas sandwiched between refineries</a>; others that extend
+            into <a class="geometry-link" id="suburb-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>precarious floodplains</a>;
+            and the telltale <a class="geometry-link" id="radial-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>radial canals</a> of cypress logging.</div>
+
+  <script src="http://leafletjs.com/dist/leaflet.js"></script>
+
+  <!--ESRI LEAFLET-->
+  <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
+
+  <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
+
+  <script>
+
+    var map = L.map('map').setView([30.0339, -90.4008], 13);
+
+    L.esri.basemapLayer("Imagery").addTo(map);
+
+    var kmlLayer = omnivore.kml('./kml/labranche.kml',{
+     
+      style: function () {
+        return {color: "#70ca49", weight: 1}
+      }
+    })
+    /*.on('ready', function() {
+        map.fitBounds(kmlLayer.getBounds());
+    })*/
+
+  $( "#home-container" ).on( "click", "a[class='geometry-link']", function( event ) {
+      switch(event.target.id){
+        case 'radial-geofeature-event':
+          map.panTo(new L.LatLng(30.269, -90.377));
+          break;
+        case 'erosion-geofeature-event':
+          map.panTo(new L.LatLng(30.046, -90.330));
+          break;
+        case 'ej-geofeature-event':
+          map.panTo(new L.LatLng(30.046, -90.330));
+          break;
+        case 'suburb-geofeature-event':
+          map.panTo(new L.LatLng(30.088, -90.446));
+          break;
+        case 'parishline-geofeature-event':
+          map.panTo(new L.LatLng(30.032, -90.279));
+          break;
+      }
+    });
+
+
+  </script>
+</body>
+</html>
