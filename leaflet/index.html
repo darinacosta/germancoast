@@ -19,23 +19,164 @@
             padding: 0;
             margin: 0;
         }
+
     html, body, #map {
         height: 100%;
         width: 100%;
     }
+
+    .leaflet-top .leaflet-control {
+        margin-top: 54px;
+      }
+
+    .map-tab-content{
+      position:absolute;
+      top:70px;
+      left:55px;
+      padding:15px;
+      background: rgba(36, 44, 36,.60);
+      color: #fff;
+      text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
+    }
+
+   @media all and (max-width: 705px) { 
+     #map{
+      height:300px;
+     }
+
+     .map-tab-content{
+      position:relative;
+      left:0px;
+      top:0px;
+      max-width:100%;
+     }
+
+     .leaflet-top .leaflet-control {
+        margin-top: 80px;
+      }
+
+   }
   </style>
 </head>
 <body>
+  <div class="noscriptmsg">
+    It seems your browser does not have Javascript enabled. To view the German Coast, please enable Javascript and <a href="http://germancoast.verylongroad.com">try again</a>.
+    </div>
+
   <div id="map"></div>
-  <div id="home-container" class="col-md-3 col-xs-6" style="position:absolute;top:70px;left:30px;padding:15px;background: rgba(36, 44, 36,.60);color: #fff;text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);"><h3>Louisiana's German Coast</h3>
-  The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
-            This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
-            geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
-            the <a class="geometry-link" id="parishline-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
-            <a class="geometry-link" id="erosion-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>saltwater erosion</a> along the shores of the lake; 
-            <a id="ej-geofeature-event" class="geometry-link"><span class="glyphicon glyphicon-map-marker"></span>residential areas sandwiched between refineries</a>; others that extend
-            into <a class="geometry-link" id="suburb-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>precarious floodplains</a>;
-            and the telltale <a class="geometry-link" id="radial-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>radial canals</a> of cypress logging.</div>
+
+
+<ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position: absolute;
+top: 0px;
+width: 100%;">
+        <li class="active"><a href="#homePane" class="home-location-button newpage" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li data-toggle="popover"
+            data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+            <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane newpage"><span>Hurricane</span></a></li>
+            <li data-toggle="popover" data-content=""><a class="hurricane newpage inactive"><span>Crash</span></a></li>
+          </ul><!-- end of dropdown menu -->
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+          <li data-toggle="popover"
+          data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+          </ul><!-- end of dropdown menu -->
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a class="inactive"><i>1811</i></a></li>
+            <li><a class="inactive"><i>Maroon</i></a></li>
+          </ul><!-- end of dropdown menu -->
+        </li>
+      </ul>
+
+      <!--MOBILE NAV-->
+     
+      <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;
+                                                                                                    top: 0px;
+                                                                                                    width: 100%;">
+        <li class="active home-location-button newpage"><a href="#homePane" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select Module <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li data-toggle="popover"
+            data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+            <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane newpage"><span>Hurricane</span></a></li>
+            <li data-toggle="popover" data-content=""><a class="hurricane newpage inactive"><span>Crash</span></a></li>
+            <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+            <li data-toggle="popover"
+            data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+            <li><a class="inactive"><i>1811</i></a></li>
+            <li><a class="inactive"><i>Maroon</i></a></li>
+          </ul><!-- end of dropdown menu -->
+        </li>
+      </ul>
+
+       <!--/MOBILE NAV-->
+
+<div class="tab-content map-tab-content">
+
+
+        <!--*******************************************-->
+        <!--********************HOME*******************-->
+        <!--*******************************************-->
+
+  <div id="homePane" class="tab-pane active" style="max-width:400px;">
+      <h3>Louisiana's German Coast</h3>
+      The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
+      This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
+      geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
+      the <a class="geometry-link" id="parishline-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
+      <a class="geometry-link" id="erosion-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>saltwater erosion</a> along the shores of the lake; 
+      <a id="ej-geofeature-event" class="geometry-link"><span class="glyphicon glyphicon-map-marker"></span>residential areas sandwiched between refineries</a>; others that extend
+      into <a class="geometry-link" id="suburb-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>precarious floodplains</a>;
+      and the telltale <a class="geometry-link" id="radial-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>radial canals</a> of cypress logging.
+    </div>
+ 
+    <div id="norcoLandusePane" class="tab-pane">
+      TEST
+    </div>
+
+    <!--*******************************************-->
+    <!--***************HURRICANE*******************-->
+    <!--*******************************************-->
+
+    <div id="hurricanePane" class="tab-pane">
+          <div id="hurricane-video-wrapper">
+            <div id="hurricane-video-inner-wrapper">
+              <video controls id="hurricane-video" style="max-width:650px;width:100%;" preload="auto">
+                <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
+                <source src="http://verylongroad.com/media/v/donald_interview_v1.pds.webmsd.webm" type="video/webm">
+                <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
+                <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div id="hurricane-video-control">
+              <div style="float: left;">
+                <span id="hurricane-play"><span class="glyphicon glyphicon-play pointer"></span></span> 
+                <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
+                <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
+              </div>
+            </div>
+
+      <div class="col-md-12" id="viewport-too-small">
+        Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+      </div>
+    </div>
+
+
+
+
+
+  </div><!-- /.tab-content -->
+</div><!-- /.tabbable -->
 
   <script src="http://leafletjs.com/dist/leaflet.js"></script>
 
@@ -50,7 +191,7 @@
 
     var map = L.map('map').setView([30.0339, -90.4008], 13);
 
-    L.esri.basemapLayer("Imagery").addTo(map);
+    L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'}).addTo(map);
 
     var kmlLayer = omnivore.kml('./kml/labranche.kml',{
      
@@ -62,26 +203,75 @@
         map.fitBounds(kmlLayer.getBounds());
     })*/
 
-  $( "#home-container" ).on( "click", "a[class='geometry-link']", function( event ) {
+  $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
       switch(event.target.id){
         case 'radial-geofeature-event':
-          map.panTo(new L.LatLng(30.269, -90.377));
+          map.setView(new L.LatLng(30.269, -90.377), 15);
           break;
         case 'erosion-geofeature-event':
-          map.panTo(new L.LatLng(30.046, -90.330));
+          map.setView(new L.LatLng(30.046, -90.330), 14);
           break;
         case 'ej-geofeature-event':
-          map.panTo(new L.LatLng(30.046, -90.330));
+          map.setView(new L.LatLng(30.004, -90.414), 14);
           break;
         case 'suburb-geofeature-event':
-          map.panTo(new L.LatLng(30.088, -90.446));
+          map.setView(new L.LatLng(30.088, -90.446), 14);
           break;
         case 'parishline-geofeature-event':
-          map.panTo(new L.LatLng(30.032, -90.279));
+          map.setView(new L.LatLng(30.032, -90.279), 14);
           break;
       }
     });
 
+        /*///////////////////////////////////////*/
+       /*//////////////HURRICANE////////////////*/
+      /*///////////////////////////////////////*/
+
+  var hurricaneVideo = document.getElementById("hurricane-video");
+
+
+  hurricaneVideo.addEventListener("timeupdate", function () {
+          //  Current time  
+          var vTime = hurricaneVideo.currentTime;
+          if (vTime < 5){
+            //populateHurricanePanelRight(1, 'static_v1', ' ');
+            //populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
+          }else if (vTime > 7.7 && vTime < 9.7){
+            map.setView(new L.LatLng(30.001, -90.405), 16);
+            //$rightPanelOne.css('display','none');
+            //$rightPanelTwo.css('display','block');
+            //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
+          }else if (vTime > 26 && vTime < 29){
+            //$rightPanelOne.css('display','block');
+            //$rightPanelTwo.css('display','none');
+            //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
+            map.setView(new L.LatLng(30.063, -90.383), 15);
+          }else if (vTime > 47 && vTime < 51){
+            //$rightPanelTwo.fadeIn('slow');
+            //$rightPanelOne.css('display','none');
+            //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
+            map.setView(new L.LatLng(30.005, -90.412), 15);
+          }else if (vTime > 70 && vTime < 73){
+            //hurricaneLayer.show();
+            //$rightPanelOne.fadeIn('slow');
+            //$rightPanelTwo.css('display','none');
+            //populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
+            //map.centerAndZoom([-90.412, 30.005 ], 6);
+          }else if (vTime > 90.7 && vTime < 93.7){
+            //$rightPanelTwo.css('display','block');
+            //$rightPanelOne.css('display','none');
+            //map.centerAndZoom([-90.4268, 30.1077 ], 15);
+            //populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
+          }else if (vTime > 106 && vTime < 108){
+            //$rightPanelOne.css('display','block');
+            //$rightPanelTwo.css('display','none');
+           // map.centerAndZoom([-90.412, 30.005 ], 8);
+            //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
+          }else if (vTime > 106 && vTime < 108){
+            //$rightPanelTwo.css('display','block');
+            //$rightPanelOne.css('display','none');
+          }
+        }, false);
 
   </script>
 </body>
