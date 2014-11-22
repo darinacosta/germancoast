@@ -9,9 +9,13 @@
   <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="./plugins/minimap/Control.MiniMap.css">
+  <link rel="stylesheet" type="text/css" href="../css/magnificent.css">
+
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="../js/magnificent.js"></script>
+
   <style>
     .esri-leaflet-logo{
       display:none;
@@ -204,7 +208,7 @@
 
   <div id="norcoLandusePane" class="tab-pane">
     <div class="col-md-12" style="text-align:center;">
-        <h3 style="display:inline-block">From Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
+        <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
         <div style="padding: 15px 0;">
           <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
         </div>
@@ -237,7 +241,8 @@
 
     var map = L.map('map').setView([30.0339, -90.4008],11);
 
-    L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'}).addTo(map);
+    L.esri.basemapLayer("Imagery",{attribution:'<a href="#">Bibliography & Attribution</a> | Contact'}).addTo(map);
+    imageryLabels = L.esri.basemapLayer('ImageryLabels');
 
     var miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'});
     var miniMap = new L.Control.MiniMap(miniMapLayer, {
@@ -261,6 +266,24 @@
     var plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{
       opacity: 1
     });
+
+    var layerArray = [labrancheDevelopments,plantationsLayer]
+    
+
+    //LAYER CONTROL
+    function hideAllLayers(){
+      for (var i=0; i<layerArray.length; i++){
+        map.removeLayer(layerArray[i])
+      }
+    }
+
+    /*///////////////////////////////////////*/
+   /*/////////////////HOME//////////////////*/
+  /*///////////////////////////////////////*/
+
+  function home(){
+
+  }
 
 
   $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
@@ -437,17 +460,17 @@
    /***************************/
 
   function activateModule(args){
-    /*args: 'module', 'title', 'coordinates', 'zoom'*/
+    hideAllLayers();
     window.scrollTo(0, 0);
     map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);
-    //hideAllLayers();
     $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
     eval(args['module'] + '()');
   };
 
   //HEADER MENU
   $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
-    L.esri.basemapLayer('ImageryLabels').addTo(map);
+    
+    imageryLabels.addTo(map);
 
     if ($(event.target).hasClass('hurricane')){
       activateModule({'module': 'hurricane',
@@ -471,6 +494,7 @@
         'zoom':12
       });
     }else if ($(event.target).hasClass('home-location-button')){ 
+      map.removeLayer(imageryLabels);
       activateModule({'module':'home',
         'title':'LOUISIANA\'S GERMAN COAST',
         'lat': 30.0339, 
@@ -481,6 +505,34 @@
   });
 
   </script>
+   <script>
+      $(document).ready(function() {
+
+          //Activate Magnificent Popup
+          $("#cover").fadeOut(1100); 
+          $('.image-link').magnificPopup({type:'image'});
+          $('.video-link').magnificPopup({type:'iframe'});
+
+        }); 
+
+      //Tooltips
+        $('[data-toggle="popover"]').popover({
+            trigger: 'hover',
+            'placement': 'bottom'
+        });
+
+
+         //Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-56503938-1', 'auto');
+        ga('send', 'pageview');
+
+
+      </script>
 
 </body>
 </html>
