@@ -144,7 +144,7 @@
         <!--*******************************************-->
 
   <div id="homePane" class="tab-pane active">
-      <h3>Louisiana's German Coast</h3>
+      <h1>Louisiana's German Coast</h1>
       The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
       This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
       geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
@@ -162,28 +162,11 @@
     <div id="labranchePane" class="tab-pane">
 
 
-      <div id="mobile-development-selector">
-        <h4>Real Estate Speculation in the LaBranche Wetlands</h4>
-        <i> Select a development for additional context</i>
-        <div class="dropdown" id='mobile-labranche-dev-menu'>
-          <button class="btn btn-default dropdown-toggle" type="button" id="mobile-labranche-dev-menu-button" data-toggle="dropdown">
-            ...
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <li role="presentation"><a role="menuitem" tabindex="-1" class='geometry-link labranche'>LaBranche Industrial Park</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link westlake">Great West Lake</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link beltway">Beltway Industrial Park</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link cloverleaf">Cloverleaf</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link shining">Shining Shores</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link james">James Park</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link monte">Monte Verde</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link lakeland">Lakeland Gardens</a></li>
-          </ul>
-        </div>          
-      </div>
+      <div id="labranche-context">
+        <h2>Real Estate Speculation in the LaBranche Wetlands</h2>
+        <i> Click a development for additional context</i>  
 
-      <div id="labranche-context"></div>
+      </div>
     </div>
 
     <!--*******************************************-->
@@ -279,6 +262,7 @@
       opacity: 1
     });
 
+
   $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
       switch(event.target.id){
         case 'radial-geofeature-event':
@@ -358,6 +342,22 @@
 
       function labranche(){
         labrancheDevelopments.addTo(map);
+
+        labrancheDevelopments.on("click", function(e){
+          console.log(e);
+          if (e.layer.feature.properties['name'] == "LaBranche Industrial Park"){
+            executeDevelopmentEvent('.labranche', 0, labrancheIndustrialPark);
+          }
+          labrancheDevelopments.setStyle({color: "#960000",
+              fillColor: "#642800",
+              fillOpacity: 0.4,
+              weight: 1})
+          e.layer.setStyle({
+            'fillColor':'rgb(130,150,0)',
+            'color':'rgb(200,200,0)'
+          });
+          map.setView(new L.LatLng(e.latlng['lat'],e.latlng['lng']),14);
+        })
       }
 
 
@@ -371,7 +371,7 @@
         $('#labranche-context').html(context);
       };
 
-      $('#mobile-labranche-dev-menu').on("click", 
+      /*$('#mobile-labranche-dev-menu').on("click", 
       "a[role='menuitem']", function( event ) {
         if ($(event.target).hasClass('labranche')){
           executeDevelopmentEvent('.labranche', 0, labrancheIndustrialPark);
@@ -390,7 +390,7 @@
         }else if($(event.target).hasClass('lakeland')){
           executeDevelopmentEvent('.lakeland', 7);
         }
-      });
+      });*/
 
         /*///////////////////////////////////////*/
        /******************NORCO******************/
@@ -463,7 +463,6 @@
         'long': -90.335, 
         'zoom':13
       });
-      developments.show();
     }else if ($(event.target).hasClass('norco-location-button')){ 
       activateModule({'module':'norco',
         'title':'NORCO INDUSTRIAL GROWTH',
