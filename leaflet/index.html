@@ -27,15 +27,19 @@
         width: 100%;
     }
 
-    .leaflet-top .leaflet-control {
-        margin-top: 54px;
+    .leaflet-control-zoom{
+        display:none;
       }
 
     .map-tab-content{
       position:absolute;
-      top:70px;
-      left:55px;
-      padding:15px;
+      top:0;
+      left:0;
+      max-height:100%;
+      height:100%;
+      overflow:scroll;
+      overflow-x:hidden;
+      padding:55px 15px 15px 15px;
       background: rgba(36, 44, 36,.60);
       color: #fff;
       text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
@@ -49,6 +53,10 @@
       background-color: rgba(90, 90, 90, 1.0);
     }
 
+    .main-menu{
+      z-index:9999;
+    }
+
    @media all and (max-width: 760px) { 
      #map{
       height:300px;
@@ -56,6 +64,7 @@
 
      .map-tab-content{
       position:relative;
+      padding:15px 15px 15px 15px;
       left:0px;
       top:0px;
       max-width:100%;
@@ -127,7 +136,7 @@
 
        <!--/MOBILE NAV-->
 
-<div class="tab-content map-tab-content col-md-5 col-sm-6">
+<div class="tab-content map-tab-content col-md-4 col-sm-5">
 
 
         <!--*******************************************-->
@@ -144,10 +153,6 @@
       <a id="ej-geofeature-event" class="geometry-link"><span class="glyphicon glyphicon-map-marker"></span>residential areas sandwiched between refineries</a>; others that extend
       into <a class="geometry-link" id="suburb-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>precarious floodplains</a>;
       and the telltale <a class="geometry-link" id="radial-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>radial canals</a> of cypress logging.
-    </div>
- 
-    <div id="norcoLandusePane" class="tab-pane">
-      TEST
     </div>
 
     <!--*******************************************-->
@@ -186,28 +191,47 @@
     <!--*******************************************-->
 
     <div id="hurricanePane" class="tab-pane">
-          <div id="hurricane-video-wrapper">
-            <div id="hurricane-video-inner-wrapper">
-              <video controls id="hurricane-video" style="max-width:650px;width:100%;" preload="auto">
-                <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
-                <source src="http://verylongroad.com/media/v/donald_interview_v1.pds.webmsd.webm" type="video/webm">
-                <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
-                <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div id="hurricane-video-control">
-              <div style="float: left;">
-                <span id="hurricane-play"><span class="glyphicon glyphicon-play pointer"></span></span> 
-                <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
-                <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
-              </div>
-            </div>
+      <div id="hurricane-video-wrapper">
+        <div id="hurricane-video-inner-wrapper">
+          <video controls id="hurricane-video" style="max-width:650px;width:100%;" preload="auto">
+            <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
+            <source src="http://verylongroad.com/media/v/donald_interview_v1.pds.webmsd.webm" type="video/webm">
+            <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
+            <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div id="hurricane-video-control">
+          <div style="float: left;">
+            <span id="hurricane-play"><span class="glyphicon glyphicon-play pointer"></span></span> 
+            <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
+            <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
+          </div>
+        </div>
 
-      <div class="col-md-12" id="viewport-too-small">
-        Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+        <div class="col-md-12" id="viewport-too-small">
+          Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+        </div>
       </div>
     </div>
+
+  <!--*******************************************-->
+  <!--*****************NORCO*********************-->
+  <!--*******************************************-->
+
+  <div id="norcoLandusePane" class="tab-pane">
+    <div class="col-md-12" style="text-align:center;">
+        <h3 style="display:inline-block">From Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
+        <div style="padding: 15px 0;">
+          <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
+        </div>
+        <hr>
+      </div>
+      <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields. It could also serve as a coolant for machinery, and a toxic waste sink.</p>
+      <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.
+      <!--a id="landuse-switch-test">LAND USE SWITCH TEST</a><br-->
+    </div>
+  </div>
 
 
 
@@ -232,21 +256,28 @@
 
     L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'}).addTo(map);
 
-    var kmlLayer = omnivore.kml('./kml/labranche.kml',{
-     
-      style: function () {
-        return {color: "#70ca49", weight: 1}
-      }
-    });
-
     var miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'});
     var miniMap = new L.Control.MiniMap(miniMapLayer, {
       toggleDisplay: true,
-      position: 'topright'
+      position: 'bottomright'
     }).addTo(map);
-    /*.on('ready', function() {
-        map.fitBounds(kmlLayer.getBounds());
-    })*/
+
+
+    /********LAYERS******/
+    var labrancheDevelopments = omnivore.kml('./layers/labranche_service_v7.kml')
+    labrancheDevelopments.on('ready', function() {
+        this.setStyle({color: "#960000",
+          fillColor: "#642800",
+          fillOpacity: 0.4,
+          weight: 1});
+    });
+
+    var plantationsUrl = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg',
+    plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
+
+    var plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{
+      opacity: 1
+    });
 
   $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
       switch(event.target.id){
@@ -323,7 +354,11 @@
      /*//////////////LABRANCHE//////////////*/
     /*/////////////////////////////////////*/
 
-      var labrancheIndustrialPark = '<div style="float:left"><img src="i/walker_land_company_name_inverted_v1.png" style="padding: 0 25px 15px 0; max-width:370px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>'
+      var labrancheIndustrialPark = '<div style="float:left"><img src="i/walker_land_company_name_inverted_v1.png" style="padding: 0 25px 15px 0; max-width:370px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>';
+
+      function labranche(){
+        labrancheDevelopments.addTo(map);
+      }
 
 
       function executeDevelopmentEvent(selector, id, context){
@@ -357,6 +392,46 @@
         }
       });
 
+        /*///////////////////////////////////////*/
+       /******************NORCO******************/
+      /*///////////////////////////////////////*/
+
+
+      function norco(){
+
+        plantationsLayer.addTo(map);
+
+        $opacityBar = $('#opacity-bar');
+        $norcoLandUsePane = $('#norcoLandusePane');
+        
+        $opacityBar.on("input", function() {
+            opacityValue = $(this).val();
+            plantationsLayer.setOpacity(opacityValue);
+          });
+
+        $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
+          console.log('norco clicked');
+          if ($(event.target).hasClass('plantation')){
+            hideAllLayers();
+            plantationLayer.show();
+            map.centerAndZoom([-90.4108, 30.0039], 11);
+          }else if ($(event.target).hasClass('levee-domination')){
+            hideAllLayers();
+            map.centerAndZoom([-90.405, 30.001], 14);
+            landuse.show();
+          }else if ($(event.target).hasClass('ex-town')){
+            hideAllLayers();
+            map.centerAndZoom([-90.415, 30.001], 15);
+            shellProperties.show();
+          }else if ($(event.target).hasClass('land-use-switch')){
+            floodLanduse.show();
+            landuse.hide();
+          }
+        });
+
+
+      }//End Norco
+
      /***************************/
     /*****MODULE ACTIVATION*****/ 
    /***************************/
@@ -367,12 +442,13 @@
     map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);
     //hideAllLayers();
     $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
-    //eval(args['module'] + '()');
+    eval(args['module'] + '()');
   };
 
   //HEADER MENU
   $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
     L.esri.basemapLayer('ImageryLabels').addTo(map);
+
     if ($(event.target).hasClass('hurricane')){
       activateModule({'module': 'hurricane',
         'title':'hurricane',
@@ -385,7 +461,7 @@
         'title':'LABRANCHE WETLANDS',
         'lat':30.015,
         'long': -90.335, 
-        'zoom':14
+        'zoom':13
       });
       developments.show();
     }else if ($(event.target).hasClass('norco-location-button')){ 
@@ -393,7 +469,7 @@
         'title':'NORCO INDUSTRIAL GROWTH',
         'lat':30.0039, 
         'long':-90.4108, 
-        'zoom':15
+        'zoom':12
       });
     }else if ($(event.target).hasClass('home-location-button')){ 
       activateModule({'module':'home',
