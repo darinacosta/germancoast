@@ -1,0 +1,303 @@
+
+      
+@media all{
+
+      body{
+        background-color: black; /*rgb(16, 16, 16);*/
+        color: white;
+        font-family: "Andale Mono", AndaleMono, monospace;
+        height:100%;
+        width:100%;
+        font-size:16px;
+      }
+
+      h1, h3{
+        margin-top:10px;
+        font-size:24px;
+      }
+
+      .noscriptmsg{
+        display:none;
+        text-align:center;
+        margin:0 auto;
+        max-width:500px;
+        margin-top:30px;
+      }
+
+      .footer{
+        margin-top:60px;
+        color:grey;
+      }
+
+      .footer a{
+        color:grey;
+      }
+
+
+      #loadingImg{
+        display:none;
+      }
+
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        color: white;
+        cursor: default;
+        background-color: rgb(16, 16, 16);
+        border: 1px solid rgb(100, 107, 100);
+        border-bottom-color: transparent;
+      }
+
+      .row{
+        margin-right: 0px;
+        margin-left: 0px;
+      }
+
+      .nav-tabs {
+        border-bottom: 1px solid rgb(90, 90, 90);
+        background-color: rgb(36, 44, 36);
+        padding-left:20px;
+      }
+
+      .nav-tabs > li{
+        font-size: 14px;
+      }
+
+      .nav-tabs a{
+        color:white;
+      }
+
+      .nav-tabs > li > a{
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        line-height: 1.2;
+      }
+      
+      .nav-tabs > li > a:hover{
+        background-color: rgb(100, 107, 100);
+        border-color:transparent;
+      }
+
+      .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+        background-color: rgb(100, 107, 100);
+        border-color: transparent;
+      }
+
+      .nav-tabs.norco-menu>li.active>a, .nav-tabs.norco-menu>li.active>a:hover, .nav-tabs>li.active>a:focus{
+        border-bottom: 1px solid rgb(100, 107, 100);
+      }
+
+      .dropdown-menu{
+        background-color:rgb(100, 107, 100);
+      }
+
+      .dropdown.active, .dropdown.active:hover{
+        background-color:rgb(16, 16, 16);
+      }
+
+      .dropdown.active.open>.dropdown-menu{
+        background-color: rgb(16, 16, 16);
+      }
+
+      .dropdown-menu>li>a{
+        color:white;
+      }
+
+      .dropdown-menu>.active>a{
+        background-color: #414141;
+      }
+
+      .inactive{
+        color:grey !important;
+      }
+
+      .nav-pills>li.active>a, .btn-default {
+        color: #FFF;
+        background-color: rgb(36, 44, 36);
+        border-color: rgb(90, 90, 90);
+      }
+
+      .popover.bottom>.arrow{
+        display:none;
+      }
+
+      .popover-content{
+        color:rgb(58, 58, 58);
+        font-size:12px;
+      }
+
+      .geometry-link{
+        color:#3C8E56;
+        cursor: pointer;
+      }
+
+      .geometry-link:hover {
+        color: rgb(255, 243, 20);
+        text-decoration: none;
+      }
+
+      .center-header{
+        text-align:center;
+      }
+
+      #home-module-row a{
+        color:white;
+      }
+
+
+      .video-wrap {
+        float: left;
+        margin: 0 20px 5px 0;
+      }
+
+      #hurricane-video-left{
+        margin:0 auto;
+        width: 402px;
+        height: 302px;
+        border: 1px solid rgb(42, 42, 42);
+        background-color: rgb(16, 16, 16);
+      }
+
+      #hurricane-video-inner-wrapper{
+        position:relative; 
+        margin:0 auto; 
+        height:212px; 
+        max-width:375px;
+        border:1px solid rgb(42, 42, 42);
+        overflow:hidden;
+        background-color:rgb(16, 16, 16);
+      }
+
+      .pointer{
+        cursor:pointer;
+      }
+
+      /*Content (Media All)*/
+
+      #home-bottom-row{
+      }
+
+      #mobile-labranche-dev-menu{
+        margin: 15px 0 0 0;
+      }
+
+      #mobile-development-selector{
+        text-align:center;
+      }
+
+      #viewport-too-small{
+        display:none;
+        font-style: italic;
+        font-size:11px;
+        color:grey;
+        text-align:center;
+      }
+
+      #hurricane-video-control, .hurricane-text-right{
+          padding:25px;
+          width:375px;
+          margin:0 auto;
+        }
+
+      .hurricane-text-right{
+        text-align:center;
+        font-style:italic; 
+        color:grey;
+        font-size:12px;
+      }
+
+      /*JQUERY*/
+
+      /*http://keith-wood.name/uiTabs.html#tabs-bottom*/
+
+      tabs-bottom { 
+          position: relative; 
+          padding-bottom: 3em; 
+      } 
+      tabs-bottom .ui-tabs-nav { 
+          position: absolute; 
+          left: 0.25em; 
+          right: 0.25em; 
+          bottom: 0.25em; 
+          padding: 0em 0.2em 0.2em; 
+      } 
+      tabs-bottom .ui-tabs-nav li { 
+          border-top: none; 
+          border-bottom: 1px solid #ccc; 
+          -moz-border-radius: 0px 0px 4px 4px; 
+          -webkit-border-radius: 0px 0px 4px 4px; 
+          border-radius: 0px 0px 4px 4px; 
+      } 
+      tabs-bottom .ui-tabs-nav li.ui-tabs-selected, 
+      tabs-bottom .ui-tabs-nav li.ui-state-active { 
+          top: -1px; 
+      }
+
+
+      /*******************MEDIA QUERIES***************/
+
+      @media (min-width:1210px){
+
+        #hurricanePane{
+          padding-top:10px;
+        }
+
+      }
+
+      @media (max-width: 1210px){
+
+        #hurricane-panel-left, #hurricane-panel-right{
+          display:none;
+        }
+
+        #viewport-too-small{
+          display:block;
+        }
+
+        #hurricane-video-component-wrapper{
+          width:100%;
+        }
+
+         #hurricane-video-inner-wrapper{
+          position:relative; 
+          margin:0 auto; 
+          height:inherit; 
+          max-width:375px;
+          border:transparent;
+          overflow:visible;
+        }
+      }
+
+      @media (max-height:800px){
+        
+
+      }
+
+      /*@media (max-height:770px){
+        #mapDiv{
+          max-height:270px;
+        }
+      }*/
+
+      @media all and (max-width: 705px) { 
+
+      .nav-tabs {
+        padding-left:0px;
+      }
+      
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        border: transparent;
+      }
+
+        .nav-tabs > li {
+            float:none;
+        }
+
+      @media (max-width: 480px) { 
+
+
+      #map-accordion{
+        display:block;
+      }
+    }
+  }
+}

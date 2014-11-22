@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Leaflet Quick Start Guide Example</title>
+  <title>The German Coast</title>
   <meta charset="utf-8" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="./plugins/minimap/Control.MiniMap.css">
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <style>
     .esri-leaflet-logo{
       display:none;
@@ -39,7 +41,15 @@
       text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
     }
 
-   @media all and (max-width: 705px) { 
+    .leaflet-control-minimap {
+      border: 2px solid rgb(90, 90, 90);
+    }
+
+    .leaflet-control-minimap a {
+      background-color: rgba(90, 90, 90, 1.0);
+    }
+
+   @media all and (max-width: 760px) { 
      #map{
       height:300px;
      }
@@ -54,8 +64,9 @@
      .leaflet-top .leaflet-control {
         margin-top: 80px;
       }
+    }
 
-   }
+  }
   </style>
 </head>
 <body>
@@ -66,9 +77,7 @@
   <div id="map"></div>
 
 
-<ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position: absolute;
-top: 0px;
-width: 100%;">
+<ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
         <li class="active"><a href="#homePane" class="home-location-button newpage" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
@@ -98,12 +107,10 @@ width: 100%;">
 
       <!--MOBILE NAV-->
      
-      <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;
-                                                                                                    top: 0px;
-                                                                                                    width: 100%;">
+      <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
         <li class="active home-location-button newpage"><a href="#homePane" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select Module <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li data-toggle="popover"
             data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
@@ -120,14 +127,14 @@ width: 100%;">
 
        <!--/MOBILE NAV-->
 
-<div class="tab-content map-tab-content">
+<div class="tab-content map-tab-content col-md-5 col-sm-6">
 
 
         <!--*******************************************-->
         <!--********************HOME*******************-->
         <!--*******************************************-->
 
-  <div id="homePane" class="tab-pane active" style="max-width:400px;">
+  <div id="homePane" class="tab-pane active">
       <h3>Louisiana's German Coast</h3>
       The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
       This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
@@ -141,6 +148,37 @@ width: 100%;">
  
     <div id="norcoLandusePane" class="tab-pane">
       TEST
+    </div>
+
+    <!--*******************************************-->
+    <!--***************LABRANCHE*******************-->
+    <!--*******************************************-->
+
+    <div id="labranchePane" class="tab-pane">
+
+
+      <div id="mobile-development-selector">
+        <h4>Real Estate Speculation in the LaBranche Wetlands</h4>
+        <i> Select a development for additional context</i>
+        <div class="dropdown" id='mobile-labranche-dev-menu'>
+          <button class="btn btn-default dropdown-toggle" type="button" id="mobile-labranche-dev-menu-button" data-toggle="dropdown">
+            ...
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" class='geometry-link labranche'>LaBranche Industrial Park</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link westlake">Great West Lake</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link beltway">Beltway Industrial Park</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link cloverleaf">Cloverleaf</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link shining">Shining Shores</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link james">James Park</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link monte">Monte Verde</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" class="geometry-link lakeland">Lakeland Gardens</a></li>
+          </ul>
+        </div>          
+      </div>
+
+      <div id="labranche-context"></div>
     </div>
 
     <!--*******************************************-->
@@ -180,16 +218,17 @@ width: 100%;">
 
   <script src="http://leafletjs.com/dist/leaflet.js"></script>
 
-  <!--ESRI LEAFLET-->
+ <!--LEAFLET-->
   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
-
   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
   <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+  <script src="./plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
+
 
 
   <script>
 
-    var map = L.map('map').setView([30.0339, -90.4008], 13);
+    var map = L.map('map').setView([30.0339, -90.4008],11);
 
     L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'}).addTo(map);
 
@@ -198,7 +237,13 @@ width: 100%;">
       style: function () {
         return {color: "#70ca49", weight: 1}
       }
-    })
+    });
+
+    var miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'});
+    var miniMap = new L.Control.MiniMap(miniMapLayer, {
+      toggleDisplay: true,
+      position: 'topright'
+    }).addTo(map);
     /*.on('ready', function() {
         map.fitBounds(kmlLayer.getBounds());
     })*/
@@ -273,6 +318,94 @@ width: 100%;">
           }
         }, false);
 
+  
+      /*/////////////////////////////////////*/
+     /*//////////////LABRANCHE//////////////*/
+    /*/////////////////////////////////////*/
+
+      var labrancheIndustrialPark = '<div style="float:left"><img src="i/walker_land_company_name_inverted_v1.png" style="padding: 0 25px 15px 0; max-width:370px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>'
+
+
+      function executeDevelopmentEvent(selector, id, context){
+        //resetSymbols();
+        //graphics[id].setSymbol(selected);
+        $('.geometry-link').css('text-decoration','none');
+        $(selector).css('text-decoration','underline');
+        //var extent = new Extent(extents[id]);
+        //map.setExtent(extent);
+        $('#labranche-context').html(context);
+      };
+
+      $('#mobile-labranche-dev-menu').on("click", 
+      "a[role='menuitem']", function( event ) {
+        if ($(event.target).hasClass('labranche')){
+          executeDevelopmentEvent('.labranche', 0, labrancheIndustrialPark);
+        }else if($(event.target).hasClass('westlake')){
+          executeDevelopmentEvent('.westlake', 1, 'Testing testing');
+        }else if($(event.target).hasClass('cloverleaf')){
+          executeDevelopmentEvent('.cloverleaf', 2);
+        }else if($(event.target).hasClass('beltway')){
+          executeDevelopmentEvent('.beltway', 3);
+        }else if($(event.target).hasClass('shining')){
+          executeDevelopmentEvent('.shining', 4);
+        }else if($(event.target).hasClass('james')){
+          executeDevelopmentEvent('.james', 5);
+        }else if($(event.target).hasClass('monte')){
+          executeDevelopmentEvent('.monte', 6);
+        }else if($(event.target).hasClass('lakeland')){
+          executeDevelopmentEvent('.lakeland', 7);
+        }
+      });
+
+     /***************************/
+    /*****MODULE ACTIVATION*****/ 
+   /***************************/
+
+  function activateModule(args){
+    /*args: 'module', 'title', 'coordinates', 'zoom'*/
+    window.scrollTo(0, 0);
+    map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);
+    //hideAllLayers();
+    $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
+    //eval(args['module'] + '()');
+  };
+
+  //HEADER MENU
+  $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
+    L.esri.basemapLayer('ImageryLabels').addTo(map);
+    if ($(event.target).hasClass('hurricane')){
+      activateModule({'module': 'hurricane',
+        'title':'hurricane',
+        'lat':30.0039, 
+        'long':-90.4108,  
+        'zoom':13
+      });
+    }else if ($(event.target).hasClass('labranche-location-button')){
+      activateModule({'module': 'labranche',
+        'title':'LABRANCHE WETLANDS',
+        'lat':30.015,
+        'long': -90.335, 
+        'zoom':14
+      });
+      developments.show();
+    }else if ($(event.target).hasClass('norco-location-button')){ 
+      activateModule({'module':'norco',
+        'title':'NORCO INDUSTRIAL GROWTH',
+        'lat':30.0039, 
+        'long':-90.4108, 
+        'zoom':15
+      });
+    }else if ($(event.target).hasClass('home-location-button')){ 
+      activateModule({'module':'home',
+        'title':'LOUISIANA\'S GERMAN COAST',
+        'lat': 30.0339, 
+        'long':-90.4008, 
+        'zoom':11
+      });
+    }
+  });
+
   </script>
+
 </body>
 </html>
