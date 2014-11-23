@@ -31,9 +31,9 @@
         width: 100%;
     }
 
-    .leaflet-control-zoom{
-        display:none;
-      }
+    .leaflet-top > .leaflet-control-zoom {
+      margin-top: 50px;
+    }
 
     .map-tab-content{
       position:absolute;
@@ -66,13 +66,20 @@
       height:300px;
      }
 
+     .leaflet-control-zoom{
+       display:none;
+      }
+
      .map-tab-content{
-      position:relative;
-      padding:15px 15px 15px 15px;
-      left:0px;
-      top:0px;
-      max-width:100%;
-     }
+        position:relative;
+        padding:15px 15px 15px 15px;
+        overflow:visible;
+        height:auto;
+        background: none;
+        left:0px;
+        top:0px;
+        max-width:100%;
+      }
 
      .leaflet-top .leaflet-control {
         margin-top: 80px;
@@ -239,7 +246,17 @@
 
   <script>
 
-    var map = L.map('map').setView([30.0339, -90.4008],11);
+    var map = L.map('map', {
+      zoomControl: false,
+    }).setView([30.0339, -90.4008],11);
+
+    // Disable drag and zoom handlers.
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+
+    // Disable tap handler, if present.
+    if (map.tap) map.tap.disable();
 
     L.esri.basemapLayer("Imagery",{attribution:'<a href="#">Bibliography & Attribution</a> | Contact'}).addTo(map);
     imageryLabels = L.esri.basemapLayer('ImageryLabels');
@@ -260,12 +277,16 @@
           weight: 1});
     });
 
-    var norcoLandUse = omnivore.kml('./layers/norco_land_uses_complete_v1.kml').addTo(map)
+    var norcoLandUse = omnivore.kml('./layers/norco_land_uses_complete_v1.kml').addTo(map);
+    var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
+    console.log(hurricaneLayer);
+
 
     var plantationsUrl = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg',
     plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
 
     var plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{
+      maxZoom: 11,
       opacity: 1
     });
 
@@ -312,58 +333,123 @@
        /*//////////////HURRICANE////////////////*/
       /*///////////////////////////////////////*/
 
-  var hurricaneVideo = document.getElementById("hurricane-video");
+  var $hurricaneVideo = $("#hurricane-video");
 
 
-  hurricaneVideo.addEventListener("timeupdate", function () {
-          //  Current time  
-          var vTime = hurricaneVideo.currentTime;
-          if (vTime < 5){
-            //populateHurricanePanelRight(1, 'static_v1', ' ');
-            //populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
-          }else if (vTime > 7.7 && vTime < 9.7){
-            map.setView(new L.LatLng(30.001, -90.405), 16);
-            //$rightPanelOne.css('display','none');
-            //$rightPanelTwo.css('display','block');
-            //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
-          }else if (vTime > 26 && vTime < 29){
-            //$rightPanelOne.css('display','block');
-            //$rightPanelTwo.css('display','none');
-            //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
-            map.setView(new L.LatLng(30.063, -90.383), 15);
-          }else if (vTime > 47 && vTime < 51){
-            //$rightPanelTwo.fadeIn('slow');
-            //$rightPanelOne.css('display','none');
-            //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
-            map.setView(new L.LatLng(30.005, -90.412), 15);
-          }else if (vTime > 70 && vTime < 73){
-            //hurricaneLayer.show();
-            //$rightPanelOne.fadeIn('slow');
-            //$rightPanelTwo.css('display','none');
-            //populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
-            //map.centerAndZoom([-90.412, 30.005 ], 6);
-          }else if (vTime > 90.7 && vTime < 93.7){
-            //$rightPanelTwo.css('display','block');
-            //$rightPanelOne.css('display','none');
-            //map.centerAndZoom([-90.4268, 30.1077 ], 15);
-            //populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
-          }else if (vTime > 106 && vTime < 108){
-            //$rightPanelOne.css('display','block');
-            //$rightPanelTwo.css('display','none');
-           // map.centerAndZoom([-90.412, 30.005 ], 8);
-            //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
-          }else if (vTime > 106 && vTime < 108){
-            //$rightPanelTwo.css('display','block');
-            //$rightPanelOne.css('display','none');
+  //
+  function animateHurricane(){
+    map.removeLayer(imageryLabels);
+
+    hurricanePoints = [];
+    for (var key in hurricaneLayer._layers){
+      var latlngs = hurricaneLayer._layers[key]._latlngs[0];
+      var lat = latlngs['lat'];
+      var lng = latlngs['lng'];
+      hurricanePoints.push([lat,lng]);
+    }
+
+    // Add a new line to the map with no points.
+    var polyline = L.polyline([]).addTo(map);
+
+    // Keep a tally of how many points we've added to the map.
+    var pointsAdded = 0;
+
+    // Start drawing the polyline.
+    add();
+
+    function add() {
+
+      // `addLatLng` takes a new latLng coordinate and puts it at the end of the
+      // line. You optionally pull points from your data or generate them. Here
+      // we make a sine wave with some math.
+      polyline.addLatLng(hurricanePoints[pointsAdded]);
+
+      // Pan the map along with where the line is being added.
+      map.setView(hurricanePoints[pointsAdded], 4);
+
+      // Continue to draw and pan the map by calling `add()`
+      // until `pointsAdded` reaches 360.
+      if (++pointsAdded < 360) window.setTimeout(add, 100);
+    }
+    map.setView(new L.LatLng(30.005, -90.412), 11);
+  }
+
+    //VIDEO UPDATE HANDLERS
+    var runAtTime = function(handler, time) {
+      console.log('activated');
+        var wrapped = function() {
+          if(this.currentTime >= time) {
+            $(this).off('timeupdate', wrapped);
+            return handler.apply(this, arguments);
           }
-        }, false);
+        }
+      return wrapped;
+    };
+
+    function videoSec0_0(){
+      //populateHurricanePanelRight(1, 'static_v1', ' ');
+      //populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
+    }
+
+    function videoSec1_0() {
+      map.setView(new L.LatLng(30.001, -90.405), 16);
+      //$rightPanelOne.css('display','none');
+      //$rightPanelTwo.css('display','block');
+      //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
+    }
+
+    function videoSec2_0(){
+      map.setView(new L.LatLng(30.063, -90.383), 15);
+      //$rightPanelOne.css('display','block');
+      //$rightPanelTwo.css('display','none');
+      //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
+    }
+
+    function videoSec3_0(){
+      map.setView(new L.LatLng(30.005, -90.412), 15);
+      //$rightPanelTwo.fadeIn('slow');
+      //$rightPanelOne.css('display','none');
+      //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
+    }
+
+    function videoSec4_0(){
+      animateHurricane();
+      //hurricaneLayer.show();
+      //$rightPanelOne.fadeIn('slow');
+      //$rightPanelTwo.css('display','none');
+      //populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
+      //map.centerAndZoom([-90.412, 30.005 ], 6);
+    }
+
+    function videoSec5_0(){
+      //$rightPanelTwo.css('display','block');
+      //$rightPanelOne.css('display','none');
+      //map.centerAndZoom([-90.4268, 30.1077 ], 15);
+      //populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
+    }
+
+    function videoSec6_0(){
+      //$rightPanelOne.css('display','block');
+      //$rightPanelTwo.css('display','none');
+      // map.centerAndZoom([-90.412, 30.005 ], 8);
+      //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
+    }
+
+    
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec1_0, 8));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec2_0, 27));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec3_0, 48));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec4_0, 71));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_0, 91));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec6_0, 107));
+
 
   
       /*/////////////////////////////////////*/
      /*//////////////LABRANCHE//////////////*/
     /*/////////////////////////////////////*/
 
-      var labrancheIndustrialPark = '<h2>The LaBranche Industrial Park</h2><div style="float:left"><img src="i/walker_land_company_name_inverted_v1.png" style="padding: 0 25px 15px 0; max-width:335px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>';
+      var labrancheIndustrialPark = '<h2>The LaBranche Industrial Park</h2><div style="text-align:center"><img src="i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>';
 
       function labranche(){
         labrancheDevelopments.addTo(map);
@@ -424,7 +510,7 @@
 
       function norco(){
 
-        plantationsLayer.addTo(map);
+        /*plantationsLayer.addTo(map);
 
         $opacityBar = $('#opacity-bar');
         $norcoLandUsePane = $('#norcoLandusePane');
@@ -432,27 +518,11 @@
         $opacityBar.on("input", function() {
             opacityValue = $(this).val();
             plantationsLayer.setOpacity(opacityValue);
-          });
+          });*/
 
-        $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
-          console.log('norco clicked');
-          if ($(event.target).hasClass('plantation')){
-            hideAllLayers();
-            plantationLayer.show();
-            map.centerAndZoom([-90.4108, 30.0039], 11);
-          }else if ($(event.target).hasClass('levee-domination')){
-            hideAllLayers();
-            map.centerAndZoom([-90.405, 30.001], 14);
-            landuse.show();
-          }else if ($(event.target).hasClass('ex-town')){
-            hideAllLayers();
-            map.centerAndZoom([-90.415, 30.001], 15);
-            shellProperties.show();
-          }else if ($(event.target).hasClass('land-use-switch')){
-            floodLanduse.show();
-            landuse.hide();
-          }
-        });
+          
+
+      
 
 
       }//End Norco
@@ -489,6 +559,7 @@
         'zoom':13
       });
     }else if ($(event.target).hasClass('norco-location-button')){ 
+      console.log('norco');
       activateModule({'module':'norco',
         'title':'NORCO INDUSTRIAL GROWTH',
         'lat':30.0039, 
