@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="./css/style.css" />
   <link rel="stylesheet" href="./plugins/minimap/Control.MiniMap.css">
   <link rel="stylesheet" type="text/css" href="../css/magnificent.css">
 
@@ -29,6 +29,10 @@
     html, body, #map {
         height: 100%;
         width: 100%;
+    }
+
+    #map{
+      background-color:rgba(36, 44, 36,.60);
     }
 
     .leaflet-top > .leaflet-control-zoom {
@@ -57,9 +61,22 @@
       background-color: rgba(36, 44, 36, 1.0);
     }
 
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: black;
+    }
+
     .main-menu{
       z-index:9999;
     }
+
+  @media (min-width:760px){
+      #hurricane-video-wrapper{
+        width:100%;
+        position: absolute;
+        left: 0;
+        top: 38px;
+      }
+  }
 
    @media all and (max-width: 760px) { 
      #map{
@@ -84,6 +101,7 @@
      .leaflet-top .leaflet-control {
         margin-top: 80px;
       }
+
     }
 
   }
@@ -95,7 +113,6 @@
     </div>
 
   <div id="map"></div>
-
 
 <ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
         <li class="active"><a href="#homePane" class="home-location-button newpage" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -187,9 +204,9 @@
     <div id="hurricanePane" class="tab-pane">
       <div id="hurricane-video-wrapper">
         <div id="hurricane-video-inner-wrapper">
-          <video controls id="hurricane-video" style="max-width:650px;width:100%;" preload="auto">
-            <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
+          <video controls id="hurricane-video" style="width:100%;" preload="auto">
             <source src="http://verylongroad.com/media/v/donald_interview_v1.pds.webmsd.webm" type="video/webm">
+            <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
             <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
             <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -201,10 +218,6 @@
             <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
             <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
           </div>
-        </div>
-
-        <div class="col-md-12" id="viewport-too-small">
-          Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
         </div>
       </div>
     </div>
@@ -277,10 +290,9 @@
           weight: 1});
     });
 
-    var norcoLandUse = omnivore.kml('./layers/norco_land_uses_complete_v1.kml').addTo(map);
+    var norcoLandUse = omnivore.kml('./layers/norco_land_uses_complete_v1.kml');
     var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
     console.log(hurricaneLayer);
-
 
     var plantationsUrl = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg',
     plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
@@ -290,7 +302,12 @@
       opacity: 1
     });
 
-    var layerArray = [labrancheDevelopments,plantationsLayer]
+    var westIndianPath = L.polyline([],{
+      color:'red',
+      dashArray: [3, 10] 
+    }).addTo(map);
+
+    var layerArray = [labrancheDevelopments,plantationsLayer,westIndianPath]
     
 
     //LAYER CONTROL
@@ -339,109 +356,158 @@
   //
   function animateHurricane(){
     map.removeLayer(imageryLabels);
-
+    westIndianPath.addTo(map);
     hurricanePoints = [];
     for (var key in hurricaneLayer._layers){
       var latlngs = hurricaneLayer._layers[key]._latlngs[0];
       var lat = latlngs['lat'];
       var lng = latlngs['lng'];
       hurricanePoints.push([lat,lng]);
-    }
+    };
 
-    // Add a new line to the map with no points.
-    var polyline = L.polyline([]).addTo(map);
-
-    // Keep a tally of how many points we've added to the map.
     var pointsAdded = 0;
 
     // Start drawing the polyline.
     add();
 
     function add() {
-
-      // `addLatLng` takes a new latLng coordinate and puts it at the end of the
-      // line. You optionally pull points from your data or generate them. Here
-      // we make a sine wave with some math.
-      polyline.addLatLng(hurricanePoints[pointsAdded]);
-
-      // Pan the map along with where the line is being added.
-      map.setView(hurricanePoints[pointsAdded], 4);
-
-      // Continue to draw and pan the map by calling `add()`
-      // until `pointsAdded` reaches 360.
-      if (++pointsAdded < 360) window.setTimeout(add, 100);
+      if (pointsAdded < hurricanePoints.length - 1){
+        westIndianPath.addLatLng(hurricanePoints[pointsAdded]);
+        if (pointsAdded < 29){
+          map.setView(hurricanePoints[pointsAdded], 5);
+        }else{
+          map.setView(new L.LatLng(30.001, -90.405), 7);
+        }
+        ++pointsAdded;
+        window.setTimeout(add, 100);
+      }
     }
-    map.setView(new L.LatLng(30.005, -90.412), 11);
   }
 
+  /////VIDEO SHIT
+  var hurricaneVideoStatus = 'paused',
+      hurricaneVideo = document.getElementById("hurricane-video"),
+      hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
+      $playButton = $('#hurricane-play');
+    
+  
+  $('a.newpage').on("click", function(){
+    $playButton.html('<span class="glyphicon glyphicon-play"></span>');
+   $hurricaneVideo.get(0).pause();
+   hurricaneVideoStatus='paused';
+  });
+
+  $('#hurricane-video, #hurricane-play').on("click", function(){
+    if (hurricaneVideoStatus=='paused'){
+     $hurricaneVideo.get(0).play();
+     hurricaneVideoStatus='playing';
+      $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
+    }else if (hurricaneVideoStatus=='playing'){
+      $playButton.html('<span class="glyphicon glyphicon-play"></span>');
+     $hurricaneVideo.get(0).pause();
+     hurricaneVideoStatus='paused';
+    }
+  });
+  
+  $('#hurricane-replay').on("click", function(){
+    $hurricaneVideo.get(0).currentTime = '0';
+    $('.hurricane-panel').html(' ');
+    $rightPanelOne.css('display','block');
+    $rightPanelTwo.css('display','none');
+    hideAllLayers();
+    $hurricaneVideo.get(0).play();
+    map.centerAndZoom([-90.4108, 30.0039], 13);
+    if (hurricaneVideoStatus=='paused'){
+      $playButton.html('<span class="glyphicon glyphicon-play"></span>');
+    }else if (hurricaneVideoStatus=='playing'){
+      $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
+    }
+  });
+
+  hurricaneVolumeBar.addEventListener("change", function() {
+        hurricaneVideo.volume = hurricaneVolumeBar.value;
+      }, false);
+
+
     //VIDEO UPDATE HANDLERS
+    var VideoUpdateHandler = function(handler, time){
+      this.handler = handler;
+      this.time = time;
+    }
+
     var runAtTime = function(handler, time) {
-      console.log('activated');
-        var wrapped = function() {
-          if(this.currentTime >= time) {
-            $(this).off('timeupdate', wrapped);
-            return handler.apply(this, arguments);
-          }
+      var wrapped = function() {
+        if(this.currentTime >= time) {
+          $(this).off('timeupdate', wrapped);
+          return handler.apply(this, arguments);
         }
+      }
       return wrapped;
     };
 
-    function videoSec0_0(){
-      //populateHurricanePanelRight(1, 'static_v1', ' ');
-      //populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
-    }
+    videoEventArray = [
+      videoSec0_0 = new VideoUpdateHandler(function(){
+        populateHurricanePanelRight(1, 'static_v1', ' ');
+        populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
+      }, 5),
 
-    function videoSec1_0() {
-      map.setView(new L.LatLng(30.001, -90.405), 16);
-      //$rightPanelOne.css('display','none');
-      //$rightPanelTwo.css('display','block');
-      //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
-    }
+      videoSec1_0 = new VideoUpdateHandler(function() {
+        map.setView(new L.LatLng(30.001, -90.405), 16);
+        var popup = L.popup({
+          maxHeight:200
+        })
+              .setLatLng([30.001, -90.405])
+              .setContent('<div style="width:300px"><video muted style="width:100%;" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm"><source src="http://verylongroad.com/media/I-10_traffic_v1.ogv" type="video/ogg">Your browser does not support the video tag.</video></div>')
+              .openOn(map);
+        $rightPanelOne.css('display','none');
+        $rightPanelTwo.css('display','block');
+        populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
+      }, 8),
 
-    function videoSec2_0(){
-      map.setView(new L.LatLng(30.063, -90.383), 15);
-      //$rightPanelOne.css('display','block');
-      //$rightPanelTwo.css('display','none');
-      //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
-    }
+      videoSec2_0 = new VideoUpdateHandler(function(){
+        map.setView(new L.LatLng(30.063, -90.383), 15);
+        $rightPanelOne.css('display','block');
+        $rightPanelTwo.css('display','none');
+        populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
+      }, 27),
 
-    function videoSec3_0(){
-      map.setView(new L.LatLng(30.005, -90.412), 15);
-      //$rightPanelTwo.fadeIn('slow');
-      //$rightPanelOne.css('display','none');
-      //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
-    }
+      videoSec3_0 = new VideoUpdateHandler(function (){
+        map.setView(new L.LatLng(30.005, -90.412), 15);
+        $rightPanelTwo.fadeIn('slow');
+        $rightPanelOne.css('display','none');
+        populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
+      }, 48),
 
-    function videoSec4_0(){
-      animateHurricane();
-      //hurricaneLayer.show();
-      //$rightPanelOne.fadeIn('slow');
-      //$rightPanelTwo.css('display','none');
-      //populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
-      //map.centerAndZoom([-90.412, 30.005 ], 6);
-    }
+      videoSec4_0 = new VideoUpdateHandler(function(){
+        animateHurricane();
+        $rightPanelOne.fadeIn('slow');
+        $rightPanelTwo.css('display','none');
+        populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
+        map.centerAndZoom([-90.412, 30.005 ], 6);
+      }, 71),
 
-    function videoSec5_0(){
-      //$rightPanelTwo.css('display','block');
-      //$rightPanelOne.css('display','none');
-      //map.centerAndZoom([-90.4268, 30.1077 ], 15);
-      //populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
-    }
+      videoSec5_0 = new VideoUpdateHandler(function(){
+        $rightPanelTwo.css('display','block');
+        $rightPanelOne.css('display','none');
+        map.centerAndZoom([-90.4268, 30.1077 ], 15);
+        populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
+      }, 91),
 
-    function videoSec6_0(){
-      //$rightPanelOne.css('display','block');
-      //$rightPanelTwo.css('display','none');
-      // map.centerAndZoom([-90.412, 30.005 ], 8);
-      //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
-    }
-
-    
-    $hurricaneVideo.on('timeupdate', runAtTime(videoSec1_0, 8));
-    $hurricaneVideo.on('timeupdate', runAtTime(videoSec2_0, 27));
-    $hurricaneVideo.on('timeupdate', runAtTime(videoSec3_0, 48));
-    $hurricaneVideo.on('timeupdate', runAtTime(videoSec4_0, 71));
-    $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_0, 91));
-    $hurricaneVideo.on('timeupdate', runAtTime(videoSec6_0, 107));
+      videoSec6_0 = new VideoUpdateHandler(function(){
+        $rightPanelOne.css('display','block');
+        $rightPanelTwo.css('display','none');
+        map.centerAndZoom([-90.412, 30.005 ], 8);
+        populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
+      }, 107)
+    ];
+ 
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec0_0.handler, videoSec1_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec1_0.handler, videoSec1_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec2_0.handler, videoSec2_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec3_0.handler, videoSec3_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec4_0.handler, videoSec4_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_0.handler, videoSec5_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec6_0.handler, videoSec6_0.time));
 
 
   
