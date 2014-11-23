@@ -29,10 +29,8 @@
     html, body, #map {
         height: 100%;
         width: 100%;
-    }
+        background-color:rgb(36, 44, 36);
 
-    #map{
-      background-color:rgba(36, 44, 36,.60);
     }
 
     .leaflet-top > .leaflet-control-zoom {
@@ -48,9 +46,10 @@
       overflow:scroll;
       overflow-x:hidden;
       padding:55px 15px 15px 15px;
-      background: rgba(36, 44, 36,.60);
+      background: rgba(36, 44, 36,.7);
       color: #fff;
       text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
+      box-shadow: 6px 7px 8px rgba(36, 44, 36,.7);
     }
 
     .leaflet-control-minimap {
@@ -62,12 +61,21 @@
     }
 
     .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-      background: black;
+      background: rgba(36, 44, 36,.9);
     }
 
     .main-menu{
       z-index:9999;
     }
+
+    .leaflet-container a,.geometry-link {
+      color: #FF8966
+    }
+  
+  .leaflet-container .leaflet-control-attribution{
+    color:white;
+    background-color: rgba(36, 44, 36,.7);
+  }
 
   @media (min-width:760px){
       #hurricane-video-wrapper{
@@ -81,6 +89,7 @@
    @media all and (max-width: 760px) { 
      #map{
       height:300px;
+      box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
      }
 
      .leaflet-control-zoom{
@@ -96,10 +105,19 @@
         left:0px;
         top:0px;
         max-width:100%;
+        box-shadow: none;
       }
 
      .leaflet-top .leaflet-control {
         margin-top: 80px;
+      }
+
+     .leaflet-popup{
+      display:none;
+     } 
+
+     .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
+      font-size: 8px;
       }
 
     }
@@ -176,11 +194,11 @@
       The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
       This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
       geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
-      the <a class="geometry-link" id="parishline-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
-      <a class="geometry-link" id="erosion-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>saltwater erosion</a> along the shores of the lake; 
-      <a id="ej-geofeature-event" class="geometry-link"><span class="glyphicon glyphicon-map-marker"></span>residential areas sandwiched between refineries</a>; others that extend
-      into <a class="geometry-link" id="suburb-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>precarious floodplains</a>;
-      and the telltale <a class="geometry-link" id="radial-geofeature-event"><span class="glyphicon glyphicon-map-marker"></span>radial canals</a> of cypress logging.
+      the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
+      <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
+      <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extend
+      into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
+      and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.
     </div>
 
     <!--*******************************************-->
@@ -298,8 +316,7 @@
     plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
 
     var plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{
-      maxZoom: 11,
-      opacity: 1
+          opacity: 1
     });
 
     var westIndianPath = L.polyline([],{
@@ -445,43 +462,47 @@
       return wrapped;
     };
 
+    var videoEventPopup = L.popup({
+          maxHeight:200,
+          minWidth:250,
+          closeButton:false,
+          closeOnClick:false
+        });
+
+    function returnVideoString(video){
+      return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/'+video+'.webm" type="video/webm"><source src="http://verylongroad.com/media/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
+    }
+
     videoEventArray = [
       videoSec0_0 = new VideoUpdateHandler(function(){
-        populateHurricanePanelRight(1, 'static_v1', ' ');
-        populateHurricanePanelRight(2, 'shell_at_the_tracks_v1', 'Shell Oil Refinery');
+        
       }, 5),
 
       videoSec1_0 = new VideoUpdateHandler(function() {
-        map.setView(new L.LatLng(30.001, -90.405), 16);
-        var popup = L.popup({
-          maxHeight:200
-        })
-              .setLatLng([30.001, -90.405])
-              .setContent('<div style="width:300px"><video muted style="width:100%;" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/I-10_traffic_v1.webm" type="video/webm"><source src="http://verylongroad.com/media/I-10_traffic_v1.ogv" type="video/ogg">Your browser does not support the video tag.</video></div>')
-              .openOn(map);
-        $rightPanelOne.css('display','none');
-        $rightPanelTwo.css('display','block');
-        populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
+        map.setView(new L.LatLng(30.001, -90.409), 16);
+        videoEventPopup.setLatLng([30.001, -90.405])
+        videoEventPopup.setContent(returnVideoString('shell_at_the_tracks_v1'));
+        videoEventPopup.openOn(map);
+        //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
       }, 8),
 
       videoSec2_0 = new VideoUpdateHandler(function(){
-        map.setView(new L.LatLng(30.063, -90.383), 15);
-        $rightPanelOne.css('display','block');
-        $rightPanelTwo.css('display','none');
-        populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
+        map.setView(new L.LatLng(30.063, -90.386), 15);
+        videoEventPopup.setLatLng([30.063, -90.383]);
+        videoEventPopup.setContent(returnVideoString('I-10_traffic_v1'));
+        //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
       }, 27),
 
       videoSec3_0 = new VideoUpdateHandler(function (){
-        map.setView(new L.LatLng(30.005, -90.412), 15);
-        $rightPanelTwo.fadeIn('slow');
-        $rightPanelOne.css('display','none');
-        populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
+        map.setView(new L.LatLng(30.005, -90.419), 15);
+        videoEventPopup.setLatLng([30.005, -90.412]);
+        videoEventPopup.setContent(returnVideoString('dad_on_roof_v1'));
+        //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
       }, 48),
 
       videoSec4_0 = new VideoUpdateHandler(function(){
+        videoEventPopup._close();
         animateHurricane();
-        $rightPanelOne.fadeIn('slow');
-        $rightPanelTwo.css('display','none');
         populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
         map.centerAndZoom([-90.412, 30.005 ], 6);
       }, 71),
@@ -576,7 +597,7 @@
 
       function norco(){
 
-        /*plantationsLayer.addTo(map);
+        plantationsLayer.addTo(map);
 
         $opacityBar = $('#opacity-bar');
         $norcoLandUsePane = $('#norcoLandusePane');
@@ -584,7 +605,7 @@
         $opacityBar.on("input", function() {
             opacityValue = $(this).val();
             plantationsLayer.setOpacity(opacityValue);
-          });*/
+          });
 
           
 
@@ -599,6 +620,7 @@
 
   function activateModule(args){
     hideAllLayers();
+    videoEventPopup._close();
     window.scrollTo(0, 0);
     map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);
     $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
