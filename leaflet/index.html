@@ -37,6 +37,24 @@
       margin-top: 50px;
     }
 
+    .nav-tabs {
+      border-bottom: 1px solid rgb(90, 90, 90);
+      background-color: rgba(36, 44, 36,.8);
+      padding-left: 20px;
+    }
+
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+      color: white;
+      cursor: default;
+      background-color: rgba(16, 16, 16,.4);
+      border: 1px solid rgb(100, 107, 100);
+      border-bottom-color: transparent;
+    }
+
+    .dropdown.active, .dropdown.active:hover {
+      background-color: rgba(16, 16, 16,.4);
+    }
+
     .map-tab-content{
       position:absolute;
       top:0;
@@ -120,6 +138,18 @@
       font-size: 8px;
       }
 
+      .nav-tabs {
+        padding-left:0px;
+      }
+      
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+        border: transparent;
+      }
+
+      .nav-tabs > li {
+          float:none;
+      }
+
     }
 
   }
@@ -133,7 +163,7 @@
   <div id="map"></div>
 
 <ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
-        <li class="active"><a href="#homePane" class="home-location-button newpage" data-toggle="tab"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="active"><a class="home-location-button newpage" href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> GERMAN COAST</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -245,6 +275,19 @@
   <!--*******************************************-->
 
   <div id="norcoLandusePane" class="tab-pane">
+    <div class="col-md-12">
+      <div id="norco-dropdown-wrap" style="margin: 0 auto;width:200px;line-height:15px;">
+        <ul class="nav nav-pills norco-menu">
+         <li class="dropdown"><a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown">Choose an epoch <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="active in"><a href="#pane1" class="plantation" data-toggle="tab">Plantation to Refinery</a></li>
+              <li><a href="#pane2" class="levee-domination" data-toggle="tab">Levee Domination</a></li>
+              <li><a href="#pane3" data-toggle="tab" class="ex-town">Ex-town</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="col-md-12" style="text-align:center;">
         <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
         <div style="padding: 15px 0;">
@@ -366,6 +409,10 @@
         /*///////////////////////////////////////*/
        /*//////////////HURRICANE////////////////*/
       /*///////////////////////////////////////*/
+
+  function hurricane(){
+
+  }    
 
   var $hurricaneVideo = $("#hurricane-video");
 
