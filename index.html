@@ -386,6 +386,14 @@
         weight: 1});
   });
 
+  var shellProperties = omnivore.kml('./layers/shell_properties_v1.kml');
+  shellProperties.on('ready', function() {
+    this.setStyle({color: "#960000",
+      fillColor: "#642800",
+      fillOpacity: 0.6,
+      weight: 1});
+  });
+
   var norcoLandUse = new L.geoJson(norco_landuse_dissolve_v1,{
         style: function (feature) {
           return {fillColor: feature.properties.color_qgis2leaf,
@@ -397,7 +405,6 @@
         });;
 
   var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
-  console.log(norcoLandUse);
 
   var plantationsUrl = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg',
   plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
@@ -411,7 +418,7 @@
     dashArray: [3, 10] 
   }).addTo(map);
 
-  var layerArray = [labrancheDevelopments,plantationsLayer,westIndianPath,norcoLandUse]
+  var layerArray = [labrancheDevelopments,plantationsLayer,westIndianPath,norcoLandUse,shellProperties]
   
 
   //LAYER CONTROL
@@ -718,10 +725,10 @@ hurricaneVolumeBar.addEventListener("change", function() {
           norcoGrowthClick();
           norcoLandUse.addTo(map);
           map.setView(new L.LatLng(30.001, -90.405), 14);
-          landuse.show();
         }else if ($(event.target).hasClass('ex-town')){
           norcoGrowthClick();
-          map.setView(new L.LatLng(30.001, -90.415), 15);
+          map.setView(new L.LatLng(30.004, -90.418), 16);
+          shellProperties.addTo(map);
         }else if ($(event.target).hasClass('land-use-switch')){
           floodLanduse.show();
           landuse.hide();
