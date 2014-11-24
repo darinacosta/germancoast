@@ -79,7 +79,7 @@
       background-image:url('./i/grid.png');
       color: #fff;
       text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
-      box-shadow: 6px 7px 8px rgba(36, 44, 36,.7);
+      box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7);
     }
 
     .leaflet-control-minimap {
@@ -119,6 +119,11 @@
   }
 
    @media all and (max-width: 760px) { 
+     
+     body{
+      font-size:14px;
+     }
+
      #map{
       height:300px;
       box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
@@ -243,8 +248,12 @@
       into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
       and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.<p>
       <hr>
-      <h3>Development Notes</h3>
-      <p>This application is in production.</p>
+      <h2>Development Notes</h2>
+      <p>This application is in production, and will remain a work in progress for some time to come. Not all modules are available, and those that are available are not yet complete. Refer to the "Updates" section for production notes.</p>
+      <h3>Questions or feedback?</h3> 
+      <p>Contact us at <a class="geometry-link" href="mailto:germancoast@verylongroad.com">germancoast@verylongroad.com</a>.</p>
+      <h3>Updates</h3>
+      <p><i>11.20.2014: New full-screen layout implemented.</i></p>
     </div>
 
     <!--*******************************************-->
@@ -268,7 +277,7 @@
     <div id="hurricanePane" class="tab-pane scrollflip-content">
       <div id="hurricane-video-wrapper">
         <div id="hurricane-video-inner-wrapper">
-          <video controls id="hurricane-video" style="width:100%;" preload="auto">
+          <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
             <source src="http://verylongroad.com/media/v/donald_interview_v1.pds.webmsd.webm" type="video/webm">
             <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
             <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
