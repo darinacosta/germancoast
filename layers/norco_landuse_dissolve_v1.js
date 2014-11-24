@@ -1,4 +1,4 @@
-var exp_norcolandusescompleteDISSOLVEv1 = {
+var norco_landuse_dissolve_v1 = {
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
                                                                                 
