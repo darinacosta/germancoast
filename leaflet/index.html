@@ -644,8 +644,6 @@
 
       function norco(){
 
-        plantationsLayer.addTo(map);
-
         $opacityBar = $('#opacity-bar');
         $norcoLandUsePane = $('#norcoLandusePane');
         
@@ -654,8 +652,23 @@
             plantationsLayer.setOpacity(opacityValue);
           });
 
-          
-
+        $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
+          if ($(event.target).hasClass('plantation')){
+            hideAllLayers();
+            plantationsLayer.addTo(map);
+            map.setView(new L.LatLng(30.0039, -90.4108), 12);
+          }else if ($(event.target).hasClass('levee-domination')){
+            hideAllLayers();
+            map.setView(new L.LatLng(30.001, -90.405), 14);
+            landuse.show();
+          }else if ($(event.target).hasClass('ex-town')){
+            hideAllLayers();
+            map.setView(new L.LatLng(30.001, -90.415), 15);
+          }else if ($(event.target).hasClass('land-use-switch')){
+            floodLanduse.show();
+            landuse.hide();
+          }
+        });
       
 
 
