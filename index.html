@@ -21,18 +21,6 @@
       display:none;
     }
 
-    body {
-            padding: 0;
-            margin: 0;
-        }
-
-    html, body, #map {
-        height: 100%;
-        width: 100%;
-        background-color:rgb(36, 44, 36);
-        background-image:url('./i/grid.png');
-
-    }
 
     h1{
       margin-top:10px;
@@ -342,15 +330,16 @@
     // Disable tap handler, if present.
     if (map.tap) map.tap.disable();
 
-    L.esri.basemapLayer("Imagery",{attribution:'<a href="#">Bibliography & Attribution</a> | Contact'}).addTo(map);
+    L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}).addTo(map);
     imageryLabels = L.esri.basemapLayer('ImageryLabels');
 
     var miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'});
     var miniMap = new L.Control.MiniMap(miniMapLayer, {
       toggleDisplay: true,
+      zoomLevelOffset:-4,
       position: 'bottomright'
     }).addTo(map);
-
+  
 
     /********LAYERS******/
     var labrancheDevelopments = omnivore.kml('./layers/labranche_service_v7.kml')
@@ -363,7 +352,7 @@
 
     var norcoLandUse = omnivore.kml('./layers/norco_land_uses_complete_v1.kml');
     var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
-    console.log(hurricaneLayer);
+    console.log(norcoLandUse);
 
     var plantationsUrl = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg',
     plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
