@@ -21,12 +21,28 @@
       display:none;
     }
 
-
-    h1{
-      margin-top:10px;
-      font-size:28px;
-      font-weight:bold;
+    ::-webkit-scrollbar {
+      width: 12px;
     }
+     
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
+        border-radius: 10px;
+    }
+     
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1); 
+    }
+
+    .scrollflip{
+      direction: rtl;
+    }
+
+    .scrollflip-content{
+      direction: ltr;
+    }
+
 
     .leaflet-top > .leaflet-control-zoom {
       margin-top: 50px;
@@ -210,30 +226,32 @@
 
        <!--/MOBILE NAV-->
 
-<div class="tab-content map-tab-content col-md-4 col-sm-5">
+<div class="tab-content map-tab-content col-md-4 col-sm-5 scrollflip">
 
+      <!--*******************************************-->
+      <!--********************HOME*******************-->
+      <!--*******************************************-->
 
-        <!--*******************************************-->
-        <!--********************HOME*******************-->
-        <!--*******************************************-->
-
-  <div id="homePane" class="tab-pane active">
+  <div id="homePane" class="tab-pane active scrollflip-content">
       <h1>Louisiana's German Coast</h1>
-      The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
+      <p>The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
       This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
       geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
       the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
       <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
       <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extend
       into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
-      and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.
+      and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.<p>
+      <hr>
+      <h3>Development Notes</h3>
+      <p>This application is in production.</p>
     </div>
 
     <!--*******************************************-->
     <!--***************LABRANCHE*******************-->
     <!--*******************************************-->
 
-    <div id="labranchePane" class="tab-pane">
+    <div id="labranchePane" class="tab-pane scrollflip-content">
 
 
       <div id="labranche-context">
@@ -247,7 +265,7 @@
     <!--***************HURRICANE*******************-->
     <!--*******************************************-->
 
-    <div id="hurricanePane" class="tab-pane">
+    <div id="hurricanePane" class="tab-pane scrollflip-content">
       <div id="hurricane-video-wrapper">
         <div id="hurricane-video-inner-wrapper">
           <video controls id="hurricane-video" style="width:100%;" preload="auto">
@@ -272,7 +290,7 @@
   <!--*****************NORCO*********************-->
   <!--*******************************************-->
 
-  <div id="norcoLandusePane" class="tab-pane">
+  <div id="norcoLandusePane" class="tab-pane scrollflip-content">
     <div class="col-md-12">
       <div id="norco-dropdown-wrap" style="margin: 0 auto;width:200px;line-height:15px;">
         <ul class="nav nav-pills norco-menu">
@@ -302,7 +320,7 @@
 
 
 
-
+   
   </div><!-- /.tab-content -->
 </div><!-- /.tabbable -->
 
