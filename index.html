@@ -308,7 +308,7 @@
   <div id="norcoLandusePane" class="tab-pane scrollflip-content">
     <div class="col-md-12" style="text-align:center">
       <h2>Industrial Growth in Norco, Louisiana</h2>
-      <p id="norco-growth-context">Heavy industry is the most distinct visible characteristic of Norco's landscape. Industrial growth has occurred in 3 stages: plantations turned over to industrial land uses, the  footprints of these industrial facilities broadened, and finally heavy industry came to dominate and even displace other land uses. Select a historical epoch from the menu below for more information.
+      <p id="norco-growth-context">Heavy industry is the most distinct visible characteristic of Norco's landscape. Industrial growth has occurred in 3 stages: plantations turned over to industrial land uses, the  footprints of these industrial facilities broadened, and finally heavy industry came to dominate and even displace other land uses. Select a historical epoch from the menu below for more information.</p>
       <div id="norco-dropdown-wrap" style="margin: 0 auto;width:200px;line-height:15px;">
         <ul class="nav nav-pills norco-menu">
          <li class="dropdown"><a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown">Choose an epoch <span class="caret"></span></a>
@@ -324,17 +324,20 @@
     </div>
     <div class="norco-growth" id="norco-growth-plantation">
       <div style="text-align:center;">
-          <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
-          <div style="padding: 15px 0;">
-            <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
-          </div>
-          <hr>
+        <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
+        <div style="padding: 15px 0;">
+          <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
         </div>
-        <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields. It could also serve as a coolant for machinery, and a toxic waste sink.</p>
-        <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.</p>
+        <hr>
       </div>
+      <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields. It could also serve as a coolant for machinery, and a toxic waste sink.</p>
+      <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.</p>
+    </div>
+    <div class="norco-growth" id="norco-growth-domination">
+      <a href="#" class="land-use-switch geometry-link">Switch</a>
     </div>
   </div>
+
 
 
 
@@ -351,7 +354,9 @@
 <script src="./plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
 
 
-<script src ="./layers/norco_landuse_dissolve_v1.js"></script>
+<script src ="./layers/norco_landuses_general_v1.js"></script>
+<script src ="./layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1.js"></script>
+
 <script>
 
   var map = L.map('map', {
@@ -394,7 +399,7 @@
       weight: 1});
   });
 
-  var norcoLandUse = new L.geoJson(norco_landuse_dissolve_v1,{
+  var norcoLandUse = new L.geoJson(norco_landuses_general_v1,{
         style: function (feature) {
           return {fillColor: feature.properties.color_qgis2leaf,
               color: '#000',
@@ -402,7 +407,17 @@
               opacity: 0.5,
               fillOpacity: 0.6};
           }
-        });;
+        }); 
+
+  var floodLanduse = new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
+        style: function (feature) {
+          return {fillColor: feature.properties.color_qgis2leaf,
+              color: '#000',
+              weight: 1,
+              opacity: 0.5,
+              fillOpacity: 0.6};
+          }
+        });
 
   var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
 
@@ -695,10 +710,11 @@ hurricaneVolumeBar.addEventListener("change", function() {
 
     function norco(){
 
-      $opacityBar = $('#opacity-bar');
-      $norcoLandUsePane = $('#norcoLandusePane');
-      $norcoGrowth = $('.norco-growth');
-      $norcoGrowthContext = $('#norco-growth-context');
+      var $opacityBar = $('#opacity-bar'),
+          $norcoLandUsePane = $('#norcoLandusePane'),
+          $norcoGrowth = $('.norco-growth'),
+          $norcoGrowthContext = $('#norco-growth-context'),
+          landUseDisplayStatus = 'full';
 
       $opacityBar.on("input", function() {
           opacityValue = $(this).val();
@@ -724,14 +740,22 @@ hurricaneVolumeBar.addEventListener("change", function() {
         }else if ($(event.target).hasClass('levee-domination')){
           norcoGrowthClick();
           norcoLandUse.addTo(map);
+          $("#norco-growth-domination").css('display','block');
           map.setView(new L.LatLng(30.001, -90.405), 14);
         }else if ($(event.target).hasClass('ex-town')){
           norcoGrowthClick();
           map.setView(new L.LatLng(30.004, -90.418), 16);
           shellProperties.addTo(map);
         }else if ($(event.target).hasClass('land-use-switch')){
-          floodLanduse.show();
-          landuse.hide();
+          if (landUseDisplayStatus == 'full'){
+            floodLanduse.addTo(map);
+            map.removeLayer(norcoLandUse);
+            landUseDisplayStatus = 'partial';
+          }else if (landUseDisplayStatus == 'partial'){
+            norcoLandUse.addTo(map);
+            map.removeLayer(floodLanduse);
+            landUseDisplayStatus = 'full';
+          }
         }
       });
     
