@@ -115,69 +115,78 @@
     display:none;
   }
 
-  @media (min-width:760px){
-      #hurricane-video-wrapper{
-        width:100%;
-        position: absolute;
-        left: 0;
-        top: 38px;
-      }
+  #hurricane-context-visual{
+    text-align:center;
+    font-size:12px;
   }
 
-   @media all and (max-width: 760px) { 
-     
-     body{
-      font-size:14px;
-     }
+  @media (min-width:760px){
+    #hurricane-video-wrapper{
+      width:100%;
+      position: absolute;
+      left: 0;
+      top: 38px;
+    }
+  }
 
-     #map{
-      height:300px;
-      box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
-     }
+  @media all and (max-width: 760px) { 
+   
+   body{
+    font-size:14px;
+   }
 
-     .leaflet-control-zoom{
-       display:none;
-      }
+   #map{
+    height:300px;
+    box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
+   }
 
-     .map-tab-content{
-        position:relative;
-        padding:15px 15px 15px 15px;
-        overflow:visible;
-        height:auto;
-        background: none;
-        left:0px;
-        top:0px;
-        max-width:100%;
-        box-shadow: none;
-      }
+   #top-right-video{
+    display:none;
+   }
 
-     .leaflet-top .leaflet-control {
-        margin-top: 80px;
-      }
+   .leaflet-control-zoom{
+     display:none;
+    }
 
-     .leaflet-popup{
-      display:none;
-     } 
+   .map-tab-content{
+      position:relative;
+      padding:15px 15px 15px 15px;
+      overflow:visible;
+      height:auto;
+      background: none;
+      left:0px;
+      top:0px;
+      max-width:100%;
+      box-shadow: none;
+    }
 
-     .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
-      font-size: 8px;
-      }
+   .leaflet-top .leaflet-control {
+      margin-top: 80px;
+    }
 
-      .nav-tabs {
-        padding-left:0px;
-      }
-      
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-        border: transparent;
-      }
+   .leaflet-popup{
+    display:none;
+   } 
 
-      .nav-tabs > li {
-          float:none;
-      }
+   .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
+    font-size: 8px;
+    }
 
+    .nav-tabs {
+      padding-left:0px;
+    }
+    
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+      border: transparent;
+    }
+
+    .nav-tabs > li {
+        float:none;
     }
 
   }
+
+}
   </style>
 </head>
 <body>
@@ -271,7 +280,7 @@
 
       <div id="labranche-context">
         <h2>Real Estate Speculation in the LaBranche Wetlands</h2>
-        <i> Click a development for additional context</i>  
+        <div style="text-align:center"><img src="i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigatizon by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul> 
 
       </div>
     </div>
@@ -284,10 +293,9 @@
       <div id="hurricane-video-wrapper">
         <div id="hurricane-video-inner-wrapper">
           <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
-            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg; codecs=theora, vorbis">
-            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm; codecs=vp8, vorbis">
-            <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
-            <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
+            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg">
+            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm">
+            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -361,6 +369,7 @@
 
 <script src ="./layers/norco_landuses_general_v1.js"></script>
 <script src ="./layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1.js"></script>
+<script src ="./layers/labrancheDevelopmentsV1.js"></script>
 
 <script>
 
@@ -388,13 +397,23 @@
 
 
   /********LAYERS******/
-  var labrancheDevelopments = omnivore.kml('./layers/labranche_service_v7.kml')
-  labrancheDevelopments.on('ready', function() {
-      this.setStyle({color: "#960000",
-        fillColor: "#642800",
-        fillOpacity: 0.4,
-        weight: 1});
-  });
+
+  function pop_labrancheDevelopments(feature, layer) {
+    var popupContent = '<table><tr><th scope="row">NAME:</th><td>' + feature.properties.NAME + '</td></tr><tr><th scope="row">ACRES:</th><td style="padding:5px;">'+ feature.properties.ACREAGE + '</td></tr></table>';
+    layer.bindPopup(popupContent);
+      };
+
+ var labrancheDevelopments = new L.geoJson(                 
+    labrancheDevelopmentsV1, {
+    onEachFeature: pop_labrancheDevelopments,
+    style: function (feature) {
+      return {color: "#960000",
+              fillColor: "#642800",
+              fillOpacity: 0.4,
+              weight: 1}
+            }
+          });
+
 
   var shellProperties = omnivore.kml('./layers/shell_properties_v1.kml');
   shellProperties.on('ready', function() {
@@ -433,10 +452,16 @@
         opacity: 1
   });
 
-  var westIndianPath = L.polyline([],{
-    color:'red',
-    dashArray: [3, 10] 
-  }).addTo(map);
+  //Wrapping this layer in a function because its points should be removed every time the video is replayed. 
+  var westIndianPath;
+  function createWestIndianPath(){
+    westIndianPath = L.polyline([],{
+      color:'red',
+      dashArray: [3, 10] 
+    }).addTo(map);
+  };
+
+  createWestIndianPath();
 
   var layerArray = [labrancheDevelopments,plantationsLayer,westIndianPath,norcoLandUse,shellProperties]
   
@@ -525,7 +550,8 @@ var hurricaneVideoStatus = 'paused',
     hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
     $playButton = $('#hurricane-play'),
     $hurricaneContextVisual = $('#hurricane-context-visual'),
-    $hurricaneContextText = $('hurricane-context-text');
+    $hurricaneContextText = $('hurricane-context-text'),
+    $mainMapTopRight = $('#map .leaflet-top.leaflet-right');
   
 
 $('a.newpage').on("click", function(){
@@ -547,6 +573,8 @@ $('#hurricane-video, #hurricane-play').on("click", function(){
 });
 
 $('#hurricane-replay').on("click", function(){
+  createWestIndianPath();
+  $mainMapTopRight.html('');
   $hurricaneContextVisual.html('');
   $hurricaneVideo.get(0).currentTime = '0';
   hurricaneVideoEventTrigger();
@@ -589,7 +617,7 @@ hurricaneVolumeBar.addEventListener("change", function() {
       });
 
   function returnVideoString(video){
-    return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm; codecs=vp8, vorbis"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg; codecs=theora, vorbis">Your browser does not support the video tag.</video>'
+    return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
   }
 
   videoEventArray = [
@@ -599,7 +627,7 @@ hurricaneVolumeBar.addEventListener("change", function() {
 
     videoSec1_0 = new VideoUpdateHandler(function() {
       map.setView(new L.LatLng(30.001, -90.409), 16);
-      videoEventPopup.setLatLng([30.001, -90.405])
+      videoEventPopup.setLatLng([30.001, -90.405]);
       videoEventPopup.setContent(returnVideoString('shell_at_the_tracks_v1'));
       videoEventPopup.openOn(map);
       //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
@@ -622,20 +650,18 @@ hurricaneVolumeBar.addEventListener("change", function() {
     videoSec4_0 = new VideoUpdateHandler(function(){
       videoEventPopup._close();
       animateHurricane();
-      $hurricaneContextVisual.html('<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">');
-      //'Baton Rouge State Times Advocate, October 3, 1915');
-      //map.centerAndZoom([-90.412, 30.005 ], 6);
+      $hurricaneContextVisual.html('<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
     }, 71),
 
     videoSec5_0 = new VideoUpdateHandler(function(){
+      $mainMapTopRight.not('.leaflet-control-minimap .leaflet-top.leaflet-right').html('<div id="top-right-video" style="max-width: 350px;"><div style="margin-top: 37px;border: 1px solid rgb(90, 90, 90);overflow: hidden;width: 350px;height:190px;">' + returnVideoString('hurricane_isaac_course_v1') + '</div><div>Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)</div></div>' );
+    }, 79),
+
+    videoSec5_1 = new VideoUpdateHandler(function(){
       map.setView(new L.LatLng(30.1077, -90.4268), 15);
-      $hurricaneContextVisual.html(returnVideoString('hurricane_isaac_course_v1'));
-      //'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
     }, 91),
 
     videoSec6_0 = new VideoUpdateHandler(function(){
-      $rightPanelOne.css('display','block');
-      $rightPanelTwo.css('display','none');
       map.centerAndZoom([-90.412, 30.005 ], 8);
       populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
     }, 107)
@@ -648,6 +674,7 @@ hurricaneVolumeBar.addEventListener("change", function() {
     $hurricaneVideo.on('timeupdate', runAtTime(videoSec3_0.handler, videoSec3_0.time));
     $hurricaneVideo.on('timeupdate', runAtTime(videoSec4_0.handler, videoSec4_0.time));
     $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_0.handler, videoSec5_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_1.handler, videoSec5_1.time));
     $hurricaneVideo.on('timeupdate', runAtTime(videoSec6_0.handler, videoSec6_0.time));
   };
 
@@ -666,9 +693,6 @@ hurricaneVolumeBar.addEventListener("change", function() {
 
       labrancheDevelopments.on("click", function(e){
         console.log(e);
-        if (e.layer.feature.properties['name'] == "LaBranche Industrial Park"){
-          executeDevelopmentEvent('.labranche', 0, labrancheIndustrialPark);
-        }
         labrancheDevelopments.setStyle({color: "#960000",
             fillColor: "#642800",
             fillOpacity: 0.4,
@@ -692,26 +716,6 @@ hurricaneVolumeBar.addEventListener("change", function() {
       $('#labranche-context').html(context);
     };
 
-    /*$('#mobile-labranche-dev-menu').on("click", 
-    "a[role='menuitem']", function( event ) {
-      if ($(event.target).hasClass('labranche')){
-        executeDevelopmentEvent('.labranche', 0, labrancheIndustrialPark);
-      }else if($(event.target).hasClass('westlake')){
-        executeDevelopmentEvent('.westlake', 1, 'Testing testing');
-      }else if($(event.target).hasClass('cloverleaf')){
-        executeDevelopmentEvent('.cloverleaf', 2);
-      }else if($(event.target).hasClass('beltway')){
-        executeDevelopmentEvent('.beltway', 3);
-      }else if($(event.target).hasClass('shining')){
-        executeDevelopmentEvent('.shining', 4);
-      }else if($(event.target).hasClass('james')){
-        executeDevelopmentEvent('.james', 5);
-      }else if($(event.target).hasClass('monte')){
-        executeDevelopmentEvent('.monte', 6);
-      }else if($(event.target).hasClass('lakeland')){
-        executeDevelopmentEvent('.lakeland', 7);
-      }
-    });*/
 
       /*///////////////////////////////////////*/
      /******************NORCO******************/
