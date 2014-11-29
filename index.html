@@ -284,8 +284,8 @@
       <div id="hurricane-video-wrapper">
         <div id="hurricane-video-inner-wrapper">
           <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
-            <source src="http://verylongroad.com/media/v/donald_interview_v1.pds.webmsd.webm" type="video/webm">
-            <source src="https://archive.org/download/donald_date_removed/donald_interview_05REMOVE_v1.pds.ogv" type="video/ogg">
+            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg; codecs=theora, vorbis">
+            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm; codecs=vp8, vorbis">
             <!--http://verylongroad.com/media/v/Interview_with_Donald_Treger_2013.ogv-->
             <source src="https://archive.org/download/westindianhurricane/Interview_with_Donald_Treger_2013mp4.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -298,6 +298,8 @@
             <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
           </div>
         </div>
+        <div id="hurricane-context-visual"></div>
+        <div id="hurricane-context-text"></div>
         <div class="col-md-12" id="viewport-too-small">
           Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
         </div>
@@ -333,11 +335,11 @@
         </div>
         <hr>
       </div>
-      <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields. It could also serve as a coolant for machinery, and a toxic waste sink.</p>
+      <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields, and could serve as a coolant for machinery as well as a toxic waste sink. Additionally, this land nearest to the river was the most evelvated and least flood-prone in region due to many hundreds of years of sediment deposition by the Mississppi River.</p>
       <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.</p>
     </div>
     <div class="norco-growth" id="norco-growth-domination">
-      <a href="#" class="land-use-switch geometry-link">Switch</a>
+      [Discuss the Good Hope Refinery and the <a href="./i/good_hope_change_v1.jpg" class="image-link geometry-link">disappearance of neighboring Good Hope</a>.] <a href="#" class="land-use-switch geometry-link">Switch Test</a>
     </div>
   </div>
 
@@ -424,7 +426,7 @@
 
   var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
 
-  var plantationsUrl = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg',
+  var plantationsUrl = 'https://s3-us-west-2.amazonaws.com/darinacostamediafiles/gis/raster/river_parish_plantations_v1.jpg',
   plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
 
   var plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{
@@ -521,7 +523,9 @@ function animateHurricane(){
 var hurricaneVideoStatus = 'paused',
     hurricaneVideo = document.getElementById("hurricane-video"),
     hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
-    $playButton = $('#hurricane-play');
+    $playButton = $('#hurricane-play'),
+    $hurricaneContextVisual = $('#hurricane-context-visual'),
+    $hurricaneContextText = $('hurricane-context-text');
   
 
 $('a.newpage').on("click", function(){
@@ -543,6 +547,7 @@ $('#hurricane-video, #hurricane-play').on("click", function(){
 });
 
 $('#hurricane-replay').on("click", function(){
+  $hurricaneContextVisual.html('');
   $hurricaneVideo.get(0).currentTime = '0';
   hurricaneVideoEventTrigger();
   hideAllLayers();
@@ -584,7 +589,7 @@ hurricaneVolumeBar.addEventListener("change", function() {
       });
 
   function returnVideoString(video){
-    return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="http://verylongroad.com/media/'+video+'.webm" type="video/webm"><source src="http://verylongroad.com/media/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
+    return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm; codecs=vp8, vorbis"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg; codecs=theora, vorbis">Your browser does not support the video tag.</video>'
   }
 
   videoEventArray = [
@@ -617,15 +622,15 @@ hurricaneVolumeBar.addEventListener("change", function() {
     videoSec4_0 = new VideoUpdateHandler(function(){
       videoEventPopup._close();
       animateHurricane();
-      populateHurricanePanelImageRight(2, '<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">', 'Baton Rouge State Times Advocate, October 3, 1915');
-      map.centerAndZoom([-90.412, 30.005 ], 6);
+      $hurricaneContextVisual.html('<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;">');
+      //'Baton Rouge State Times Advocate, October 3, 1915');
+      //map.centerAndZoom([-90.412, 30.005 ], 6);
     }, 71),
 
     videoSec5_0 = new VideoUpdateHandler(function(){
-      $rightPanelTwo.css('display','block');
-      $rightPanelOne.css('display','none');
-      map.centerAndZoom([-90.4268, 30.1077 ], 15);
-      populateHurricanePanelRight(1, 'hurricane_isaac_course_v1', 'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
+      map.setView(new L.LatLng(30.1077, -90.4268), 15);
+      $hurricaneContextVisual.html(returnVideoString('hurricane_isaac_course_v1'));
+      //'Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)');
     }, 91),
 
     videoSec6_0 = new VideoUpdateHandler(function(){
