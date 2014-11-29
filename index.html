@@ -298,6 +298,9 @@
             <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
           </div>
         </div>
+        <div class="col-md-12" id="viewport-too-small">
+          Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+        </div>
       </div>
     </div>
 
@@ -541,9 +544,7 @@ $('#hurricane-video, #hurricane-play').on("click", function(){
 
 $('#hurricane-replay').on("click", function(){
   $hurricaneVideo.get(0).currentTime = '0';
-  $('.hurricane-panel').html(' ');
-  $rightPanelOne.css('display','block');
-  $rightPanelTwo.css('display','none');
+  hurricaneVideoEventTrigger();
   hideAllLayers();
   $hurricaneVideo.get(0).play();
   map.centerAndZoom([-90.4108, 30.0039], 13);
@@ -635,13 +636,17 @@ hurricaneVolumeBar.addEventListener("change", function() {
     }, 107)
   ];
 
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec0_0.handler, videoSec1_0.time));
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec1_0.handler, videoSec1_0.time));
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec2_0.handler, videoSec2_0.time));
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec3_0.handler, videoSec3_0.time));
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec4_0.handler, videoSec4_0.time));
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_0.handler, videoSec5_0.time));
-  $hurricaneVideo.on('timeupdate', runAtTime(videoSec6_0.handler, videoSec6_0.time));
+  function hurricaneVideoEventTrigger(){
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec0_0.handler, videoSec1_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec1_0.handler, videoSec1_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec2_0.handler, videoSec2_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec3_0.handler, videoSec3_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec4_0.handler, videoSec4_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec5_0.handler, videoSec5_0.time));
+    $hurricaneVideo.on('timeupdate', runAtTime(videoSec6_0.handler, videoSec6_0.time));
+  };
+
+  hurricaneVideoEventTrigger();
 
 
 
