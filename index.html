@@ -385,6 +385,10 @@
   // Disable tap handler, if present.
   if (map.tap) map.tap.disable();
 
+  map.on('click', function(e) {
+    console.log(e.latlng);
+  });
+
   L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}).addTo(map);
   imageryLabels = L.esri.basemapLayer('ImageryLabels');
 
@@ -445,14 +449,19 @@
 
   var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
 
+  //Plantation Layer
   var plantationsUrl = 'https://s3-us-west-2.amazonaws.com/darinacostamediafiles/gis/raster/river_parish_plantations_v1.jpg',
-  plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
+      plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]],
+      plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{opacity: 1});
 
-  var plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{
-        opacity: 1
-  });
+  //"FRENIER" Layer
+  var frenierTitleUrl = './i/FRENIER.png',
+      frenierTitleBounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]],
+      frenierTitleLayer = L.imageOverlay(frenierTitleUrl, frenierTitleBounds);
 
-  //Wrapping this layer in a function because its points should be removed every time the video is replayed. 
+
+
+  //Hurricane Layer. Wrapping it in a function because its points should be removed every time the video is replayed. 
   var westIndianPath;
   function createWestIndianPath(){
     westIndianPath = L.polyline([],{
@@ -659,6 +668,7 @@ hurricaneVolumeBar.addEventListener("change", function() {
 
     videoSec5_1 = new VideoUpdateHandler(function(){
       map.setView(new L.LatLng(30.1077, -90.4268), 15);
+      frenierTitleLayer.addTo(map);
     }, 91),
 
     videoSec6_0 = new VideoUpdateHandler(function(){
