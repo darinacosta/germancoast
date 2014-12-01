@@ -405,20 +405,9 @@ var miniMap = new L.Control.MiniMap(miniMapLayer, {
 
 var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
 
-//Plantation Layer
-var plantationsUrl = 'https://s3-us-west-2.amazonaws.com/darinacostamediafiles/gis/raster/river_parish_plantations_v1.jpg',
-    plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]],
-    plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{opacity: 1});
-
-//"FRENIER" Layer
-var frenierTitleUrl = './i/FRENIER.png',
-  frenierTitleBounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]],
-  frenierTitleLayer = L.imageOverlay(frenierTitleUrl, frenierTitleBounds);
-
-
-
-//Hurricane Layer. Wrapping it in a function because its points should be removed every time the video is replayed. 
+//Wrapping this in a function because its points should be removed every time the video is replayed. 
 var westIndianPath;
+
 function createWestIndianPath(){
   westIndianPath = L.polyline([],{
     color:'red',
@@ -427,7 +416,6 @@ function createWestIndianPath(){
 };
 
 createWestIndianPath();
-
 
 
 //HURRICANE VIDEO CONTROL (GLOBAL FOR NOW)
@@ -517,16 +505,17 @@ var videoEventPopup = L.popup({
   /********************/
  /******BEGIN APP*****/
 /********************/
+
 require(['layers/layers',
          'app/home',
          'app/labranche',
          'app/hurricane'],
+
   function(layers, home, labranche, hurricane){
 
-  
 
   //LAYER CONTROL
-  var layerArray = [layers.labrancheDevelopments,plantationsLayer,westIndianPath,layers.norcoLandUse,layers.shellProperties]
+  var layerArray = [layers.labrancheDevelopments, layers.plantationsLayer,westIndianPath,layers.norcoLandUse,layers.shellProperties]
   function hideAllLayers(){
     for (var i=0; i<layerArray.length; i++){
       map.removeLayer(layerArray[i])
@@ -558,13 +547,13 @@ require(['layers/layers',
 
     $opacityBar.on("input", function() {
       opacityValue = $(this).val();
-      plantationsLayer.setOpacity(opacityValue);
+      layers.plantationsLayer.setOpacity(opacityValue);
     });
 
     $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
       if ($(event.target).hasClass('plantation')){
         norcoGrowthClick();
-        plantationsLayer.addTo(map);
+        layers.plantationsLayer.addTo(map);
         $("#norco-growth-plantation").css('display','block');
         map.setView(new L.LatLng(30.0039, -90.4108), 12);
       }else if ($(event.target).hasClass('levee-domination')){

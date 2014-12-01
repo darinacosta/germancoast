@@ -81,7 +81,7 @@ define(function hurricane(){
         map.setView(new L.LatLng(30.1077, -90.4268), 15);
         $mainMapTopRight.html('');
         $hurricaneContextVisual.html('<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
-        frenierTitleLayer.addTo(map);
+        layers.frenierTitleLayer.addTo(map);
       }, 91),
 
       videoSec6_0 = new VideoUpdateHandler(function(){
