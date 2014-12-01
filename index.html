@@ -14,7 +14,7 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="./js/magnificent.js"></script>
+  <script src="./js/lib/magnificent.js"></script>
 
   <style>
     .esri-leaflet-logo{
@@ -368,164 +368,79 @@
 <script src="./plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
 
 
-<script src ="./layers/norco_landuses_general_v1.js"></script>
-<script src ="./layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1.js"></script>
-<script src ="./layers/labrancheDevelopmentsV1.js"></script>
-
+<script src ="./js/layers/norco_landuses_general_v1.js"></script>
+<script src ="./js/layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1.js"></script>
+<script src ="./js/layers/labrancheDevelopmentsV1.js"></script>
+<script data-main="js/app.js" src="js/require.js"></script>
 <script>
 
-  var map = L.map('map', {
+//Create map as global object
+var map = L.map('map', {
     zoomControl: false
   }).setView([30.0339, -90.4008],11);
 
-  // Disable drag and zoom handlers.
-  map.touchZoom.disable();
-  map.doubleClickZoom.disable();
-  map.scrollWheelZoom.disable();
+// Disable drag and zoom handlers.
+map.touchZoom.disable();
+map.doubleClickZoom.disable();
+map.scrollWheelZoom.disable();
 
-  // Disable tap handler, if present.
-  if (map.tap) map.tap.disable();
+// Disable tap handler, if present.
+if (map.tap) map.tap.disable();
 
-  map.on('click', function(e) {
-    console.log(e.latlng);
-  });
+map.on('click', function(e) {
+  console.log(e.latlng);
+});
 
-  L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}).addTo(map);
-  imageryLabels = L.esri.basemapLayer('ImageryLabels');
+L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}).addTo(map);
+imageryLabels = L.esri.basemapLayer('ImageryLabels');
 
-  var miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'});
-  var miniMap = new L.Control.MiniMap(miniMapLayer, {
-    toggleDisplay: true,
-    zoomLevelOffset:-4,
-    position: 'bottomright'
+var miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'});
+var miniMap = new L.Control.MiniMap(miniMapLayer, {
+  toggleDisplay: true,
+  zoomLevelOffset:-4,
+  position: 'bottomright'
+}).addTo(map);
+
+/********LAYERS (These will remain global for now, the rest are in js/layers/layers.js)******/
+
+var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
+
+//Plantation Layer
+var plantationsUrl = 'https://s3-us-west-2.amazonaws.com/darinacostamediafiles/gis/raster/river_parish_plantations_v1.jpg',
+    plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]],
+    plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{opacity: 1});
+
+//"FRENIER" Layer
+var frenierTitleUrl = './i/FRENIER.png',
+  frenierTitleBounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]],
+  frenierTitleLayer = L.imageOverlay(frenierTitleUrl, frenierTitleBounds);
+
+
+
+//Hurricane Layer. Wrapping it in a function because its points should be removed every time the video is replayed. 
+var westIndianPath;
+function createWestIndianPath(){
+  westIndianPath = L.polyline([],{
+    color:'red',
+    dashArray: [3, 10] 
   }).addTo(map);
+};
 
-
-  /********LAYERS******/
-
-  function pop_labrancheDevelopments(feature, layer) {
-    var popupContent = '<table><tr><h3>' + feature.properties.NAME + '</h3></tr><tr><th scope="row">ACRES:</th><td style="padding:5px;">'+ feature.properties.ACREAGE + '</td></tr></table>';
-    layer.bindPopup(popupContent);
-      };
-
- var labrancheDevelopments = new L.geoJson(                 
-    labrancheDevelopmentsV1, {
-    onEachFeature: pop_labrancheDevelopments,
-    style: function (feature) {
-      return {color: "#960000",
-              fillColor: "#642800",
-              fillOpacity: 0.4,
-              weight: 1}
-            }
-          });
-
-
-  var shellProperties = omnivore.kml('./layers/shell_properties_v1.kml');
-  shellProperties.on('ready', function() {
-    this.setStyle({color: "#960000",
-      fillColor: "#642800",
-      fillOpacity: 0.6,
-      weight: 1});
-  });
-
-  var norcoLandUse = new L.geoJson(norco_landuses_general_v1,{
-        style: function (feature) {
-          return {fillColor: feature.properties.color_qgis2leaf,
-              color: '#000',
-              weight: 1,
-              opacity: 0.5,
-              fillOpacity: 0.6};
-          }
-        }); 
-
-  var floodLanduse = new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
-        style: function (feature) {
-          return {fillColor: feature.properties.color_qgis2leaf,
-              color: '#000',
-              weight: 1,
-              opacity: 0.5,
-              fillOpacity: 0.6};
-          }
-        });
-
-  var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
-
-  //Plantation Layer
-  var plantationsUrl = 'https://s3-us-west-2.amazonaws.com/darinacostamediafiles/gis/raster/river_parish_plantations_v1.jpg',
-      plantationBounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]],
-      plantationsLayer = L.imageOverlay(plantationsUrl, plantationBounds,{opacity: 1});
-
-  //"FRENIER" Layer
-  var frenierTitleUrl = './i/FRENIER.png',
-    frenierTitleBounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]],
-    frenierTitleLayer = L.imageOverlay(frenierTitleUrl, frenierTitleBounds);
+createWestIndianPath();
 
 
 
-  //Hurricane Layer. Wrapping it in a function because its points should be removed every time the video is replayed. 
-  var westIndianPath;
-  function createWestIndianPath(){
-    westIndianPath = L.polyline([],{
-      color:'red',
-      dashArray: [3, 10] 
-    }).addTo(map);
-  };
-
-  createWestIndianPath();
-
-  var layerArray = [labrancheDevelopments,plantationsLayer,westIndianPath,norcoLandUse,shellProperties]
-  
-
-  //LAYER CONTROL
-  function hideAllLayers(){
-    for (var i=0; i<layerArray.length; i++){
-      map.removeLayer(layerArray[i])
-    }
-  }
-
-  /*///////////////////////////////////////*/
- /*/////////////////HOME//////////////////*/
-/*///////////////////////////////////////*/
-
-function home(){
-
-  triggerLocationEvents = $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
-      switch(event.target.id){
-        case 'radial-geofeature-event':
-          map.setView(new L.LatLng(30.269, -90.377), 15);
-          break;
-        case 'erosion-geofeature-event':
-          map.setView(new L.LatLng(30.046, -90.330), 14);
-          break;
-        case 'ej-geofeature-event':
-          map.setView(new L.LatLng(30.004, -90.414), 14);
-          break;
-        case 'suburb-geofeature-event':
-          map.setView(new L.LatLng(30.088, -90.446), 14);
-          break;
-        case 'parishline-geofeature-event':
-          map.setView(new L.LatLng(30.032, -90.279), 14);
-          break; 
-    }
-  });
-  return triggerLocationEvents
-}
-
-home();
-
-      /*///////////////////////////////////////*/
-     /*//////////////HURRICANE////////////////*/
-    /*///////////////////////////////////////*/
+//HURRICANE VIDEO CONTROL (GLOBAL FOR NOW)
 
 var $hurricaneVideo = $("#hurricane-video"),
-    hurricaneVideoStatus = 'paused',
-    hurricaneVideo = document.getElementById("hurricane-video"),
-    hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
-    $playButton = $('#hurricane-play'),
-    $hurricaneContextVisual = $('#hurricane-context-visual'),
-    $hurricaneContextText = $('hurricane-context-text'),
-    $mainMapTopRight = $('#map .leaflet-top.leaflet-right'),
-    videoEventArray;
+  hurricaneVideoStatus = 'paused',
+  hurricaneVideo = document.getElementById("hurricane-video"),
+  hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
+  $playButton = $('#hurricane-play'),
+  $hurricaneContextVisual = $('#hurricane-context-visual'),
+  $hurricaneContextText = $('hurricane-context-text'),
+  $mainMapTopRight = $('#map .leaflet-top.leaflet-right'),
+  videoEventArray;
 
 var VideoUpdateHandler = function(handler, time){
       this.handler = handler;
@@ -549,252 +464,120 @@ var videoEventPopup = L.popup({
       closeOnClick:false
     });
 
- /////VIDEO THINGSSS
-    
+/////VIDEO BUTTONS
+$('a.newpage').on("click", function(){
+  $playButton.html('<span class="glyphicon glyphicon-play"></span>');
+ $hurricaneVideo.get(0).pause();
+ hurricaneVideoStatus='paused';
+});
 
-  $('a.newpage').on("click", function(){
+$('#hurricane-video, #hurricane-play').on("click", function(){
+  if (hurricaneVideoStatus=='paused'){
+   $hurricaneVideo.get(0).play();
+   hurricaneVideoStatus='playing';
+    $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
+  }else if (hurricaneVideoStatus=='playing'){
     $playButton.html('<span class="glyphicon glyphicon-play"></span>');
    $hurricaneVideo.get(0).pause();
    hurricaneVideoStatus='paused';
-  });
+  }
+});
 
-  $('#hurricane-video, #hurricane-play').on("click", function(){
-    if (hurricaneVideoStatus=='paused'){
-     $hurricaneVideo.get(0).play();
-     hurricaneVideoStatus='playing';
-      $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
-    }else if (hurricaneVideoStatus=='playing'){
-      $playButton.html('<span class="glyphicon glyphicon-play"></span>');
-     $hurricaneVideo.get(0).pause();
-     hurricaneVideoStatus='paused';
-    }
-  });
+$('#hurricane-replay').on("click", function(){
+  createWestIndianPath();
+  $mainMapTopRight.html('');
+  $hurricaneContextVisual.html('');
+  $hurricaneVideo.get(0).currentTime = '0';
+  hurricaneVideoEventTrigger();
+  hideAllLayers();
+  $hurricaneVideo.get(0).play();
+  map.centerAndZoom([-90.4108, 30.0039], 13);
+  if (hurricaneVideoStatus=='paused'){
+    $playButton.html('<span class="glyphicon glyphicon-play"></span>');
+  }else if (hurricaneVideoStatus=='playing'){
+    $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
+  }
+});
 
-  $('#hurricane-replay').on("click", function(){
-    createWestIndianPath();
-    $mainMapTopRight.html('');
-    $hurricaneContextVisual.html('');
-    $hurricaneVideo.get(0).currentTime = '0';
-    hurricaneVideoEventTrigger();
-    hideAllLayers();
-    $hurricaneVideo.get(0).play();
-    map.centerAndZoom([-90.4108, 30.0039], 13);
-    if (hurricaneVideoStatus=='paused'){
-      $playButton.html('<span class="glyphicon glyphicon-play"></span>');
-    }else if (hurricaneVideoStatus=='playing'){
-      $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
-    }
-  });
+hurricaneVolumeBar.addEventListener("change", function() {
+      hurricaneVideo.volume = hurricaneVolumeBar.value;
+    }, false);
 
-  hurricaneVolumeBar.addEventListener("change", function() {
-        hurricaneVideo.volume = hurricaneVolumeBar.value;
-      }, false);
+  /********************/
+ /******BEGIN APP*****/
+/********************/
+require(['layers/layers',
+         'app/home',
+         'app/labranche',
+         'app/hurricane'],
+  function(layers, home, labranche, hurricane){
 
-function hurricane(){
   
-  //
-  function animateHurricane(){
-    map.removeLayer(imageryLabels);
-    westIndianPath.addTo(map);
-    hurricanePoints = [];
-    for (var key in hurricaneLayer._layers){
-      var latlngs = hurricaneLayer._layers[key]._latlngs[0];
-      var lat = latlngs['lat'];
-      var lng = latlngs['lng'];
-      hurricanePoints.push([lat,lng]);
-    };
 
-    var pointsAdded = 0;
-
-    // Start drawing the polyline.
-    add();
-
-    function add() {
-      if (pointsAdded < hurricanePoints.length - 1){
-        westIndianPath.addLatLng(hurricanePoints[pointsAdded]);
-        if (pointsAdded < 29){
-          map.setView(hurricanePoints[pointsAdded], 5);
-        }else{
-          map.setView(new L.LatLng(30.001, -90.405), 7);
-        }
-        ++pointsAdded;
-        window.setTimeout(add, 100);
-      }
+  //LAYER CONTROL
+  var layerArray = [layers.labrancheDevelopments,plantationsLayer,westIndianPath,layers.norcoLandUse,layers.shellProperties]
+  function hideAllLayers(){
+    for (var i=0; i<layerArray.length; i++){
+      map.removeLayer(layerArray[i])
     }
   }
 
 
-    //VIDEO UPDATE HANDLERS
 
-    function returnVideoString(video){
-      return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
-    }
-
-    videoEventArray = [
-      videoSec0_0 = new VideoUpdateHandler(function(){
-        
-      }, 5),
-
-      videoSec1_0 = new VideoUpdateHandler(function() {
-        map.setView(new L.LatLng(30.001, -90.409), 16);
-        videoEventPopup.setLatLng([30.001, -90.405]);
-        videoEventPopup.setContent(returnVideoString('shell_at_the_tracks_v1'));
-        //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
-      }, 8),
-
-      videoSec1_1 = new VideoUpdateHandler(function() {
-        videoEventPopup.openOn(map);
-      }, 10),
-
-      videoSec2_0 = new VideoUpdateHandler(function(){
-        map.setView(new L.LatLng(30.063, -90.386), 15);
-        videoEventPopup.setLatLng([30.063, -90.383]);
-        videoEventPopup.setContent(returnVideoString('I-10_traffic_v1'));
-        //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
-      }, 27),
-
-      videoSec3_0 = new VideoUpdateHandler(function (){
-        map.setView(new L.LatLng(30.005, -90.419), 15);
-        videoEventPopup.setLatLng([30.005, -90.412]);
-        videoEventPopup.setContent(returnVideoString('dad_on_roof_v1'));
-        //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
-      }, 48),
-
-      videoSec4_0 = new VideoUpdateHandler(function(){
-        videoEventPopup._close();
-        animateHurricane();
-      }, 71),
-
-      videoSec5_0 = new VideoUpdateHandler(function(){
-        $mainMapTopRight.not('.leaflet-control-minimap .leaflet-top.leaflet-right').html('<div id="top-right-video" style="max-width: 350px;"><div style="margin-top: 37px;border: 1px solid rgb(90, 90, 90);overflow: hidden;width: 350px;height:190px;">' + returnVideoString('hurricane_isaac_course_v1') + '</div><div>Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)</div></div>' );
-      }, 79),
-
-      videoSec5_1 = new VideoUpdateHandler(function(){
-        map.setView(new L.LatLng(30.1077, -90.4268), 15);
-        $mainMapTopRight.html('');
-        $hurricaneContextVisual.html('<img src="i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
-        frenierTitleLayer.addTo(map);
-      }, 91),
-
-      videoSec6_0 = new VideoUpdateHandler(function(){
-        map.centerAndZoom([-90.412, 30.005 ], 8);
-        populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
-      }, 107)
-    ];
-
-    function hurricaneVideoEventTrigger(){
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[1].handler, videoEventArray[1].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[2].handler, videoEventArray[2].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[3].handler, videoEventArray[3].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[4].handler, videoEventArray[4].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[5].handler, videoEventArray[5].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[6].handler, videoEventArray[6].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[7].handler, videoEventArray[7].time));
-      $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
-    };
-
-    hurricaneVideoEventTrigger();
-  }
-
-  hurricane();
-
-
-
-    /*/////////////////////////////////////*/
-   /*//////////////LABRANCHE//////////////*/
-  /*/////////////////////////////////////*/
-
-    var labrancheIndustrialPark = '<h2>The LaBranche Industrial Park</h2><div style="text-align:center"><img src="i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%"></div>The Walker Land Company began selling parcels in this development in the early 1970s. Soon the company was under investigation by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>';
-
-    function labranche(){
-      labrancheDevelopments.addTo(map);
-
-      labrancheDevelopments.on("click", function(e){
-        console.log(e);
-        labrancheDevelopments.setStyle({color: "#960000",
-            fillColor: "#642800",
-            fillOpacity: 0.4,
-            weight: 1})
-        e.layer.setStyle({
-          'fillColor':'rgb(130,150,0)',
-          'color':'rgb(200,200,0)'
-        });
-        map.setView(new L.LatLng(e.latlng['lat'],e.latlng['lng']),14);
-      })
-    }
-
-
-    function executeDevelopmentEvent(selector, id, context){
-      //resetSymbols();
-      //graphics[id].setSymbol(selected);
-      $('.geometry-link').css('text-decoration','none');
-      $(selector).css('text-decoration','underline');
-      //var extent = new Extent(extents[id]);
-      //map.setExtent(extent);
-      $('#labranche-context').html(context);
-    };
-
-
-      /*///////////////////////////////////////*/
-     /******************NORCO******************/
     /*///////////////////////////////////////*/
+   /******************NORCO******************/
+  /*///////////////////////////////////////*/
 
+  function norco(){
 
-    function norco(){
+    var $opacityBar = $('#opacity-bar'),
+        $norcoLandUsePane = $('#norcoLandusePane'),
+        $norcoGrowth = $('.norco-growth'),
+        $norcoGrowthContext = $('#norco-growth-context'),
+        landUseDisplayStatus = 'full';
 
-      var $opacityBar = $('#opacity-bar'),
-          $norcoLandUsePane = $('#norcoLandusePane'),
-          $norcoGrowth = $('.norco-growth'),
-          $norcoGrowthContext = $('#norco-growth-context'),
-          landUseDisplayStatus = 'full';
+    $norcoGrowthContext.css('display','block');
+    $norcoGrowth.css('display','none');
 
-      $opacityBar.on("input", function() {
-          opacityValue = $(this).val();
-          plantationsLayer.setOpacity(opacityValue);
-        });
-
-      $norcoGrowthContext.css('display','block');
+    function norcoGrowthClick(){
+      $norcoGrowthContext.css('display','none');
       $norcoGrowth.css('display','none');
+      hideAllLayers();
+    }
 
-      function norcoGrowthClick(){
-        $norcoGrowthContext.css('display','none');
-        $norcoGrowth.css('display','none');
-        hideAllLayers();
+    $opacityBar.on("input", function() {
+      opacityValue = $(this).val();
+      plantationsLayer.setOpacity(opacityValue);
+    });
 
-      }
-
-      $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
-        if ($(event.target).hasClass('plantation')){
-          norcoGrowthClick();
-          plantationsLayer.addTo(map);
-          $("#norco-growth-plantation").css('display','block');
-          map.setView(new L.LatLng(30.0039, -90.4108), 12);
-        }else if ($(event.target).hasClass('levee-domination')){
-          norcoGrowthClick();
-          norcoLandUse.addTo(map);
-          $("#norco-growth-domination").css('display','block');
-          map.setView(new L.LatLng(30.001, -90.405), 14);
-        }else if ($(event.target).hasClass('ex-town')){
-          norcoGrowthClick();
-          map.setView(new L.LatLng(30.004, -90.418), 16);
-          shellProperties.addTo(map);
-        }else if ($(event.target).hasClass('land-use-switch')){
-          if (landUseDisplayStatus == 'full'){
-            floodLanduse.addTo(map);
-            map.removeLayer(norcoLandUse);
-            landUseDisplayStatus = 'partial';
-          }else if (landUseDisplayStatus == 'partial'){
-            norcoLandUse.addTo(map);
-            map.removeLayer(floodLanduse);
-            landUseDisplayStatus = 'full';
-          }
+    $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
+      if ($(event.target).hasClass('plantation')){
+        norcoGrowthClick();
+        plantationsLayer.addTo(map);
+        $("#norco-growth-plantation").css('display','block');
+        map.setView(new L.LatLng(30.0039, -90.4108), 12);
+      }else if ($(event.target).hasClass('levee-domination')){
+        norcoGrowthClick();
+        layers.norcoLandUse.addTo(map);
+        $("#norco-growth-domination").css('display','block');
+        map.setView(new L.LatLng(30.001, -90.405), 14);
+      }else if ($(event.target).hasClass('ex-town')){
+        norcoGrowthClick();
+        map.setView(new L.LatLng(30.004, -90.418), 16);
+        layers.shellProperties.addTo(map);
+      }else if ($(event.target).hasClass('land-use-switch')){
+        if (landUseDisplayStatus == 'full'){
+          layers.floodLanduse.addTo(map);
+          map.removeLayer(layers.norcoLandUse);
+          landUseDisplayStatus = 'partial';
+        }else if (landUseDisplayStatus == 'partial'){
+          layers.norcoLandUse.addTo(map);
+          map.removeLayer(layers.floodLanduse);
+          landUseDisplayStatus = 'full';
         }
-      });
-    
-
-
-    }//End Norco
+      }
+    });
+  }//End Norco
 
    /***************************/
   /*****MODULE ACTIVATION*****/ 
@@ -807,45 +590,47 @@ function activateModule(args){
   window.scrollTo(0, 0);
   map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);
   $('#'+args['module']+'-location-button').css('background-color','rgb(72, 131, 117)');
-  eval(args['module'] + '()');
 };
 
-//HEADER MENU
-$( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
-  
-  imageryLabels.addTo(map);
+  //HEADER MENU
+  $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
+    
+    imageryLabels.addTo(map);
 
-  if ($(event.target).hasClass('hurricane')){
-    activateModule({'module': 'hurricane',
-      'title':'hurricane',
-      'lat':30.0039, 
-      'long':-90.4108,  
-      'zoom':13
-    });
-  }else if ($(event.target).hasClass('labranche-location-button')){
-    activateModule({'module': 'labranche',
-      'title':'LABRANCHE WETLANDS',
-      'lat':30.015,
-      'long': -90.335, 
-      'zoom':13
-    });
-  }else if ($(event.target).hasClass('norco-location-button')){ 
-    console.log('norco');
-    activateModule({'module':'norco',
-      'title':'NORCO INDUSTRIAL GROWTH',
-      'lat':30.0039, 
-      'long':-90.4108, 
-      'zoom':12
-    });
-  }else if ($(event.target).hasClass('home-location-button')){ 
-    map.removeLayer(imageryLabels);
-    activateModule({'module':'home',
-      'title':'LOUISIANA\'S GERMAN COAST',
-      'lat': 30.0339, 
-      'long':-90.4008, 
-      'zoom':11
-    });
-  }
+    if ($(event.target).hasClass('hurricane')){
+      activateModule({'module': 'hurricane',
+        'title':'hurricane',
+        'lat':30.0039, 
+        'long':-90.4108,  
+        'zoom':13
+      });
+    }else if ($(event.target).hasClass('labranche-location-button')){
+      labranche.activateDevelopmentEvents;
+      activateModule({'module': 'labranche',
+        'title':'LABRANCHE WETLANDS',
+        'lat':30.015,
+        'long': -90.335, 
+        'zoom':13
+      });
+      layers.labrancheDevelopments.addTo(map);
+    }else if ($(event.target).hasClass('norco-location-button')){ 
+      activateModule({'module':'norco',
+        'title':'NORCO INDUSTRIAL GROWTH',
+        'lat':30.0039, 
+        'long':-90.4108, 
+        'zoom':12
+      });
+      norco();
+    }else if ($(event.target).hasClass('home-location-button')){ 
+      map.removeLayer(imageryLabels);
+      activateModule({'module':'home',
+        'title':'LOUISIANA\'S GERMAN COAST',
+        'lat': 30.0339, 
+        'long':-90.4008, 
+        'zoom':11
+      });
+    }
+  });
 });
 
 </script>
