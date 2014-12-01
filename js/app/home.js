@@ -1,6 +1,6 @@
 define(function home(){
 
-  triggerLocationEvents = $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
+  activate = $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
     switch(event.target.id){
       case 'radial-geofeature-event':
         map.setView(new L.LatLng(30.269, -90.377), 15);
@@ -19,5 +19,5 @@ define(function home(){
         break; 
       }
     });
-    return triggerLocationEvents
+    return activate
 });

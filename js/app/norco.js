@@ -50,8 +50,12 @@ function(layers, layerControl){
         }
       }
     });
-  return {activateOpacityControl: activateOpacityControl, 
-    activateLandUsePaneEvents: activateLandUsePaneEvents}
+
+    activate = function(){
+      activateOpacityControl
+      activateLandUsePaneEvents
+    }
+  return activate;
   }//End Norco
 
 )
