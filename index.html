@@ -477,7 +477,7 @@ $('#hurricane-replay').on("click", function(){
   $hurricaneContextVisual.html('');
   $hurricaneVideo.get(0).currentTime = '0';
   hurricaneVideoEventTrigger();
-  hideAllLayers();
+  layerControl.hideAllLayers();
   $hurricaneVideo.get(0).play();
   map.centerAndZoom([-90.4108, 30.0039], 13);
   if (hurricaneVideoStatus=='paused'){
@@ -507,84 +507,27 @@ var videoEventPopup = L.popup({
 /********************/
 
 require(['layers/layers',
+         'app/layerControl',
          'app/home',
          'app/labranche',
-         'app/hurricane'],
+         'app/hurricane',
+         'app/norco'],
 
-  function(layers, home, labranche, hurricane){
-
-
-  //LAYER CONTROL
-  var layerArray = [layers.labrancheDevelopments, layers.plantationsLayer,westIndianPath,layers.norcoLandUse,layers.shellProperties]
-  function hideAllLayers(){
-    for (var i=0; i<layerArray.length; i++){
-      map.removeLayer(layerArray[i])
-    }
-  }
+  function(layers, layerControl, home, labranche, hurricane, norco){
 
 
 
     /*///////////////////////////////////////*/
    /******************NORCO******************/
   /*///////////////////////////////////////*/
-
-  function norco(){
-
-    var $opacityBar = $('#opacity-bar'),
-        $norcoLandUsePane = $('#norcoLandusePane'),
-        $norcoGrowth = $('.norco-growth'),
-        $norcoGrowthContext = $('#norco-growth-context'),
-        landUseDisplayStatus = 'full';
-
-    $norcoGrowthContext.css('display','block');
-    $norcoGrowth.css('display','none');
-
-    function norcoGrowthClick(){
-      $norcoGrowthContext.css('display','none');
-      $norcoGrowth.css('display','none');
-      hideAllLayers();
-    }
-
-    $opacityBar.on("input", function() {
-      opacityValue = $(this).val();
-      layers.plantationsLayer.setOpacity(opacityValue);
-    });
-
-    $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
-      if ($(event.target).hasClass('plantation')){
-        norcoGrowthClick();
-        layers.plantationsLayer.addTo(map);
-        $("#norco-growth-plantation").css('display','block');
-        map.setView(new L.LatLng(30.0039, -90.4108), 12);
-      }else if ($(event.target).hasClass('levee-domination')){
-        norcoGrowthClick();
-        layers.norcoLandUse.addTo(map);
-        $("#norco-growth-domination").css('display','block');
-        map.setView(new L.LatLng(30.001, -90.405), 14);
-      }else if ($(event.target).hasClass('ex-town')){
-        norcoGrowthClick();
-        map.setView(new L.LatLng(30.004, -90.418), 16);
-        layers.shellProperties.addTo(map);
-      }else if ($(event.target).hasClass('land-use-switch')){
-        if (landUseDisplayStatus == 'full'){
-          layers.floodLanduse.addTo(map);
-          map.removeLayer(layers.norcoLandUse);
-          landUseDisplayStatus = 'partial';
-        }else if (landUseDisplayStatus == 'partial'){
-          layers.norcoLandUse.addTo(map);
-          map.removeLayer(layers.floodLanduse);
-          landUseDisplayStatus = 'full';
-        }
-      }
-    });
-  }//End Norco
-
+  
+  
    /***************************/
   /*****MODULE ACTIVATION*****/ 
  /***************************/
 
 function activateModule(args){
-  hideAllLayers();
+  layerControl.hideAllLayers();
   videoEventPopup._close();
   $mainMapTopRight.html('');
   window.scrollTo(0, 0);
@@ -620,7 +563,8 @@ function activateModule(args){
         'long':-90.4108, 
         'zoom':12
       });
-      norco();
+      norco.activateOpacityControl;
+      norco.activateLandUsePaneEvents;
     }else if ($(event.target).hasClass('home-location-button')){ 
       map.removeLayer(imageryLabels);
       activateModule({'module':'home',

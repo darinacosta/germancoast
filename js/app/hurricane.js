@@ -1,35 +1,40 @@
-define(function hurricane(){
-  
-  //
-  function animateHurricane(){
-    map.removeLayer(imageryLabels);
-    westIndianPath.addTo(map);
-    hurricanePoints = [];
-    for (var key in hurricaneLayer._layers){
-      var latlngs = hurricaneLayer._layers[key]._latlngs[0];
-      var lat = latlngs['lat'];
-      var lng = latlngs['lng'];
-      hurricanePoints.push([lat,lng]);
-    };
+define(['layers/layers'],
 
-    var pointsAdded = 0;
+  function(layers){
 
-    // Start drawing the polyline.
-    add();
 
-    function add() {
-      if (pointsAdded < hurricanePoints.length - 1){
-        westIndianPath.addLatLng(hurricanePoints[pointsAdded]);
-        if (pointsAdded < 29){
-          map.setView(hurricanePoints[pointsAdded], 5);
-        }else{
-          map.setView(new L.LatLng(30.001, -90.405), 7);
+    function hurricane(){
+    
+    //
+    function animateHurricane(){
+      map.removeLayer(imageryLabels);
+      westIndianPath.addTo(map);
+      hurricanePoints = [];
+      for (var key in hurricaneLayer._layers){
+        var latlngs = hurricaneLayer._layers[key]._latlngs[0];
+        var lat = latlngs['lat'];
+        var lng = latlngs['lng'];
+        hurricanePoints.push([lat,lng]);
+      };
+
+      var pointsAdded = 0;
+
+      // Start drawing the polyline.
+      add();
+
+      function add() {
+        if (pointsAdded < hurricanePoints.length - 1){
+          westIndianPath.addLatLng(hurricanePoints[pointsAdded]);
+          if (pointsAdded < 29){
+            map.setView(hurricanePoints[pointsAdded], 5);
+          }else{
+            map.setView(new L.LatLng(30.001, -90.405), 7);
+          }
+          ++pointsAdded;
+          window.setTimeout(add, 100);
         }
-        ++pointsAdded;
-        window.setTimeout(add, 100);
       }
     }
-  }
 
 
     //VIDEO UPDATE HANDLERS
@@ -103,6 +108,8 @@ define(function hurricane(){
     };
 
     videoEventTrigger();
+  };
+  hurricane();
+});
 
-  });
 
