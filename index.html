@@ -464,10 +464,6 @@ var videoEventPopup = L.popup({
       closeOnClick:false
     });
 
- function returnVideoString(video){
-    return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
-  }
-
 /////VIDEO BUTTONS
 $('a.newpage').on("click", function(){
   $playButton.html('<span class="glyphicon glyphicon-play"></span>');
@@ -507,6 +503,16 @@ hurricaneVolumeBar.addEventListener("change", function() {
       hurricaneVideo.volume = hurricaneVolumeBar.value;
     }, false);
 
+var videoEventPopup = L.popup({
+        maxHeight:200,
+        minWidth:250,
+        closeButton:false,
+        closeOnClick:false
+      });
+
+  function returnVideoString(video){
+    return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
+  }
 
   /********************/
  /******BEGIN APP*****/
@@ -525,6 +531,8 @@ require(['layers/layers',
     for (var i=0; i<layerArray.length; i++){
       map.removeLayer(layerArray[i])
     }
+  }
+
 
 
     /*///////////////////////////////////////*/
