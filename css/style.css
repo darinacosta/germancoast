@@ -208,7 +208,7 @@
 
       #hurricane-video-control{
           padding:25px;
-          width:345px;
+          width:315px;
           margin:0 auto;
         }
 
@@ -247,6 +247,10 @@
 
       .nav-tabs {
         padding-left:0px;
+      }
+
+      #viewport-too-small{
+        display:block;
       }
       
       .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
