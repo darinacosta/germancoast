@@ -1,8 +1,9 @@
 define(['layers/layers',
         'app/layerControl',
+        'app/videoControl',
         'app/pathAnimator'],
 
-  function(layers, layerControl, pathAnimator){
+  function(layers, layerControl, videoControl, pathAnimator){
     hurricaneAttr = {
 
 
@@ -12,39 +13,12 @@ define(['layers/layers',
           layers.hurricaneLayer, 5)
       },
 
-      videoEventPopup: L.popup({
-        maxHeight:200,
-        minWidth:250,
-        closeButton:false,
-        closeOnClick:false
-      }),
-
-      //VIDEO UPDATE HANDLERS
-      videoUpdateHandler: function(handler, time){
-        this.handler = handler;
-        this.time = time;
-      },
-
-      runAtTime: function(handler, time) {
-        var wrapped = function() {
-          if(this.currentTime >= time) {
-            $(this).off('timeupdate', wrapped);
-            return handler.apply(this, arguments);
-          }
-        }
-        return wrapped;
-      },
-
-      returnVideoString: function(video){
-        return '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>'
-      },
-
       videoEventArray: function(){
 
-        var videoUpdateHandler = this.videoUpdateHandler;
+        var videoUpdateHandler = videoControl.videoUpdateHandler;
+        var returnVideoString = videoControl.returnVideoString;
+        var videoEventPopup = videoControl.videoEventPopup;
         var animateHurricane = this.animateHurricane;
-        var returnVideoString = this.returnVideoString;
-        var videoEventPopup = this.videoEventPopup;
         
         var videoArray =  [
         videoSec0_0 = new videoUpdateHandler(function(){
@@ -100,7 +74,7 @@ define(['layers/layers',
 
       init: function(){
         var videoEventArray = this.videoEventArray();
-        var runAtTime = this.runAtTime;
+        var runAtTime = videoControl.runAtTime;
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[1].handler, videoEventArray[1].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[2].handler, videoEventArray[2].time));
