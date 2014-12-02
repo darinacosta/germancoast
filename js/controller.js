@@ -7,12 +7,10 @@ var $hurricaneVideo = $("#hurricane-video"),
     $hurricaneContextText = $('hurricane-context-text'),
     $mainMapTopRight = $('#map .leaflet-top.leaflet-right');
 
-
-//Create map as global object
-
+//MAP//
 var map = L.map('map', {
-    zoomControl: false
-  }).setView([30.0339, -90.4008],11);
+zoomControl: false
+}).setView([30.0339, -90.4008],11);
 
 // Disable drag and zoom handlers.
 map.touchZoom.disable();
@@ -36,29 +34,10 @@ var miniMap = new L.Control.MiniMap(miniMapLayer, {
   position: 'bottomright'
 }).addTo(map);
 
+
 /********LAYERS (Find a place in the modules for these)******/
 
-var hurricaneLayer = omnivore.kml('./layers/west_indian_hurricane_v1.kml');
-
 //Wrapping this in a function because its points should be removed every time the video is replayed. 
-var westIndianPath;
-
-function createWestIndianPath(){
-  westIndianPath = L.polyline([],{
-    color:'red',
-    dashArray: [3, 10] 
-  }).addTo(map);
-};
-
-createWestIndianPath();
-
-
-var videoEventPopup = L.popup({
-      maxHeight:200,
-      minWidth:250,
-      closeButton:false,
-      closeOnClick:false
-    });
 
 
   /********************/
@@ -80,11 +59,12 @@ require(['layers/layers',
     /*****MODULE ACTIVATION*****/ 
    /***************************/
 
-  hurricane.init();
+   hurricane.init();
+
 
   function activateModule(args){
     layerControl.hideAllLayers();
-    videoEventPopup._close();
+    hurricane.videoEventPopup._close();
     $mainMapTopRight.html('');
     window.scrollTo(0, 0);
     map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);

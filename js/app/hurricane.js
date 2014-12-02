@@ -1,38 +1,23 @@
-define(['layers/layers'],
+define(['layers/layers',
+        'app/layerControl',
+        'app/pathAnimator'],
 
-  function(layers){
-    return {
+  function(layers, layerControl, pathAnimator){
+    hurricaneAttr = {
 
-     animateHurricane: function(){
-        map.removeLayer(imageryLabels);
-        westIndianPath.addTo(map);
-        hurricanePoints = [];
-        for (var key in hurricaneLayer._layers){
-          var latlngs = hurricaneLayer._layers[key]._latlngs[0];
-          var lat = latlngs['lat'];
-          var lng = latlngs['lng'];
-          hurricanePoints.push([lat,lng]);
-        };
 
-        var pointsAdded = 0;
-
-        // Start drawing the polyline.
-        add();
-
-        function add() {
-          if (pointsAdded < hurricanePoints.length - 1){
-            westIndianPath.addLatLng(hurricanePoints[pointsAdded]);
-            if (pointsAdded < 29){
-              map.setView(hurricanePoints[pointsAdded], 5);
-            }else{
-              map.setView(new L.LatLng(30.001, -90.405), 7);
-            }
-            ++pointsAdded;
-            window.setTimeout(add, 100);
-          }
-        }
+      animateHurricane: function(){
+        layers.westIndianPath.addTo(map);
+        pathAnimator.drawPath(layers.westIndianPath, 
+          layers.hurricaneLayer, 5)
       },
 
+      videoEventPopup: L.popup({
+        maxHeight:200,
+        minWidth:250,
+        closeButton:false,
+        closeOnClick:false
+      }),
 
       //VIDEO UPDATE HANDLERS
       videoUpdateHandler: function(handler, time){
@@ -59,6 +44,7 @@ define(['layers/layers'],
         var videoUpdateHandler = this.videoUpdateHandler;
         var animateHurricane = this.animateHurricane;
         var returnVideoString = this.returnVideoString;
+        var videoEventPopup = this.videoEventPopup;
         
         var videoArray =  [
         videoSec0_0 = new videoUpdateHandler(function(){
@@ -126,6 +112,7 @@ define(['layers/layers'],
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
       }
     }
+    return hurricaneAttr;
 });
 
 

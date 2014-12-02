@@ -26,7 +26,6 @@ define(['app/hurricane',
     });
 
     $('#hurricane-replay').on("click", function(){
-      createWestIndianPath();
       $mainMapTopRight.html('');
       $hurricaneContextVisual.html('');
       $hurricaneVideo.get(0).currentTime = '0';
