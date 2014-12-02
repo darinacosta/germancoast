@@ -19,5 +19,5 @@ define(function home(){
         break; 
       }
     });
-    return activate
+    return activate;
 });

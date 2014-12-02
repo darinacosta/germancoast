@@ -1,14 +1,14 @@
 define({
-	  drawPath: function(emptyPath, line, zoom){ 
-		  map.removeLayer(imageryLabels);
-		  //emptyPath.addTo(map);
-		  points = [];
-		  for (var key in line._layers){
-		    var latlngs = line._layers[key]._latlngs[0];
-		    var lat = latlngs['lat'];
-		    var lng = latlngs['lng'];
-		    points.push([lat,lng]);
-		  };
+    drawPath: function(emptyPath, line, zoom){ 
+      map.removeLayer(imageryLabels);
+      //emptyPath.addTo(map);
+      points = [];
+      for (var key in line._layers){
+			  var latlngs = line._layers[key]._latlngs[0];
+			  var lat = latlngs['lat'];
+			  var lng = latlngs['lng'];
+			  points.push([lat,lng]);
+			};
 
 		  var pointsAdded = 0;
 

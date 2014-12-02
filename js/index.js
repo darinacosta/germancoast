@@ -44,15 +44,16 @@ var miniMap = new L.Control.MiniMap(miniMapLayer, {
  /******BEGIN APP*****/
 /********************/
 
-require(['layers/layers',
+require(['app/layers',
          'app/layerControl',
          'app/home',
          'app/labranche',
          'app/hurricane',
          'app/hurricaneVideoControl',
-         'app/norco'],
+         'app/norco',
+         'app/videoControl'],
 
-  function(layers, layerControl, home, labranche, hurricane, hurricaneVideoControl, norco){
+  function(layers, layerControl, home, labranche, hurricane, hurricaneVideoControl, norco, videoControl){
 
 
      /***************************/
@@ -64,7 +65,7 @@ require(['layers/layers',
 
   function activateModule(args){
     layerControl.hideAllLayers();
-    hurricane.videoEventPopup._close();
+    videoControl.videoEventPopup._close();
     $mainMapTopRight.html('');
     window.scrollTo(0, 0);
     map.setView(new L.LatLng(args['lat'],args['long']), args['zoom']);

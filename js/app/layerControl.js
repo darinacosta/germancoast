@@ -1,11 +1,14 @@
-define(['layers/layers'],
+define(['app/layers'],
 
-  function(layers){ return {
-
-    hideAllLayers: function(){
+  function(layers){
+    hideAllLayers = function(){
       $.each(layers, function(key, val) {
         map.removeLayer(layers[key])
       });
+    };
+
+    return{
+      hideAllLayers: hideAllLayers
     }
-	}
+
 });
