@@ -85,6 +85,7 @@ require(['app/layers',
         'zoom':13
       });
     }else if ($(event.target).hasClass('labranche-location-button')){
+      labranche.activate();
       activateModule({'module': 'labranche',
         'title':'LABRANCHE WETLANDS',
         'lat':30.015,

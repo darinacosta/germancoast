@@ -7,19 +7,24 @@ define(['app/layers'],
       $(selector).css('text-decoration','underline');
       $('#labranche-context').html(context);
     };
+    
+    control = {
+      activate: function(){
 
-    activate = layers.labrancheDevelopments.on("click", function(e){
-      layers.labrancheDevelopments.setStyle({color: "#960000",
-          fillColor: "#642800",
-          fillOpacity: 0.4,
-          weight: 1})
-      e.layer.setStyle({
-        'fillColor':'rgb(130,150,0)',
-        'color':'rgb(200,200,0)'
-      });
-      map.setView(new L.LatLng(e.latlng['lat'],e.latlng['lng']),14);
-    })
+        layers.labrancheDevelopments.on("click", function(e){
+          layers.labrancheDevelopments.setStyle({color: "#960000",
+              fillColor: "#642800",
+              fillOpacity: 0.4,
+              weight: 1})
+          e.layer.setStyle({
+            'fillColor':'rgb(130,150,0)',
+            'color':'rgb(200,200,0)'
+          });
+          map.setView(new L.LatLng(e.latlng['lat'],e.latlng['lng']),14);
+        })
+      }
+    }
 
-    return activate;
+  return control;
     
 });
