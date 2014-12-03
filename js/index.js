@@ -55,13 +55,9 @@ require(['app/layers',
 
   function(layers, layerControl, home, labranche, hurricane, hurricaneVideoControl, norco, videoControl){
 
-
      /***************************/
     /*****MODULE ACTIVATION*****/ 
    /***************************/
-
-   hurricane.init();
-
 
   function activateModule(args){
     layerControl.hideAllLayers();
@@ -77,7 +73,9 @@ require(['app/layers',
     
     imageryLabels.addTo(map);
 
-    if ($(event.target).hasClass('hurricane')){
+    if ($(event.target).hasClass('hurricane-location-button')){
+      console.log('hur init');
+      hurricane.init();
       activateModule({'module': 'hurricane',
         'title':'hurricane',
         'lat':30.0039, 
@@ -85,7 +83,7 @@ require(['app/layers',
         'zoom':13
       });
     }else if ($(event.target).hasClass('labranche-location-button')){
-      labranche.activate();
+      labranche.init();
       activateModule({'module': 'labranche',
         'title':'LABRANCHE WETLANDS',
         'lat':30.015,
@@ -94,6 +92,7 @@ require(['app/layers',
       });
       layers.labrancheDevelopments.addTo(map);
     }else if ($(event.target).hasClass('norco-location-button')){ 
+      norco.init();
       activateModule({'module':'norco',
         'title':'NORCO INDUSTRIAL GROWTH',
         'lat':30.0039, 

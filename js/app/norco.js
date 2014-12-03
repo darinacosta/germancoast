@@ -7,21 +7,18 @@ function(layers, layerControl){
         $norcoLandUsePane = $('#norcoLandusePane'),
         $norcoGrowth = $('.norco-growth'),
         $norcoGrowthContext = $('#norco-growth-context'),
-        landUseDisplayStatus = 'full';
+        landUseDisplayStatus = 'full',
 
-    $norcoGrowthContext.css('display','block');
-    $norcoGrowth.css('display','none');
-
-    function norcoGrowthClick(){
+    norcoGrowthClick = function norcoGrowthClick(){
       $norcoGrowthContext.css('display','none');
       $norcoGrowth.css('display','none');
       layerControl.hideAllLayers();
-    }
+    },
 
     activateOpacityControl = $opacityBar.on("input", function() {
       opacityValue = $(this).val();
       layers.plantationsLayer.setOpacity(opacityValue);
-    });
+    }),
 
     activateLandUsePaneEvents = $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
       if ($(event.target).hasClass('plantation')){
@@ -49,13 +46,14 @@ function(layers, layerControl){
           landUseDisplayStatus = 'full';
         }
       }
-    });
+    }),
 
-    activate = function(){
+    init = function(){
       activateOpacityControl
       activateLandUsePaneEvents
     }
-  return activate;
+
+  return {init: init};
   }//End Norco
 
 )

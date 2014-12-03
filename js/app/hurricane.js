@@ -4,23 +4,20 @@ define(['app/layers',
         'app/pathAnimator'],
 
   function(layers, layerControl, videoControl, pathAnimator){
-    hurricaneAttr = {
 
+      var videoUpdateHandler = videoControl.videoUpdateHandler,
+          returnVideoString = videoControl.returnVideoString,
+          videoEventPopup = videoControl.videoEventPopup,
+          runAtTime = videoControl.runAtTime,
 
-      animateHurricane: function(){
+      animateHurricane = function(){
         layers.westIndianPath.addTo(map);
         pathAnimator.drawPath(layers.westIndianPath, 
           layers.hurricaneLayer, 5)
       },
 
-      videoEventArray: function(){
+      videoEventArray =  [
 
-        var videoUpdateHandler = videoControl.videoUpdateHandler;
-        var returnVideoString = videoControl.returnVideoString;
-        var videoEventPopup = videoControl.videoEventPopup;
-        var animateHurricane = this.animateHurricane;
-        
-        var videoArray =  [
         videoSec0_0 = new videoUpdateHandler(function(){
           
         }, 5),
@@ -69,12 +66,10 @@ define(['app/layers',
         videoSec6_0 = new videoUpdateHandler(function(){
           //map.centerAndZoom([-90.412, 30.005 ], 8);
           //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
-        }, 107)];
-        return videoArray},
+        }, 107)],
 
-      init: function(){
-        var videoEventArray = this.videoEventArray();
-        var runAtTime = videoControl.runAtTime;
+
+      init = function(){
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[1].handler, videoEventArray[1].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[2].handler, videoEventArray[2].time));
@@ -85,8 +80,8 @@ define(['app/layers',
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[7].handler, videoEventArray[7].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
       }
-    }
-    return hurricaneAttr;
+
+    return {init: init};
 });
 
 
