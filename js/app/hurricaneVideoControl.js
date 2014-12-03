@@ -3,6 +3,13 @@ define(['app/hurricane',
 
   function(hurricane, layerControl){
 
+    var $hurricaneVideo = $("#hurricane-video"),
+        hurricaneVideoStatus = 'paused',
+        hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
+        $playButton = $('#hurricane-play'),
+        $hurricaneContextVisual = hurricane.$hurricaneContextVisual,
+        $hurricaneContextText = hurricane.$hurricaneContextText,
+
     hurricaneControls = function(){
       $('a.newpage').on("click", function(){
         $playButton.html('<span class="glyphicon glyphicon-play"></span>');

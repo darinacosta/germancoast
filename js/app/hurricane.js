@@ -5,10 +5,13 @@ define(['app/layers',
 
   function(layers, layerControl, videoControl, pathAnimator){
 
-      var videoUpdateHandler = videoControl.videoUpdateHandler,
+      var $hurricaneVideo = $("#hurricane-video"),
+          videoUpdateHandler = videoControl.videoUpdateHandler,
           returnVideoString = videoControl.returnVideoString,
           videoEventPopup = videoControl.videoEventPopup,
           runAtTime = videoControl.runAtTime,
+          $hurricaneContextVisual = $('#hurricane-context-visual'),
+          $hurricaneContextText = $('hurricane-context-text'),
 
       animateHurricane = function(){
         layers.westIndianPath.addTo(map);
@@ -81,7 +84,10 @@ define(['app/layers',
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
       }
 
-    return {init: init};
+    return {init: init,
+            $hurricaneContextVisual: $hurricaneContextVisual,
+            $hurricaneContextText: $hurricaneContextText
+    };
 });
 
 
