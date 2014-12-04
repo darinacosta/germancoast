@@ -61,7 +61,7 @@ define(['layers/norco_landuses_general_v1',
           fillOpacity: 0.6,
           weight: 1});
       }),
-
+      
       westIndianPath: L.polyline([],{
         color:'red',
         dashArray: [3, 10] 

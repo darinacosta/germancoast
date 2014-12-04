@@ -1,7 +1,8 @@
 define({
     drawPath: function(emptyPath, line, zoom){ 
+    	emptyPath.setLatLngs([])
       map.removeLayer(imageryLabels);
-      //emptyPath.addTo(map);
+      emptyPath.addTo(map);
       points = [];
       for (var key in line._layers){
 			  var latlngs = line._layers[key]._latlngs[0];
