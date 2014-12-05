@@ -49,7 +49,7 @@ function(layers, layerControl){
     }),
 
     init = function(){
-      activateOpacityControl
+      activateOpacityControl;
       activateLandUsePaneEvents
     }
 
