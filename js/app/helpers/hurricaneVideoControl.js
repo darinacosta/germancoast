@@ -1,5 +1,5 @@
-define(['app/hurricane',
-        'app/layerControl'],
+define(['app/vignettes/hurricane',
+        'app/helpers/layerControl'],
 
   function(hurricane, layerControl){
 

@@ -1,8 +1,7 @@
 define(['app/layers',
-        'app/layerControl',
-        'app/screenControl'],
+        'app/helpers/layerControl'],
 
-  function(layers,layerControl,screenControl){
+  function(layers,layerControl){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
@@ -24,12 +23,7 @@ define(['app/layers',
     },
     
     init =  function(){
-      console.log('labranche init');
-      screenControl.readyScreen({
-        'lat':30.015,
-        'lng': -90.335, 
-        'zoom':13
-      });
+      map.setView([30.015, -90.335], 13);
 
       layers.labrancheDevelopments.addTo(map);
 

@@ -35,13 +35,13 @@ L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./biblio
 /********************/
 
 require(['app/layers',
-         'app/layerControl',
-         'app/home',
-         'app/labranche',
-         'app/hurricane',
-         'app/norco',
-         'app/videoControl',
-         'app/hurricaneVideoControl'],
+         'app/helpers/layerControl',
+         'app/vignettes/home',
+         'app/vignettes/labranche',
+         'app/vignettes/hurricane',
+         'app/vignettes/norco',
+         'app/helpers/videoControl',
+         'app/helpers/hurricaneVideoControl'],
 
   function(layers, layerControl, home, labranche, hurricane, norco, videoControl){
     
