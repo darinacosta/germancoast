@@ -1,67 +1,73 @@
-
-      
 @media all{
 
-      html, body, #map {
-        max-height: 100%;
-        max-width: 100%;
-        height: 100%;
-        width: 100%;
+  html, body, #map {
+    max-height: 100%;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+  }
+
+  body, #map{
+    background-color:rgb(36, 44, 36);
+    background-image:url('../i/grid.png');
+ }
+
+  body{
+    color: white;
+    font-family: Geneva, ‘Lucida Sans’, ‘Lucida Grande’, ‘Lucida Sans Unicode’, Verdana, sans-serif;
+    font-size:17px;
+    padding: 0;
+    margin: 0;
+  }
+
+  h1,h2,h3{
+    font-family: Cambria, ‘Hoefler Text’, Utopia, ‘Liberation Serif’, ‘Nimbus Roman No9 L Regular’, Times, ‘Times New Roman’, serif;
+    font-weight:bold;
+  }
+
+  h1{
+    margin-top:10px;
+    font-size:36px;
+  }
+
+  h2{
+    font-size:26px;
+  }
+
+  h3{
+    margin-top:11px;
+    font-size:20px;
+  }
+
+  .noscriptmsg{
+    display:none;
+    text-align:center;
+    margin:0 auto;
+    max-width:500px;
+    margin-top:30px;
+  }
+
+  .nav-tabs {
+    border-bottom: 1px solid rgb(90, 90, 90);
+    background-color: rgb(36, 44, 36);
+    padding-left:20px;
+  }
+
+    .nav-tabs > li{
+      font-size: 14px;
+    }
+
+      .nav-tabs > li > a{
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        line-height: 1.2;
       }
-
-      body, #map{
-        background-color:rgb(36, 44, 36);
-        background-image:url('../i/grid.png');
-     }
-
-      body{
-        color: white;
-        font-family: Geneva, ‘Lucida Sans’, ‘Lucida Grande’, ‘Lucida Sans Unicode’, Verdana, sans-serif;
-        font-size:17px;
-        padding: 0;
-        margin: 0;
-      }
-
-      h1,h2,h3{
-        font-family: Cambria, ‘Hoefler Text’, Utopia, ‘Liberation Serif’, ‘Nimbus Roman No9 L Regular’, Times, ‘Times New Roman’, serif;
-        font-weight:bold;
-      }
-
-      h1{
-        margin-top:10px;
-        font-size:36px;
-      }
-
-      h2{
-        font-size:26px;
-      }
-
-      h3{
-        margin-top:11px;
-        font-size:20px;
-      }
-
-      .noscriptmsg{
-        display:none;
-        text-align:center;
-        margin:0 auto;
-        max-width:500px;
-        margin-top:30px;
-      }
-
-      .footer{
-        margin-top:60px;
-        color:grey;
-      }
-
-      .footer a{
-        color:grey;
-      }
-
-
-      #loadingImg{
-        display:none;
-      }
+      
+        .nav-tabs > li > a:hover{
+          background-color: rgb(100, 107, 100);
+          border-color:transparent;
+        }
 
       .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
         color: white;
@@ -71,196 +77,290 @@
         border-bottom-color: transparent;
       }
 
-      .row{
-        margin-right: 0px;
-        margin-left: 0px;
-      }
+    .nav-tabs a{
+      color:white;
+    }
 
-      .nav-tabs {
-        border-bottom: 1px solid rgb(90, 90, 90);
-        background-color: rgb(36, 44, 36);
-        padding-left:20px;
-      }
+  .row{
+    margin-right: 0px;
+    margin-left: 0px;
+  }
 
-      .nav-tabs > li{
-        font-size: 14px;
-      }
+  .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    background-color: rgb(100, 107, 100);
+    border-color: transparent;
+  }
 
-      .nav-tabs a{
-        color:white;
-      }
+  .nav-tabs.norco-menu>li.active>a, .nav-tabs.norco-menu>li.active>a:hover, .nav-tabs>li.active>a:focus{
+    border-bottom: 1px solid rgb(100, 107, 100);
+  }
 
-      .nav-tabs > li > a{
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        border-radius: 0;
-        line-height: 1.2;
-      }
-      
-      .nav-tabs > li > a:hover{
-        background-color: rgb(100, 107, 100);
-        border-color:transparent;
-      }
+  .dropdown-menu{
+    background-color:rgb(100, 107, 100);
+  }
 
-      .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
-        background-color: rgb(100, 107, 100);
-        border-color: transparent;
-      }
+  .dropdown.active, .dropdown.active:hover{
+    background-color:rgb(16, 16, 16);
+  }
 
-      .nav-tabs.norco-menu>li.active>a, .nav-tabs.norco-menu>li.active>a:hover, .nav-tabs>li.active>a:focus{
-        border-bottom: 1px solid rgb(100, 107, 100);
-      }
+  .dropdown.active.open>.dropdown-menu{
+    background-color: rgb(16, 16, 16);
+  }
 
-      .dropdown-menu{
-        background-color:rgb(100, 107, 100);
-      }
+  .dropdown-menu>li>a{
+    color:white;
+  }
 
-      .dropdown.active, .dropdown.active:hover{
-        background-color:rgb(16, 16, 16);
-      }
+  .dropdown-menu>.active>a{
+    background-color: #414141;
+  }
 
-      .dropdown.active.open>.dropdown-menu{
-        background-color: rgb(16, 16, 16);
-      }
+  .inactive{
+    color:grey !important;
+  }
 
-      .dropdown-menu>li>a{
-        color:white;
-      }
+  .nav-pills>li.active>a, .btn-default {
+    color: #FFF;
+    background-color: rgb(36, 44, 36);
+    border-color: rgb(90, 90, 90);
+  }
+  
+  .dropdown-menu>li>a,
+  .nav-pills>li>a{
+    text-shadow:none;
+  }
+  
+  .dropdown.active, 
+  .dropdown.active:hover,
+  .dropdown.active:focus,
+  .nav-pills>li.active>a, 
+  .nav-pills>li.active>a:hover,
+  .nav-pills>li.active>a:focus{
+    background-color: rgb(36, 44, 36);
+    color:white;
+        }
 
-      .dropdown-menu>.active>a{
-        background-color: #414141;
-      }
+  .popover.bottom>.arrow{
+    display:none;
+  }
 
-      .inactive{
-        color:grey !important;
-      }
+  .popover-content{
+    color:rgb(58, 58, 58);
+    font-size:12px;
+  }
 
-      .nav-pills>li.active>a, .btn-default {
-        color: #FFF;
-        background-color: rgb(36, 44, 36);
-        border-color: rgb(90, 90, 90);
-      }
-      
-      .dropdown-menu>li>a,
-      .nav-pills>li>a{
-        text-shadow:none;
-      }
-      
-      .dropdown.active, 
-      .dropdown.active:hover,
-      .dropdown.active:focus,
-      .nav-pills>li.active>a, 
-      .nav-pills>li.active>a:hover,
-      .nav-pills>li.active>a:focus{
-        background-color: rgb(36, 44, 36);
-        color:white;
-            }
+  .geometry-link{
+    color:#3C8E56;
+    cursor: pointer;
+    font-weight:bold;
+  }
 
-      .popover.bottom>.arrow{
-        display:none;
-      }
-
-      .popover-content{
-        color:rgb(58, 58, 58);
-        font-size:12px;
-      }
-
-      .geometry-link{
-        color:#3C8E56;
-        cursor: pointer;
-        font-weight:bold;
-      }
-
-      .geometry-link:hover {
-        color: rgb(255, 243, 20);
-        text-decoration: none;
-      }
-
-      .center-header{
-        text-align:center;
-      }
-
-      #home-module-row a{
-        color:white;
-      }
+  .geometry-link:hover {
+    color: rgb(255, 243, 20);
+    text-decoration: none;
+  }
 
 
-      .video-wrap {
-        float: left;
-        margin: 0 20px 5px 0;
-      }
+  .video-wrap {
+    float: left;
+    margin: 0 20px 5px 0;
+  }
 
 
-      .pointer{
-        cursor:pointer;
-      }
+  .pointer{
+    cursor:pointer;
+  }
 
-      /*Content (Media All)*/
+  /*Scroll Bar (Media All)*/
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+   
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
+      border-radius: 10px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1); 
+  }
 
+  /*Content (Media All)*/
+  .norco-growth{
+    display:none;
+  }
+
+  #hurricane-context-visual{
+    text-align:center;
+    font-size:12px;
+  }
+
+  #viewport-too-small{
+    display:none;
+    font-style: italic;
+    font-size:11px;
+    color:grey;
+    text-align:center;
+  }
+
+  #hurricane-video-control{
+      padding:25px;
+      width:315px;
+      margin:0 auto;
+    }
+
+  /*Leaflet Map (Media All)*/
+  .esri-leaflet-logo{
+      display:none;
+    }
+
+
+    .scrollflip{
+      direction: rtl;
+    }
+
+    .scrollflip-content{
+      direction: ltr;
+    }
+
+
+    .leaflet-top > .leaflet-control-zoom {
+      margin-top: 50px;
+    }
+
+    .dropdown.active, .dropdown.active:hover {
+      background-color: rgba(16, 16, 16,.4);
+    }
+
+    .map-tab-content{
+      position:absolute;
+      top:0;
+      left:0;
+      max-height:100%;
+      height:100%;
+      overflow:scroll;
+      overflow-x:hidden;
+      padding:55px 15px 15px 15px;
+      background-color: rgba(36, 44, 36,.7);
+      background-image:url('./i/grid.png');
+      color: #fff;
+      text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
+      box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7);
+    }
+
+    .leaflet-control-minimap {
+      background-color:rgb(36, 44, 36);
+      background-image:url('./i/grid.png');
+      border: 2px solid rgb(36, 44, 36);
+    }
+
+    .leaflet-control-minimap a {
+      background-color: rgba(36, 44, 36, 1.0);
+    }
+
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: rgba(36, 44, 36,.9);
+    }
+
+    .main-menu{
+      z-index:9999;
+    }
+
+    .leaflet-container a,.geometry-link {
+      color: #FF8966
+    }
+  
+  .leaflet-container .leaflet-control-attribution{
+    color:white;
+    background-color: rgba(36, 44, 36,.7);
+  }
+
+  /*******************MEDIA QUERIES***************/
+
+  @media (min-width:760px){
+    #hurricane-video-wrapper{
+      width:100%;
+      position: absolute;
+      left: 0;
+      top: 38px;
+    }
+  }
+
+  @media all and (max-width: 760px) { 
+   
+    body{
+     font-size:14px;
+    }
+
+    #map{
+     height:300px;
+     box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
+    }
+
+    #top-right-video{
+     display:none;
+    }
+
+    .leaflet-control-zoom{
+      display:none;
+     }
+
+    .map-tab-content{
+      position:relative;
+      padding:15px 15px 15px 15px;
+      overflow:visible;
+      height:auto;
+      background: none;
+      left:0px;
+      top:0px;
+      max-width:100%;
+      box-shadow: none;
+    }
+
+    .leaflet-top .leaflet-control {
+      margin-top: 80px;
+    }
+
+    .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
+      font-size: 8px;
+    }
+
+    .leaflet-control-minimap{
+      display:none;
+    }
+
+    .nav-tabs {
+      padding-left:0px;
+    }
     
-      #viewport-too-small{
-        display:none;
-        font-style: italic;
-        font-size:11px;
-        color:grey;
-        text-align:center;
-      }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+      border: transparent;
+    }
 
-      #hurricane-video-control{
-          padding:25px;
-          width:315px;
-          margin:0 auto;
-        }
+    .nav-tabs > li {
+        float:none;
+    }
 
-      /*JQUERY*/
+  }
 
-      /*http://keith-wood.name/uiTabs.html#tabs-bottom*/
+  @media all and (max-width: 705px) { 
 
-      tabs-bottom { 
-          position: relative; 
-          padding-bottom: 3em; 
-      } 
-      tabs-bottom .ui-tabs-nav { 
-          position: absolute; 
-          left: 0.25em; 
-          right: 0.25em; 
-          bottom: 0.25em; 
-          padding: 0em 0.2em 0.2em; 
-      } 
-      tabs-bottom .ui-tabs-nav li { 
-          border-top: none; 
-          border-bottom: 1px solid #ccc; 
-          -moz-border-radius: 0px 0px 4px 4px; 
-          -webkit-border-radius: 0px 0px 4px 4px; 
-          border-radius: 0px 0px 4px 4px; 
-      } 
-      tabs-bottom .ui-tabs-nav li.ui-tabs-selected, 
-      tabs-bottom .ui-tabs-nav li.ui-state-active { 
-          top: -1px; 
-      }
+    .nav-tabs {
+      padding-left:0px;
+    }
 
+    #viewport-too-small{
+      display:block;
+    }
+    
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+      border: transparent;
+    }
 
-      /*******************MEDIA QUERIES***************/
-
-
-      @media all and (max-width: 705px) { 
-
-      .nav-tabs {
-        padding-left:0px;
-      }
-
-      #viewport-too-small{
-        display:block;
-      }
-      
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-        border: transparent;
-      }
-
-        .nav-tabs > li {
-            float:none;
-        }
-
+    .nav-tabs > li {
+        float:none;
     }
   }
 }
+  

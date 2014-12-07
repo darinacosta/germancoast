@@ -1,399 +1,230 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The German Coast</title>
-  <meta charset="utf-8" />
+  <head>
+    <title>The German Coast</title>
+    <meta charset="utf-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./plugins/minimap/Control.MiniMap.css">
-  <link rel="stylesheet" type="text/css" href="./css/magnificent.css">
+    <!--CSS-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
+    <link rel="stylesheet" href="./plugins/minimap/Control.MiniMap.css">
+    <link rel="stylesheet" type="text/css" href="./css/magnificent.css">
+    <link rel="stylesheet" href="./css/style.css" />
 
+    <!--JS-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="./js/lib/magnificent.js"></script>
+  </head>
+  <body>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="./js/lib/magnificent.js"></script>
+    <!--JavaScript Disabled View-->
+    <div class="noscriptmsg">
+      It seems your browser does not have Javascript enabled. To view the German Coast, please enable Javascript and <a href="http://germancoast.verylongroad.com">try again</a>.
+    </div>
 
-  <style>
-    .esri-leaflet-logo{
-      display:none;
-    }
-
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-     
-    ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8); 
-        border-radius: 10px;
-    }
-     
-    ::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1); 
-    }
-
-    .scrollflip{
-      direction: rtl;
-    }
-
-    .scrollflip-content{
-      direction: ltr;
-    }
-
-
-    .leaflet-top > .leaflet-control-zoom {
-      margin-top: 50px;
-    }
-
-    .nav-tabs {
-      border-bottom: 1px solid rgb(90, 90, 90);
-      background-color: rgba(36, 44, 36,.8);
-      padding-left: 20px;
-    }
-
-    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-      color: white;
-      cursor: default;
-      background-color: rgba(16, 16, 16,.4);
-      border: 1px solid rgb(100, 107, 100);
-      border-bottom-color: transparent;
-    }
-
-    .dropdown.active, .dropdown.active:hover {
-      background-color: rgba(16, 16, 16,.4);
-    }
-
-    .map-tab-content{
-      position:absolute;
-      top:0;
-      left:0;
-      max-height:100%;
-      height:100%;
-      overflow:scroll;
-      overflow-x:hidden;
-      padding:55px 15px 15px 15px;
-      background-color: rgba(36, 44, 36,.7);
-      background-image:url('./i/grid.png');
-      color: #fff;
-      text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
-      box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7);
-    }
-
-    .leaflet-control-minimap {
-      background-color:rgb(36, 44, 36);
-      background-image:url('./i/grid.png');
-      border: 2px solid rgb(36, 44, 36);
-    }
-
-    .leaflet-control-minimap a {
-      background-color: rgba(36, 44, 36, 1.0);
-    }
-
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-      background: rgba(36, 44, 36,.9);
-    }
-
-    .main-menu{
-      z-index:9999;
-    }
-
-    .leaflet-container a,.geometry-link {
-      color: #FF8966
-    }
-  
-  .leaflet-container .leaflet-control-attribution{
-    color:white;
-    background-color: rgba(36, 44, 36,.7);
-  }
-
-  /****CONTENT****/
-
-  .norco-growth{
-    display:none;
-  }
-
-  #hurricane-context-visual{
-    text-align:center;
-    font-size:12px;
-  }
-
-  @media (min-width:760px){
-    #hurricane-video-wrapper{
-      width:100%;
-      position: absolute;
-      left: 0;
-      top: 38px;
-    }
-  }
-
-  @media all and (max-width: 760px) { 
-   
-   body{
-    font-size:14px;
-   }
-
-   #map{
-    height:300px;
-    box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
-   }
-
-   #top-right-video{
-    display:none;
-   }
-
-   .leaflet-control-zoom{
-     display:none;
-    }
-
-   .map-tab-content{
-      position:relative;
-      padding:15px 15px 15px 15px;
-      overflow:visible;
-      height:auto;
-      background: none;
-      left:0px;
-      top:0px;
-      max-width:100%;
-      box-shadow: none;
-    }
-
-   .leaflet-top .leaflet-control {
-      margin-top: 80px;
-    }
-
-   .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
-    font-size: 8px;
-    }
-
-    .leaflet-control-minimap{
-      display:none;
-    }
-
-    .nav-tabs {
-      padding-left:0px;
-    }
+    <!--Map View-->
+    <div id="map"></div>
     
-    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-      border: transparent;
-    }
+    <!--Navigation Menu Full Screen-->
+    <ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
+      <li class="active"><a class="home-location-button newpage" href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> GERMAN COAST</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li data-toggle="popover"
+          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
+          <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
+        </ul><!-- end of dropdown menu -->
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+        <li data-toggle="popover"
+        data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+        </ul><!-- end of dropdown menu -->
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a class="inactive"><i>1811</i></a></li>
+          <li><a class="inactive"><i>Maroon</i></a></li>
+        </ul><!-- end of dropdown menu -->
+      </li>
+    </ul>
 
-    .nav-tabs > li {
-        float:none;
-    }
+    <!--Navigation Menu Mobile-->
+    <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
+      <li class="active home-location-button newpage"><a href="#homePane" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li data-toggle="popover"
+          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
+          <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
+          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+          <li data-toggle="popover"
+          data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+          <li><a class="inactive"><i>1811</i></a></li>
+          <li><a class="inactive"><i>Maroon</i></a></li>
+        </ul><!-- end of dropdown menu -->
+      </li>
+    </ul>
+    <!--/Navigation-->
 
-  }
+    <!--Left Column Content-->
+    <div class="tab-content map-tab-content col-md-4 col-sm-5 scrollflip">
 
-}
-  </style>
-</head>
-<body>
-  <div class="noscriptmsg">
-    It seems your browser does not have Javascript enabled. To view the German Coast, please enable Javascript and <a href="http://germancoast.verylongroad.com">try again</a>.
-    </div>
+          <!--*******************************************-->
+          <!--********************HOME*******************-->
+          <!--*******************************************-->
 
-  <div id="map"></div>
-
-<ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
-  <li class="active"><a class="home-location-button newpage" href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> GERMAN COAST</a></li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li data-toggle="popover"
-      data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
-      <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
-      <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
-    </ul><!-- end of dropdown menu -->
-  </li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
-    <li data-toggle="popover"
-    data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
-    </ul><!-- end of dropdown menu -->
-  </li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a class="inactive"><i>1811</i></a></li>
-      <li><a class="inactive"><i>Maroon</i></a></li>
-    </ul><!-- end of dropdown menu -->
-  </li>
-</ul>
-
-<!--MOBILE NAV-->
-
-<ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
-  <li class="active home-location-button newpage"><a href="#homePane" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li data-toggle="popover"
-      data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
-      <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
-      <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
-      <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
-      <li data-toggle="popover"
-      data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
-      <li><a class="inactive"><i>1811</i></a></li>
-      <li><a class="inactive"><i>Maroon</i></a></li>
-    </ul><!-- end of dropdown menu -->
-  </li>
-</ul>
-
- <!--/MOBILE NAV-->
-
-<div class="tab-content map-tab-content col-md-4 col-sm-5 scrollflip">
-
-      <!--*******************************************-->
-      <!--********************HOME*******************-->
-      <!--*******************************************-->
-
-  <div id="homePane" class="tab-pane active scrollflip-content">
-      <h1>Louisiana's German Coast</h1>
-      <p>The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
-      This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
-      geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
-      the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
-      <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
-      <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extend
-      into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
-      and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.<p>
-      <hr>
-      <h2 id="dev-notes">Development Notes</h2>
-      <p>This application is in production, and will remain a work in progress for some time to come. Not all modules are available, and those that are available are not yet complete. Refer to the "Updates" section for production notes.</p>
-      <h3>Questions or feedback?</h3> 
-      <p>Contact us at <a class="geometry-link" href="mailto:germancoast@verylongroad.com">germancoast@verylongroad.com</a>.</p>
-      <h3>Updates</h3>
-      <p><i>11.20.2014: New full-screen layout implemented.</i></p>
-    </div>
-
-    <!--*******************************************-->
-    <!--***************LABRANCHE*******************-->
-    <!--*******************************************-->
-
-    <div id="labranchePane" class="tab-pane scrollflip-content">
-
-
-      <div id="labranche-context">
-        <div style="text-align:center">
-          <h2>Real Estate Speculation in the LaBranche Wetlands</h2>
+      <div id="homePane" class="tab-pane active scrollflip-content">
+          <h1>Louisiana's German Coast</h1>
+          <p>The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
+          This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
+          geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
+          the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
+          <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
+          <a id="ej-geofeature-event" class="geometry-link">residential areas sandwiched between refineries</a>; others that extend
+          into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
+          and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.<p>
+          <hr>
+          <h2 id="dev-notes">Development Notes</h2>
+          <p>This application is in production, and will remain a work in progress for some time to come. Not all modules are available, and those that are available are not yet complete. Refer to the "Updates" section for production notes.</p>
+          <h3>Questions or feedback?</h3> 
+          <p>Contact us at <a class="geometry-link" href="mailto:germancoast@verylongroad.com">germancoast@verylongroad.com</a>.</p>
+          <h3>Updates</h3>
+          <p><i>11.20.2014: New full-screen layout implemented.</i></p>
         </div>
-        <hr>
-        <div id="walker-land-company">
-          <div style="text-align:center;">
-            <img src="i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%">
-          </div>
-          The Walker Land Company began selling parcels in the <a href="#" class="geometry-link labranche-industrial-park">LaBranche Industrial Park</a> in the early 1970s. Soon the company was under investigatizon by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>
-        </div>
-      </div>
-    </div>
 
-    <!--*******************************************-->
-    <!--***************HURRICANE*******************-->
-    <!--*******************************************-->
+        <!--*******************************************-->
+        <!--***************LABRANCHE*******************-->
+        <!--*******************************************-->
 
-    <div id="hurricanePane" class="tab-pane scrollflip-content">
-      <div id="hurricane-video-wrapper">
-        <div id="hurricane-video-inner-wrapper">
-          <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
-            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg">
-            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm">
-            <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <div id="hurricane-video-control">
-          <div style="float: left;">
-            <span id="hurricane-play"><span class="glyphicon glyphicon-play pointer"></span></span> 
-            <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
-            <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
+        <div id="labranchePane" class="tab-pane scrollflip-content">
+
+
+          <div id="labranche-context">
+            <div style="text-align:center">
+              <h2>Real Estate Speculation in the LaBranche Wetlands</h2>
+            </div>
+            <hr>
+            <div id="walker-land-company">
+              <div style="text-align:center;">
+                <img src="i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%">
+              </div>
+              The Walker Land Company began selling parcels in the <a href="#" class="geometry-link labranche-industrial-park">LaBranche Industrial Park</a> in the early 1970s. Soon the company was under investigatizon by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>
+            </div>
           </div>
         </div>
-        <div id="hurricane-context-visual"></div>
-        <div id="hurricane-context-text"></div>
-        <div class="col-md-12" id="viewport-too-small">
-          Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+
+        <!--*******************************************-->
+        <!--***************HURRICANE*******************-->
+        <!--*******************************************-->
+
+        <div id="hurricanePane" class="tab-pane scrollflip-content">
+          <div id="hurricane-video-wrapper">
+            <div id="hurricane-video-inner-wrapper">
+              <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
+                <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg">
+                <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm">
+                <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div id="hurricane-video-control">
+              <div style="float: left;">
+                <span id="hurricane-play"><span class="glyphicon glyphicon-play pointer"></span></span> 
+                <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
+                <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
+              </div>
+            </div>
+            <div id="hurricane-context-visual"></div>
+            <div id="hurricane-context-text"></div>
+            <div class="col-md-12" id="viewport-too-small">
+              Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-  <!--*******************************************-->
-  <!--*****************NORCO*********************-->
-  <!--*******************************************-->
+      <!--*******************************************-->
+      <!--*****************NORCO*********************-->
+      <!--*******************************************-->
 
-  <div id="norcoLandusePane" class="tab-pane scrollflip-content">
-    <div class="col-md-12" style="text-align:center">
-      <h2>Industrial Growth in Norco, Louisiana</h2>
-      <p id="norco-growth-context">Heavy industry is the most distinct visible characteristic of Norco's landscape. Industrial growth has occurred in 3 stages: plantations turned over to industrial land uses, the  footprints of these industrial facilities broadened, and finally heavy industry came to dominate and even displace other land uses. Select a historical epoch from the menu below for more information.</p>
-      <div id="norco-dropdown-wrap" style="margin: 0 auto;width:200px;line-height:15px;">
-        <ul class="nav nav-pills norco-menu">
-         <li class="dropdown"><a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown">Choose an epoch <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#pane1" class="plantation" data-toggle="tab">Plantation to Refinery</a></li>
-              <li><a href="#pane2" class="levee-domination" data-toggle="tab">Levee Domination</a></li>
-              <li><a href="#pane3" data-toggle="tab" class="ex-town">Ex-town</a></li>
+      <div id="norcoLandusePane" class="tab-pane scrollflip-content">
+        <div class="col-md-12" style="text-align:center">
+          <h2>Industrial Growth in Norco, Louisiana</h2>
+          <p id="norco-growth-context">Heavy industry is the most distinct visible characteristic of Norco's landscape. Industrial growth has occurred in 3 stages: plantations turned over to industrial land uses, the  footprints of these industrial facilities broadened, and finally heavy industry came to dominate and even displace other land uses. Select a historical epoch from the menu below for more information.</p>
+          <div id="norco-dropdown-wrap" style="margin: 0 auto;width:200px;line-height:15px;">
+            <ul class="nav nav-pills norco-menu">
+             <li class="dropdown"><a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown">Choose an epoch <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#pane1" class="plantation" data-toggle="tab">Plantation to Refinery</a></li>
+                  <li><a href="#pane2" class="levee-domination" data-toggle="tab">Levee Domination</a></li>
+                  <li><a href="#pane3" data-toggle="tab" class="ex-town">Ex-town</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </div> 
-      <hr>
-    </div>
-    <div class="norco-growth" id="norco-growth-plantation">
-      <div style="text-align:center;">
-        <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
-        <div style="padding: 15px 0;">
-          <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
+          </div> 
+          <hr>
         </div>
-        <hr>
+        <div class="norco-growth" id="norco-growth-plantation">
+          <div style="text-align:center;">
+            <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
+            <div style="padding: 15px 0;">
+              <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
+            </div>
+            <hr>
+          </div>
+          <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields, and could serve as a coolant for machinery as well as a toxic waste sink. Additionally, this land nearest to the river was the most evelvated and least flood-prone in region due to many hundreds of years of sediment deposition by the Mississppi River.</p>
+          <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.</p>
+        </div>
+        <div class="norco-growth" id="norco-growth-domination">
+          [Discuss the Good Hope Refinery and the <a href="./i/good_hope_change_v1.jpg" class="image-link geometry-link">disappearance of neighboring Good Hope</a>.] <a href="#" class="land-use-switch geometry-link">Switch Test</a>
+        </div>
       </div>
-      <p>As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields, and could serve as a coolant for machinery as well as a toxic waste sink. Additionally, this land nearest to the river was the most evelvated and least flood-prone in region due to many hundreds of years of sediment deposition by the Mississppi River.</p>
-      <p>Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.</p>
-    </div>
-    <div class="norco-growth" id="norco-growth-domination">
-      [Discuss the Good Hope Refinery and the <a href="./i/good_hope_change_v1.jpg" class="image-link geometry-link">disappearance of neighboring Good Hope</a>.] <a href="#" class="land-use-switch geometry-link">Switch Test</a>
-    </div>
-  </div>
 
-  </div><!-- /.tab-content -->
-</div><!-- /.tabbable -->
+      </div><!-- /.tab-content -->
+    </div><!-- /.tabbable -->
 
- <!--LEAFLET-->
-<script src="http://leafletjs.com/dist/leaflet.js"></script>
-<script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
-<script src="./plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
+     <!--LEAFLET-->
+    <script src="http://leafletjs.com/dist/leaflet.js"></script>
+    <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
+    <script src="./plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="js/config.js"></script>
-<script type="text/javascript" src="js/require.js"></script>
-<script src ="./js/index.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
+    <script src ="./js/index.js"></script>
 
-<script>
-  $(document).ready(function() {
-      $('.image-link').magnificPopup({type:'image'});
-      $('.video-link').magnificPopup({type:'iframe'});
-    }); 
+    <script>
+      $(document).ready(function() {
+          $('.image-link').magnificPopup({type:'image'});
+          $('.video-link').magnificPopup({type:'iframe'});
+        }); 
 
-  //Tooltips
-    $('[data-toggle="popover"]').popover({
-        trigger: 'hover',
-        'placement': 'bottom'
-    });
+      //Tooltips
+        $('[data-toggle="popover"]').popover({
+            trigger: 'hover',
+            'placement': 'bottom'
+        });
 
 
-     //Analytics
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         //Analytics
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-56503938-1', 'auto');
-    ga('send', 'pageview');
+        ga('create', 'UA-56503938-1', 'auto');
+        ga('send', 'pageview');
 
 
-</script>
+    </script>
 
-</body>
+  </body>
 </html>

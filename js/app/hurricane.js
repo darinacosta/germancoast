@@ -1,9 +1,10 @@
 define(['app/layers',
         'app/layerControl',
         'app/videoControl',
+        'app/screenControl',
         'app/pathAnimator'],
 
-  function(layers, layerControl, videoControl, pathAnimator){
+  function(layers, layerControl, videoControl, screenControl, pathAnimator){
 
       var $hurricaneVideo = $("#hurricane-video"),
           videoUpdateHandler = videoControl.videoUpdateHandler,
@@ -71,8 +72,7 @@ define(['app/layers',
           //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
         }, 107)],
 
-
-      init = function(){
+      activateVideoEventArray = function(){
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[1].handler, videoEventArray[1].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[2].handler, videoEventArray[2].time));
@@ -82,6 +82,17 @@ define(['app/layers',
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[6].handler, videoEventArray[6].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[7].handler, videoEventArray[7].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
+      }
+
+
+      init = function(){
+        screenControl.readyScreen({
+          'lat':30.0039,
+          'lng':-90.4108, 
+          'zoom':12
+        });
+        
+        activateVideoEventArray();
       }
 
     return {init: init,

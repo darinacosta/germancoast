@@ -38,7 +38,9 @@ define(['layers/norco_landuses_general_v1',
 
       labrancheDevelopments: new L.geoJson(labrancheDevelopmentsV1, {
         onEachFeature: function(feature, layer) {
+
           var popupContent = '<table><tr><h3>' + feature.properties.NAME + '</h3></tr><tr><th scope="row">ACRES:</th><td style="padding:5px;">'+ feature.properties.ACREAGE + '</td></tr></table>';
+          
           layer.bindPopup(popupContent);
         },
         style: function (feature) {

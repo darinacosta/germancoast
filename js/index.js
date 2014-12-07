@@ -44,12 +44,8 @@ require(['app/layers',
          'app/hurricaneVideoControl'],
 
   function(layers, layerControl, home, labranche, hurricane, norco, videoControl){
-
-
-       /***************************/
-      /*****MODULE ACTIVATION*****/ 
-     /***************************/
-
+    
+    home.init();
 
     $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
       
