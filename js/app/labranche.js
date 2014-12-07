@@ -4,32 +4,35 @@ define(['app/layers',
   function(layers,layerControl){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
-    
-    executeDevelopmentEvent = function(selector, id, context){
-      $('.geometry-link').css('text-decoration','none');
-      $(selector).css('text-decoration','underline');
-      $('#labranche-context').html(context);
-    },
+        developmentsArray = {},
+        labrancheIndustrialPoint = new L.latLng(30.03759433988124,-90.37714004516602),
 
-    clickPoly = function() {
+    buildDevelopmentsArray = function() {
       $.each(labrancheDevelopments._layers, function(key, value){
-        if (value.feature.properties.NAME === "LaBranche Industrial Park") {
-          value.fireEvent('click',{latlng:[30.03759433988124,-90.37714004516602]});
-          map.setView(new L.LatLng(30.03759433988124,-90.37714004516602),14);
+        developmentsArray[value.feature.properties.NAME] = value;
+      });
+    }, 
+
+    activateGeometryLinks = function(){
+      buildDevelopmentsArray();
+      $('#labranchePane').on("click", "a[href^='#']", function(event){
+        if ($(event.target).hasClass('labranche-industrial-park')){
+          developmentsArray['LaBranche Industrial Park'].fireEvent('click',{latlng: labrancheIndustrialPoint});;
         }
       });
     },
-
-    activateGeometryLinks = $('#labranchePane').on("click", "a[href^='#']", function(event){
-      if ($(event.target).hasClass('labranche-industrial-park')){
-        clickPoly();
-        console.log('Labranche Industrial Park');
-      }
-    }),
     
     init =  function(){
-      activateGeometryLinks;
-      layerControl.selectPolyOnClick(labrancheDevelopments, 'rgb(200,200,0)', 'rgb(130,150,0)');
+      activateGeometryLinks();
+
+      layerControl.selectPolyOnClick({
+        targetLayer: labrancheDevelopments, 
+        selectedColor: 'rgb(200,200,0)', 
+        selectedFill: 'rgb(130,150,0)', 
+        originalColor: '#960000', 
+        originalFill: '#642800'
+      });
+
     };
 
   return {init: init};
