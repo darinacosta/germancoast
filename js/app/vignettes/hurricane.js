@@ -1,9 +1,10 @@
 define(['app/layers',
+        'app/helpers/screenControl',
         'app/helpers/layerControl',
         'app/helpers/videoControl',
         'app/helpers/pathAnimator'],
 
-  function(layers, layerControl, videoControl, pathAnimator){
+  function(layers, screenControl, layerControl, videoControl, pathAnimator){
 
       var $hurricaneVideo = $("#hurricane-video"),
           videoUpdateHandler = videoControl.videoUpdateHandler,
@@ -85,7 +86,13 @@ define(['app/layers',
 
 
       init = function(){
-        map.setView([30.0339, -90.4108], 12);
+
+        screenControl.readyScreen({
+          'lat':30.0039,
+          'lng':-90.4108, 
+          'zoom':12
+        });
+        
         activateVideoEventArray();
       }
 

@@ -1,7 +1,8 @@
 define(['app/layers',
-        'app/helpers/layerControl'],
+        'app/helpers/layerControl',
+        'app/helpers/screenControl'],
 
-  function(layers,layerControl){
+  function(layers,layerControl, screenControl){
 
   var activateGeometryLinks = function(){
 
@@ -29,7 +30,13 @@ define(['app/layers',
 
   init = function(){
     map.removeLayer(imageryLabels);
-    map.setView([30.0339, -90.4008], 11);
+
+     screenControl.readyScreen({
+      'lat':30.0339,
+      'lng':-90.4008, 
+      'zoom':11
+    });
+
     activateGeometryLinks();
   }
 

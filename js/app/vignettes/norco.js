@@ -1,7 +1,8 @@
 define(['app/layers',
+        'app/helpers/screenControl',
         'app/helpers/layerControl'],
 
-function(layers, layerControl){
+function(layers, screenControl, layerControl){
 
     var $opacityBar = $('#opacity-bar'),
         $norcoLandUsePane = $('#norcoLandusePane'),
@@ -49,7 +50,13 @@ function(layers, layerControl){
     }),
 
     init = function(){
-      map.setView([30.0039, -90.4108], 12);
+
+      screenControl.readyScreen({
+        'lat':30.0039,
+        'lng':-90.4108, 
+        'zoom':12
+      });
+
       activateOpacityControl;
       activateLandUsePaneEvents;
     }

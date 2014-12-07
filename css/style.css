@@ -243,7 +243,7 @@
       overflow-x:hidden;
       padding:55px 15px 15px 15px;
       background-color: rgba(36, 44, 36,.7);
-      background-image:url('./i/grid.png');
+      background-image:url('../i/grid.png');
       color: #fff;
       text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);
       box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7);
@@ -251,7 +251,7 @@
 
     .leaflet-control-minimap {
       background-color:rgb(36, 44, 36);
-      background-image:url('./i/grid.png');
+      background-image:url('../i/grid.png');
       border: 2px solid rgb(36, 44, 36);
     }
 

@@ -1,7 +1,8 @@
 define(['app/layers',
+        'app/helpers/screenControl',
         'app/helpers/layerControl'],
 
-  function(layers,layerControl){
+  function(layers, screenControl, layerControl){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
@@ -23,8 +24,12 @@ define(['app/layers',
     },
     
     init =  function(){
-      map.setView([30.015, -90.335], 13);
-
+      screenControl.readyScreen({
+        'lat':30.015,
+        'lng': -90.335, 
+        'zoom':13
+      });
+      
       layers.labrancheDevelopments.addTo(map);
 
       activateGeometryLinks();
