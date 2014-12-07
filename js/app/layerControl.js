@@ -7,13 +7,13 @@ define(['app/layers'],
       $.each(layers, function(key, val) {map.removeLayer(layers[key])});
     },
 
-    selectPolyOnClick = function(arguments){
+    selectPolyOnClick = function(args){
 	    
-	    var targetLayer = arguments['targetLayer'],
-	        selectedColor = arguments['selectedColor'],
-	        selectedFill = arguments['selectedFill'],
-	        originalColor = arguments['originalColor'],
-	        originalFill = arguments['originalFill'];
+	    var targetLayer = args['targetLayer'],
+	        selectedColor = args['selectedColor'],
+	        selectedFill = args['selectedFill'],
+	        originalColor = args['originalColor'],
+	        originalFill = args['originalFill'];
 
 	    targetLayer.on("click", function(e){
 

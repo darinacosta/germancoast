@@ -1,7 +1,8 @@
 define(['app/layers',
-        'app/layerControl'],
+        'app/layerControl',
+        'app/screenControl'],
 
-  function(layers,layerControl){
+  function(layers,layerControl,screenControl){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
@@ -23,6 +24,15 @@ define(['app/layers',
     },
     
     init =  function(){
+      console.log('labranche init');
+      screenControl.readyScreen({
+        'lat':30.015,
+        'lng': -90.335, 
+        'zoom':13
+      });
+
+      layers.labrancheDevelopments.addTo(map);
+
       activateGeometryLinks();
 
       layerControl.selectPolyOnClick({
