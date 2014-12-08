@@ -4,6 +4,7 @@ define(['app/helpers/layerControl',
 	function(layerControl, videoControl){
     
     readyScreen = function(args){
+      
     	var lat = args['lat'],
     	    lng = args['lng'],
     	    zoom = args['zoom'];

@@ -3,52 +3,59 @@ define(['app/vignettes/hurricane',
 
   function(hurricane, layerControl){
 
-    var $hurricaneVideo = $("#hurricane-video"),
-        hurricaneVideoStatus = 'paused',
-        hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
+    var $hurricaneVideo = $("#hurricane-video").get(0),
         $playButton = $('#hurricane-play'),
         $hurricaneContextVisual = hurricane.$hurricaneContextVisual,
         $hurricaneContextText = hurricane.$hurricaneContextText,
+        hurricaneVideoStatus = 'paused',
+        hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
+        playButtonHtml = '<span class="glyphicon glyphicon-play"></span>',
+        pauseButtonHtml = '<span class="glyphicon glyphicon-pause"></span>',
 
-    hurricaneControls = function(){
-      $('a.newpage').on("click", function(){
-        $playButton.html('<span class="glyphicon glyphicon-play"></span>');
-        $hurricaneVideo.get(0).pause();
+    videoControls = {
+
+      play: function(){
+        $hurricaneVideo.play();
+        hurricaneVideoStatus='playing';
+        $playButton.html(pauseButtonHtml);
+      },
+
+      pause: function(){
+        $playButton.html(playButtonHtml);
+        $hurricaneVideo.pause();
         hurricaneVideoStatus='paused';
+      },
+
+      replay: function(){
+        $hurricaneContextVisual.html('');
+        $hurricaneVideo.currentTime = '0';
+        hurricane.init();
+        this.play();
+      }
+    },
+
+    activateVideoControls = function(){
+      $('a.newpage').on("click", function(){
+        videoControls.pause();
       });
 
       $('#hurricane-video, #hurricane-play').on("click", function(){
         if (hurricaneVideoStatus=='paused'){
-          $hurricaneVideo.get(0).play();
-          hurricaneVideoStatus='playing';
-          $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
+          videoControls.play();
         }else if (hurricaneVideoStatus=='playing'){
-          $playButton.html('<span class="glyphicon glyphicon-play"></span>');
-          $hurricaneVideo.get(0).pause();
-          hurricaneVideoStatus='paused';
+          videoControls.pause();
         }
       });
 
       $('#hurricane-replay').on("click", function(){
-        $mainMapTopRight.html('');
-        $hurricaneContextVisual.html('');
-        $hurricaneVideo.get(0).currentTime = '0';
-        hurricane.init();
-        layerControl.hideAllLayers();
-        $hurricaneVideo.get(0).play();
-        map.setView(new L.LatLng(30.0039, -90.4108), 13);
-        if (hurricaneVideoStatus=='paused'){
-          $playButton.html('<span class="glyphicon glyphicon-play"></span>');
-        }else if (hurricaneVideoStatus=='playing'){
-          $playButton.html('<span class="glyphicon glyphicon-pause"></span>');
-        }
+        videoControls.replay();
       });
 
       hurricaneVolumeBar.addEventListener("change", function() {
-        $hurricaneVideo.get(0).volume = hurricaneVolumeBar.value;
+        $hurricaneVideo.volume = hurricaneVolumeBar.value;
       }, false);
     }
 
-    return hurricaneControls();
+    return activateVideoControls();
   }
 );
