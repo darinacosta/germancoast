@@ -1,4 +1,5 @@
-define(['app/helpers/layerControl',
+define([
+        'app/helpers/layerControl',
 	      'app/helpers/videoControl'],
 
 	function(layerControl, videoControl){
@@ -12,10 +13,10 @@ define(['app/helpers/layerControl',
       layerControl.hideAllLayers();
       videoControl.videoEventPopup._close();
       $mainMapTopRight.html('');
-      window.scrollTo(0, 0);
+      $('.tab-pane').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
     }
 
     return{readyScreen: readyScreen}
- }
+  }
 )

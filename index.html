@@ -29,20 +29,20 @@
     
     <!--Navigation Menu Full Screen-->
     <ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
-      <li class="active"><a class="home-location-button newpage" href="#homePane" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> GERMAN COAST</a></li>
+      <li class="active"><a class="home-location-button newpage" href="#home" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> GERMAN COAST</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li data-toggle="popover"
-          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
-          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
+          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#speculation" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
           <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
         </ul><!-- end of dropdown menu -->
       </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+          <li><a href="#growth" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
         <li data-toggle="popover"
         data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
         </ul><!-- end of dropdown menu -->
@@ -58,15 +58,15 @@
 
     <!--Navigation Menu Mobile-->
     <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
-      <li class="active home-location-button newpage"><a href="#homePane" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
+      <li class="active home-location-button newpage"><a href="#home" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li data-toggle="popover"
-          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#labranchePane" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
-          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricanePane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
+          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#speculation" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
           <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
-          <li><a href="#norcoLandusePane" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
+          <li><a href="#growth" data-toggle="tab" class="norco-location-button newpage">Growth</a></li>
           <li data-toggle="popover"
           data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
           <li><a class="inactive"><i>1811</i></a></li>
@@ -83,7 +83,7 @@
           <!--********************HOME*******************-->
           <!--*******************************************-->
 
-      <div id="homePane" class="tab-pane active scrollflip-content">
+      <div id="home" class="tab-pane active scrollflip-content">
           <h1>Louisiana's German Coast</h1>
           <p>The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
           This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
@@ -106,7 +106,7 @@
         <!--***************LABRANCHE*******************-->
         <!--*******************************************-->
 
-        <div id="labranchePane" class="tab-pane scrollflip-content">
+        <div id="speculation" class="tab-pane scrollflip-content">
 
 
           <div id="labranche-context">
@@ -127,7 +127,7 @@
         <!--***************HURRICANE*******************-->
         <!--*******************************************-->
 
-        <div id="hurricanePane" class="tab-pane scrollflip-content">
+        <div id="hurricane" class="tab-pane scrollflip-content">
           <div id="hurricane-video-wrapper">
             <div id="hurricane-video-inner-wrapper">
               <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
@@ -156,7 +156,7 @@
       <!--*****************NORCO*********************-->
       <!--*******************************************-->
 
-      <div id="norcoLandusePane" class="tab-pane scrollflip-content">
+      <div id="growth" class="tab-pane scrollflip-content">
         <div class="col-md-12">
           <div style="text-align:center">
             <h2>Industrial Growth in Norco, Louisiana</h2>

@@ -6,7 +6,7 @@ define(['app/layers',
 
   var activateGeometryLinks = function(){
 
-    $( "#homePane" ).on( "click", "a[class='geometry-link']", function( event ) {
+    $( "#home" ).on( "click", "a[class='geometry-link']", function( event ) {
       switch(event.target.id){
         case 'radial-geofeature-event':
           map.setView([30.269, -90.377], 15);

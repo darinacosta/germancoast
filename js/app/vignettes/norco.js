@@ -5,7 +5,7 @@ define(['app/layers',
 function(layers, screenControl, layerControl){
 
     var $opacityBar = $('#opacity-bar'),
-        $norcoLandUsePane = $('#norcoLandusePane'),
+        $growth = $('#growth'),
         $norcoGrowth = $('.norco-growth'),
         $norcoGrowthContext = $('#norco-growth-context'),
         landUseDisplayStatus = 'full',
@@ -21,7 +21,7 @@ function(layers, screenControl, layerControl){
       layers.plantationsLayer.setOpacity(opacityValue);
     }),
 
-    activateLandUsePaneEvents = $norcoLandUsePane.on("click",  "a[href^='#']", function(event){
+    activateLandUsePaneEvents = $growth.on("click",  "a[href^='#']", function(event){
       if ($(event.target).hasClass('plantation')){
         norcoGrowthClick();
         layers.plantationsLayer.addTo(map);

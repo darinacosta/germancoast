@@ -34,32 +34,19 @@ L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./biblio
  /******BEGIN APP*****/
 /********************/
 
-require(['app/layers',
-         'app/helpers/layerControl',
-         'app/vignettes/home',
-         'app/vignettes/labranche',
-         'app/vignettes/hurricane',
-         'app/vignettes/norco',
-         'app/helpers/videoControl',
+require(['app/vignettes/home',
+         'app/controller',
+         'app/helpers/persistenceControl',
+         'app/helpers/screenControl',
          'app/helpers/hurricaneVideoControl'],
 
-  function(layers, layerControl, home, labranche, hurricane, norco, videoControl){
+  function(home, controller, persistenceControl, screenControl, hurricaneVideoControl){
     
-    home.init();
+    if (window.location.hash == ''){
+      home.init();
+    } 
 
-    $( ".main-menu" ).on( "click", "a[href^='#']", function(event) {
-      
-      imageryLabels.addTo(map);
-
-      if ($(event.target).hasClass('hurricane-location-button')){
-        hurricane.init();
-      }else if ($(event.target).hasClass('labranche-location-button')){
-        labranche.init();
-      }else if ($(event.target).hasClass('norco-location-button')){ 
-        norco.init();
-      }else if ($(event.target).hasClass('home-location-button')){ 
-        home.init();
-      }
-    });
+    controller.init();
+    persistenceControl();
   }
 );

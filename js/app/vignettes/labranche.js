@@ -16,7 +16,7 @@ define(['app/layers',
 
     activateGeometryLinks = function(){
       buildDevelopmentsArray();
-      $('#labranchePane').on("click", "a[href^='#']", function(event){
+      $('#speculation').on("click", "a[href^='#']", function(event){
         if ($(event.target).hasClass('labranche-industrial-park')){
           developmentsArray['LaBranche Industrial Park'].fireEvent('click',{latlng: labrancheIndustrialPoint});;
         }

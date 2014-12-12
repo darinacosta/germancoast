@@ -30,7 +30,7 @@ define(['app/layers',
           map.setView(new L.LatLng(30.001, -90.409), 16);
           videoEventPopup.setLatLng([30.001, -90.405]);
           videoEventPopup.setContent(returnVideoString('shell_at_the_tracks_v1'));
-          //populateHurricanePanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
+          //populatehurricanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
         }, 8),
 
         videoSec1_1 = new videoUpdateHandler(function() {
@@ -41,14 +41,14 @@ define(['app/layers',
           map.setView(new L.LatLng(30.063, -90.386), 15);
           videoEventPopup.setLatLng([30.063, -90.383]);
           videoEventPopup.setContent(returnVideoString('I-10_traffic_v1'));
-          //populateHurricanePanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
+          //populatehurricanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
         }, 27),
 
         videoSec3_0 = new videoUpdateHandler(function (){
           map.setView(new L.LatLng(30.005, -90.419), 15);
           videoEventPopup.setLatLng([30.005, -90.412]);
           videoEventPopup.setContent(returnVideoString('dad_on_roof_v1'));
-          //populateHurricanePanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
+          //populatehurricanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
         }, 48),
 
         videoSec4_0 = new videoUpdateHandler(function(){
@@ -69,7 +69,7 @@ define(['app/layers',
 
         videoSec6_0 = new videoUpdateHandler(function(){
           //map.centerAndZoom([-90.412, 30.005 ], 8);
-          //populateHurricanePanelRight(2, 'burning_cane_v1', ' ');
+          //populatehurricanelRight(2, 'burning_cane_v1', ' ');
         }, 107)],
 
       activateVideoEventArray = function(){
