@@ -57,6 +57,7 @@ define(['app/layers',
         }, 71),
 
         videoSec5_0 = new videoUpdateHandler(function(){
+          console.log('hurricane top right');
           $mainMapTopRight.not('.leaflet-control-minimap .leaflet-top.leaflet-right').html('<div id="top-right-video" style="max-width: 350px;"><div style="margin-top: 37px;border: 1px solid rgb(90, 90, 90);overflow: hidden;width: 350px;height:190px;">' + returnVideoString('hurricane_isaac_course_v1') + '</div><div>Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)</div></div>' );
         }, 79),
 
