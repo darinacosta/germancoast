@@ -37,16 +37,16 @@ L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./biblio
 require(['app/vignettes/home',
          'app/controller',
          'app/helpers/persistenceControl',
-         'app/helpers/screenControl',
+         'app/helpers/screenHelpers',
          'app/helpers/hurricaneVideoControl'],
 
-  function(home, controller, persistenceControl, screenControl, hurricaneVideoControl){
+  function(home, controller, persistenceControl, screenHelpers, hurricaneVideoControl){
     
     if (window.location.hash == ''){
       home.init();
     } 
 
     controller.init();
-    persistenceControl();
+    persistenceControl.init();
   }
 );

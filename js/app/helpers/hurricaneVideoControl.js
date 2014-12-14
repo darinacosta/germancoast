@@ -1,7 +1,7 @@
 define(['app/vignettes/hurricane',
-        'app/helpers/layerControl'],
+        'app/helpers/layerHelpers'],
 
-  function(hurricane, layerControl){
+  function(hurricane, layerHelpers){
 
     var $hurricaneVideo = $("#hurricane-video").get(0),
         $playButton = $('#hurricane-play'),

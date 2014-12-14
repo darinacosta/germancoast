@@ -52,7 +52,7 @@ define(['layers/norco_landuses_general_v1',
       }),
 
       plantationsLayer: new function(){
-        this.url = 'https://s3-us-west-2.amazonaws.com/darinacostamediafiles/gis/raster/river_parish_plantations_v1.jpg';
+        this.url = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg';
         this.bounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
         return new L.imageOverlay(this.url, this.bounds,{opacity: 1});
       },

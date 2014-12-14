@@ -1,23 +1,23 @@
 define(['app/layers',
-        'app/helpers/screenControl',
-        'app/helpers/layerControl',
-        'app/helpers/videoControl',
+        'app/helpers/screenHelpers',
+        'app/helpers/layerHelpers',
+        'app/helpers/videoHelpers',
         'app/helpers/pathAnimator'],
 
-  function(layers, screenControl, layerControl, videoControl, pathAnimator){
+  function(layers, screenHelpers, layerHelpers, videoHelpers, pathAnimator){
 
       var $hurricaneVideo = $("#hurricane-video"),
-          videoUpdateHandler = videoControl.videoUpdateHandler,
-          returnVideoString = videoControl.returnVideoString,
-          videoEventPopup = videoControl.videoEventPopup,
-          runAtTime = videoControl.runAtTime,
+          videoUpdateHandler = videoHelpers.videoUpdateHandler,
+          returnVideoString = videoHelpers.returnVideoString,
+          videoEventPopup = videoHelpers.videoEventPopup,
+          runAtTime = videoHelpers.runAtTime,
           $hurricaneContextVisual = $('#hurricane-context-visual'),
           $hurricaneContextText = $('hurricane-context-text'),
 
       animateHurricane = function(){
         layers.westIndianPath.addTo(map);
         pathAnimator.drawPath(layers.westIndianPath, 
-          layers.hurricaneLayer, 5)
+        layers.hurricaneLayer, 5)
       },
 
       videoEventArray =  [
@@ -88,7 +88,7 @@ define(['app/layers',
 
       init = function(){
 
-        screenControl.readyScreen({
+        screenHelpers.readyScreen({
           'lat':30.0039,
           'lng':-90.4108, 
           'zoom':12

@@ -1,8 +1,9 @@
 define(['app/layers',
-        'app/helpers/screenControl',
-        'app/helpers/layerControl'],
+        'app/helpers/screenHelpers',
+        'app/helpers/layerHelpers',
+        'app/helpers/imageHelpers'],
 
-function(layers, screenControl, layerControl){
+function(layers, screenHelpers, layerHelpers, imageHelpers){
 
     var $opacityBar = $('#opacity-bar'),
         $growth = $('#growth'),
@@ -13,7 +14,7 @@ function(layers, screenControl, layerControl){
     norcoGrowthClick = function norcoGrowthClick(){
       $norcoGrowthContext.css('display','none');
       $norcoGrowth.css('display','none');
-      layerControl.hideAllLayers();
+      layerHelpers.hideAllLayers();
     },
 
     activateOpacityControl = $opacityBar.on("input", function() {
@@ -50,8 +51,9 @@ function(layers, screenControl, layerControl){
     }),
 
     init = function(){
+      imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
 
-      screenControl.readyScreen({
+      screenHelpers.readyScreen({
         'lat':30.0039,
         'lng':-90.4108, 
         'zoom':12

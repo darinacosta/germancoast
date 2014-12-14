@@ -1,8 +1,8 @@
 define([
-        'app/helpers/layerControl',
-	      'app/helpers/videoControl'],
+        'app/helpers/layerHelpers',
+	      'app/helpers/videoHelpers'],
 
-	function(layerControl, videoControl){
+	function(layerHelpers, videoHelpers){
     
     readyScreen = function(args){
       
@@ -10,8 +10,8 @@ define([
     	    lng = args['lng'],
     	    zoom = args['zoom'];
 
-      layerControl.hideAllLayers();
-      videoControl.videoEventPopup._close();
+      layerHelpers.hideAllLayers();
+      videoHelpers.videoEventPopup._close();
       $mainMapTopRight.html('');
       $('.tab-pane').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);

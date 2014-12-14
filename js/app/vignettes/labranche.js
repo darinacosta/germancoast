@@ -1,8 +1,8 @@
 define(['app/layers',
-        'app/helpers/screenControl',
-        'app/helpers/layerControl'],
+        'app/helpers/screenHelpers',
+        'app/helpers/layerHelpers'],
 
-  function(layers, screenControl, layerControl){
+  function(layers, screenHelpers, layerHelpers){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
@@ -24,7 +24,7 @@ define(['app/layers',
     },
     
     init =  function(){
-      screenControl.readyScreen({
+      screenHelpers.readyScreen({
         'lat':30.015,
         'lng': -90.335, 
         'zoom':13
@@ -34,7 +34,7 @@ define(['app/layers',
 
       activateGeometryLinks();
 
-      layerControl.selectPolyOnClick({
+      layerHelpers.selectPolyOnClick({
         targetLayer: labrancheDevelopments, 
         selectedColor: 'rgb(200,200,0)', 
         selectedFill: 'rgb(130,150,0)', 
