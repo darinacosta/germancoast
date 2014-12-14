@@ -29,8 +29,14 @@ define(['app/layers',
         'lng': -90.335, 
         'zoom':13
       });
+
+      //Reset potential style changes
+      labrancheDevelopments.setStyle({
+        color: '#960000',
+        fillColor: '#642800'
+      });
       
-      layers.labrancheDevelopments.addTo(map);
+      labrancheDevelopments.addTo(map);
 
       activateGeometryLinks();
 
