@@ -1,4 +1,4 @@
-var require ={
+var require = {
     baseUrl: 'js/lib',
     paths: {
         app: '../app',
@@ -7,5 +7,6 @@ var require ={
         layers: '../layers',
         leaflet: "//leafletjs.com/dist/leaflet",
         omnivore: '//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min'
-    }
+    },
+    waitSeconds: 0
 };

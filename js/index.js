@@ -38,14 +38,20 @@ require(['app/vignettes/home',
          'app/controller',
          'app/helpers/persistenceControl',
          'app/helpers/screenHelpers',
+         'app/helpers/imageHelpers',
          'app/helpers/hurricaneVideoControl'],
 
-  function(home, controller, persistenceControl, screenHelpers, hurricaneVideoControl){
+  function(home, controller, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
     
-    if (window.location.hash == ''){
-      home.init();
-    } 
-
+    if (window.location.hash == ''){ home.init(); };
+    
+    //Preload any large images
+    $(window).load( function (){
+      $('#load-screen').fadeOut( "slow", function(){
+        imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
+      });
+    });
+  
     controller.init();
     persistenceControl.init();
   }

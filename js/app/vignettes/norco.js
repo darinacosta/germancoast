@@ -51,7 +51,6 @@ function(layers, screenHelpers, layerHelpers, imageHelpers){
     }),
 
     init = function(){
-      imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
 
       screenHelpers.readyScreen({
         'lat':30.0039,
