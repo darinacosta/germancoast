@@ -10,7 +10,7 @@ define(['app/layers',
 
     activateGeometryLinks = function(){
 
-      $( "#home" ).on( "click", "a[class='geometry-link']", function( event ) {
+      $( "#home" ).click( function( event ) {
         if (event.target.id === 'radial-geofeature-event'){
             map.setView([30.269, -90.377], 15);
         }else if (event.target.id === 'erosion-geofeature-event'){
