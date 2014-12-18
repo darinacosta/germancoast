@@ -1,12 +1,10 @@
-define(['app/vignettes/hurricane',
-        'app/helpers/layerHelpers'],
+define(['app/vignettes/hurricane'],
 
-  function(hurricane, layerHelpers){
+  function(hurricane){
 
     var $hurricaneVideo = $("#hurricane-video").get(0),
         $playButton = $('#hurricane-play'),
         $hurricaneContextVisual = hurricane.$hurricaneContextVisual,
-        $hurricaneContextText = hurricane.$hurricaneContextText,
         hurricaneVideoStatus = 'paused',
         hurricaneVolumeBar = document.getElementById("hurricane-volume-bar"),
         playButtonHtml = '<span class="glyphicon glyphicon-play"></span>',
@@ -40,9 +38,9 @@ define(['app/vignettes/hurricane',
       });
 
       $('#hurricane-video, #hurricane-play').on("click", function(){
-        if (hurricaneVideoStatus=='paused'){
+        if (hurricaneVideoStatus==='paused'){
           videoControls.play();
-        }else if (hurricaneVideoStatus=='playing'){
+        }else if (hurricaneVideoStatus==='playing'){
           videoControls.pause();
         }
       });
@@ -54,7 +52,7 @@ define(['app/vignettes/hurricane',
       hurricaneVolumeBar.addEventListener("change", function() {
         $hurricaneVideo.volume = hurricaneVolumeBar.value;
       }, false);
-    }
+    };
 
     return activateVideoControls();
   }

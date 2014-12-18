@@ -11,28 +11,21 @@ define(['app/layers',
     activateGeometryLinks = function(){
 
       $( "#home" ).on( "click", "a[class='geometry-link']", function( event ) {
-        switch(event.target.id){
-          case 'radial-geofeature-event':
+        if (event.target.id === 'radial-geofeature-event'){
             map.setView([30.269, -90.377], 15);
-            break;
-          case 'erosion-geofeature-event':
+        }else if (event.target.id === 'erosion-geofeature-event'){
             map.setView([30.046, -90.330], 14);
-            break;
-          case 'ej-geofeature-event':
+        }else if (event.target.id === 'ej-geofeature-event'){
             map.setView([30.004, -90.414], 14);
             videoEventPopup.setLatLng([30.001, -90.409]);
             videoEventPopup.openOn(map);
             videoEventPopup.setContent(returnVideoString('norco_flaring_v1'));
-            break;
-          case 'suburb-geofeature-event':
+        }else if (event.target.id === 'suburb-geofeature-event'){
             map.setView([30.088, -90.446], 14);
-            break;
-          case 'parishline-geofeature-event':
-            map.setView([30.032, -90.279], 14);
-            break; 
-          }
+        }else if (event.target.id === 'parishline-geofeature-event'){
+            map.setView([30.032, -90.279], 14); 
         }
-      )
+      })
     },
 
     init = function(){
