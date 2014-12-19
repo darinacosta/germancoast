@@ -57,7 +57,7 @@ define(['layers/norco_landuses_general_v1',
         return new L.imageOverlay(this.url, this.bounds,{opacity: 1});
       },
 
-      shellProperties: omnivore.kml('./js/layers/shell_properties_v1.kml').on('ready', function() {
+      shellProperties: omnivore.kml('./js/app/layers/shell_properties_v1.kml').on('ready', function() {
         this.setStyle({color: "#960000",
           fillColor: "#642800",
           fillOpacity: 0.6,
@@ -69,7 +69,7 @@ define(['layers/norco_landuses_general_v1',
         dashArray: [3, 10] 
       }),
 
-      hurricaneLayer: omnivore.kml('./js/layers/west_indian_hurricane_v1.kml')
+      hurricaneLayer: omnivore.kml('./js/app/layers/west_indian_hurricane_v1.kml')
     }
   return layers;
 });
