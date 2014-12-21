@@ -1,7 +1,7 @@
-define(['app/vignettes/home',
-         'app/vignettes/labranche',
-         'app/vignettes/hurricane',
-         'app/vignettes/norco'],
+define(['vignettes/home',
+         'vignettes/labranche',
+         'vignettes/hurricane',
+         'vignettes/norco'],
 
   function(home, labranche, hurricane, norco){
     

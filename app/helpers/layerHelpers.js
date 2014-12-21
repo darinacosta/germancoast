@@ -1,4 +1,4 @@
-define(['app/layers'],
+define(['layers/layers'],
 
   function(layers)
   {

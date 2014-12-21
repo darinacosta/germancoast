@@ -1,4 +1,4 @@
-define(['app/vignettes/hurricane'],
+define(['vignettes/hurricane'],
 
   function(hurricane){
 

@@ -1,6 +1,6 @@
-define(['app/layers',
-        'app/helpers/screenHelpers',
-        'app/helpers/layerHelpers'],
+define(['layers/layers',
+        'helpers/screenHelpers',
+        'helpers/layerHelpers'],
 
   function(layers, screenHelpers, layerHelpers){
 

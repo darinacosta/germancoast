@@ -34,14 +34,14 @@ L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./biblio
  /******BEGIN APP*****/
 /********************/
 
-require(['app/vignettes/home',
-         'app/controller',
-         'app/helpers/persistenceControl',
-         'app/helpers/screenHelpers',
-         'app/helpers/imageHelpers',
-         'app/helpers/hurricaneVideoControl'],
+require(['controller',
+         'vignettes/home',
+         'helpers/persistenceControl',
+         'helpers/screenHelpers',
+         'helpers/imageHelpers',
+         'helpers/hurricaneVideoControl'],
 
-  function(home, controller, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
+  function(controller, home, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
     
     if (window.location.hash == ''){ home.init(); };
     

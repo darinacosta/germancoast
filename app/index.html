@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
-    <link rel="stylesheet" href="./plugins/minimap/Control.MiniMap.css">
-    <link rel="stylesheet" type="text/css" href="./css/magnificent.css">
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./assets/plugins/minimap/Control.MiniMap.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/magnificent.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
     <!--JS-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="./js/lib/magnificent.js"></script>
+    <script src="./assets/lib/magnificent.js"></script>
   </head>
   <body>
 
@@ -29,7 +29,7 @@
     bottom: 0;
     right: 0;
     background-color:rgb(36, 44, 36);
-    background-image:url('i/grid.png');
+    background-image:url('./assets/i/grid.png');
     opacity: 0.8;
     z-index:99999;">
       <div style="margin:0 auto; text-align:center;margin-top:15%;">
@@ -129,7 +129,7 @@
             <hr>
             <div id="walker-land-company">
               <div style="text-align:center;">
-                <img src="i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%">
+                <img src="./assets/i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%">
               </div>
               The Walker Land Company began selling parcels in the <a href="#" class="geometry-link labranche-industrial-park">LaBranche Industrial Park</a> in the early 1970s. Soon the company was under investigatizon by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there were\'t any streets or roads.</li></ul>
             </div>
@@ -190,7 +190,7 @@
         </div>
         <div class="norco-growth" id="norco-growth-plantation">
           <div style="text-align:center;">
-            <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./i/legend.png"></a>
+            <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./assets/i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./assets/i/legend.png"></a>
             <div style="padding: 15px 0;">
               <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
             </div>
@@ -201,7 +201,7 @@
         </div>
         <div class="norco-growth" id="norco-growth-domination">
           <h3>Levee Domination</h3>
-          Royal Dutch Shell initiated industrial development in the German Coast region in 1916 when it purchased the 366 acre Good Hope plantation tract. Over time the tract grew into a massive oil refinery. As the facility expanded, it <a href="./i/good_hope_change_v1.jpg" class="image-link geometry-link" title="This series of topographical maps documents the gradual disappearance of Good Hope, highlighted in red (USGS 1952, 1967, & 1992).">bought out and ultimately devoured</a> what was once the small port town of Good Hope. <a href="#" class="land-use-switch geometry-link">Switch Test</a>
+          Royal Dutch Shell initiated industrial development in the German Coast region in 1916 when it purchased the 366 acre Good Hope plantation tract. Over time the tract grew into a massive oil refinery. As the facility expanded, it <a href="./assets/i/good_hope_change_v1.jpg" class="image-link geometry-link" title="This series of topographical maps documents the gradual disappearance of Good Hope, highlighted in red (USGS 1952, 1967, & 1992).">bought out and ultimately devoured</a> what was once the small port town of Good Hope. <a href="#" class="land-use-switch geometry-link">Switch Test</a>
         </div>
       </div>
 
@@ -211,11 +211,11 @@
      <!--LEAFLET-->
     <script src="http://leafletjs.com/dist/leaflet.js"></script>
     <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet.js"></script>
-    <script src="./plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
+    <script src="./assets/plugins/minimap/Control.MiniMap.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="js/config.js"></script>
-    <script type="text/javascript" src="js/require.js"></script>
-    <script src ="./js/app/index.js"></script>
+    <script type="text/javascript" src="./config.js"></script>
+    <script type="text/javascript" src="./require.js"></script>
+    <script src ="./index.js"></script>
 
     <script>
    

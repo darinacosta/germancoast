@@ -1,8 +1,8 @@
-define(['app/layers',
-        'app/helpers/screenHelpers',
-        'app/helpers/layerHelpers',
-        'app/helpers/videoHelpers',
-        'app/helpers/pathAnimator'],
+define(['layers/layers',
+        'helpers/screenHelpers',
+        'helpers/layerHelpers',
+        'helpers/videoHelpers',
+        'helpers/pathAnimator'],
 
   function(layers, screenHelpers, layerHelpers, videoHelpers, pathAnimator){
 

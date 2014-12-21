@@ -282,7 +282,7 @@
 
   /*******************MEDIA QUERIES***************/
 
-  @media (min-width:760px){
+  @media (min-width:767px){
     #hurricane-video-wrapper{
       width:100%;
       position: absolute;
@@ -291,7 +291,7 @@
     }
   }
 
-  @media all and (max-width: 760px) { 
+  @media all and (max-width: 767px) { 
    
     body{
      font-size:14px;
@@ -309,6 +309,10 @@
     .leaflet-control-zoom{
       display:none;
      }
+
+    .tab-pane.active{
+      padding-top:0px;
+    }
 
     .map-tab-content{
       position:relative;
@@ -352,10 +356,6 @@
 
     .nav-tabs {
       padding-left:0px;
-    }
-
-    .tab-pane.active{
-      padding-top:0px;
     }
 
 

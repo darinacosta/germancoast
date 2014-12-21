@@ -1,6 +1,6 @@
 define([
-        'app/helpers/layerHelpers',
-	      'app/helpers/videoHelpers'],
+        'helpers/layerHelpers',
+	      'helpers/videoHelpers'],
 
 	function(layerHelpers, videoHelpers){
     
