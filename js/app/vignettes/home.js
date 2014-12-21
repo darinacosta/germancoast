@@ -9,7 +9,7 @@ define(['app/layers',
         videoEventPopup = videoHelpers.videoEventPopup,
         $home = $( "#home" ),
 
-    activateGeometryLinks = function(){
+    activateGeometryLinks = (function(){
 
       $home.click( function(event) {
         if (event.target.id === 'radial-geofeature-event'){
@@ -17,17 +17,17 @@ define(['app/layers',
         }else if (event.target.id === 'erosion-geofeature-event'){
           map.setView([30.046, -90.330], 14);
         } else if (event.target.id === 'ej-geofeature-event'){
-            map.setView([30.004, -90.414], 14);
-            videoEventPopup.setLatLng([30.001, -90.409]);
-            videoEventPopup.openOn(map);
-            videoEventPopup.setContent(returnVideoString('norco_flaring_v1'));
+          map.setView([30.004, -90.414], 14);
+          videoEventPopup.setLatLng([30.001, -90.409]);
+          videoEventPopup.openOn(map);
+          videoEventPopup.setContent(returnVideoString('norco_flaring_v1'));
         }else if (event.target.id === 'suburb-geofeature-event'){
-            map.setView([30.088, -90.446], 14);
+          map.setView([30.088, -90.446], 14);
         }else if (event.target.id === 'parishline-geofeature-event'){
-            map.setView([30.032, -90.279], 14); 
+          map.setView([30.032, -90.279], 14); 
         }
       })
-    },
+    })(),
 
     init = function(){
       map.removeLayer(imageryLabels);
@@ -38,7 +38,6 @@ define(['app/layers',
         'zoom':11
       });
       
-      activateGeometryLinks();
     }
 
     return {init: init};

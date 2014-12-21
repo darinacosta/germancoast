@@ -14,14 +14,14 @@ define(['app/layers',
       });
     }, 
 
-    activateGeometryLinks = function(){
+    activateGeometryLinks = (function(){
       buildDevelopmentsArray();
       $('#speculation').on("click", "a[href^='#']", function(event){
         if ($(event.target).hasClass('labranche-industrial-park')){
           developmentsArray['LaBranche Industrial Park'].fireEvent('click',{latlng: labrancheIndustrialPoint});;
         }
       });
-    },
+    })(),
     
     init =  function(){
       screenHelpers.readyScreen({
@@ -37,8 +37,6 @@ define(['app/layers',
       });
       
       labrancheDevelopments.addTo(map);
-
-      activateGeometryLinks();
 
       layerHelpers.selectPolyOnClick({
         targetLayer: labrancheDevelopments, 

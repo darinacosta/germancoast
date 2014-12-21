@@ -354,6 +354,11 @@
       padding-left:0px;
     }
 
+    .tab-pane.active{
+      padding-top:0px;
+    }
+
+
     #viewport-too-small{
       display:block;
     }
