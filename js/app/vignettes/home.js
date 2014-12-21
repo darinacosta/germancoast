@@ -7,15 +7,16 @@ define(['app/layers',
 
     var returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
+        $home = $( "#home" ),
 
     activateGeometryLinks = function(){
 
-      $( "#home" ).click( function( event ) {
+      $home.click( function(event) {
         if (event.target.id === 'radial-geofeature-event'){
-            map.setView([30.269, -90.377], 15);
+          map.setView([30.269, -90.377], 15);
         }else if (event.target.id === 'erosion-geofeature-event'){
-            map.setView([30.046, -90.330], 14);
-        }else if (event.target.id === 'ej-geofeature-event'){
+          map.setView([30.046, -90.330], 14);
+        } else if (event.target.id === 'ej-geofeature-event'){
             map.setView([30.004, -90.414], 14);
             videoEventPopup.setLatLng([30.001, -90.409]);
             videoEventPopup.openOn(map);
@@ -36,7 +37,7 @@ define(['app/layers',
         'lng':-90.4008, 
         'zoom':11
       });
-
+      
       activateGeometryLinks();
     }
 
