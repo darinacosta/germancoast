@@ -1,8 +1,9 @@
-define(['layers/layers',
+define(['jquery',
+        'layers/layers',
         'helpers/screenHelpers',
         'helpers/layerHelpers'],
 
-  function(layers, screenHelpers, layerHelpers){
+  function($, layers, screenHelpers, layerHelpers){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},

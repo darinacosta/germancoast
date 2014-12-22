@@ -1,6 +1,6 @@
-define(['layers/layers'],
+define(['jquery', 'layers/layers'],
 
-  function(layers)
+  function($, layers)
   {
 
     var hideAllLayers = function(){

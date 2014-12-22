@@ -1,8 +1,9 @@
 //Globals
-var $mainMapTopRight = $('#map .leaflet-top.leaflet-right'),
+var $mainMapTopRight = null;
+//$('#map .leaflet-top.leaflet-right');
 
     //MAP//
-    map = L.map('map', {
+    var map = L.map('map', {
     zoomControl: false,
     touchZoom: false,
     doubleClickZoom: false,
@@ -35,14 +36,27 @@ L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./biblio
 /********************/
 
 require(['controller',
+         'jquery',
          'vignettes/home',
          'helpers/persistenceControl',
          'helpers/screenHelpers',
          'helpers/imageHelpers',
-         'helpers/hurricaneVideoControl'],
+         'helpers/hurricaneVideoControl',
+         'magnificent'],
 
-  function(controller, home, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
+  function(controller, $, home, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
     
+    $(document).ready(function() {
+      $('.image-link').magnificPopup({type:'image'});
+      $('.video-link').magnificPopup({type:'iframe'});
+    }); 
+
+    
+    $('[data-toggle="popover"]').popover({
+        trigger: 'hover',
+        'placement': 'bottom'
+    });
+
     if (window.location.hash == ''){ home.init(); };
     
     //Preload any large images

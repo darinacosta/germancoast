@@ -1,6 +1,8 @@
-define({
+define(['jquery'],
 
-  init: function(){
+  function($){
+
+  init = function(){
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
 
@@ -13,5 +15,7 @@ define({
       }
     });
   }
+
+  return {init:init};
 
 });

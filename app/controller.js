@@ -1,9 +1,11 @@
-define(['vignettes/home',
+define(['jquery',
+         'vignettes/home',
          'vignettes/labranche',
          'vignettes/hurricane',
-         'vignettes/norco'],
+         'vignettes/norco',
+         'bootstrap'],
 
-  function(home, labranche, hurricane, norco){
+  function($, home, labranche, hurricane, norco){
     
     var activateController = function(){
       $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {

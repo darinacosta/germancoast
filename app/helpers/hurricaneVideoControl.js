@@ -1,6 +1,6 @@
-define(['vignettes/hurricane'],
+define(['jquery', 'vignettes/hurricane'],
 
-  function(hurricane){
+  function($, hurricane){
 
     var $hurricaneVideo = $("#hurricane-video").get(0),
         $playButton = $('#hurricane-play'),

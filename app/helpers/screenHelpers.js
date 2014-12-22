@@ -1,8 +1,8 @@
-define([
+define(['jquery',
         'helpers/layerHelpers',
 	      'helpers/videoHelpers'],
 
-	function(layerHelpers, videoHelpers){
+	function($, layerHelpers, videoHelpers){
     
     readyScreen = function(args){
       
@@ -12,7 +12,7 @@ define([
 
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
-      $mainMapTopRight.html('');
+      //$mainMapTopRight.html('');
       $('.tab-pane').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
     }

@@ -1,10 +1,11 @@
-define(['layers/layers',
+define(['jquery',
+        'layers/layers',
         'helpers/screenHelpers',
         'helpers/layerHelpers',
         'helpers/videoHelpers',
         'helpers/pathAnimator'],
 
-  function(layers, screenHelpers, layerHelpers, videoHelpers, pathAnimator){
+  function($, layers, screenHelpers, layerHelpers, videoHelpers, pathAnimator){
 
       var $hurricaneVideo = $("#hurricane-video"),
           videoUpdateHandler = videoHelpers.videoUpdateHandler,

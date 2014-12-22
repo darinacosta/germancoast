@@ -1,9 +1,10 @@
-define(['layers/layers',
+define(['jquery',
+        'layers/layers',
         'helpers/layerHelpers',
         'helpers/screenHelpers',
         'helpers/videoHelpers'],
 
-  function(layers, layerHelpers, screenHelpers, videoHelpers){
+  function($, layers, layerHelpers, screenHelpers, videoHelpers){
 
     var returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
