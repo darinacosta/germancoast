@@ -1,8 +1,9 @@
 define(['jquery',
+        'map',
         'helpers/layerHelpers',
 	      'helpers/videoHelpers'],
 
-	function($, layerHelpers, videoHelpers){
+	function($, map, layerHelpers, videoHelpers){
     
     readyScreen = function(args){
       

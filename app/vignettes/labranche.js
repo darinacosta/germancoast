@@ -1,9 +1,10 @@
 define(['jquery',
+        'map',
         'layers/layers',
         'helpers/screenHelpers',
         'helpers/layerHelpers'],
 
-  function($, layers, screenHelpers, layerHelpers){
+  function($, map, layers, screenHelpers, layerHelpers){
 
     var labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},

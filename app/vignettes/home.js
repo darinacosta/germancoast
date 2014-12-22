@@ -1,10 +1,11 @@
 define(['jquery',
+        'map',
         'layers/layers',
         'helpers/layerHelpers',
         'helpers/screenHelpers',
         'helpers/videoHelpers'],
 
-  function($, layers, layerHelpers, screenHelpers, videoHelpers){
+  function($, map, layers, layerHelpers, screenHelpers, videoHelpers){
 
     var returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
@@ -31,7 +32,7 @@ define(['jquery',
     })(),
 
     init = function(){
-      map.removeLayer(imageryLabels);
+      map.removeLayer(layers.imageryLabels);
 
       screenHelpers.readyScreen({
         'lat':30.0339,

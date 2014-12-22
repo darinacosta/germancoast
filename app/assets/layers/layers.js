@@ -1,15 +1,19 @@
 define(['layers/norco_landuses_general_v1', 
         'layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1',
         'layers/labrancheDevelopmentsV1',
-        'omnivore'], 
+        'leaflet',
+        'omnivore',
+        'esriLeaflet'], 
 
   function(norco_landuses_general_v1, 
           norcolanduses_100YRFLOODPLAINDISSOLVE_v1,
           labrancheDevelopmentsV1,
-          omnivore){
+          L,
+          omnivore,
+          esri){
     
     var layers = {
-    
+
       norcoLandUse: new L.geoJson(norco_landuses_general_v1,{
         style: function (feature) {
           return {fillColor: feature.properties.color_qgis2leaf,
@@ -19,6 +23,8 @@ define(['layers/norco_landuses_general_v1',
             fillOpacity: 0.6};
         }
       }),
+
+      imageryLabels: L.esri.basemapLayer('ImageryLabels'),
 
       floodLanduse: new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
         style: function (feature) {

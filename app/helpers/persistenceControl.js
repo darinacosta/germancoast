@@ -1,4 +1,5 @@
-define(['jquery'],
+define(['jquery',
+        'bootstrap'],
 
   function($){
 

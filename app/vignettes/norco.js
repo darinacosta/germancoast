@@ -1,10 +1,11 @@
 define(['jquery',
+        'map',
         'layers/layers',
         'helpers/screenHelpers',
         'helpers/layerHelpers',
         'helpers/imageHelpers'],
 
-function($, layers, screenHelpers, layerHelpers, imageHelpers){
+function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
 
     var $opacityBar = $('#opacity-bar'),
         $growth = $('#growth'),

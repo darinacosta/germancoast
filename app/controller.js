@@ -1,16 +1,18 @@
 define(['jquery',
+         'map',
+         'layers/layers',
          'vignettes/home',
          'vignettes/labranche',
          'vignettes/hurricane',
          'vignettes/norco',
          'bootstrap'],
 
-  function($, home, labranche, hurricane, norco){
+  function($, map, layers, home, labranche, hurricane, norco){
     
     var activateController = function(){
       $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
           
-        imageryLabels.addTo(map);
+        layers.imageryLabels.addTo(map);
 
         if (e.target.className === 'home-location-button newpage' || e.target.className === ''){
           home.init();
