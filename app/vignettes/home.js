@@ -32,7 +32,6 @@ define(['jquery',
     })(),
 
     init = function(){
-      map.removeLayer(layers.imageryLabels);
 
       screenHelpers.readyScreen({
         'lat':30.0339,

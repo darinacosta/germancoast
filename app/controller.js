@@ -5,18 +5,23 @@ define(['jquery',
          'vignettes/labranche',
          'vignettes/hurricane',
          'vignettes/norco',
+         'leaflet',
+         'esriLeaflet',
          'bootstrap'],
 
-  function($, map, layers, home, labranche, hurricane, norco){
+  function($, map, layers, home, labranche, hurricane, norco, L, esri){
     
-    var imageryLabels = layers.imageryLabels,
+    //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
+    //Will fix this later.
+    var imageryLabels = new L.esri.BasemapLayer('ImageryLabels'),
 
     activateController = function(){
-      $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+      $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) { 
           
         imageryLabels.addTo(map);
 
         if (e.target.className === 'home-location-button newpage' || e.target.className === ''){
+          map.removeLayer(imageryLabels);
           home.init();
         }else if (e.target.className === 'labranche-location-button newpage'){
           labranche.init();
@@ -28,10 +33,10 @@ define(['jquery',
       })
     },
 
-    init = function(){
+    init = (function(){
       activateController();
-    };
+    })();
 
-    return {init: init};
+    return init;
   }
 );

@@ -4,6 +4,8 @@ define(['jquery',
 	      'helpers/videoHelpers'],
 
 	function($, map, layerHelpers, videoHelpers){
+
+    var $mainMapTopRight = $('#map .leaflet-top.leaflet-right'),
     
     readyScreen = function(args){
       
@@ -13,11 +15,12 @@ define(['jquery',
 
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
-      //$mainMapTopRight.html('');
+      $mainMapTopRight.html('');
       $('.tab-pane').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
     }
 
-    return{readyScreen: readyScreen}
+    return{readyScreen: readyScreen,
+           $mainMapTopRight: $mainMapTopRight}
   }
 )

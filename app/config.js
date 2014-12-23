@@ -4,8 +4,7 @@ var require = {
         "bootstrap"  : { "deps" : ['jquery'] },
         "magnificent": { "deps" : ['jquery'] },
         "esriLeaflet": { "deps" : ['leaflet'] },
-        "omnivore"   : { "deps" : ['leaflet'] }
-    },
+        "omnivore"   : { "deps" : ['leaflet'] }    },
     paths: {
         vignettes: './vignettes',
         helpers: './helpers',

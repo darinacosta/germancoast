@@ -4,8 +4,7 @@
  /******BEGIN APP*****/
 /********************/
 
-require(['controller',
-         'jquery',
+require(['jquery',
          'vignettes/home',
          'layers/layers',
          'map',
@@ -13,9 +12,10 @@ require(['controller',
          'helpers/screenHelpers',
          'helpers/imageHelpers',
          'helpers/hurricaneVideoControl',
+         'controller',
          'magnificent'],
 
-  function(controller, $, home, layers, map, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
+  function($, home, layers, map, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
     
     $(document).ready(function() {
       $('.image-link').magnificPopup({type:'image'});
@@ -37,7 +37,6 @@ require(['controller',
       });
     });
   
-    controller.init();
     persistenceControl.init();
   }
 );

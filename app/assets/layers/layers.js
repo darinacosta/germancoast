@@ -3,14 +3,16 @@ define(['layers/norco_landuses_general_v1',
         'layers/labrancheDevelopmentsV1',
         'leaflet',
         'omnivore',
-        'esriLeaflet'], 
+        'esriLeaflet',
+        'map'], 
 
   function(norco_landuses_general_v1, 
           norcolanduses_100YRFLOODPLAINDISSOLVE_v1,
           labrancheDevelopmentsV1,
           L,
           omnivore,
-          esri){
+          esri,
+          map){
     
     var layers = {
 
@@ -24,7 +26,6 @@ define(['layers/norco_landuses_general_v1',
         }
       }),
 
-      imageryLabels: new L.esri.BasemapLayer('ImageryLabels'),
 
       floodLanduse: new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
         style: function (feature) {
@@ -37,7 +38,7 @@ define(['layers/norco_landuses_general_v1',
       }),
 
       frenierTitleLayer: new function(){
-        this.url = '../i/FRENIER.png';
+        this.url = './assets/i/FRENIER.png';
         this.bounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]];
         return new L.imageOverlay(this.url, this.bounds);
       },

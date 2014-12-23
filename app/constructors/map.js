@@ -4,10 +4,6 @@ define(['leaflet',
 
   function(L, esri, MiniMap){
 
-    //Globals
-    var $mainMapTopRight = null;
-    //$('#map .leaflet-top.leaflet-right');
-
     //MAP//
     var map = L.map('map', {
       zoomControl: false,
