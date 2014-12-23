@@ -9,10 +9,12 @@ define(['jquery',
 
   function($, map, layers, home, labranche, hurricane, norco){
     
-    var activateController = function(){
+    var imageryLabels = layers.imageryLabels,
+
+    activateController = function(){
       $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
           
-        layers.imageryLabels.addTo(map);
+        imageryLabels.addTo(map);
 
         if (e.target.className === 'home-location-button newpage' || e.target.className === ''){
           home.init();

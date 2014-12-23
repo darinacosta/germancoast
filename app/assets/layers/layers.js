@@ -24,7 +24,7 @@ define(['layers/norco_landuses_general_v1',
         }
       }),
 
-      imageryLabels: L.esri.basemapLayer('ImageryLabels'),
+      imageryLabels: new L.esri.BasemapLayer('ImageryLabels'),
 
       floodLanduse: new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
         style: function (feature) {
@@ -76,6 +76,8 @@ define(['layers/norco_landuses_general_v1',
       }),
 
       hurricaneLayer: omnivore.kml('./assets/layers/west_indian_hurricane_v1.kml')
-    }
+    };
+
   return layers;
+
 });

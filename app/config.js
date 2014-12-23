@@ -1,11 +1,10 @@
 var require = {
     baseUrl: '.',
     shim : {
-        "bootstrap"  : { "deps" :['jquery'] },
-        "magnificent": { "deps" :['jquery'] },
+        "bootstrap"  : { "deps" : ['jquery'] },
+        "magnificent": { "deps" : ['jquery'] },
         "esriLeaflet": { "deps" : ['leaflet'] },
-        "omnivore"   : { "deps" : ['leaflet', 'map'] },
-        "layers"     : { "deps" : ['map'] }
+        "omnivore"   : { "deps" : ['leaflet'] }
     },
     paths: {
         vignettes: './vignettes',
