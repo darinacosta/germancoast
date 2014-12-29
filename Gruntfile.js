@@ -30,6 +30,28 @@ module.exports = function(grunt) {
         dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: 'app',
+          paths: {
+            vignettes: './vignettes',
+            helpers: './helpers',
+            layers: './assets/layers',
+            map: "./constructors/map",
+            leaflet: 'empty:',
+            esriLeaflet: 'empty:',
+            minimap: 'empty:',
+            omnivore: 'empty:',
+            jquery: 'empty:',
+            bootstrap: 'empty:',
+            magnificent: 'empty:'
+        },
+          name: "index",
+          out: "app/index-min.js"
+        }
+      }
+    },
     jshint: {
       options: {
         curly: true,
@@ -80,6 +102,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
