@@ -6,6 +6,8 @@ var require = {
         "esriLeaflet": { "deps" : ['leaflet'] },
         "omnivore"   : { "deps" : ['leaflet'] }    },
     paths: {
+
+        //Save all external libraries in assets/lib for gallery local hosting
         vignettes: './vignettes',
         helpers: './helpers',
         layers: './assets/layers',
@@ -17,6 +19,7 @@ var require = {
         bootstrap: "//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min",
         magnificent: "./assets/lib/magnificent",
         map: "./constructors/map"
+
     },
     waitSeconds: 0
 };
