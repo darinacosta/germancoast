@@ -210,7 +210,27 @@
       margin:0 auto;
     }
 
+  #production-log{
+    font-size:13px;
+  }
+
   /*Leaflet Map (Media All)*/
+  #map-home-button{
+    z-index: 9;
+    position:absolute;
+    cursor: pointer;
+    text-align: center;
+    top: 50px; 
+    right: 20px;
+    font-size: 18px;
+    background-color: rgb(36, 44, 36);
+    width: 32px;
+    height: 33px;
+    border: 1px solid grey;
+    padding: 3px 6px 5px 5px;
+    box-shadow: 5px 5px 8px rgba(12, 16, 13, 0.7);
+  }
+
   .esri-leaflet-logo{
       display:none;
     }
@@ -301,6 +321,10 @@
     #map{
      height:300px;
      box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
+    }
+
+    #map-home-button{
+      top: 90px;
     }
 
     #top-right-video{

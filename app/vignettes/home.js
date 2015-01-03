@@ -3,7 +3,8 @@ define(['jquery',
         'layers/layers',
         'helpers/layerHelpers',
         'helpers/screenHelpers',
-        'helpers/videoHelpers'],
+        'helpers/videoHelpers',
+        'constructors/productionLog'],
 
   function($, map, layers, layerHelpers, screenHelpers, videoHelpers){
 

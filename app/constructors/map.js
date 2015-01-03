@@ -29,6 +29,7 @@ define(['leaflet',
       map.on('click', function(e) {
         console.log(e.latlng);
       });
+
     })();
     
     L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}).addTo(map);
