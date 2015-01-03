@@ -18,6 +18,9 @@ define(['jquery',
       //$mainMapTopRight.html('');
       $('.tab-pane').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
+      $('#map-home-button').on('click', function(){
+        map.setView(new L.LatLng(lat, lng), zoom);
+      });
     };
 
     return{readyScreen: readyScreen,
