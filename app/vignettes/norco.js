@@ -31,6 +31,7 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
           'lng': -90.4108, 
           'zoom':12
         });
+        map.doubleClickZoom.disable();
         norcoGrowthClick();
         layers.plantationsLayer.addTo(map);
         $("#norco-growth-plantation").css('display','block');

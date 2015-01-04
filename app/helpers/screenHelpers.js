@@ -21,11 +21,14 @@ define(['jquery',
           viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
       
       $('#map-home-button').unbind();
+      map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
       //$mainMapTopRight.html('');
+
       $('.tab-pane').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
+
       if (viewEquality === false){
         $('#map-home-button').on('click', function(){
           map.setView(new L.LatLng(lat, lng), zoom);

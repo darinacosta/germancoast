@@ -8,7 +8,6 @@ define(['leaflet',
     var map = L.map('map', {
       zoomControl: false,
       touchZoom: false,
-      doubleClickZoom: false,
       scrollWheelZoom: false
     }).setView([30.0339, -90.4008],11),
 
