@@ -67,6 +67,9 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
     }),
 
     init = function(){
+      
+      $norcoGrowth.css('display','none');
+      $norcoGrowthContext.css('display','block');
 
       screenHelpers.readyScreen({
         'lat':30.0039,
