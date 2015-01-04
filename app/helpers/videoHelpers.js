@@ -31,7 +31,7 @@ define(['leaflet'],
   videoEventPopup = L.popup({
     maxHeight:200,
     minWidth:250,
-    closeButton:false,
+    //closeButton:false,
     closeOnClick:false
   })
 
