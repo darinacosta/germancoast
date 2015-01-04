@@ -26,18 +26,31 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
 
     activateLandUsePaneEvents = $growth.on("click",  "a[href^='#']", function(event){
       if ($(event.target).hasClass('plantation')){
+        screenHelpers.readyScreen({
+          'lat':30.0039,
+          'lng': -90.4108, 
+          'zoom':12
+        });
         norcoGrowthClick();
         layers.plantationsLayer.addTo(map);
         $("#norco-growth-plantation").css('display','block');
         map.setView(new L.LatLng(30.0039, -90.4108), 12);
       }else if ($(event.target).hasClass('levee-domination')){
+        screenHelpers.readyScreen({
+          'lat': 30.001,
+          'lng': -90.405, 
+          'zoom': 14
+        });
         norcoGrowthClick();
         layers.norcoLandUse.addTo(map);
         $("#norco-growth-domination").css('display','block');
-        map.setView(new L.LatLng(30.001, -90.405), 14);
       }else if ($(event.target).hasClass('ex-town')){
+        screenHelpers.readyScreen({
+          'lat': 30.004,
+          'lng': -90.418, 
+          'zoom': 16
+        });
         norcoGrowthClick();
-        map.setView(new L.LatLng(30.004, -90.418), 16);
         layers.shellProperties.addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){
         if (landUseDisplayStatus == 'full'){
