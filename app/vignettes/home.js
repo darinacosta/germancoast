@@ -4,9 +4,10 @@ define(['jquery',
         'helpers/layerHelpers',
         'helpers/screenHelpers',
         'helpers/videoHelpers',
+        'text!assets/html/home.html',
         'constructors/productionLog'],
 
-  function($, map, layers, layerHelpers, screenHelpers, videoHelpers){
+  function($, map, layers, layerHelpers, screenHelpers, videoHelpers, homeHtml){
 
     var returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
@@ -33,6 +34,8 @@ define(['jquery',
     })(),
 
     init = function(){
+
+      console.log(homeHtml);
 
       screenHelpers.readyScreen({
         'lat':30.0339,
