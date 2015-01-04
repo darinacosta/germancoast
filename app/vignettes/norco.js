@@ -7,6 +7,14 @@ define(['jquery',
 
 function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
 
+    var baseLayers = {
+        "Flood Land Use": layers.floodLanduse,
+        "Norco Land Use": layers.norcoLandUse
+      };
+
+    L.control.layers(baseLayers).addTo(map);
+
+
     var $opacityBar = $('#opacity-bar'),
         $growth = $('#growth'),
         $norcoGrowth = $('.norco-growth'),
@@ -67,6 +75,7 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
     }),
 
     init = function(){
+
       
       $norcoGrowth.css('display','none');
       $norcoGrowthContext.css('display','block');
