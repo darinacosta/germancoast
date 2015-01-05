@@ -79,7 +79,8 @@ define(['jquery',
         }, 107)],
 
       activateVideoEventArray = function(){
-        $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
+        console.log($hurricaneVideo);
+        $("#hurricane-video").on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[1].handler, videoEventArray[1].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[2].handler, videoEventArray[2].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[3].handler, videoEventArray[3].time));
@@ -88,12 +89,10 @@ define(['jquery',
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[6].handler, videoEventArray[6].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[7].handler, videoEventArray[7].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
-      }
+      },
 
 
       init = function(){
-        
-        $mapTab.html(hurricaneHtml);
 
         stateControl.readyScreen({
           'lat':30.0039,
@@ -101,7 +100,14 @@ define(['jquery',
           'zoom':12
         });
         
+        //I'm keeping the Hurricane content as static HTML as a temporary work around
+        //in order to keep the event binders for the video working. Gonna refactor all the
+        //video code soon.
+        $('#map-tab-content-dynamic').html('');
+        $('.map-tab-content #hurricane').css('display', 'block');
+
         activateVideoEventArray();
+        
       }
 
     return {init: init,

@@ -5,8 +5,17 @@ define(['jquery',
 
 	function($, map, layerHelpers, videoHelpers){
     
-    var $mapTab = $('.map-tab-content'),
+    var $mapTab = $('#map-tab-content-dynamic'),
         $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
+        $mapHomeButton = $('#map-home-button'),
+
+    hideStaticContent = function(){
+      $hurricaneContent = $('.map-tab-content #hurricane');
+      var display = $hurricaneContent.css('display');
+      if (display === 'block'){
+        $hurricaneContent.css('display', 'none');
+      }
+    },
 
     currentMapView = {
       'lat': map.getCenter()['lat'],
@@ -21,7 +30,7 @@ define(['jquery',
     	    zoom = args['zoom'],
           viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
       
-      $('#map-home-button').unbind();
+      hideStaticContent();
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
@@ -29,8 +38,9 @@ define(['jquery',
 
       $('.map-tab-content').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
-      
-      $('#map-home-button').on('click', function(){
+
+      $mapHomeButton.unbind();
+      $mapHomeButton.on('click', function(){
         if (viewEquality === false){
           map.setView(new L.LatLng(lat, lng), zoom);
         };

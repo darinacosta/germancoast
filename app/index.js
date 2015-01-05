@@ -11,6 +11,7 @@ require(['jquery',
          'helpers/persistenceControl',
          'helpers/stateControl',
          'helpers/imageHelpers',
+         'helpers/hurricaneVideoControl',
          'controller',
          'magnificent'],
 

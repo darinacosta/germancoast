@@ -32,7 +32,7 @@ define(['jquery', 'vignettes/hurricane'],
       }
     },
 
-    activateVideoControls = function(){
+    activateVideoControls = (function(){
       $('a.newpage').on("click", function(){
         videoControls.pause();
       });
@@ -52,8 +52,6 @@ define(['jquery', 'vignettes/hurricane'],
       hurricaneVolumeBar.addEventListener("change", function() {
         $hurricaneVideo.volume = hurricaneVolumeBar.value;
       }, false);
-    };
-
-    return activateVideoControls();
+    })();
   }
 );
