@@ -4,19 +4,19 @@ define(['jquery',
          'vignettes/home',
          'vignettes/labranche',
          'vignettes/hurricane',
-         'vignettes/norco',
+         'vignettes/growth',
          'leaflet',
          'esriLeaflet',
          'bootstrap'],
 
-  function($, map, layers, home, labranche, hurricane, norco, L, esri){
+  function($, map, layers, home, labranche, hurricane, growth, L, esri){
     
     //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
     //Will fix this later.
     var imageryLabels = new L.esri.BasemapLayer('ImageryLabels'),
 
     activateController = function(){
-      $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) { 
+      $('.main-menu').on('click', function (e) { 
           
         imageryLabels.addTo(map);
 
@@ -28,7 +28,7 @@ define(['jquery',
         }else if (e.target.className === 'hurricane-location-button newpage'){ 
           hurricane.init();
         }else if (e.target.className === 'norco-location-button newpage'){ 
-          norco.init();
+          growth.init();
         }
       })
     },

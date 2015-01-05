@@ -2,20 +2,20 @@ define(['jquery',
         'map',
         'layers/layers',
         'helpers/layerHelpers',
-        'helpers/screenHelpers',
+        'helpers/stateControl',
         'helpers/videoHelpers',
         'text!assets/html/home.html',
         'constructors/productionLog'],
 
-  function($, map, layers, layerHelpers, screenHelpers, videoHelpers, homeHtml){
+  function($, map, layers, layerHelpers, stateControl, videoHelpers, homeHtml){
 
-    var returnVideoString = videoHelpers.returnVideoString,
+    var $mapTab = stateControl.$mapTab,
+        returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
-        $home = $( "#home" ),
 
     activateGeometryLinks = (function(){
 
-      $home.click( function(event) {
+      $('.map-tab-content').on("click", "#home", function(event) {
         if (event.target.id === 'radial-geofeature-event'){
           map.setView([30.269, -90.377], 15);
         }else if (event.target.id === 'erosion-geofeature-event'){
@@ -35,9 +35,9 @@ define(['jquery',
 
     init = function(){
 
-      console.log(homeHtml);
+      $mapTab.html(homeHtml);
 
-      screenHelpers.readyScreen({
+      stateControl.readyScreen({
         'lat':30.0339,
         'lng':-90.4008, 
         'zoom':11

@@ -1,12 +1,14 @@
 define(['jquery',
         'map',
         'layers/layers',
-        'helpers/screenHelpers',
-        'helpers/layerHelpers'],
+        'helpers/stateControl',
+        'helpers/layerHelpers',
+        'text!assets/html/speculation.html'],
 
-  function($, map, layers, screenHelpers, layerHelpers){
+  function($, map, layers, stateControl, layerHelpers, speculationHtml){
 
-    var labrancheDevelopments = layers.labrancheDevelopments,
+    var $mapTab = stateControl.$mapTab,
+        labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
         labrancheIndustrialPoint = new L.latLng(30.03759433988124,-90.37714004516602),
 
@@ -18,7 +20,7 @@ define(['jquery',
 
     activateGeometryLinks = (function(){
       buildDevelopmentsArray();
-      $('#speculation').on("click", "a[href^='#']", function(event){
+      $('.map-tab-content').on("click", "#speculation a[href^='#']", function(event){
         if ($(event.target).hasClass('labranche-industrial-park')){
           developmentsArray['LaBranche Industrial Park'].fireEvent('click',{latlng: labrancheIndustrialPoint});;
         }
@@ -26,7 +28,9 @@ define(['jquery',
     })(),
     
     init =  function(){
-      screenHelpers.readyScreen({
+      $mapTab.html(speculationHtml);
+
+      stateControl.readyScreen({
         'lat':30.015,
         'lng': -90.335, 
         'zoom':13

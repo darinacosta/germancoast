@@ -1,13 +1,16 @@
 define(['jquery',
         'map',
         'layers/layers',
-        'helpers/screenHelpers',
+        'helpers/stateControl',
         'helpers/layerHelpers',
-        'helpers/imageHelpers'],
+        'helpers/imageHelpers',
+        'text!assets/html/growth.html'],
 
-function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
+function($, map, layers, stateControl, layerHelpers, imageHelpers, growthHtml){
 
-    var baseLayers = {
+    var $mapTab = stateControl.$mapTab,
+
+    baseLayers = {
         "Flood Land Use": layers.floodLanduse,
         "Norco Land Use": layers.norcoLandUse
       };
@@ -32,9 +35,9 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
       layers.plantationsLayer.setOpacity(opacityValue);
     }),
 
-    activateLandUsePaneEvents = $growth.on("click",  "a[href^='#']", function(event){
+    activateLandUsePaneEvents = $('.map-tab-content').on("click",  "#growth a[href^='#']", function(event){
       if ($(event.target).hasClass('plantation')){
-        screenHelpers.readyScreen({
+        stateControl.readyScreen({
           'lat':30.0039,
           'lng': -90.4108, 
           'zoom':12
@@ -45,7 +48,7 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
         $("#norco-growth-plantation").css('display','block');
         map.setView(new L.LatLng(30.0039, -90.4108), 12);
       }else if ($(event.target).hasClass('levee-domination')){
-        screenHelpers.readyScreen({
+        stateControl.readyScreen({
           'lat': 30.001,
           'lng': -90.405, 
           'zoom': 14
@@ -54,7 +57,7 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
         layers.norcoLandUse.addTo(map);
         $("#norco-growth-domination").css('display','block');
       }else if ($(event.target).hasClass('ex-town')){
-        screenHelpers.readyScreen({
+        stateControl.readyScreen({
           'lat': 30.004,
           'lng': -90.418, 
           'zoom': 16
@@ -75,12 +78,13 @@ function($, map, layers, screenHelpers, layerHelpers, imageHelpers){
     }),
 
     init = function(){
-
       
+      $mapTab.html(growthHtml);
+
       $norcoGrowth.css('display','none');
       $norcoGrowthContext.css('display','block');
 
-      screenHelpers.readyScreen({
+      stateControl.readyScreen({
         'lat':30.0039,
         'lng':-90.4108, 
         'zoom':12

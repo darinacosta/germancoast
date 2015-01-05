@@ -328,6 +328,10 @@
      font-size:14px;
     }
 
+    video{
+      background:black;
+    }
+
     #map{
      height:300px;
      box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);

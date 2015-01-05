@@ -9,13 +9,12 @@ require(['jquery',
          'layers/layers',
          'map',
          'helpers/persistenceControl',
-         'helpers/screenHelpers',
+         'helpers/stateControl',
          'helpers/imageHelpers',
-         'helpers/hurricaneVideoControl',
          'controller',
          'magnificent'],
 
-  function($, home, layers, map, persistenceControl, screenHelpers, imageHelpers, hurricaneVideoControl){
+  function($, home, layers, map, persistenceControl, stateControl, imageHelpers){
     
     $(document).ready(function() {
       $('.image-link').magnificPopup({type:'image'});

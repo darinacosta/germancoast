@@ -1,21 +1,23 @@
 define(['jquery',
         'map',
         'layers/layers',
-        'helpers/screenHelpers',
+        'helpers/stateControl',
+        'text!assets/html/hurricane.html',
         'helpers/layerHelpers',
         'helpers/videoHelpers',
         'helpers/pathAnimator'],
 
-  function($, map, layers, screenHelpers, layerHelpers, videoHelpers, pathAnimator){
+  function($, map, layers, stateControl, hurricaneHtml, layerHelpers, videoHelpers, pathAnimator){
 
-      var $hurricaneVideo = $("#hurricane-video"),
+      var $mapTab = stateControl.$mapTab,
+          $hurricaneVideo = $("#hurricane-video"),
           videoUpdateHandler = videoHelpers.videoUpdateHandler,
           returnVideoString = videoHelpers.returnVideoString,
           videoEventPopup = videoHelpers.videoEventPopup,
           runAtTime = videoHelpers.runAtTime,
           $hurricaneContextVisual = $('#hurricane-context-visual'),
           $hurricaneContextText = $('hurricane-context-text'),
-          $mainMapTopRight = screenHelpers.$mainMapTopRight,
+          $mainMapTopRight = stateControl.$mainMapTopRight,
 
       animateHurricane = function(){
         layers.westIndianPath.addTo(map);
@@ -90,8 +92,10 @@ define(['jquery',
 
 
       init = function(){
+        
+        $mapTab.html(hurricaneHtml);
 
-        screenHelpers.readyScreen({
+        stateControl.readyScreen({
           'lat':30.0039,
           'lng':-90.4108, 
           'zoom':12

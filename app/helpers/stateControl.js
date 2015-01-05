@@ -4,9 +4,10 @@ define(['jquery',
 	      'helpers/videoHelpers'],
 
 	function($, map, layerHelpers, videoHelpers){
-
-    var $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
     
+    var $mapTab = $('.map-tab-content'),
+        $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
+
     currentMapView = {
       'lat': map.getCenter()['lat'],
       'lng': map.getCenter()['lng'],
@@ -26,17 +27,18 @@ define(['jquery',
       videoHelpers.videoEventPopup._close();
       //$mainMapTopRight.html('');
 
-      $('.tab-pane').scrollTop(0);
+      $('.map-tab-content').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
-
-      if (viewEquality === false){
-        $('#map-home-button').on('click', function(){
+      
+      $('#map-home-button').on('click', function(){
+        if (viewEquality === false){
           map.setView(new L.LatLng(lat, lng), zoom);
-        });
-      };
+        };
+      });
     };
 
     return{readyScreen: readyScreen,
+           $mapTab: $mapTab,
            $mainMapTopRight: $mainMapTopRight}
   }
 )

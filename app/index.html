@@ -38,7 +38,11 @@
     
     <!--Navigation Menu Full Screen-->
     <ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
-      <li class="active"><a class="home-location-button newpage" href="#home" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> GERMAN COAST</a></li>
+      <li class="active">
+        <a data-toggle="tab" class="home-location-button newpage" href="#home"><span class="glyphicon glyphicon-home">
+          </span> GERMAN COAST
+        </a>
+      </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -67,7 +71,7 @@
 
     <!--Navigation Menu Mobile-->
     <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
-      <li class="active home-location-button newpage"><a href="#home" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
+      <li class="active home-location-button newpage"><a href="#" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -86,135 +90,8 @@
     <!--/Navigation-->
 
     <!--Left Column Content-->
-    <div class="tab-content map-tab-content col-md-4 col-sm-5 scrollflip">
-
-          <!--*******************************************-->
-          <!--********************HOME*******************-->
-          <!--*******************************************-->
-
-      <div id="home" class="tab-pane active scrollflip-content">
-          <h1>Louisiana's German Coast</h1>
-          <p>The southwestern rim of Lake Pontchartrain is a complex mosaic of denuded swamplands, oil infrastructure, and highway sprawl. 
-          This page hosts a series of interrelated multi-media vignettes that provide a tour of the region and emphasize its unique 
-          geographic features. Please begin by observing a few of the broader characteristics of the River Parish landscape: 
-          the <a class="geometry-link" id="parishline-geofeature-event">stark divide between swamp and suburb</a> along the St. Charles/Jefferson parish line;
-          <a class="geometry-link" id="erosion-geofeature-event">saltwater erosion</a> along the shores of the lake; 
-          <a class="geometry-link" id="ej-geofeature-event">residential areas sandwiched between refineries</a>; others that extend
-          into <a class="geometry-link" id="suburb-geofeature-event">precarious floodplains</a>;
-          and the telltale <a class="geometry-link" id="radial-geofeature-event">radial canals</a> of cypress logging.<p>
-          <hr>
-          <h2 id="dev-notes">Development Notes</h2>
-          <p>This application is in production, and will remain a work in progress for some time. Not all modules are available, and those that are may not yet be complete. Support for mobile devices is limited, but will gradually be improved. Refer to the "Updates" section for production notes.</p>
-          <h3>Questions or feedback?</h3> 
-          <p>Contact us at <a class="geometry-link" href="mailto:airlinehighwayproject@gmail.com">airlinehighwayproject@gmail.com</a>.</p>
-          <h3>Updates</h3>
-          <div id='production-log'></div>
-        </div>
-
-        <!--*******************************************-->
-        <!--***************LABRANCHE*******************-->
-        <!--*******************************************-->
-
-        <div id="speculation" class="tab-pane scrollflip-content">
-
-
-          <div id="labranche-context">
-            <div style="text-align:center">
-              <h2>Real Estate Speculation in the LaBranche Wetlands</h2>
-            </div>
-            <hr>
-            <p>In the 1970s, as residential demand in St. Charles Parish increased, private real estate developers began purchasing tracts of land deep in the LaBranche Wetlands. Many investors in the area believed that the Army Corps of Engineers would build a hurricane protection levee along the shore of Lake Pontchartrain, thus making their properties eligible for federally subsidized flood insurance.</p>
-            <div id="walker-land-company">
-              <div style="text-align:center;">
-                <img src="./assets/i/walker_land_company_name_inverted_v1.png" style="padding:5px; max-width:365px; width:100%">
-              </div>
-              <p>During this period, the Walker Land Company sold many parcels in the <a href="#" class="geometry-link labranche-industrial-park">LaBranche Industrial Park</a>. Soon the company was under investigatizon by the U.S. Secretary of Housing and Urban Development (HUD) for failing to address certain "particulars" of the development before selling the properties, such as:<br><br><ul><li>Failing to disclose in the property report to HUD that a "marina, boat-town, golf course, tennis courts, motel, and regional shopping center" would be constructed, as promised in advertising.</li><li>Failing to address who would be responsible for draining lots below sea level (ie, would it be the responsibility of the purchaser to foot the bill?).</li><li>Failing to address how access to all lots would be achieved since there weren't any streets or roads.</li></ul></p>
-            <p>Ultimately, wetland preservation policies forced the Army Corps to reroute the levee, which now runs roughly parallel to Airline Highway and less than a quarter of a mile to its north. This has made development of the wetlands financially infeasible. Individuals who bought parcels from the Walker Land Company and other developers now own parcels that are submerged beneath as much as 15 feet of water. 
-            </div>
-          </div>
-        </div>
-
-        <!--*******************************************-->
-        <!--***************HURRICANE*******************-->
-        <!--*******************************************-->
-
-        <div id="hurricane" class="tab-pane scrollflip-content">
-          <div id="hurricane-video-wrapper">
-            <div id="hurricane-video-inner-wrapper">
-              <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
-                <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg">
-                <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm">
-                <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div id="hurricane-video-control">
-              <div style="float: left;">
-                <span id="hurricane-play"><span class="glyphicon glyphicon-play pointer"></span></span> 
-                <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
-                <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
-              </div>
-            </div>
-            <div id="hurricane-context-visual"></div>
-            <div id="hurricane-context-text"></div>
-            <div class="col-md-12" id="viewport-too-small">
-              Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
-            </div>
-          </div>
-        </div>
-
-      <!--*******************************************-->
-      <!--*****************NORCO*********************-->
-      <!--*******************************************-->
-
-      <div id="growth" class="tab-pane scrollflip-content">
-        <div class="col-md-12">
-          <div style="text-align:center">
-            <h2>Industrial Growth in Norco, Louisiana</h2>
-          </div>
-          <hr>
-          <p id="norco-growth-context">Heavy industry is the most distinct visible characteristic of Norco's landscape. Industrial growth has occurred in 3 stages: plantations turned over to industrial land uses, the  footprints of these industrial facilities broadened, and finally heavy industry came to dominate and even displace other land uses. Select a historical epoch from the menu below for more information.</p>
-          <div id="norco-dropdown-wrap" style="margin: 15px auto;width:200px;line-height:15px;">
-            <ul class="nav nav-pills norco-menu">
-             <li class="dropdown"><a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown">Choose an epoch <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#pane1" class="plantation" data-toggle="tab">1. Plantation to Refinery</a></li>
-                  <li><a href="#pane2" class="levee-domination" data-toggle="tab">2. Levee Domination</a></li>
-                  <li><a href="#pane3" data-toggle="tab" class="ex-town">3. Ex-town</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div> 
-        </div>
-        <div class="norco-growth" id="norco-growth-plantation">
-          <div style="text-align:center;">
-            <h3 style="display:inline-block">Plantation to Refinery</h3> <a class="image-link" href="./assets/i/plantation_toc_v1.jpg"><img title="Map Legend" description="Map Legend" src="./assets/i/legend.png"></a>
-            <div style="padding: 15px 0;">
-              <input type="range" id="opacity-bar" min="0" max="1" step="0.1" value="1" style="max-width:375px;width:100%;margin:0 auto;cursor:pointer;">
-            </div>
-            <hr>
-          </div>
-          <p>
-            As petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River proved an ideal location. It hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields, and could serve as a coolant for machinery as well as a toxic waste sink. Additionally, this land nearest to the river was the most evelvated and least flood-prone in region due to many hundreds of years of sediment deposition by the Mississppi River.
-          </p>
-          <p>
-            Many former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry.
-          </p>
-        </div>
-        <div class="norco-growth" id="norco-growth-domination">
-          <h3>Levee Domination</h3>
-          <p>
-            Due to the benefits of siting petrochemical facilities along the Mississippi River, industrial facilities spread rapidly across the German Coast's riverfront during the first half of the 20th century. Royal Dutch Shell initiated this trend in 1916 when it purchased the 366 acre Good Hope plantation tract. Over time the tract grew into a massive oil refinery. As the facility expanded, it <a href="./assets/i/good_hope_change_v1.jpg" class="image-link geometry-link" title="This series of topographical maps documents the gradual disappearance of Good Hope, highlighted in red (USGS 1952, 1967, & 1992).">bought out and ultimately devoured</a> what was once the small port town of Good Hope.
-          </p>
-          <p>
-            As a consequence of this industrial growth, non-industrial land uses spread into low-lying flood zones///
-          </p>
-          <p> <a href="#" class="land-use-switch geometry-link">Switch Test</a>
-        </div>
-      </div>
-
-      </div><!-- /.tab-content -->
-    </div><!-- /.tabbable -->
+    <div class="map-tab-content col-md-4 col-sm-5 scrollflip">
+    </div>
     
     <script type="text/javascript" src="./config.js"></script>
     <script data-main="index" src="./require.js"></script>
