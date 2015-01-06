@@ -12,6 +12,10 @@
     background-image:url('../i/grid.png');
  }
 
+ #map{
+  overflow:hidden;
+ }
+
   body{
     color: white;
     font-family: Geneva, ‘Lucida Sans’, ‘Lucida Grande’, ‘Lucida Sans Unicode’, Verdana, sans-serif;
@@ -261,6 +265,8 @@
     }
 
     .map-tab-content{
+      z-index:9970;
+      width:450px;
       position:absolute;
       top:0;
       left:0;
@@ -333,10 +339,7 @@
       background:black;
     }
 
-    #map{
-     height:300px;
-     box-shadow: 6px 7px 8px rgba(18, 19, 18, 0.7);
-    }
+    
 
     #map-home-button{
       top: 90px;
@@ -359,19 +362,8 @@
     }
 
     .map-tab-content{
-      position:relative;
-      padding:15px 15px 15px 15px;
-      overflow:visible;
-      height:auto;
-      background: none;
-      left:0px;
-      top:0px;
-      max-width:100%;
-      box-shadow: none;
-    }
-
-    .leaflet-top .leaflet-control {
-      margin-top: 80px;
+      width:280px;
+      padding-top: 30px;
     }
 
     .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {
@@ -385,35 +377,7 @@
     .nav-tabs {
       padding-left:0px;
     }
-    
-    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-      border: transparent;
-    }
-
-    .nav-tabs > li {
-        float:none;
-    }
-
-  }
-
-  @media all and (max-width: 705px) { 
-
-    .nav-tabs {
-      padding-left:0px;
-    }
-
-
-    #viewport-too-small{
-      display:block;
-    }
-    
-    .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-      border: transparent;
-    }
-
-    .nav-tabs > li {
-        float:none;
-    }
+  
   }
 }
   
