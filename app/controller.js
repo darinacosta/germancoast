@@ -4,12 +4,13 @@ define(['jquery',
          'vignettes/home',
          'vignettes/labranche',
          'vignettes/hurricane',
-         'vignettes/growth',
+         'vignettes/domination',
+         'vignettes/plantationLand',
          'leaflet',
          'esriLeaflet',
          'bootstrap'],
 
-  function($, map, layers, home, labranche, hurricane, growth, L, esri){
+  function($, map, layers, home, labranche, hurricane, domination, plantation, L, esri){
     
     //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
     //Will fix this later.
@@ -28,7 +29,9 @@ define(['jquery',
         }else if (e.target.className === 'hurricane-location-button newpage'){ 
           hurricane.init();
         }else if (e.target.className === 'norco-location-button newpage'){ 
-          growth.init();
+          domination.init();
+        }else if (e.target.className === 'plantation-location-button newpage'){ 
+          plantation.init();
         }
       })
     },

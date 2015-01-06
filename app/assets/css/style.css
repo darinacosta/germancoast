@@ -187,9 +187,6 @@
   }
 
   /*Content (Media All)*/
-  .norco-growth{
-    display:none;
-  }
 
   #hurricane-context-visual{
     text-align:center;
@@ -283,7 +280,7 @@
         display:none;
       }
 
-      .tab-pane.active{
+      .tab-pane{
         padding-top:50px;
       }
 

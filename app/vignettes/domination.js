@@ -4,56 +4,34 @@ define(['jquery',
         'helpers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
-        'text!assets/html/growth.html'],
+        'text!assets/html/domination.html'],
 
-function($, map, layers, stateControl, layerHelpers, imageHelpers, growthHtml){
+function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtml){
 
     var $mapTab = stateControl.$mapTab,
 
     baseLayers = {
         "Flood Land Use": layers.floodLanduse,
-        "Norco Land Use": layers.norcoLandUse
+        "Norco Land Use": layers.norcoLandUse,
+        "Shell-owned Properties": layers.shellProperties
       };
 
     L.control.layers(baseLayers).addTo(map);
 
 
-    var $opacityBar = $('#opacity-bar'),
+    var 
         $growth = $('#growth'),
         $norcoGrowth = $('.norco-growth'),
         $norcoGrowthContext = $('#norco-growth-context'),
         landUseDisplayStatus = 'full',
 
-    norcoGrowthClick = function norcoGrowthClick(){
-      $norcoGrowthContext.css('display','none');
-      $norcoGrowth.css('display','none');
-      layerHelpers.hideAllLayers();
-    },
-
-    activateOpacityControl = $opacityBar.on("input", function() {
-      opacityValue = $(this).val();
-      layers.plantationsLayer.setOpacity(opacityValue);
-    }),
-
     activateLandUsePaneEvents = $('.map-tab-content').on("click",  "#growth a[href^='#']", function(event){
-      if ($(event.target).hasClass('plantation')){
-        stateControl.readyScreen({
-          'lat':30.0039,
-          'lng': -90.4108, 
-          'zoom':12
-        });
-        map.doubleClickZoom.disable();
-        norcoGrowthClick();
-        layers.plantationsLayer.addTo(map);
-        $("#norco-growth-plantation").css('display','block');
-        map.setView(new L.LatLng(30.0039, -90.4108), 12);
-      }else if ($(event.target).hasClass('levee-domination')){
+      if ($(event.target).hasClass('levee-domination')){
         stateControl.readyScreen({
           'lat': 30.001,
           'lng': -90.405, 
           'zoom': 14
         });
-        norcoGrowthClick();
         layers.norcoLandUse.addTo(map);
         $("#norco-growth-domination").css('display','block');
       }else if ($(event.target).hasClass('ex-town')){
@@ -62,7 +40,6 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, growthHtml){
           'lng': -90.418, 
           'zoom': 16
         });
-        norcoGrowthClick();
         layers.shellProperties.addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){
         if (landUseDisplayStatus == 'full'){
@@ -79,10 +56,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, growthHtml){
 
     init = function(){
       
-      $mapTab.html(growthHtml);
-
-      $norcoGrowth.css('display','none');
-      $norcoGrowthContext.css('display','block');
+      $mapTab.html(dominationHtml);
 
       stateControl.readyScreen({
         'lat':30.0039,
@@ -90,8 +64,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, growthHtml){
         'zoom':12
       });
 
-      activateOpacityControl;
-      activateLandUsePaneEvents;
+      //activateLandUsePaneEvents;
     }
 
   return {init: init};
