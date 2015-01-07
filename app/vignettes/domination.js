@@ -9,17 +9,14 @@ define(['jquery',
 
 function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtml){
 
-    var map = map.map,
-    layerControl = map.layerControl,
-    $mapTab = stateControl.$mapTab,
-
-    singleLayers = {
-      "Shell-owned Properties": layers.shellProperties
-    },
+    var layerControl = map.layerControl,
+        map = map.map,
+        $mapTab = stateControl.$mapTab,
 
     overlayLayers = {
       "Norco Land Use": layers.norcoLandUse,
-      "Flood Land Use": layers.floodLanduse
+      "Flood Land Use": layers.floodLanduse,
+      "Shell-owned Properties": layers.shellProperties
     },
 
     $growth = $('#growth'),
@@ -57,13 +54,17 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
     }),
 
     init = function(){
-      
-      $mapTab.html(dominationHtml);
 
       stateControl.readyScreen({
         'lat':30.0039,
         'lng':-90.4108, 
         'zoom':12
+      });
+
+      $mapTab.html(dominationHtml);
+
+      $.each(overlayLayers, function(alias, layer){
+        layerControl.addOverlay(layer, alias);
       });
 
       $('.map-tab-content .image-link').magnificPopup({type:'image'});

@@ -5,7 +5,8 @@ define(['jquery',
 
 	function($, map, layerHelpers, videoHelpers){
     
-    var map = map.map,
+    var layerControl = map.layerControl,
+        map = map.map,
         $mapTab = $('#map-tab-content-dynamic'),
         $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
         $mapHomeButton = $('#map-home-button'),
@@ -24,6 +25,14 @@ define(['jquery',
       'zoom': map.getZoom()
     },
 
+    clearLayerControl = function(){
+      $.each(layerControl._layers, function(key, value){
+        if (layerControl._layers[key].name !== 'Labels'){
+          layerControl.removeLayer(layerControl._layers[key].layer);
+        }
+      });
+    },
+
     readyScreen = function(args){
       
     	var lat = args['lat'],
@@ -32,6 +41,7 @@ define(['jquery',
           viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
       
       hideStaticContent();
+      clearLayerControl();
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();

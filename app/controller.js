@@ -14,13 +14,12 @@ define(['jquery',
     
     //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
     //Will fix this later.
-    var map = map.map,
-        imageryLabels = map.imageryLabels,
+    var imageryLabels = map.imageryLabels, 
+        map = map.map,
 
     activateController = function(){
       $('.main-menu').on('click', function (e) { 
-          
-        imageryLabels.addTo(map);
+           imageryLabels.addTo(map);
 
         if (e.target.className === 'home-location-button newpage' || e.target.className === ''){
           map.removeLayer(imageryLabels);

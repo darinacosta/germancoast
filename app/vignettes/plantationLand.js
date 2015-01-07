@@ -20,12 +20,12 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLan
 
   init = function(){
   	$mapTab.html(plantationLandHtml);
-  	map.doubleClickZoom.disable();
 	  stateControl.readyScreen({
 	    'lat':30.0039,
 	    'lng': -90.4108, 
 	    'zoom':12
 	  });
+    map.doubleClickZoom.disable();
 	  layers.plantationsLayer.addTo(map);
 	  activateOpacityControl;
     $('.map-tab-content .image-link').magnificPopup({type:'image'});
