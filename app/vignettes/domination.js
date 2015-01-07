@@ -4,7 +4,8 @@ define(['jquery',
         'helpers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
-        'text!assets/html/domination.html'],
+        'text!assets/html/domination.html',
+        'magnificent'],
 
 function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtml){
 
@@ -64,7 +65,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
         'zoom':12
       });
 
-      //activateLandUsePaneEvents;
+      $('.map-tab-content .image-link').magnificPopup({type:'image'});
     }
 
   return {init: init};

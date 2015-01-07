@@ -4,7 +4,8 @@ define(['jquery',
         'helpers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
-        'text!assets/html/plantation-land.html'],
+        'text!assets/html/plantation-land.html',
+        'magnificent'],
 
 function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLandHtml){
 
@@ -26,6 +27,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLan
 	  });
 	  layers.plantationsLayer.addTo(map);
 	  activateOpacityControl;
+    $('.map-tab-content .image-link').magnificPopup({type:'image'});
 	};
 
 	return {init: init};

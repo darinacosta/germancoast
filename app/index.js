@@ -11,18 +11,19 @@ require(['jquery',
          'helpers/persistenceControl',
          'helpers/stateControl',
          'helpers/imageHelpers',
+         'controllers/contentToggleControl',
          'helpers/hurricaneVideoControl',
          'controller',
          'magnificent'],
 
-  function($, home, layers, map, persistenceControl, stateControl, imageHelpers){
+  function($, home, layers, map, persistenceControl, stateControl, imageHelpers, contentToggleControl){
     
     $(document).ready(function() {
       //Can't cache these css selectors due to dynamically loaded content
       $('.map-tab-content .image-link').magnificPopup({type:'image'});
       $('.video-link').magnificPopup({type:'iframe'});
     }); 
-
+    
     
     $('[data-toggle="popover"]').popover({
         trigger: 'hover',
@@ -32,7 +33,7 @@ require(['jquery',
     if (window.location.hash == ''){ home.init(); };
     
     //Preload any large images
-    $(window).load( function (){
+    $(document).ready( function (){
       $('#load-screen').fadeOut( "slow", function(){
         imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
       });

@@ -5,7 +5,7 @@ define(['jquery',
         'helpers/stateControl',
         'helpers/videoHelpers',
         'text!assets/html/home.html',
-        'constructors/productionLog'],
+        'controllers/productionLog'],
 
   function($, map, layers, layerHelpers, stateControl, videoHelpers, homeHtml){
 

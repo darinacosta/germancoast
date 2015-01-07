@@ -104,7 +104,7 @@ define(['jquery',
         //in order to keep the event binders for the video working. Gonna refactor all the
         //video code soon.
         $('#map-tab-content-dynamic').html('');
-        $('.map-tab-content #hurricane').css('display', 'block');
+        $('#hurricane.live-content').css('display', 'block');
 
         activateVideoEventArray();
         

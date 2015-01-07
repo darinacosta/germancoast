@@ -10,7 +10,7 @@ define(['jquery',
         $mapHomeButton = $('#map-home-button'),
 
     hideStaticContent = function(){
-      $hurricaneContent = $('.map-tab-content #hurricane');
+      $hurricaneContent = $('#hurricane.live-content');
       var display = $hurricaneContent.css('display');
       if (display === 'block'){
         $hurricaneContent.css('display', 'none');

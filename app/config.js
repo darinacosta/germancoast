@@ -18,7 +18,7 @@ var require = {
         jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min",
         bootstrap: "//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min",
         magnificent: "./assets/lib/magnificent",
-        map: "./constructors/map"
+        map: "./controllers/map"
     },
     waitSeconds: 0
 };

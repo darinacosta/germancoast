@@ -90,15 +90,16 @@
       </li>
     </ul>
     <!--/Navigation-->
-
+    <div id="content-toggle">
+      <img src="assets/i/3-lines_v1.png">
+    </div>
     <!--Left Column Content-->
     <div class="map-tab-content scrollflip">
 
       <!--*******************************************-->
       <!--************DYNAMIC CONTENT****************-->
       <!--*******************************************-->
-
-      <div id="map-tab-content-dynamic"></div>
+      <div id="map-tab-content-dynamic" class="live-content"></div>
 
       <!--*******************************************-->
       <!--************STATIC CONTENT*****************-->
@@ -108,7 +109,7 @@
           but for now, I'm keeping the hurricane module here until I figure out an effective way
           of binding events to a dynamically loaded video-->
 
-      <div id="hurricane" class="tab-pane scrollflip-content">
+      <div id="hurricane" class="tab-pane scrollflip-content live-content map-tab-content-static">
         <div id="hurricane-video-wrapper">
           <div id="hurricane-video-inner-wrapper">
             <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
