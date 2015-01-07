@@ -38,10 +38,16 @@ define(['jquery',
     	var lat = args['lat'],
     	    lng = args['lng'],
     	    zoom = args['zoom'],
+          moduleLayers = args['layers'],  
           viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
       
+      console.log(moduleLayers);
+
       hideStaticContent();
       clearLayerControl();
+      if (moduleLayers !== undefined){
+        layerHelpers.populateLayerControl(moduleLayers);
+      }; 
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();

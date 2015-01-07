@@ -3,10 +3,17 @@ define(['jquery', 'map', 'layers/layers'],
   function($, map, layers)
   {
 
-    var map = map.map,
+    var layerControl = map.layerControl,
+        map = map.map,
 
     hideAllLayers = function(){
       $.each(layers, function(key, val) {map.removeLayer(layers[key])});
+    },
+
+    populateLayerControl = function(layers){
+      $.each(layers, function(alias, layer){
+        layerControl.addOverlay(layer, alias);
+      });
     },
 
     selectPolyOnClick = function(args){
@@ -38,5 +45,6 @@ define(['jquery', 'map', 'layers/layers'],
 	  };
 
     return {hideAllLayers: hideAllLayers,
-            selectPolyOnClick: selectPolyOnClick};
+            selectPolyOnClick: selectPolyOnClick,
+            populateLayerControl: populateLayerControl};
   });

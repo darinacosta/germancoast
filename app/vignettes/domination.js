@@ -13,7 +13,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
         map = map.map,
         $mapTab = stateControl.$mapTab,
 
-    overlayLayers = {
+    moduleLayers = {
       "Norco Land Use": layers.norcoLandUse,
       "Flood Land Use": layers.floodLanduse,
       "Shell-owned Properties": layers.shellProperties
@@ -54,18 +54,15 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
     }),
 
     init = function(){
-
+      console.log(moduleLayers);
       stateControl.defaultState({
         'lat':30.0039,
         'lng':-90.4108, 
-        'zoom':12
+        'zoom':12,
+        'layers': moduleLayers
       });
 
       $mapTab.html(dominationHtml);
-
-      $.each(overlayLayers, function(alias, layer){
-        layerControl.addOverlay(layer, alias);
-      });
 
       $('.map-tab-content .image-link').magnificPopup({type:'image'});
     }
