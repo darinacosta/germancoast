@@ -10,26 +10,22 @@ define(['jquery',
 function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtml){
 
     var map = map.map,
-
+    layerControl = map.layerControl,
     $mapTab = stateControl.$mapTab,
 
     singleLayers = {
-        "Shell-owned Properties": layers.shellProperties
-      };
+      "Shell-owned Properties": layers.shellProperties
+    },
 
     overlayLayers = {
       "Norco Land Use": layers.norcoLandUse,
       "Flood Land Use": layers.floodLanduse
-    }
+    },
 
-    L.control.layers(overlayLayers, singleLayers).addTo(map);
-
-
-    var 
-        $growth = $('#growth'),
-        $norcoGrowth = $('.norco-growth'),
-        $norcoGrowthContext = $('#norco-growth-context'),
-        landUseDisplayStatus = 'full',
+    $growth = $('#growth'),
+    $norcoGrowth = $('.norco-growth'),
+    $norcoGrowthContext = $('#norco-growth-context'),
+    landUseDisplayStatus = 'full',
 
     activateLandUsePaneEvents = $('.map-tab-content').on("click",  "#growth a[href^='#']", function(event){
       if ($(event.target).hasClass('levee-domination')){
