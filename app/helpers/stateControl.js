@@ -11,18 +11,18 @@ define(['jquery',
         $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
         $mapHomeButton = $('#map-home-button'),
 
+    currentMapView = {
+      'lat': map.getCenter()['lat'],
+      'lng': map.getCenter()['lng'],
+      'zoom': map.getZoom()
+    },
+
     hideStaticContent = function(){
       $hurricaneContent = $('#hurricane.live-content');
       var display = $hurricaneContent.css('display');
       if (display === 'block'){
         $hurricaneContent.css('display', 'none');
       }
-    },
-
-    currentMapView = {
-      'lat': map.getCenter()['lat'],
-      'lng': map.getCenter()['lng'],
-      'zoom': map.getZoom()
     },
 
     clearLayerControl = function(){
@@ -33,7 +33,7 @@ define(['jquery',
       });
     },
 
-    readyScreen = function(args){
+    defaultState = function(args){
       
     	var lat = args['lat'],
     	    lng = args['lng'],
@@ -58,7 +58,7 @@ define(['jquery',
       });
     };
 
-    return{readyScreen: readyScreen,
+    return{defaultState: defaultState,
            $mapTab: $mapTab,
            $mainMapTopRight: $mainMapTopRight}
   }

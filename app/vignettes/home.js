@@ -38,7 +38,7 @@ define(['jquery',
 
       $mapTab.html(homeHtml);
 
-      stateControl.readyScreen({
+      stateControl.defaultState({
         'lat':30.0339,
         'lng':-90.4008, 
         'zoom':11

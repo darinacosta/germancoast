@@ -95,7 +95,7 @@ define(['jquery',
 
       init = function(){
 
-        stateControl.readyScreen({
+        stateControl.defaultState({
           'lat':30.0039,
           'lng':-90.4108, 
           'zoom':12

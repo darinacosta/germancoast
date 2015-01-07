@@ -13,7 +13,7 @@ require(['jquery',
          'helpers/imageHelpers',
          'controllers/contentToggleControl',
          'helpers/hurricaneVideoControl',
-         'controller',
+         'controllers/menuController',
          'magnificent'],
 
   function($, home, layers, map, persistenceControl, stateControl, imageHelpers, contentToggleControl){

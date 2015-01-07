@@ -17,9 +17,9 @@ define(['jquery',
     var imageryLabels = map.imageryLabels, 
         map = map.map,
 
-    activateController = function(){
+    activateController = (function(){
       $('.main-menu').on('click', function (e) { 
-           imageryLabels.addTo(map);
+        imageryLabels.addTo(map);
 
         if (e.target.className === 'home-location-button newpage' || e.target.className === ''){
           map.removeLayer(imageryLabels);
@@ -34,12 +34,6 @@ define(['jquery',
           plantation.init();
         }
       })
-    },
-
-    init = (function(){
-      activateController();
     })();
-
-    return init;
   }
 );

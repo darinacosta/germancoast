@@ -26,7 +26,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
 
     activateLandUsePaneEvents = $('.map-tab-content').on("click",  "#growth a[href^='#']", function(event){
       if ($(event.target).hasClass('levee-domination')){
-        stateControl.readyScreen({
+        stateControl.defaultState({
           'lat': 30.001,
           'lng': -90.405, 
           'zoom': 14
@@ -34,7 +34,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
         layers.norcoLandUse.addTo(map);
         $("#norco-growth-domination").css('display','block');
       }else if ($(event.target).hasClass('ex-town')){
-        stateControl.readyScreen({
+        stateControl.defaultState({
           'lat': 30.004,
           'lng': -90.418, 
           'zoom': 16
@@ -55,7 +55,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
 
     init = function(){
 
-      stateControl.readyScreen({
+      stateControl.defaultState({
         'lat':30.0039,
         'lng':-90.4108, 
         'zoom':12

@@ -20,7 +20,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLan
 
   init = function(){
   	$mapTab.html(plantationLandHtml);
-	  stateControl.readyScreen({
+	  stateControl.defaultState({
 	    'lat':30.0039,
 	    'lng': -90.4108, 
 	    'zoom':12
