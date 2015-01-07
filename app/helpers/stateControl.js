@@ -5,7 +5,8 @@ define(['jquery',
 
 	function($, map, layerHelpers, videoHelpers){
     
-    var $mapTab = $('#map-tab-content-dynamic'),
+    var map = map.map,
+        $mapTab = $('#map-tab-content-dynamic'),
         $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
         $mapHomeButton = $('#map-home-button'),
 

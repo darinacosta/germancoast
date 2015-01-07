@@ -33,6 +33,6 @@ define(['leaflet',
     
     L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}).addTo(map);
 
-    return map; 
+    return {map: map}; 
 
 });

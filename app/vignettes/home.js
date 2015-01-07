@@ -9,7 +9,8 @@ define(['jquery',
 
   function($, map, layers, layerHelpers, stateControl, videoHelpers, homeHtml){
 
-    var $mapTab = stateControl.$mapTab,
+    var map = map.map,
+        $mapTab = stateControl.$mapTab,
         returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
 

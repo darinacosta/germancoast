@@ -9,7 +9,8 @@ define(['jquery',
 
   function($, map, layers, stateControl, hurricaneHtml, layerHelpers, videoHelpers, pathAnimator){
 
-      var $mapTab = stateControl.$mapTab,
+      var map = map.map,
+          $mapTab = stateControl.$mapTab,
           $hurricaneVideo = $("#hurricane-video"),
           videoUpdateHandler = videoHelpers.videoUpdateHandler,
           returnVideoString = videoHelpers.returnVideoString,

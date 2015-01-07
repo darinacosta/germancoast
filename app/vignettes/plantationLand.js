@@ -9,7 +9,8 @@ define(['jquery',
 
 function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLandHtml){
 
-	var $mapTab = stateControl.$mapTab,
+	var map = map.map,
+      $mapTab = stateControl.$mapTab,
 
 	activateOpacityControl = $('.map-tab-content').on("input", '#opacity-bar', function() {
     opacityValue = $(this).val();

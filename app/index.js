@@ -18,6 +18,8 @@ require(['jquery',
 
   function($, home, layers, map, persistenceControl, stateControl, imageHelpers, contentToggleControl){
     
+    var map = map.map;
+    
     $(document).ready(function() {
       //Can't cache these css selectors due to dynamically loaded content
       $('.map-tab-content .image-link').magnificPopup({type:'image'});

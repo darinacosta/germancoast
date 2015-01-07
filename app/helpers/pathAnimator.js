@@ -2,7 +2,9 @@ define(['map'],
 
   function(map){
 
-    var drawPath = function(emptyPath, line, zoom){ 
+    var map = map.map,
+
+    drawPath = function(emptyPath, line, zoom){ 
         
       emptyPath.setLatLngs([]);
       //map.removeLayer(imageryLabels);

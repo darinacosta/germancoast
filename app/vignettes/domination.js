@@ -9,15 +9,20 @@ define(['jquery',
 
 function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtml){
 
-    var $mapTab = stateControl.$mapTab,
+    var map = map.map,
 
-    baseLayers = {
-        "Flood Land Use": layers.floodLanduse,
-        "Norco Land Use": layers.norcoLandUse,
+    $mapTab = stateControl.$mapTab,
+
+    singleLayers = {
         "Shell-owned Properties": layers.shellProperties
       };
 
-    L.control.layers(baseLayers).addTo(map);
+    overlayLayers = {
+      "Norco Land Use": layers.norcoLandUse,
+      "Flood Land Use": layers.floodLanduse
+    }
+
+    L.control.layers(overlayLayers, singleLayers).addTo(map);
 
 
     var 

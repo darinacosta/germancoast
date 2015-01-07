@@ -14,7 +14,8 @@ define(['jquery',
     
     //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
     //Will fix this later.
-    var imageryLabels = new L.esri.BasemapLayer('ImageryLabels'),
+    var map = map.map,
+        imageryLabels = new L.esri.BasemapLayer('ImageryLabels'),
 
     activateController = function(){
       $('.main-menu').on('click', function (e) { 

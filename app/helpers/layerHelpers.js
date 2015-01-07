@@ -3,7 +3,9 @@ define(['jquery', 'map', 'layers/layers'],
   function($, map, layers)
   {
 
-    var hideAllLayers = function(){
+    var map = map.map,
+
+    hideAllLayers = function(){
       $.each(layers, function(key, val) {map.removeLayer(layers[key])});
     },
 

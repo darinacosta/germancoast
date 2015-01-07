@@ -7,7 +7,8 @@ define(['jquery',
 
   function($, map, layers, stateControl, layerHelpers, speculationHtml){
 
-    var $mapTab = stateControl.$mapTab,
+    var map = map.map,
+        $mapTab = stateControl.$mapTab,
         labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
         labrancheIndustrialPoint = new L.latLng(30.03759433988124,-90.37714004516602),
