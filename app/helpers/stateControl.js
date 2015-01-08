@@ -40,8 +40,6 @@ define(['jquery',
     	    zoom = args['zoom'],
           moduleLayers = args['layers'],  
           viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
-      
-      console.log(moduleLayers);
 
       hideStaticContent();
       clearLayerControl();
