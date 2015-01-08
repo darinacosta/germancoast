@@ -357,6 +357,10 @@
      display:none;
     }
 
+    #hurricane-video-control{
+      width: 227px;
+    }
+
     .sidebar-collapsed{
       width: 30px !important;
     }
