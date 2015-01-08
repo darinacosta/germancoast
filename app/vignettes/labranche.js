@@ -53,8 +53,7 @@ define(['jquery',
       stateControl.defaultState({
         'lat':30.015,
         'lng': -90.335, 
-        'zoom':13,
-        'layers':moduleLayers
+        'zoom':13
       });
       
       configureLabrancheDevelopments();

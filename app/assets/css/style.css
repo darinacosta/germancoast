@@ -163,6 +163,12 @@
     font-weight:bold;
   }
 
+  .geometry-link:focus {
+    color: #FF8966;
+    text-decoration: none;
+    outline: none !important;
+  }
+
   .geometry-link:hover {
     color: rgb(255, 243, 20);
     text-decoration: none;
