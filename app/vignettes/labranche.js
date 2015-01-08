@@ -12,6 +12,7 @@ define(['jquery',
         labrancheDevelopments = layers.labrancheDevelopments,
         developmentsArray = {},
         labrancheIndustrialPoint = new L.latLng(30.03759433988124,-90.37714004516602),
+        moduleLayers = {'Speculative Developments': labrancheDevelopments},
 
     buildDevelopmentsArray = function() {
       $.each(labrancheDevelopments._layers, function(key, value){
@@ -27,23 +28,13 @@ define(['jquery',
         }
       });
     })(),
-    
-    init =  function(){
-      $mapTab.html(speculationHtml);
 
-      stateControl.defaultState({
-        'lat':30.015,
-        'lng': -90.335, 
-        'zoom':13
-      });
-
+    configureLabrancheDevelopments = function(){
       //Reset potential style changes
       labrancheDevelopments.setStyle({
         color: '#960000',
         fillColor: '#642800'
       });
-      
-      labrancheDevelopments.addTo(map);
 
       layerHelpers.selectPolyOnClick({
         targetLayer: labrancheDevelopments, 
@@ -53,6 +44,20 @@ define(['jquery',
         originalFill: '#642800'
       });
 
+      labrancheDevelopments.addTo(map);
+    };
+    
+    init =  function(){
+      $mapTab.html(speculationHtml);
+
+      stateControl.defaultState({
+        'lat':30.015,
+        'lng': -90.335, 
+        'zoom':13,
+        'layers':moduleLayers
+      });
+      
+      configureLabrancheDevelopments();
     };
 
   return {init: init};
