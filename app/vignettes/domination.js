@@ -1,7 +1,7 @@
 define(['jquery',
         'map',
         'controllers/layerStateControl',
-        'helpers/stateControl',
+        'controllers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
         'text!assets/html/domination.html',
@@ -21,7 +21,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
 
     activateLayers = function(){
       //lazy-loading layers
-      layerStateControl.dominationLayers('activate');
+      layerStateControl.industrialDevelopmentLayers('activate');
       setTimeout(function(){
         moduleLayers = {
           'Norco Land Use': appLayers['norcoLandUse'],

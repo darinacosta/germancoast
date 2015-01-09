@@ -6,8 +6,7 @@ function($){
       $liveContent = $('.live-content'),
       $contentToggle = $('#content-toggle'),
 
-  activateContentToggle = 
-  (function(){
+  activateContentToggle = (function(){
     $('#content-toggle').on('click', function(){
       if ($mapTabContent.css('width') === '260px'){
         $mapTabContent.addClass('sidebar-collapsed');

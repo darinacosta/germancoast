@@ -1,12 +1,10 @@
-define([ 
-        'layers/labrancheDevelopmentsV1',
+define(['layers/labrancheDevelopmentsV1',
         'leaflet',
         'omnivore',
         'esriLeaflet',
         'map'], 
 
-  function( 
-          labrancheDevelopmentsV1,
+  function(labrancheDevelopmentsV1,
           L,
           omnivore,
           esri,
@@ -16,7 +14,7 @@ define([
       
       layerStateControl = {
 
-        dominationLayers: function(state){
+        industrialDevelopmentLayers: function(state){
           if (state === 'activate' && layers['norcoLandUse'] === undefined){
 
             require(['layers/norco_landuses_general_v1',

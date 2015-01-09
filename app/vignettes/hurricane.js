@@ -1,7 +1,7 @@
 define(['jquery',
         'map',
         'controllers/layerStateControl',
-        'helpers/stateControl',
+        'controllers/stateControl',
         'text!assets/html/hurricane.html',
         'helpers/layerHelpers',
         'helpers/videoHelpers',

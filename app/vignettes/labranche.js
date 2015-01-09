@@ -1,7 +1,7 @@
 define(['jquery',
         'map',
         'controllers/layerStateControl',
-        'helpers/stateControl',
+        'controllers/stateControl',
         'helpers/layerHelpers',
         'text!assets/html/speculation.html'],
 

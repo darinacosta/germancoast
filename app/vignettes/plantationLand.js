@@ -1,7 +1,7 @@
 define(['jquery',
         'map',
         'controllers/layerStateControl',
-        'helpers/stateControl',
+        'controllers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
         'text!assets/html/plantation-land.html',
