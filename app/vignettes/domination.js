@@ -56,7 +56,6 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
     }),
 
     init = function(){
-      console.log(moduleLayers);
       stateControl.defaultState({
         'lat':30.0039,
         'lng':-90.4108, 
