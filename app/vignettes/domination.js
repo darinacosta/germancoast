@@ -14,9 +14,11 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, dominationHtm
         $mapTab = stateControl.$mapTab,
 
     moduleLayers = {
+      "Norco Boundary": layers.norcoBoundary,
       "Norco Land Use": layers.norcoLandUse,
       "Flood Land Use": layers.floodLanduse,
-      "Shell-owned Properties": layers.shellProperties
+      "Shell-owned Properties": layers.shellProperties,
+      "Industrial Facilities": layers.industrialFacilities
     },
 
     $growth = $('#growth'),

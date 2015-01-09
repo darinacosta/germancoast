@@ -279,7 +279,7 @@
     }
 
     .map-tab-content{
-      z-index:999;
+      z-index:1010;
       width:450px;
       position:absolute;
       top:0;

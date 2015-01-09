@@ -1,6 +1,8 @@
 define(['layers/norco_landuses_general_v1', 
         'layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1',
         'layers/labrancheDevelopmentsV1',
+        'layers/norcoBoundary_v1',
+        'layers/industrialFacilities_v1',
         'leaflet',
         'omnivore',
         'esriLeaflet',
@@ -9,6 +11,8 @@ define(['layers/norco_landuses_general_v1',
   function(norco_landuses_general_v1, 
           norcolanduses_100YRFLOODPLAINDISSOLVE_v1,
           labrancheDevelopmentsV1,
+          norcoBoundary_v1,
+          industrialFacilities_v1,
           L,
           omnivore,
           esri,
@@ -26,7 +30,6 @@ define(['layers/norco_landuses_general_v1',
         }
       }),
 
-
       floodLanduse: new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
         style: function (feature) {
           return {fillColor: feature.properties.color_qgis2leaf,
@@ -36,6 +39,18 @@ define(['layers/norco_landuses_general_v1',
             fillOpacity: 0.6};
         }
       }),
+
+      norcoBoundary: new L.geoJson(norcoBoundary_v1,{
+        style: function (feature) {
+          return {fillColor: feature.properties.color_qgis2leaf,
+            color: 'yellow',
+            weight: 2,
+            opacity: 0.8,
+            fillOpacity: 0.2};
+        }
+      }),
+
+    industrialFacilities: new L.geoJson(industrialFacilities_v1),
 
       frenierTitleLayer: new function(){
         this.url = './assets/i/FRENIER.png';

@@ -39,6 +39,8 @@ require(['jquery',
         imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
       });
     });
+
+    console.log(layers.norcoBoundary);
   
     persistenceControl.init();
   }
