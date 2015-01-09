@@ -7,7 +7,10 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
         map = map.map,
 
     hideAllLayers = function(){
+      //Two functions for now until all layers get migrated into germancoastapps.layers
+      console.log(germancoastapp.layers);
       $.each(layerStateControl, function(key, val) {map.removeLayer(layerStateControl[key])});
+      $.each(germancoastapp.layers, function(key, val) {map.removeLayer(germancoastapp.layers[key])});
     },
 
     populateLayerControl = function(layers){

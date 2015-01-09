@@ -17,7 +17,7 @@ define([
       layerStateControl = {
 
         dominationLayers: function(state){
-          if (state==='activate' && layers['norcoLandUse'] === undefined){
+          if (state === 'activate' && layers['norcoLandUse'] === undefined){
 
             require(['layers/norco_landuses_general_v1',
                      'layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1',
@@ -29,6 +29,8 @@ define([
                        norcoBoundary_v1,
                        industrialFacilities_v1){
 
+                console.log('Domination layers activated.');
+
                 layers['norcoLandUse'] = new L.geoJson(norco_landuses_general_v1,{
                   style: function (feature) {
                     return {fillColor: feature.properties.color_qgis2leaf,
@@ -39,7 +41,7 @@ define([
                   }
                 });
 
-                layers['floodLanduse'] = new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
+                layers['floodLandUse'] = new L.geoJson(norcolanduses_100YRFLOODPLAINDISSOLVE_v1,{
                   style: function (feature) {
                     return {fillColor: feature.properties.color_qgis2leaf,
                       color: '#000',
@@ -57,6 +59,13 @@ define([
                       opacity: 0.8,
                       fillOpacity: 0.2};
                   }
+                });
+
+                layers['shellProperties'] = omnivore.kml('./assets/layers/shell_properties_v1.kml').on('ready', function() {
+                  this.setStyle({color: "#960000",
+                    fillColor: "#642800",
+                    fillOpacity: 0.6,
+                    weight: 1});
                 });
 
                 layers['industrialFacilities'] = new L.geoJson(industrialFacilities_v1);
@@ -92,13 +101,6 @@ define([
         this.bounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
         return new L.imageOverlay(this.url, this.bounds,{opacity: 1});
       },
-
-      shellProperties: omnivore.kml('./assets/layers/shell_properties_v1.kml').on('ready', function() {
-        this.setStyle({color: "#960000",
-          fillColor: "#642800",
-          fillOpacity: 0.6,
-          weight: 1});
-      }),
       
       westIndianPath: L.polyline([],{
         color:'red',

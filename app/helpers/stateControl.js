@@ -25,27 +25,30 @@ define(['jquery',
       }
     },
 
-    clearLayerControl = function(){
-      $.each(layerControl._layers, function(key, value){
-        if (layerControl._layers[key].name !== 'Labels'){
-          layerControl.removeLayer(layerControl._layers[key].layer);
-        }
-      });
+    clearLayerControl = function(clearLayers){
+      if (clearLayers !== false){
+        $.each(layerControl._layers, function(key, value){
+          if (layerControl._layers[key].name !== 'Labels'){
+            layerControl.removeLayer(layerControl._layers[key].layer);
+          }
+        })
+      }
     },
 
     defaultState = function(args){
       
     	var lat = args['lat'],
     	    lng = args['lng'],
-    	    zoom = args['zoom'],
-          moduleLayers = args['layers'],  
+    	    zoom = args['zoom'],  
+          clearLayers = args['clearLayerControl'],
           viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
 
       hideStaticContent();
-      clearLayerControl();
-      if (moduleLayers !== undefined){
+      clearLayerControl(clearLayers);
+  
+      /*if (moduleLayers !== undefined){
         layerHelpers.populateLayerControl(moduleLayers);
-      }; 
+      };*/ 
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
