@@ -1,13 +1,13 @@
 define(['jquery',
         'map',
-        'layers/layers',
+        'controllers/layerStateControl',
         'helpers/layerHelpers',
         'helpers/stateControl',
         'helpers/videoHelpers',
         'text!assets/html/home.html',
         'controllers/productionLog'],
 
-  function($, map, layers, layerHelpers, stateControl, videoHelpers, homeHtml){
+  function($, map, layerStateControl, layerHelpers, stateControl, videoHelpers, homeHtml){
 
     var map = map.map,
         $mapTab = stateControl.$mapTab,

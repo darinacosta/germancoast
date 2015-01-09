@@ -1,20 +1,20 @@
 define(['jquery',
         'map',
-        'layers/layers',
+        'controllers/layerStateControl',
         'helpers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
         'text!assets/html/plantation-land.html',
         'magnificent'],
 
-function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLandHtml){
+function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, plantationLandHtml){
 
 	var map = map.map,
       $mapTab = stateControl.$mapTab,
 
 	activateOpacityControl = $('.map-tab-content').on("input", '#opacity-bar', function() {
     opacityValue = $(this).val();
-    layers.plantationsLayer.setOpacity(opacityValue);
+    layerStateControl.plantationsLayer.setOpacity(opacityValue);
   }),
 
 
@@ -26,7 +26,7 @@ function($, map, layers, stateControl, layerHelpers, imageHelpers, plantationLan
 	    'zoom':12
 	  });
     map.doubleClickZoom.disable();
-	  layers.plantationsLayer.addTo(map);
+	  layerStateControl.plantationsLayer.addTo(map);
 	  activateOpacityControl;
     $('.map-tab-content .image-link').magnificPopup({type:'image'});
 	};

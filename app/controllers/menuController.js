@@ -1,6 +1,6 @@
 define(['jquery',
          'map',
-         'layers/layers',
+         'controllers/layerStateControl',
          'vignettes/home',
          'vignettes/labranche',
          'vignettes/hurricane',
@@ -10,7 +10,7 @@ define(['jquery',
          'esriLeaflet',
          'bootstrap'],
 
-  function($, map, layers, home, labranche, hurricane, domination, plantation, L, esri){
+  function($, map, layerStateControl, home, labranche, hurricane, domination, plantation, L, esri){
     
     //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
     //Will fix this later.

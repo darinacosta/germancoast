@@ -1,13 +1,13 @@
 define(['jquery',
         'map',
-        'layers/layers',
+        'controllers/layerStateControl',
         'helpers/stateControl',
         'text!assets/html/hurricane.html',
         'helpers/layerHelpers',
         'helpers/videoHelpers',
         'helpers/pathAnimator'],
 
-  function($, map, layers, stateControl, hurricaneHtml, layerHelpers, videoHelpers, pathAnimator){
+  function($, map, layerStateControl, stateControl, hurricaneHtml, layerHelpers, videoHelpers, pathAnimator){
 
       var map = map.map,
           $mapTab = stateControl.$mapTab,
@@ -21,9 +21,9 @@ define(['jquery',
           $mainMapTopRight = stateControl.$mainMapTopRight,
 
       animateHurricane = function(){
-        layers.westIndianPath.addTo(map);
-        pathAnimator.drawPath(layers.westIndianPath, 
-        layers.hurricaneLayer, 5)
+        layerStateControl.westIndianPath.addTo(map);
+        pathAnimator.drawPath(layerStateControl.westIndianPath, 
+        layerStateControl.hurricaneLayer, 5)
       },
 
       videoEventArray =  [
@@ -71,7 +71,7 @@ define(['jquery',
           map.setView(new L.LatLng(30.1077, -90.4268), 15);
           //$mainMapTopRight.html('');
           $hurricaneContextVisual.html('<img src="./assets/i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
-          layers.frenierTitleLayer.addTo(map);
+          layerStateControl.frenierTitleLayer.addTo(map);
         }, 91),
 
         videoSec6_0 = new videoUpdateHandler(function(){

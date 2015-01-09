@@ -1,12 +1,11 @@
-
-
   /********************/
  /******BEGIN APP*****/
 /********************/
 
+var germancoastapp = {layers:{}};
+
 require(['jquery',
          'vignettes/home',
-         'layers/layers',
          'map',
          'helpers/persistenceControl',
          'helpers/stateControl',
@@ -16,7 +15,7 @@ require(['jquery',
          'controllers/menuController',
          'magnificent'],
 
-  function($, home, layers, map, persistenceControl, stateControl, imageHelpers, contentToggleControl){
+  function($, home, map, persistenceControl, stateControl, imageHelpers, contentToggleControl){
     
     var map = map.map;
 
@@ -39,8 +38,6 @@ require(['jquery',
         imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
       });
     });
-
-    console.log(layers.norcoBoundary);
   
     persistenceControl.init();
   }

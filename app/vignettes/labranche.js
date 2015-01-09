@@ -1,15 +1,15 @@
 define(['jquery',
         'map',
-        'layers/layers',
+        'controllers/layerStateControl',
         'helpers/stateControl',
         'helpers/layerHelpers',
         'text!assets/html/speculation.html'],
 
-  function($, map, layers, stateControl, layerHelpers, speculationHtml){
+  function($, map, layerStateControl, stateControl, layerHelpers, speculationHtml){
 
     var map = map.map,
         $mapTab = stateControl.$mapTab,
-        labrancheDevelopments = layers.labrancheDevelopments,
+        labrancheDevelopments = layerStateControl.labrancheDevelopments,
         developmentsArray = {},
         labrancheIndustrialPoint = new L.latLng(30.03759433988124,-90.37714004516602),
         moduleLayers = {'Speculative Developments': labrancheDevelopments},

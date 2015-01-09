@@ -1,13 +1,13 @@
-define(['jquery', 'map', 'layers/layers'],
+define(['jquery', 'map', 'controllers/layerStateControl'],
 
-  function($, map, layers)
+  function($, map, layerStateControl)
   {
 
     var layerControl = map.layerControl,
         map = map.map,
 
     hideAllLayers = function(){
-      $.each(layers, function(key, val) {map.removeLayer(layers[key])});
+      $.each(layerStateControl, function(key, val) {map.removeLayer(layerStateControl[key])});
     },
 
     populateLayerControl = function(layers){
