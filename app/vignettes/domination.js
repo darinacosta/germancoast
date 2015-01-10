@@ -40,34 +40,30 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
 
     activateClickEvents = $('.map-tab-content').on("click",  "#domination a", function(event){
       if ($(event.target).hasClass('levee-domination')){
-        stateControl.defaultState({
+        stateControl.zoomAndHideLayers({
           'lat': 30.001,
           'lng': -90.405, 
-          'zoom': 14,
-          'clearLayerControl': false
+          'zoom': 14
         });
         appLayers['norcoLandUse'].addTo(map);
       }else if ($(event.target).hasClass('goodhope')){
-        stateControl.defaultState({
+        stateControl.zoomAndHideLayers({
           'lat': 29.9836,
           'lng': -90.396, 
-          'zoom': 16,
-          'clearLayerControl': false
+          'zoom': 16
         });
       }else if ($(event.target).hasClass('ex-town')){
-        stateControl.defaultState({
+        stateControl.zoomAndHideLayers({
           'lat': 30.004,
           'lng': -90.418, 
-          'zoom': 16,
-          'clearLayerControl': false
+          'zoom': 16
         });
         layers.shellProperties.addTo(map);
       }else if ($(event.target).hasClass('industrial-facilities')){
-        stateControl.defaultState({
+        stateControl.zoomAndHideLayers({
           'lat':29.960289,
           'lng':-90.392418, 
-          'zoom':12,
-          'clearLayerControl': false
+          'zoom':12
         });
         appLayers['industrialFacilities'].addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){

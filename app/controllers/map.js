@@ -21,21 +21,21 @@ define(['leaflet',
       position: 'bottomright'
     }).addTo(map),
 
+    zoomControl =  L.control.zoom({
+      position:'topright'
+    });
     layerControl = L.control.layers(null, {'Labels': imageryLabels}),
 
     // Disable tap handler, if present.
     conigureMap = (function(){
       if (map.tap) map.tap.disable();
-
+      baseMap.addTo(map);
+      zoomControl.addTo(map);
+      layerControl.addTo(map);
       map.on('click', function(e) {
         console.log(e.latlng);
       });
-
     })();
-
-    baseMap.addTo(map);
-    layerControl.addTo(map);
-    console.log(layerControl);
 
     return {map: map,
             layerControl: layerControl,

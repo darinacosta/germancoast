@@ -37,7 +37,8 @@ module.exports = function(grunt) {
           paths: {
             vignettes: './vignettes',
             helpers: './helpers',
-            layers: './assets/layers',
+            controllers: './controllers',
+            layers: 'empty:',
             map: "./constructors/map",
             leaflet: 'empty:',
             esriLeaflet: 'empty:',

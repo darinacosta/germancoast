@@ -35,6 +35,15 @@ define(['jquery',
       }
     },
 
+    zoomAndHideLayers = function(args){
+      var lat = args['lat'],
+          lng = args['lng'],
+          zoom = args['zoom'];
+
+          map.setView(new L.LatLng(lat, lng), zoom);
+          layerHelpers.hideAllLayers();
+    },
+
     defaultState = function(args){
       
     	var lat = args['lat'],
@@ -45,18 +54,12 @@ define(['jquery',
 
       hideStaticContent();
       clearLayerControl(clearLayers);
-  
-      /*if (moduleLayers !== undefined){
-        layerHelpers.populateLayerControl(moduleLayers);
-      };*/ 
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
       //$mainMapTopRight.html('');
-
       $('.map-tab-content').scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
-
       $mapHomeButton.unbind();
       $mapHomeButton.on('click', function(){
         if (viewEquality === false){
@@ -66,6 +69,7 @@ define(['jquery',
     };
 
     return{defaultState: defaultState,
+           zoomAndHideLayers: zoomAndHideLayers,
            $mapTab: $mapTab,
            $mainMapTopRight: $mainMapTopRight}
   }
