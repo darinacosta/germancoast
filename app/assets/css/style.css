@@ -361,15 +361,6 @@
 
   /*******************MEDIA QUERIES***************/
 
-  @media (min-width:767px){
-    #hurricane-video-wrapper{
-      width:100%;
-      position: absolute;
-      left: 0;
-      top: 38px;
-    }
-  }
-
   @media all and (max-width: 767px) { 
    
     body{
@@ -413,10 +404,6 @@
       border-style: solid;
       padding: 5px 0 0 3px;
     }
-
-    .leaflet-control-zoom{
-      display:none;
-     }
 
     .tab-pane.active{
       padding-top:0px;
