@@ -5,10 +5,18 @@ define(['jquery'],
     var htmlString = '',
 
     log = [
+    {
+      'date': '1.06.2015',
+      'update': 'Layer toggle added.'
+    },
+    {
+      'date': '1.05.2015',
+      'update': 'Plantation vignette added.'
+    },
 
     {
   	  'date': '1.03.2015',
-  	  'update': 'Map events for Hurricane module synced up to 1:30.'
+  	  'update': 'Map events for Hurricane vignette synced up to 1:30.'
   	},
 
     {
@@ -22,9 +30,13 @@ define(['jquery'],
 	  	for (var i = 0; i < log.length; i ++){
 	  		htmlString = htmlString + log[i]['date'] + ': ' + '<i>' + log[i]['update'] + '</i><br>'
 	  	}
-	  })();
+	  })(),
 
-	  $('#production-log').html(htmlString);
+	  init = function(){
+      $('#production-log').html(htmlString);
+    };
+
+    return {init:init};
 
   }
 )

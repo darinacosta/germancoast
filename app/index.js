@@ -19,6 +19,7 @@ require(['jquery',
     
     var map = map.map;
 
+
     $(document).ready(function() {
       //Can't cache these css selectors due to dynamically loaded content
       $('.map-tab-content .image-link').magnificPopup({type:'image'});

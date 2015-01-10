@@ -48,8 +48,8 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         appLayers['norcoLandUse'].addTo(map);
       }else if ($(event.target).hasClass('goodhope')){
         stateControl.zoomAndHideLayers({
-          'lat': 29.9836,
-          'lng': -90.396, 
+          'lat': 29.992,
+          'lng': -90.4001, 
           'zoom': 16
         });
       }else if ($(event.target).hasClass('ex-town')){

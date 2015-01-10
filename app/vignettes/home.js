@@ -7,7 +7,7 @@ define(['jquery',
         'text!assets/html/home.html',
         'controllers/productionLog'],
 
-  function($, map, layerStateControl, layerHelpers, stateControl, videoHelpers, homeHtml){
+  function($, map, layerStateControl, layerHelpers, stateControl, videoHelpers, homeHtml, productionLog){
 
     var map = map.map,
         $mapTab = stateControl.$mapTab,
@@ -37,6 +37,8 @@ define(['jquery',
     init = function(){
 
       $mapTab.html(homeHtml);
+      productionLog.init();
+
 
       stateControl.defaultState({
         'lat':30.0339,
