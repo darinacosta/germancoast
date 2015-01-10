@@ -17,24 +17,28 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         $norcoGrowthContext = $('#norco-growth-context'),
         landUseDisplayStatus = 'full',
         appLayers = germancoastapp.layers,
-        moduleLayers,
+        moduleLayers, layerState,
 
     activateLayers = function(){
-      //lazy-loading layers
-      layerStateControl.industrialDevelopmentLayers('activate');
-      setTimeout(function(){
-        moduleLayers = {
-          'Norco Land Use': appLayers['norcoLandUse'],
-          'Flood Land Use': appLayers['floodLandUse'],
-          'Norco Boundary': appLayers['norcoBoundary'],
-          'Industrial Facilities': appLayers['industrialFacilities'],
-          'Shell Properties': appLayers['shellProperties']
-        };
+      if (layerState !== 'activated'){
+        //lazy-loading layers
+        layerStateControl.industrialDevelopmentLayers('activate', function(){
+          moduleLayers = {
+            'Norco Land Use': appLayers['norcoLandUse'],
+            'Flood Land Use': appLayers['floodLandUse'],
+            'Norco Boundary': appLayers['norcoBoundary'],
+            'Industrial Facilities': appLayers['industrialFacilities'],
+            'Shell Properties': appLayers['shellProperties']
+          };
+          layerHelpers.populateLayerControl(moduleLayers);
+          layerState = 'activated';
+        })
+      }else{
         layerHelpers.populateLayerControl(moduleLayers);
-      }, 900);
+      }
     },
 
-    activateClickEvents = $('.map-tab-content').on("click",  "#domination a[href^='#']", function(event){
+    activateClickEvents = $('.map-tab-content').on("click",  "#domination a", function(event){
       if ($(event.target).hasClass('levee-domination')){
         stateControl.defaultState({
           'lat': 30.001,
@@ -43,6 +47,13 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           'clearLayerControl': false
         });
         appLayers['norcoLandUse'].addTo(map);
+      }else if ($(event.target).hasClass('goodhope')){
+        stateControl.defaultState({
+          'lat': 29.9836,
+          'lng': -90.396, 
+          'zoom': 16,
+          'clearLayerControl': false
+        });
       }else if ($(event.target).hasClass('ex-town')){
         stateControl.defaultState({
           'lat': 30.004,
@@ -51,6 +62,14 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           'clearLayerControl': false
         });
         layers.shellProperties.addTo(map);
+      }else if ($(event.target).hasClass('industrial-facilities')){
+        stateControl.defaultState({
+          'lat':29.960289,
+          'lng':-90.392418, 
+          'zoom':12,
+          'clearLayerControl': false
+        });
+        appLayers['industrialFacilities'].addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){
         if (landUseDisplayStatus == 'full'){
           appLayers['floodLandUse'].addTo(map);
@@ -65,13 +84,14 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
     }),
 
     init = function(){
-      activateLayers();
         
       stateControl.defaultState({
         'lat':30.0039,
         'lng':-90.4108, 
         'zoom':12,
       });
+
+      activateLayers();
 
       $mapTab.html(dominationHtml);
 

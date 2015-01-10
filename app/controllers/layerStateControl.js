@@ -11,11 +11,13 @@ define(['layers/labrancheDevelopmentsV1',
           map){
 
     var layers = germancoastapp.layers,
+        industrialDevelopmentLayersState,
       
       layerStateControl = {
 
-        industrialDevelopmentLayers: function(state){
-          if (state === 'activate' && layers['norcoLandUse'] === undefined){
+        industrialDevelopmentLayers: function(state, callback){
+          if (state === 'activate' && industrialDevelopmentLayersState !== 'activated'){
+            industrialDevelopmentLayersState = 'activated'
 
             require(['layers/norco_landuses_general_v1',
                      'layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1',
@@ -27,7 +29,8 @@ define(['layers/labrancheDevelopmentsV1',
                        norcoBoundary_v1,
                        industrialFacilities_v1){
 
-                console.log('Domination layers activated.');
+                console.log('activate development layers');
+
 
                 layers['norcoLandUse'] = new L.geoJson(norco_landuses_general_v1,{
                   style: function (feature) {
@@ -66,7 +69,16 @@ define(['layers/labrancheDevelopmentsV1',
                     weight: 1});
                 });
 
-                layers['industrialFacilities'] = new L.geoJson(industrialFacilities_v1);
+                layers['industrialFacilities'] = new L.geoJson(industrialFacilities_v1,{
+                  style: function (feature) {
+                    return {color: "#960000",
+                      fillColor: "#642800",
+                      fillOpacity: 0.4,
+                      weight: 1}
+                    }
+                });
+
+                callback();
 
               }
             )

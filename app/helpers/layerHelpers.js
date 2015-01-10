@@ -5,18 +5,27 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
 
     var layerControl = map.layerControl,
         map = map.map,
+        layerControlList = [],
 
     hideAllLayers = function(){
       //Two functions for now until all layers get migrated into germancoastapps.layers
-      console.log(germancoastapp.layers);
       $.each(layerStateControl, function(key, val) {map.removeLayer(layerStateControl[key])});
       $.each(germancoastapp.layers, function(key, val) {map.removeLayer(germancoastapp.layers[key])});
     },
 
-    populateLayerControl = function(layers){
-      $.each(layers, function(alias, layer){
-        layerControl.addOverlay(layer, alias);
+    compileLayerControlList = function(){
+      $.each(layerControl._layers, function(key, val){
+        layerControlList.push(layerControl._layers[key]['name']);
       });
+    },
+
+    populateLayerControl = function(layers){
+      compileLayerControlList();
+      $.each(layers, function(alias, layer){
+        if ($.inArray(alias, layerControlList) !== false){
+          layerControl.addOverlay(layer, alias);
+        }
+      })
     },
 
     selectPolyOnClick = function(args){
