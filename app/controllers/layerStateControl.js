@@ -1,17 +1,20 @@
-define(['layers/labrancheDevelopmentsV1',
-        'leaflet',
+define(['leaflet',
         'omnivore',
         'esriLeaflet',
         'map'], 
 
-  function(labrancheDevelopmentsV1,
-          L,
+  function(L,
           omnivore,
           esri,
           map){
 
+    /*This module is designed to allow lazy-loading of layers in order 
+    to improve performance. Layers are organized by vignette and only loaded 
+    into the browser when the vignette is activated.*/
+
     var layers = germancoastapp.layers,
         industrialDevelopmentLayersState,
+        speculationLayersState,
       
       layerStateControl = {
 
@@ -29,7 +32,7 @@ define(['layers/labrancheDevelopmentsV1',
                        norcoBoundary_v1,
                        industrialFacilities_v1){
 
-                console.log('activate development layers');
+                console.log('development layers activated');
 
 
                 layers['norcoLandUse'] = new L.geoJson(norco_landuses_general_v1,{
@@ -85,26 +88,50 @@ define(['layers/labrancheDevelopmentsV1',
           }
         },
 
+        speculationLayers: function(state, callback){
+          if (state === 'activate' && speculationLayersState !== 'activated'){
+            speculationLayersState = 'activated';
+
+            require(['layers/airlineLevee',
+                     'layers/labrancheDevelopmentsV1'],
+
+              function(airlineLevee,
+                       labrancheDevelopmentsV1){
+
+                console.log('speculation layers activated');
+                
+                layers['airlineLevee'] = new L.geoJson(airlineLevee, {
+                  color: 'yellow',
+                  weight: 2,
+                  opacity: 0.8,
+                  fillOpacity: 0.2
+                });
+
+                layers['labrancheDevelopments'] = new L.geoJson(labrancheDevelopmentsV1, {
+                  onEachFeature: function(feature, layer) {
+
+                    var popupContent = '<table><tr><h3>' + feature.properties.NAME + '</h3></tr><tr><th scope="row">ACRES:</th><td style="padding:5px;">'+ feature.properties.ACREAGE + '</td></tr></table>';
+                    
+                    layer.bindPopup(popupContent);
+                  },
+                  style: function (feature) {
+                    return {color: "#960000",
+                      fillColor: "#642800",
+                      fillOpacity: 0.4,
+                      weight: 1}
+                  }
+                });
+
+                callback();
+          })
+        }
+      },
+
       frenierTitleLayer: function(){
         this.url = './assets/i/FRENIER.png';
         this.bounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]];
         return new L.imageOverlay(this.url, this.bounds);
       },
-
-      labrancheDevelopments: new L.geoJson(labrancheDevelopmentsV1, {
-        onEachFeature: function(feature, layer) {
-
-          var popupContent = '<table><tr><h3>' + feature.properties.NAME + '</h3></tr><tr><th scope="row">ACRES:</th><td style="padding:5px;">'+ feature.properties.ACREAGE + '</td></tr></table>';
-          
-          layer.bindPopup(popupContent);
-        },
-        style: function (feature) {
-          return {color: "#960000",
-            fillColor: "#642800",
-            fillOpacity: 0.4,
-            weight: 1}
-        }
-      }),
 
       plantationsLayer: new function(){
         this.url = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg';
