@@ -17,7 +17,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         $norcoGrowthContext = $('#norco-growth-context'),
         landUseDisplayStatus = 'full',
         appLayers = germancoastapp.layers,
-        moduleLayers, layerState,
+        moduleLayers, layerState, 
 
     activateLayers = function(callback){
       if (layerState !== 'activated'){
@@ -52,6 +52,8 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           originalFill: '#642800'
         });
 
+        industrialFacilitiesState = 'configured';
+
       }
     },
 
@@ -63,6 +65,13 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           'zoom': 14
         });
         appLayers['norcoLandUse'].addTo(map);
+      }else if ($(event.target).hasClass('industrial-facilities')){
+        stateControl.zoomAndHideLayers({
+          'lat':30.0039,
+          'lng':-90.4108, 
+          'zoom':12,
+        });
+        appLayers['industrialFacilities'].addTo(map);
       }else if ($(event.target).hasClass('goodhope')){
         stateControl.zoomAndHideLayers({
           'lat': 29.992,
@@ -99,7 +108,6 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
 
       activateLayers(function(){
         configureLayers();
-        appLayers['industrialFacilities'].addTo(map);
       });
       
       $mapTab.html(dominationHtml);

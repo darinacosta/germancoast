@@ -6,6 +6,8 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
     var layerControl = map.layerControl,
         map = map.map,
         layerControlList = [],
+        targetLayer,
+        selectPolyActivatedLayers = [],
 
     hideAllLayers = function(){
       //Two functions for now until all layers get migrated into germancoastapps.layers
@@ -35,32 +37,48 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
 	        selectedFill = args['selectedFill'],
 	        originalColor = args['originalColor'],
 	        originalFill = args['originalFill'],
-          zoom = args['zoom'] !== 'undefined' ? args['zoom'] : 13;
+          zoom = args['zoom'] !== 'undefined' ? args['zoom'] : 13,
       
+      activationState = (function(){
+        if ($.inArray(targetLayer, selectPolyActivatedLayers) === -1){
+          selectPolyActivatedLayers.push(targetLayer);
+          return false
+        }else{
+          return true;
+        }
+      })();
+
       //Reset potential style changes
       targetLayer.setStyle({
         color: originalColor,
         fillColor: originalFill
       });
 
-	    targetLayer.on("click", function(e){
+      function handleLayerClick(e){
 
         var targetPoly = e.layer,
-            clickLocation = new L.LatLng(e.latlng['lat'],e.latlng['lng']);
-
-	      targetLayer.setStyle({
-      	  color: originalColor,
+            clickLocation = [e.latlng['lat'],e.latlng['lng']];
+        
+        //Deselect previous poly
+        targetLayer.setStyle({
+          color: originalColor,
           fillColor: originalFill
         });
 
-	      targetPoly.setStyle({
-	        'fillColor': selectedFill,
-	        'color': selectedColor
-	      });
+        targetPoly.setStyle({
+          'fillColor': selectedFill,
+          'color': selectedColor
+        });
 
-	      map.setView(clickLocation, zoom);
-	    
-	    })
+        map.setView(clickLocation, zoom);
+      
+      };
+ 
+      //If the layer has already been activated, pass.
+      if (activationState === false){
+        targetLayer.on("click", handleLayerClick);
+        console.log('Target layer activated');
+      };
 	  };
 
     return {hideAllLayers: hideAllLayers,
