@@ -17,7 +17,7 @@ define(['jquery',
     activateLayers = function(callback){
       if (layerState !== 'activated'){
         //lazy-loading layers
-        layerStateControl.speculationLayers('activate', function(){
+        layerStateControl.activateSpeculationLayers(true, function(){
           moduleLayers = {
             'Levee': appLayers['airlineLevee'],
             'Speculative Developments': appLayers['labrancheDevelopments']
@@ -57,28 +57,20 @@ define(['jquery',
               levee.addTo(map);
             }
           });
-        })(),
+        })();
 
-        addStyle = (function(){
-            //Reset potential style changes
-            labrancheDevelopments.setStyle({
-              color: '#960000',
-              fillColor: '#642800'
-            });
-
-            layerHelpers.selectPolyOnClick({
-              targetLayer: labrancheDevelopments, 
-              selectedColor: 'rgb(200,200,0)', 
-              selectedFill: 'rgb(130,150,0)', 
-              originalColor: '#960000', 
-              originalFill: '#642800'
-            })
-          }
-        )();
+        layerHelpers.selectPolyOnClick({
+          targetLayer: labrancheDevelopments, 
+          selectedColor: 'rgb(200,200,0)', 
+          selectedFill: 'rgb(130,150,0)', 
+          originalColor: '#960000', 
+          originalFill: '#642800',
+          zoom: 14
+        });
 
         labrancheDevelopments.addTo(map);
-        };
       };
+    },
       
     init =  function(){
 

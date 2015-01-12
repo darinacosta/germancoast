@@ -19,10 +19,11 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         appLayers = germancoastapp.layers,
         moduleLayers, layerState,
 
-    activateLayers = function(){
+    activateLayers = function(callback){
       if (layerState !== 'activated'){
         //lazy-loading layers
-        layerStateControl.industrialDevelopmentLayers('activate', function(){
+        layerStateControl.activateDevelopmentLayers(true, function(){
+          console.log('actvivifivd')
           moduleLayers = {
             'Norco Land Use': appLayers['norcoLandUse'],
             'Flood Land Use': appLayers['floodLandUse'],
@@ -32,9 +33,25 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           };
           layerHelpers.populateLayerControl(moduleLayers);
           layerState = 'activated';
+          callback();
         })
       }else{
         layerHelpers.populateLayerControl(moduleLayers);
+        callback();
+      }
+    },
+
+    configureLayers = function(){
+      if (appLayers['industrialFacilities'] !== undefined){
+
+        layerHelpers.selectPolyOnClick({
+          targetLayer: appLayers['industrialFacilities'], 
+          selectedColor: 'rgb(200,200,0)', 
+          selectedFill: 'rgb(130,150,0)', 
+          originalColor: '#960000', 
+          originalFill: '#642800'
+        });
+
       }
     },
 
@@ -59,13 +76,6 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           'zoom': 16
         });
         layers.shellProperties.addTo(map);
-      }else if ($(event.target).hasClass('industrial-facilities')){
-        stateControl.zoomAndHideLayers({
-          'lat':29.960289,
-          'lng':-90.392418, 
-          'zoom':12
-        });
-        appLayers['industrialFacilities'].addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){
         if (landUseDisplayStatus == 'full'){
           appLayers['floodLandUse'].addTo(map);
@@ -87,8 +97,11 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         'zoom':12,
       });
 
-      activateLayers();
-
+      activateLayers(function(){
+        configureLayers();
+        appLayers['industrialFacilities'].addTo(map);
+      });
+      
       $mapTab.html(dominationHtml);
 
       $('.map-tab-content .image-link').magnificPopup({type:'image'});

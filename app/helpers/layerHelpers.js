@@ -34,7 +34,14 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
 	        selectedColor = args['selectedColor'],
 	        selectedFill = args['selectedFill'],
 	        originalColor = args['originalColor'],
-	        originalFill = args['originalFill'];
+	        originalFill = args['originalFill'],
+          zoom = args['zoom'] !== 'undefined' ? args['zoom'] : 13;
+      
+      //Reset potential style changes
+      targetLayer.setStyle({
+        color: originalColor,
+        fillColor: originalFill
+      });
 
 	    targetLayer.on("click", function(e){
 
@@ -51,7 +58,7 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
 	        'color': selectedColor
 	      });
 
-	      map.setView(clickLocation, 14);
+	      map.setView(clickLocation, zoom);
 	    
 	    })
 	  };

@@ -13,24 +13,24 @@ define(['leaflet',
     into the browser when the vignette is activated.*/
 
     var layers = germancoastapp.layers,
-        industrialDevelopmentLayersState,
+        developmentLayersState,
         speculationLayersState,
       
       layerStateControl = {
 
-        industrialDevelopmentLayers: function(state, callback){
-          if (state === 'activate' && industrialDevelopmentLayersState !== 'activated'){
-            industrialDevelopmentLayersState = 'activated'
+        activateDevelopmentLayers: function(activationTriggered, callback){
+          if (activationTriggered === true && developmentLayersState !== 'activated'){
+            developmentLayersState = 'activated'
 
             require(['layers/norco_landuses_general_v1',
                      'layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1',
                      'layers/norcoBoundary_v1',
-                     'layers/industrialFacilities_v1'],
+                     'layers/industrialFacilities'],
 
               function(norco_landuses_general_v1,
                        norcolanduses_100YRFLOODPLAINDISSOLVE_v1,
                        norcoBoundary_v1,
-                       industrialFacilities_v1){
+                       industrialFacilities){
 
                 console.log('development layers activated');
 
@@ -72,7 +72,13 @@ define(['leaflet',
                     weight: 1});
                 });
 
-                layers['industrialFacilities'] = new L.geoJson(industrialFacilities_v1,{
+                layers['industrialFacilities'] = new L.geoJson(industrialFacilities,{
+                  onEachFeature: function(feature, layer) {
+
+                    var popupContent = '<b>' + feature.properties.FACILITY + '</b>';
+                    
+                    layer.bindPopup(popupContent);
+                  },
                   style: function (feature) {
                     return {color: "#960000",
                       fillColor: "#642800",
@@ -88,8 +94,8 @@ define(['leaflet',
           }
         },
 
-        speculationLayers: function(state, callback){
-          if (state === 'activate' && speculationLayersState !== 'activated'){
+        activateSpeculationLayers: function(activationTriggered, callback){
+          if (activationTriggered === true && speculationLayersState !== 'activated'){
             speculationLayersState = 'activated';
 
             require(['layers/airlineLevee',
@@ -127,16 +133,16 @@ define(['leaflet',
         }
       },
 
-      frenierTitleLayer: function(){
-        this.url = './assets/i/FRENIER.png';
-        this.bounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]];
-        return new L.imageOverlay(this.url, this.bounds);
-      },
-
       plantationsLayer: new function(){
         this.url = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg';
         this.bounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
         return new L.imageOverlay(this.url, this.bounds,{opacity: 1});
+      },
+
+      frenierTitleLayer: function(){
+        this.url = './assets/i/FRENIER.png';
+        this.bounds = [[30.108305899054287, -90.42065620422363], [30.10941964729591, -90.41722297668457]];
+        return new L.imageOverlay(this.url, this.bounds);
       },
       
       westIndianPath: L.polyline([],{
