@@ -46,12 +46,26 @@
     display:none;
   }
 
-  .noscriptmsg{
-    display:none;
+  #load-screen{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color:rgb(36, 44, 36);
+    background-image:url('../i/grid.png');
+    opacity: 0.8;
+    z-index:99999;
+  }
+
+  #load-text-wrapper{
+    margin:0 auto; 
     text-align:center;
-    margin:0 auto;
-    max-width:500px;
-    margin-top:30px;
+    margin-top:15%;
+  }
+
+  #load-text-wrapper h1{
+    font-size:60px;
   }
 
   .nav-tabs {

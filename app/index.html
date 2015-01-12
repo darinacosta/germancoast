@@ -15,85 +15,27 @@
   <body>
 
     <!--JavaScript Disabled View-->
-    <div class="noscriptmsg">
-      It seems your browser does not have Javascript enabled. To view the German Coast, please enable Javascript and <a href="http://germancoast.verylongroad.com">try again</a>.
-    </div>
-    <div id="load-screen" style="position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    background-color:rgb(36, 44, 36);
-    background-image:url('./assets/i/grid.png');
-    opacity: 0.8;
-    z-index:99999;">
-      <div style="margin:0 auto; text-align:center;margin-top:15%;">
-        <h2 style="font-size:55px">LOADING</h2>
+    <!--Load Screen-->
+    <div id="load-screen">
+      <div id="load-text-wrapper">  
+        <h1>LOADING</h1>      
+        <noscript>
+          It seems your browser does not have Javascript enabled. To view the German Coast, please enable Javascript and <a href="http://germancoast.verylongroad.com">try again</a>.
+        </noscript>
       </div>
     </div>
 
-    <!--Map View-->
+    <!--Map-->
     <div id="map-home-button"><span class="glyphicon glyphicon-home"></span></div>
     <div id="map"></div>
-    
-    <!--Navigation Menu Full Screen-->
-    <ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
-      <li class="active">
-        <a data-toggle="tab" class="home-location-button newpage" href="#home"><span class="glyphicon glyphicon-home">
-          </span> GERMAN COAST
-        </a>
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SWAMP & SUBURB <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li data-toggle="popover"
-          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#speculation" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
-          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
-          <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
-        </ul><!-- end of dropdown menu -->
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">INDUSTRY & DISASTER <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#domination" data-toggle="tab" class="norco-location-button newpage">Domination</a></li>
-        <li data-toggle="popover"
-        data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
-        </ul><!-- end of dropdown menu -->
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SLAVERY & REVOLT <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li data-toggle="popover" data-content="Explore the pre-industrial plantation lands of the River Parishes."><a href="#plantation-land" data-toggle="tab" class="plantation-location-button newpage">Plantations</a></li>
-          <li><a class="inactive"><i>1811</i></a></li>
-          <li><a class="inactive"><i>Maroon</i></a></li>
-        </ul><!-- end of dropdown menu -->
-      </li>
-    </ul>
 
-    <!--Navigation Menu Mobile-->
-    <ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
-      <li class="active home-location-button newpage"><a href="#" class="home-location-button newpage" data-toggle="tab">The German Coast</span></a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li data-toggle="popover"
-          data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems."><a href="#speculation" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
-          <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac."><a href="#hurricane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
-          <li data-toggle="popover" data-content=""><a class="newpage inactive"><span>Crash</span></a></li>
-          <li><a href="#domination" data-toggle="tab" class="norco-location-button newpage">Domination</a></li>
-          <li data-toggle="popover"
-          data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents."><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
-          <li data-toggle="popover" data-content="Explore the pre-industrial plantation lands of the River Parishes."><a href="#plantations" data-toggle="tab" class="plantation-location-button newpage">Plantations</a></li>
-          <li><a class="inactive"><i>1811</i></a></li>
-          <li><a class="inactive"><i>Maroon</i></a></li>
-        </ul><!-- end of dropdown menu -->
-      </li>
-    </ul>
-    <!--/Navigation-->
+    <!--Navigation-->
+    <div id="navigation-menu"></div>
+    
+    <!--Sidebar-->
     <div id="content-toggle">
       <img src="assets/i/3-lines_v1.png">
     </div>
-    <!--Left Column Content-->
     <div class="map-tab-content scrollflip">
 
       <!--*******************************************-->
@@ -104,11 +46,6 @@
       <!--*******************************************-->
       <!--************STATIC CONTENT*****************-->
       <!--*******************************************-->
-
-      <!--This is a temporary solution. I'm going to move everything into HTML modules,
-          but for now, I'm keeping the hurricane module here until I figure out an effective way
-          of binding events to a dynamically loaded video-->
-
       <div id="hurricane" class="tab-pane scrollflip-content live-content map-tab-content-static" style="text-align:center">
         <div id="hurricane-video-wrapper">
           <h2>The West Indian Hurricane</h2>
@@ -129,18 +66,13 @@
           </div>
           <div id="hurricane-context-visual"></div>
           <div id="hurricane-context-text"></div>
-          <div class="col-md-12" id="viewport-too-small">
-            Some of this module's features have been disabled due to your screen size. For complete functionality, visit the German Coast in a larger viewport.
-          </div>
         </div>
       </div>
     </div>
     
     <script type="text/javascript" src="./config.js"></script>
-    <script data-main="index-min" src="./require.js"></script>
-
+    <script data-main="index" src="./require.js"></script>
     <script>
-   
        //Analytics
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -149,9 +81,6 @@
 
       ga('create', 'UA-56503938-1', 'auto');
       ga('send', 'pageview');
-
-
     </script>
-
   </body>
 </html>

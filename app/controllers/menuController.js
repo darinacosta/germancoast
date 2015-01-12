@@ -1,23 +1,23 @@
 define(['jquery',
          'map',
-         'controllers/layerStateControl',
          'vignettes/home',
          'vignettes/labranche',
          'vignettes/hurricane',
          'vignettes/domination',
          'vignettes/plantationLand',
          'leaflet',
+         'text!assets/html/menu.html',
          'esriLeaflet',
          'bootstrap'],
 
-  function($, map, layerStateControl, home, labranche, hurricane, domination, plantation, L, esri){
+  function($, map, home, labranche, hurricane, domination, plantation, L, menuHtml){
     
     //Defining imagery labels here because I can't add them correctly when I define them in layers.js. 
     //Will fix this later.
     var imageryLabels = map.imageryLabels, 
         map = map.map,
 
-    activateController = (function(){
+    activateController = function(){
       $('.main-menu').on('click', function (e) { 
         imageryLabels.addTo(map);
 
@@ -34,6 +34,11 @@ define(['jquery',
           plantation.init();
         }
       })
+    },
+
+    init = (function(){
+      $('#navigation-menu').html(menuHtml);
+      activateController();
     })();
   }
 );

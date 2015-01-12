@@ -6,40 +6,29 @@ var germancoastapp = {layers:{}};
 
 require(['jquery',
          'vignettes/home',
-         'map',
-         'controllers/persistenceControl',
-         'controllers/stateControl',
          'helpers/imageHelpers',
          'controllers/contentToggleControl',
+         'controllers/persistenceControl',
          'controllers/hurricaneVideoControl',
          'controllers/menuController',
          'magnificent'],
 
-  function($, home, map, persistenceControl, stateControl, imageHelpers, contentToggleControl){
+  function($, home, imageHelpers, contentToggleControl, persistenceControl){
     
-    var map = map.map;
-
-
-    $(document).ready(function() {
-      //Can't cache these css selectors due to dynamically loaded content
-      $('.map-tab-content .image-link').magnificPopup({type:'image'});
-      $('.video-link').magnificPopup({type:'iframe'});
-    }); 
-    
-    $('[data-toggle="popover"]').popover({
-        trigger: 'hover',
-        'placement': 'bottom'
-    });
-
+    persistenceControl.init();
     if (window.location.hash == ''){ home.init(); };
     
-    //Preload any large images
     $(document).ready( function (){
       $('#load-screen').fadeOut( "slow", function(){
+        //Preload plantation base layer
         imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
       });
+      $('.map-tab-content .image-link').magnificPopup({type:'image'});
+      $('.video-link').magnificPopup({type:'iframe'});
+      $('[data-toggle="popover"]').popover({
+        trigger: 'hover',
+        'placement': 'bottom'
+      });
     });
-  
-    persistenceControl.init();
   }
 );
