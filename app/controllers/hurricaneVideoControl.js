@@ -53,5 +53,6 @@ define(['jquery', 'vignettes/hurricane'],
         $hurricaneVideo.volume = hurricaneVolumeBar.value;
       }, false);
     })();
+
   }
 );

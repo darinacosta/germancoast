@@ -69,7 +69,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         stateControl.zoomAndHideLayers({
           'lat':30.0039,
           'lng':-90.4108, 
-          'zoom':12,
+          'zoom':13,
         });
         layers['industrialFacilities'].addTo(map);
       }else if ($(event.target).hasClass('goodhope')){
