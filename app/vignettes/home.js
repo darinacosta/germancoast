@@ -14,7 +14,7 @@ define(['jquery',
         returnVideoString = videoHelpers.returnVideoString,
         videoEventPopup = videoHelpers.videoEventPopup,
 
-    activateGeometryLinks = (function(){
+    initializeGeometryLinks = (function(){
 
       $('.map-tab-content').on("click", "#home", function(event) {
         if (event.target.id === 'radial-geofeature-event'){

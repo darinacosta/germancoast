@@ -10,20 +10,20 @@ define(['jquery',
     var map = map.map,
         $mapTab = stateControl.$mapTab,
         labrancheDevelopments = layerStateControl.labrancheDevelopments,
-        appLayers = germancoastapp.layers,
+        layers = layerStateControl.layers,
         labrancheIndustrialPoint = new L.latLng(30.03759433988124,-90.37714004516602),
         moduleLayers, layerState,
 
-    activateLayers = function(callback){
-      if (layerState !== 'activated'){
+    initializeLayers = function(callback){
+      if (layerState !== 'initialized'){
         //lazy-loading layers
-        layerStateControl.activateSpeculationLayers(true, function(){
+        layerStateControl.initializeSpeculationLayers(true, function(){
           moduleLayers = {
-            'Levee': appLayers['airlineLevee'],
-            'Speculative Developments': appLayers['labrancheDevelopments']
+            'Levee': layers['airlineLevee'],
+            'Speculative Developments': layers['labrancheDevelopments']
           };
           layerHelpers.populateLayerControl(moduleLayers);
-          layerState = 'activated';
+          layerState = 'initialized';
           callback();
         });
       }else{
@@ -34,11 +34,11 @@ define(['jquery',
 
     configureLayers = function(){
 
-      if (appLayers['labrancheDevelopments'] !== undefined){
+      if (layers['labrancheDevelopments'] !== undefined){
         console.log('begin labranche developments');
 
-        var labrancheDevelopments = appLayers['labrancheDevelopments'],
-        levee = appLayers['airlineLevee'],
+        var labrancheDevelopments = layers['labrancheDevelopments'],
+        levee = layers['airlineLevee'],
         developmentsArray = {},
 
         buildDevelopmentsArray = (function() {
@@ -47,7 +47,7 @@ define(['jquery',
           });
         })(), 
 
-        activateGeometryLinks = (function(){
+        initializeGeometryLinks = (function(){
           $('.map-tab-content').on("click", "#speculation a", function(event){
             if ($(event.target).hasClass('labranche-industrial-park')){
               labrancheDevelopments.addTo(map);
@@ -80,7 +80,7 @@ define(['jquery',
         'zoom':13
       });
 
-      activateLayers(function(){
+      initializeLayers(function(){
         configureLayers();
       });
       $mapTab.html(speculationHtml);

@@ -7,12 +7,13 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
         map = map.map,
         layerControlList = [],
         targetLayer,
-        selectPolyActivatedLayers = [],
+        selectPolyinitializedLayers = [],
 
     hideAllLayers = function(){
-      //Two functions for now until all layers get migrated into germancoastapps.layers
-      $.each(layerStateControl, function(key, val) {map.removeLayer(layerStateControl[key])});
-      $.each(germancoastapp.layers, function(key, val) {map.removeLayer(germancoastapp.layers[key])});
+      $.each(layerStateControl.layers, function(key, val) {
+        console.log(layerStateControl.layers[key]);
+        map.removeLayer(layerStateControl.layers[key])
+      });
     },
 
     compileLayerControlList = function(){
@@ -40,8 +41,8 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
           zoom = args['zoom'] !== 'undefined' ? args['zoom'] : 13,
       
       activationState = (function(){
-        if ($.inArray(targetLayer, selectPolyActivatedLayers) === -1){
-          selectPolyActivatedLayers.push(targetLayer);
+        if ($.inArray(targetLayer, selectPolyinitializedLayers) === -1){
+          selectPolyinitializedLayers.push(targetLayer);
           return false
         }else{
           return true;
@@ -74,10 +75,10 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
       
       };
  
-      //If the layer has already been activated, pass.
+      //If the layer has already been initialized, pass.
       if (activationState === false){
         targetLayer.on("click", handleLayerClick);
-        console.log('Target layer activated');
+        console.log('Target layer initialized');
       };
 	  };
 

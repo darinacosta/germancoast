@@ -11,10 +11,11 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, pl
 
 	var map = map.map,
       $mapTab = stateControl.$mapTab,
+      plantationsLayer = layerStateControl.layers['plantationsLayer'],
 
-	activateOpacityControl = $('.map-tab-content').on("input", '#opacity-bar', function() {
+	initializeOpacityControl = $('.map-tab-content').on("input", '#opacity-bar', function() {
     opacityValue = $(this).val();
-    layerStateControl.plantationsLayer.setOpacity(opacityValue);
+    plantationsLayer.setOpacity(opacityValue);
   }),
 
 
@@ -26,8 +27,8 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, pl
 	    'zoom':12
 	  });
     map.doubleClickZoom.disable();
-	  layerStateControl.plantationsLayer.addTo(map);
-	  activateOpacityControl;
+	  plantationsLayer.addTo(map);
+	  initializeOpacityControl;
     $('.map-tab-content .image-link').magnificPopup({type:'image'});
 	};
 

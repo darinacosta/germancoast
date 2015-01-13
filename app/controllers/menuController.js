@@ -17,7 +17,7 @@ define(['jquery',
     var imageryLabels = map.imageryLabels, 
         map = map.map,
 
-    activateController = function(){
+    initializeController = function(){
       $('.main-menu').on('click', function (e) { 
         imageryLabels.addTo(map);
 
@@ -38,7 +38,7 @@ define(['jquery',
 
     init = (function(){
       $('#navigation-menu').html(menuHtml);
-      activateController();
+      initializeController();
     })();
   }
 );

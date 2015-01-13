@@ -1,9 +1,6 @@
   /********************/
  /******BEGIN APP*****/
 /********************/
-
-var germancoastapp = {layers:{}};
-
 require(['jquery',
          'vignettes/home',
          'helpers/imageHelpers',

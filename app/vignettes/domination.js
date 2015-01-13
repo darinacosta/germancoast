@@ -16,23 +16,23 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         $norcoGrowth = $('.norco-growth'),
         $norcoGrowthContext = $('#norco-growth-context'),
         landUseDisplayStatus = 'full',
-        appLayers = germancoastapp.layers,
+        layers = layerStateControl.layers,
         moduleLayers, layerState, 
 
-    activateLayers = function(callback){
-      if (layerState !== 'activated'){
+    initializeLayers = function(callback){
+      if (layerState !== 'initialized'){
         //lazy-loading layers
-        layerStateControl.activateDevelopmentLayers(true, function(){
+        layerStateControl.initializeDevelopmentLayers(true, function(){
           console.log('actvivifivd')
           moduleLayers = {
-            'Norco Land Use': appLayers['norcoLandUse'],
-            'Flood Land Use': appLayers['floodLandUse'],
-            'Norco Boundary': appLayers['norcoBoundary'],
-            'Industrial Facilities': appLayers['industrialFacilities'],
-            'Shell Properties': appLayers['shellProperties']
+            'Norco Land Use': layers['norcoLandUse'],
+            'Flood Land Use': layers['floodLandUse'],
+            'Norco Boundary': layers['norcoBoundary'],
+            'Industrial Facilities': layers['industrialFacilities'],
+            'Shell Properties': layers['shellProperties']
           };
           layerHelpers.populateLayerControl(moduleLayers);
-          layerState = 'activated';
+          layerState = 'initialized';
           callback();
         })
       }else{
@@ -42,10 +42,10 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
     },
 
     configureLayers = function(){
-      if (appLayers['industrialFacilities'] !== undefined){
+      if (layers['industrialFacilities'] !== undefined){
 
         layerHelpers.selectPolyOnClick({
-          targetLayer: appLayers['industrialFacilities'], 
+          targetLayer: layers['industrialFacilities'], 
           selectedColor: 'rgb(200,200,0)', 
           selectedFill: 'rgb(130,150,0)', 
           originalColor: '#960000', 
@@ -57,21 +57,21 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
       }
     },
 
-    activateClickEvents = $('.map-tab-content').on("click",  "#domination a", function(event){
+    initializeClickEvents = $('.map-tab-content').on("click",  "#domination a", function(event){
       if ($(event.target).hasClass('levee-domination')){
         stateControl.zoomAndHideLayers({
           'lat': 30.001,
           'lng': -90.405, 
           'zoom': 14
         });
-        appLayers['norcoLandUse'].addTo(map);
+        layers['norcoLandUse'].addTo(map);
       }else if ($(event.target).hasClass('industrial-facilities')){
         stateControl.zoomAndHideLayers({
           'lat':30.0039,
           'lng':-90.4108, 
           'zoom':12,
         });
-        appLayers['industrialFacilities'].addTo(map);
+        layers['industrialFacilities'].addTo(map);
       }else if ($(event.target).hasClass('goodhope')){
         stateControl.zoomAndHideLayers({
           'lat': 29.992,
@@ -87,12 +87,12 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         layers.shellProperties.addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){
         if (landUseDisplayStatus == 'full'){
-          appLayers['floodLandUse'].addTo(map);
-          map.removeLayer(appLayers['norcoLandUse']);
+          layers['floodLandUse'].addTo(map);
+          map.removeLayer(layers['norcoLandUse']);
           landUseDisplayStatus = 'partial';
         }else if (landUseDisplayStatus == 'partial'){
-          appLayers['norcoLandUse'].addTo(map);
-          map.removeLayer(appLayers['floodLandUse']);
+          layers['norcoLandUse'].addTo(map);
+          map.removeLayer(layers['floodLandUse']);
           landUseDisplayStatus = 'full';
         }
       }
@@ -106,7 +106,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         'zoom':12,
       });
 
-      activateLayers(function(){
+      initializeLayers(function(){
         configureLayers();
       });
       

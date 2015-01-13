@@ -10,6 +10,7 @@ define(['jquery',
   function($, map, layerStateControl, stateControl, hurricaneHtml, layerHelpers, videoHelpers, pathAnimator){
 
       var map = map.map,
+          layers = layerStateControl.layers,
           $mapTab = stateControl.$mapTab,
           $hurricaneVideo = $("#hurricane-video"),
           videoUpdateHandler = videoHelpers.videoUpdateHandler,
@@ -21,9 +22,9 @@ define(['jquery',
           $mainMapTopRight = stateControl.$mainMapTopRight,
 
       animateHurricane = function(){
-        layerStateControl.westIndianPath.addTo(map);
-        pathAnimator.drawPath(layerStateControl.westIndianPath, 
-        layerStateControl.hurricaneLayer, 5)
+        layers['westIndianPath'].addTo(map);
+        pathAnimator.drawPath(layers['westIndianPath'], 
+        layers['hurricaneLayer'], 5)
       },
 
       videoEventArray =  [
@@ -71,7 +72,7 @@ define(['jquery',
           map.setView(new L.LatLng(30.1077, -90.4268), 15);
           //$mainMapTopRight.html('');
           $hurricaneContextVisual.html('<img src="./assets/i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
-          layerStateControl.frenierTitleLayer.addTo(map);
+          layers['frenierTitleLayer'].addTo(map);
         }, 91),
 
         videoSec6_0 = new videoUpdateHandler(function(){
@@ -79,7 +80,7 @@ define(['jquery',
           //populatehurricanelRight(2, 'burning_cane_v1', ' ');
         }, 107)],
 
-      activateVideoEventArray = function(){
+      initializeVideoEventArray = function(){
         console.log($hurricaneVideo);
         $("#hurricane-video").on('timeupdate', runAtTime(videoEventArray[0].handler, videoEventArray[0].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[1].handler, videoEventArray[1].time));
@@ -107,7 +108,7 @@ define(['jquery',
         $('#map-tab-content-dynamic').html('');
         $('#hurricane.live-content').css('display', 'block');
 
-        activateVideoEventArray();
+        initializeVideoEventArray();
         
       }
 
