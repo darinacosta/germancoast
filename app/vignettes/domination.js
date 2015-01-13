@@ -84,7 +84,14 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           'lng': -90.418, 
           'zoom': 16
         });
-        layers.shellProperties.addTo(map);
+        layers['shellProperties'].addTo(map);
+      }else if ($(event.target).hasClass('norco-boundary')){
+        stateControl.zoomAndHideLayers({
+          'lat': 30.001,
+          'lng': -90.42, 
+          'zoom': 14
+        });
+        layers['norcoBoundary'].addTo(map);
       }else if ($(event.target).hasClass('land-use-switch')){
         if (landUseDisplayStatus == 'full'){
           layers['floodLandUse'].addTo(map);

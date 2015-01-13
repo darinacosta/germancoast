@@ -225,6 +225,10 @@
 
   /*Content (Media All)*/
 
+  .vignette-header{
+    text-align:center;
+  }
+
   #hurricane-context-visual{
     text-align:center;
     font-size:12px;
@@ -244,7 +248,7 @@
       margin:0 auto;
     }
 
-  #production-log{
+  #development-section{
     font-size:13px;
   }
 

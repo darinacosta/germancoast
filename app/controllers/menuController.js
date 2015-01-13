@@ -16,9 +16,10 @@ define(['jquery',
     //Will fix this later.
     var imageryLabels = map.imageryLabels, 
         map = map.map,
+        $navigation = $('#navigation-menu'),
 
     initializeController = function(){
-      $('.main-menu').on('click', function (e) { 
+      $navigation.find('.main-menu').on('click', function (e) { 
         imageryLabels.addTo(map);
 
         if (e.target.className === 'home-location-button newpage' || e.target.className === ''){
