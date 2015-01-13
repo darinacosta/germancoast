@@ -11,7 +11,6 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
 
     hideAllLayers = function(){
       $.each(layerStateControl.layers, function(key, val) {
-        console.log(layerStateControl.layers[key]);
         map.removeLayer(layerStateControl.layers[key])
       });
     },
