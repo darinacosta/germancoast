@@ -23,7 +23,6 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
       if (layerState !== 'initialized'){
         //lazy-loading layers
         layerStateControl.initializeDevelopmentLayers(true, function(){
-          console.log('actvivifivd')
           moduleLayers = {
             'Norco Land Use': layers['norcoLandUse'],
             'Flood Land Use': layers['floodLandUse'],

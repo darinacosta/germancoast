@@ -24,7 +24,7 @@
     margin: 0;
   }
 
-  h1,h2,h3{
+  h1,h2,h3,h4{
     font-family: Cambria, 'Hoefler Text', Utopia, 'Liberation Serif', 'Nimbus Roman No9 L Regular', Times, 'Times New Roman', serif;
   }
 
@@ -40,6 +40,10 @@
   h3{
     margin-top:11px;
     font-size:20px;
+  }
+
+  h4{
+    margin-bottom: 0px;
   }
 
   #content-toggle{

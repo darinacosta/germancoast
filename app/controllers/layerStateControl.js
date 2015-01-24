@@ -14,6 +14,7 @@ define(['leaflet',
 
     var layers = {},
         developmentLayersInitialized = false,
+        incidentLayersInitialized = false,
         speculationLayersInitialized = false,
 
         initializeDevelopmentLayers = function(activationTriggered, callback){
@@ -92,9 +93,49 @@ define(['leaflet',
         }
       },
 
+      initializeIncidentLayers = function(activationTriggered, callback){
+        if (activationTriggered && !incidentLayersInitialized){
+          incidentLayersInitialized = true;
+
+          require(['layers/geoIncidents'],
+
+            function(geoIncidents){
+
+              layers['incidents'] = L.geoJson(geoIncidents, {
+                pointToLayer: function (feature, latlng) {
+                  return L.circleMarker(latlng, {radius: 8,
+                                                color: "#000000",
+                                                weight: 1,
+                                                opacity: 1,
+                                                fillOpacity: 0.8});
+                },
+                style: function(feature) {
+                  switch (feature.properties.category) {
+                      case 'Flare': return {fillColor: "#E41515"};
+                      case 'Odor': return {fillColor: "#25D276"};
+                      case 'Leak': return {fillColor: "#FFFF66"};
+                      default: return {fillColor: "#303030"};
+                    }
+                  },
+                onEachFeature: function(feature, layer){
+                  layer.bindPopup('<h4>' + feature.properties.title.toUpperCase() + '</h4>' + 
+                    feature.properties.pubDate  + '<br>' +
+                    '<br>"' + feature.properties.description + '"</br>' +
+                    '<br><a class="geometry-link" target="_blank" href="' + feature.properties.link + '">' + feature.properties.link + '</a></br>'
+                    )
+                }
+              });
+
+              callback();
+
+            }
+          )
+        }
+      },
+
       initializeSpeculationLayers = function(activationTriggered, callback){
         if (activationTriggered && !speculationLayersInitialized){
-          speculationLayersState = true;
+          speculationLayersInitialized = true;
 
           require(['layers/airlineLevee',
                    'layers/labrancheDevelopmentsV1'],
@@ -152,6 +193,7 @@ define(['leaflet',
 
   return {layers: layers,
           initializeDevelopmentLayers: initializeDevelopmentLayers,
+          initializeIncidentLayers: initializeIncidentLayers,
           initializeSpeculationLayers: initializeSpeculationLayers};
 
 });
