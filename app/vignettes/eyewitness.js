@@ -5,9 +5,9 @@ define(['leaflet',
         'controllers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
-        'text!assets/html/incidents.html'],
+        'text!assets/html/eyewitness.html'],
 
-function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers, incidentsHtml){
+function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers, eyewitnessHtml){
 	        
 	var map = map.map,
   $mapTab = stateControl.$mapTab,
@@ -18,9 +18,9 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
 	initializeLayers = function(callback){
     if (layerState !== 'initialized'){
       //lazy-loading layers
-      layerStateControl.initializeIncidentLayers(true, function(){
+      layerStateControl.initializeEyewitnessLayers(true, function(){
         moduleLayers = {
-          'Incidents': layers['incidents'],
+          'eyewitness': layers['eyewitness'],
         };
         layerHelpers.populateLayerControl(moduleLayers);
         layerState = 'initialized';
@@ -35,10 +35,10 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
   buildLegendCategoryArray = function(){
     if (layerState === 'initialized'){
       var categories = {}, 
-          incidentLayers = layers['incidents']._layers;
-      $.each(incidentLayers, function(key, value){
-        var category = incidentLayers[key].feature.properties.category,
-            color = incidentLayers[key].options.fillColor;
+          EyewitnessLayers = layers['eyewitness']._layers;
+      $.each(EyewitnessLayers, function(key, value){
+        var category = EyewitnessLayers[key].feature.properties.category,
+            color = EyewitnessLayers[key].options.fillColor;
         if (category !== categories){
          categories[category] = color;
         }
@@ -49,19 +49,18 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
 
   buildLegend = function(){
     var categories = buildLegendCategoryArray(),
-        htmlString = "<h5>Incident Categories</h5>";
+        htmlString = "<h5>Eyewitness Categories</h5>";
     $.each(categories, function(key, value){
       htmlString += "<div class='row'><div class='col-xs-1' style='width:15px; height:12px;border:1px solid black;background-color:" + value +
         "'></div><div class='col-xs-9'>" + key + "</div>"
     });
     htmlString += "</div>";
-    console.log(htmlString);
     $mapLegend.append(htmlString).css('display','block');
   },
 
 	init = function(){
     
-    $mapTab.html(incidentsHtml);
+    $mapTab.html(eyewitnessHtml);
 
     stateControl.defaultState({
       'lat':30.0039,
@@ -71,8 +70,8 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
     
     initializeLayers(function(){
       buildLegend();
-    	layers['incidents'].addTo(map);
-    	layers['incidents'].on('click', function(e) {
+    	layers['eyewitness'].addTo(map);
+    	layers['eyewitness'].on('click', function(e) {
         map.panTo(e.layer.getLatLng());
       });
     });

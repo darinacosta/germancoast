@@ -283,10 +283,11 @@
     width: 178px;
     font-size: 11px;
     position: absolute;
-    top: 50px;
+    bottom: 11px;
     z-index: 9;
-    right: 81px;
+    right: 175px;
     padding: 9px;
+    box-shadow: none;
    }
 
   .leaflet-control-layers-toggle{
@@ -383,7 +384,7 @@
     background-color: rgba(36, 44, 36,.7);
   }
 
-  .leaflet-bar a, .leaflet-bar a:hover {
+  .leaflet-bar a, .leaflet-bar a:hover, .leaflet-bar > a.leaflet-disabled  {
     border: none;
     background-color: #242C24;
     width: 37px;
@@ -415,6 +416,10 @@
       width: 227px;
     }
 
+    #map-legend{
+      right:18px;
+    }
+
     .sidebar-collapsed{
       width: 30px !important;
     }
@@ -442,12 +447,11 @@
     }
 
     .tab-pane.active{
-      padding-top:0px;
+      padding-top: 50px;
     }
 
     .map-tab-content{
       width:260px;
-      padding-top: 30px;
     }
 
     .leaflet-container .leaflet-control-attribution, .leaflet-container .leaflet-control-scale {

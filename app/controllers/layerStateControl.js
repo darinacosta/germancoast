@@ -14,7 +14,7 @@ define(['leaflet',
 
     var layers = {},
         developmentLayersInitialized = false,
-        incidentLayersInitialized = false,
+        EyewitnessLayersInitialized = false,
         speculationLayersInitialized = false,
 
         initializeDevelopmentLayers = function(activationTriggered, callback){
@@ -93,15 +93,15 @@ define(['leaflet',
         }
       },
 
-      initializeIncidentLayers = function(activationTriggered, callback){
-        if (activationTriggered && !incidentLayersInitialized){
-          incidentLayersInitialized = true;
+      initializeEyewitnessLayers = function(activationTriggered, callback){
+        if (activationTriggered && !EyewitnessLayersInitialized){
+          EyewitnessLayersInitialized = true;
 
-          require(['layers/geoIncidents'],
+          require(['layers/geoeyewitness'],
 
-            function(geoIncidents){
+            function(geoeyewitness){
 
-              layers['incidents'] = L.geoJson(geoIncidents, {
+              layers['eyewitness'] = L.geoJson(geoeyewitness, {
                 pointToLayer: function (feature, latlng) {
                   return L.circleMarker(latlng, {radius: 8,
                                                 color: "#000000",
@@ -121,7 +121,7 @@ define(['leaflet',
                   layer.bindPopup('<h4>' + feature.properties.title.toUpperCase() + '</h4>' + 
                     feature.properties.pubDate  + '<br>' +
                     '<br>"' + feature.properties.description + '"</br>' +
-                    '<br><a class="geometry-link" target="_blank" href="' + feature.properties.link + '">' + feature.properties.link + '</a></br>'
+                    '<br>View the complete incident report at:<br><a class="geometry-link" target="_blank" href="' + feature.properties.link + '">' + feature.properties.link + '</a></br>'
                     )
                 }
               });
@@ -193,7 +193,7 @@ define(['leaflet',
 
   return {layers: layers,
           initializeDevelopmentLayers: initializeDevelopmentLayers,
-          initializeIncidentLayers: initializeIncidentLayers,
+          initializeEyewitnessLayers: initializeEyewitnessLayers,
           initializeSpeculationLayers: initializeSpeculationLayers};
 
 });
