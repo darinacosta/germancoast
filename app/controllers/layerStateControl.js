@@ -118,7 +118,8 @@ define(['leaflet',
                       case 'Flare': return {fillColor: "#E41515"};
                       case 'Odor': return {fillColor: "#25D276"};
                       case 'Leak': return {fillColor: "#FFFF66"};
-                      default: return {fillColor: "#303030"};
+                      case 'Dust': return {fillColor: "#B5B591"};
+                      default: return {fillColor: "#2E8AE6"};
                     }
                   },
                 onEachFeature: function(feature, layer){

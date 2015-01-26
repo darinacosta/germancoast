@@ -44,12 +44,13 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
   buildLegendCategoryArray = function(){
     if (layerState === 'initialized' || layerState === 'configured'){
       var categories = {}, 
-          EyewitnessLayers = layers['eyewitness']._layers;
-      $.each(EyewitnessLayers, function(key, value){
-        var category = EyewitnessLayers[key].feature.properties.category,
-            color = EyewitnessLayers[key].options.fillColor;
-        if (category !== categories){
-         categories[category] = color;
+          eyewitnessLayers = layers['eyewitness']._layers;
+      $.each(eyewitnessLayers, function(key, value){
+        var category = eyewitnessLayers[key].feature.properties.category,
+            color = eyewitnessLayers[key].options.fillColor;
+        if ($.inArray(category, ['Flare','Odor','Leak','Dust'])!==-1){
+          categories[category] = color;
+          console.log(categories);
         }
       })
       return categories;
@@ -58,12 +59,13 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
 
   buildLegend = function(){
     var categories = buildLegendCategoryArray(),
-        htmlString = "<h5>Eyewitness Categories</h5>";
+        htmlString = "<h5>Categories</h5>";
     $.each(categories, function(key, value){
       htmlString += "<div class='row'><div class='col-xs-1' style='width:15px; height:12px;border:1px solid black;background-color:" + value +
         "'></div><div class='col-xs-9'>" + key + "</div>"
     });
-    htmlString += "</div>";
+    htmlString += "<div class='row'><div class='col-xs-1' style='width:15px; height:12px;border:1px solid black;background-color:#2E8AE6'></div>" + 
+    "<div class='col-xs-9'>Other</div></div>";
     $mapLegend.append(htmlString).css('display','block');
   },
 
