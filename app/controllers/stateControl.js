@@ -10,6 +10,7 @@ define(['jquery',
         $mapTab = $('#map-tab-content-dynamic'),
         $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
         $mapHomeButton = $('#map-home-button'),
+        $mapLegend = $('#map-legend'),
 
     currentMapView = {
       'lat': map.getCenter()['lat'],
@@ -54,6 +55,8 @@ define(['jquery',
 
       hideStaticContent();
       clearLayerControl(clearLayers);
+      $mapLegend.html('');
+      $mapLegend.css('display', 'none');
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
@@ -71,6 +74,7 @@ define(['jquery',
     return{defaultState: defaultState,
            zoomAndHideLayers: zoomAndHideLayers,
            $mapTab: $mapTab,
-           $mainMapTopRight: $mainMapTopRight}
+           $mainMapTopRight: $mainMapTopRight,
+           $mapLegend: $mapLegend}
   }
 )
