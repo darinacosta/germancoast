@@ -10,11 +10,15 @@ define(['leaflet',
 
     /*This module is designed to allow lazy-loading of layers in order 
     to improve performance. Layers are organized by vignette and only loaded 
-    into the browser when the vignette is initialized.*/
+    into the browser when the vignette is initialized.
+
+    Within certain vignettes, the layers have three 'layerStates': 'unitialized', 
+    'initialized', and 'configured'. The configured state prevents click events from
+    being applied twice, which results in erratic popup behavior.*/
 
     var layers = {},
         developmentLayersInitialized = false,
-        EyewitnessLayersInitialized = false,
+        eyewitnessLayersInitialized = false,
         speculationLayersInitialized = false,
 
         initializeDevelopmentLayers = function(activationTriggered, callback){
@@ -94,8 +98,8 @@ define(['leaflet',
       },
 
       initializeEyewitnessLayers = function(activationTriggered, callback){
-        if (activationTriggered && !EyewitnessLayersInitialized){
-          EyewitnessLayersInitialized = true;
+        if (activationTriggered && !eyewitnessLayersInitialized){
+          eyewitnessLayersInitialized = true;
 
           require(['layers/geoeyewitness'],
 

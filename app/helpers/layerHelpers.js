@@ -7,7 +7,7 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
         map = map.map,
         layerControlList = [],
         targetLayer,
-        selectPolyinitializedLayers = [],
+        selectPolyInitializedLayers = [],
 
     hideAllLayers = function(){
       $.each(layerStateControl.layers, function(key, val) {
@@ -39,9 +39,10 @@ define(['jquery', 'map', 'controllers/layerStateControl'],
 	        originalFill = args['originalFill'],
           zoom = args['zoom'] !== 'undefined' ? args['zoom'] : 13,
       
+      //This prevents click events from being applied twice
       activationState = (function(){
-        if ($.inArray(targetLayer, selectPolyinitializedLayers) === -1){
-          selectPolyinitializedLayers.push(targetLayer);
+        if ($.inArray(targetLayer, selectPolyInitializedLayers) === -1){
+          selectPolyInitializedLayers.push(targetLayer);
           return false
         }else{
           return true;

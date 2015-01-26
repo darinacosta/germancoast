@@ -17,10 +17,11 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         $norcoGrowthContext = $('#norco-growth-context'),
         landUseDisplayStatus = 'full',
         layers = layerStateControl.layers,
-        moduleLayers, layerState, 
+        layerState = 'uninitialized',
+        moduleLayers, 
 
     initializeLayers = function(callback){
-      if (layerState !== 'initialized'){
+      if (layerState === 'uninitialized'){
         //lazy-loading layers
         layerStateControl.initializeDevelopmentLayers(true, function(){
           moduleLayers = {
@@ -41,7 +42,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
     },
 
     configureLayers = function(){
-      if (layers['industrialFacilities'] !== undefined){
+      if (layerState === 'initialized'){
 
         layerHelpers.selectPolyOnClick({
           targetLayer: layers['industrialFacilities'], 
@@ -50,8 +51,6 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
           originalColor: '#960000', 
           originalFill: '#642800'
         });
-
-        industrialFacilitiesState = 'configured';
 
       }
     },

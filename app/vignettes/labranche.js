@@ -35,7 +35,6 @@ define(['jquery',
     configureLayers = function(){
 
       if (layers['labrancheDevelopments'] !== undefined){
-        console.log('begin labranche developments');
 
         var labrancheDevelopments = layers['labrancheDevelopments'],
         levee = layers['airlineLevee'],

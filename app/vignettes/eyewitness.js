@@ -13,10 +13,10 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
   $mapTab = stateControl.$mapTab,
   $mapLegend = stateControl.$mapLegend,
 	layers = layerStateControl.layers,
-	layerState,
+	layerState = 'uninitialized',
 
 	initializeLayers = function(callback){
-    if (layerState !== 'initialized'){
+    if (layerState === 'uninitialized'){
       //lazy-loading layers
       layerStateControl.initializeEyewitnessLayers(true, function(){
         moduleLayers = {
@@ -32,8 +32,17 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
     }
   },
 
-  buildLegendCategoryArray = function(){
+  configureLayers = function(){
     if (layerState === 'initialized'){
+      layers['eyewitness'].on('click', function(e) {
+        map.panTo(e.layer.getLatLng());
+      });
+    }
+    layerState = 'configured';
+  },
+
+  buildLegendCategoryArray = function(){
+    if (layerState === 'initialized' || layerState === 'configured'){
       var categories = {}, 
           EyewitnessLayers = layers['eyewitness']._layers;
       $.each(EyewitnessLayers, function(key, value){
@@ -71,9 +80,7 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
     initializeLayers(function(){
       buildLegend();
     	layers['eyewitness'].addTo(map);
-    	layers['eyewitness'].on('click', function(e) {
-        map.panTo(e.layer.getLatLng());
-      });
+    	configureLayers();
     });
 
   }
