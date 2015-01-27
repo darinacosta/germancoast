@@ -1,9 +1,10 @@
-define(['leaflet',
+define(['jquery',
+        'leaflet',
         'omnivore',
         'esriLeaflet',
         'map'], 
 
-  function(L,
+  function($, L,
           omnivore,
           esri,
           map){
@@ -130,8 +131,7 @@ define(['leaflet',
                     )
                 }
               });
-
-              callback();
+            callback();
 
             }
           )
