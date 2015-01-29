@@ -50,7 +50,6 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
             color = eyewitnessLayers[key].options.fillColor;
         if ($.inArray(category, ['Flare','Odor','Leak','Dust'])!==-1){
           categories[category] = color;
-          console.log(categories);
         }
       })
       return categories;

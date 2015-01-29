@@ -6,10 +6,11 @@ var require = {
         "esriLeaflet": { "deps" : ['leaflet'] },
         "omnivore"   : { "deps" : ['leaflet'] }    },
     paths: {
-        //Save all external libraries in assets/lib for gallery local hosting
         vignettes: './vignettes',
         helpers: './helpers',
         layers: './assets/layers',
+        //Cache bust the eyewitness layer if it's accessed on a different day. 
+        geoeyewitness: './assets/layers/geoeyewitness.js?bust=' + (function(){var d = new Date(); var n =d.getMonth() + d.getDay() + d.getYear(); return n})(),
         leaflet: "//leafletjs.com/dist/leaflet",
         esriLeaflet: 'http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.3/esri-leaflet',
         minimap: './assets/plugins/minimap/Control.MiniMap',

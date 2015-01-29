@@ -39,6 +39,7 @@ module.exports = function(grunt) {
             helpers: './helpers',
             controllers: './controllers',
             layers: 'empty:',
+            geoeyewitness: 'empty:',
             map: "./controllers/map",
             text: './assets/plugins/text',
             leaflet: 'empty:',

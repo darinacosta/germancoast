@@ -102,7 +102,7 @@ define(['jquery',
         if (activationTriggered && !eyewitnessLayersInitialized){
           eyewitnessLayersInitialized = true;
 
-          require(['layers/geoeyewitness'],
+          require(['geoeyewitness'],
 
             function(geoeyewitness){
 
