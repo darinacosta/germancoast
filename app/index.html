@@ -51,7 +51,8 @@
       <!--*******************************************-->
       <div id="hurricane" class="tab-pane scrollflip-content live-content map-tab-content-static" style="text-align:center">
         <div id="hurricane-video-wrapper">
-          <h2>The West Indian Hurricane</h2>
+          <h1>The West Indian Hurricane of 1915</h1>
+          <hr>
           <div id="hurricane-video-inner-wrapper">
             <video controls id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto">
               <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg">
@@ -59,6 +60,7 @@
               <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+            <hr style="margin-bottom:0">
           </div>
           <div id="hurricane-video-control">
             <div style="float: left;">
@@ -67,14 +69,16 @@
               <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
             </div>
           </div>
-          <div id="hurricane-context-visual"></div>
+          <hr style="margin-bottom:0">
+          <div id="hurricane-context-visual">The West Indian Hurricane of 1915 followed a virtually identical course to that of Hurricane Isaac (2015). 
+            Click play to begin a multi-media exploration of these catastrophic storms, narrated by longtime river parish resident Donald Tregre.</div>
           <div id="hurricane-context-text"></div>
         </div>
       </div>
     </div>
     
     <script type="text/javascript" src="./config.js"></script>
-    <script data-main="index-min" src="./require.js"></script>
+    <script data-main="index" src="./require.js"></script>
     <script>
        //Analytics
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

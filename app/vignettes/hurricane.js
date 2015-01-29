@@ -30,14 +30,14 @@ define(['jquery',
       videoEventArray =  [
 
         videoSec0_0 = new videoUpdateHandler(function(){
-          
-        }, 5),
+          $hurricaneContextVisual.html('');
+        }, 2),
 
         videoSec1_0 = new videoUpdateHandler(function() {
           map.setView(new L.LatLng(30.001, -90.409), 16);
           videoEventPopup.setLatLng([30.001, -90.405]);
+          $hurricaneContextVisual.html('The Shell Oil Refinery in Norco, Louisiana.');
           videoEventPopup.setContent(returnVideoString('shell_at_the_tracks_v1'));
-          //populatehurricanelRight(1,'I-10_traffic_v1', 'Bonnet Carre Spillway @ I10');
         }, 8),
 
         videoSec1_1 = new videoUpdateHandler(function() {
@@ -47,38 +47,56 @@ define(['jquery',
         videoSec2_0 = new videoUpdateHandler(function(){
           map.setView(new L.LatLng(30.063, -90.386), 15);
           videoEventPopup.setLatLng([30.063, -90.383]);
+          $hurricaneContextVisual.html('Interstate 10 at the Bonnet Carre Spillway.');
           videoEventPopup.setContent(returnVideoString('I-10_traffic_v1'));
-          //populatehurricanelRight(2,'dad_on_roof_v1', 'Norco during the approach of Hurricane Isaac');
         }, 27),
 
         videoSec3_0 = new videoUpdateHandler(function (){
           map.setView(new L.LatLng(30.005, -90.419), 15);
           videoEventPopup.setLatLng([30.005, -90.412]);
+          $hurricaneContextVisual.html('The approach of Hurricane Isaac.');
           videoEventPopup.setContent(returnVideoString('dad_on_roof_v1'));
-          //populatehurricanelImageRight(1, '<img src="i/property_loss_grows_with_reports_v1.png" height="100%" style="padding-top:10px;">', 'Baton Rouge State Times Advocate, October 2, 1915');
         }, 48),
 
         videoSec4_0 = new videoUpdateHandler(function(){
+          $hurricaneContextVisual.html('');
           videoEventPopup._close();
           animateHurricane();
         }, 71),
 
         videoSec5_0 = new videoUpdateHandler(function(){
-          console.log('hurricane top right');
-          //$mainMapTopRight.html('<div id="top-right-video" style="max-width: 350px;"><div style="margin-top: 37px;border: 1px solid rgb(90, 90, 90);overflow: hidden;width: 350px;height:190px;">' + returnVideoString('hurricane_isaac_course_v1') + '</div><div>Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915 (map display)</div></div>' );
         }, 79),
 
         videoSec5_1 = new videoUpdateHandler(function(){
           map.setView(new L.LatLng(30.1077, -90.4268), 15);
-          //$mainMapTopRight.html('');
-          $hurricaneContextVisual.html('<img src="./assets/i/heroic_efforts_fail_v1.png" width="100%" style="padding:60px 10px 0 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
+          $hurricaneContextVisual.html('<img src="./assets/i/heroic_efforts_fail_v1.png" width="100%" style="padding:0px 10px 10px 10px;"><br><i>Baton Rouge State Times Advocate, October 3, 1915</span></i>');
           layers['frenierTitleLayer'].addTo(map);
         }, 91),
 
         videoSec6_0 = new videoUpdateHandler(function(){
-          //map.centerAndZoom([-90.412, 30.005 ], 8);
-          //populatehurricanelRight(2, 'burning_cane_v1', ' ');
-        }, 107)],
+          map.setView(new L.LatLng(30.1071921, -90.42773723), 18);
+          map.removeLayer(layers['frenierTitleLayer']);
+        }, 140),
+
+        videoSec6_0 = new videoUpdateHandler(function(){
+          map.setView(new L.LatLng(30.0842458, -90.4827117), 16);
+          map.removeLayer(layers['frenierTitleLayer']);
+          $hurricaneContextVisual.html('<div>' + returnVideoString('hurricane_isaac_course_v1') + 
+            '<div>Hurricane Isaac (above) closely followed the course of the West Indian Hurricane of 1915, flooding the subdivisions of LaPlace.</div></div>' )
+        }, 182),
+
+        videoSec6_0 = new videoUpdateHandler(function(){
+          map.setView(new L.LatLng(30.0562055, -90.371174), 16);
+          map.removeLayer(layers['frenierTitleLayer']);
+        }, 210),
+
+        videoSec6_0 = new videoUpdateHandler(function(){
+          map.setView(new L.LatLng(30.001, -90.405), 7);
+        }, 230),
+
+        videoSec6_0 = new videoUpdateHandler(function(){
+          $hurricaneContextVisual.html('')
+        }, 240)],
 
       initializeVideoEventArray = function(){
         console.log($hurricaneVideo);
@@ -91,6 +109,9 @@ define(['jquery',
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[6].handler, videoEventArray[6].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[7].handler, videoEventArray[7].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[8].handler, videoEventArray[8].time));
+        $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[9].handler, videoEventArray[9].time));
+        $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[10].handler, videoEventArray[10].time));
+        $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[11].handler, videoEventArray[11].time));
       },
 
 
