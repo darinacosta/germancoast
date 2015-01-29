@@ -112,6 +112,7 @@ define(['jquery',
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[9].handler, videoEventArray[9].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[10].handler, videoEventArray[10].time));
         $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[11].handler, videoEventArray[11].time));
+        $hurricaneVideo.on('timeupdate', runAtTime(videoEventArray[12].handler, videoEventArray[12].time));
       },
 
 

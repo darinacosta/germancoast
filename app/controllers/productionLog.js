@@ -6,6 +6,14 @@ define(['jquery'],
 
     log = [
     {
+      'date': '1.29.2015',
+      'update': 'Hurricane vignette completed.'
+    },
+    {
+      'date': '1.26.2015',
+      'update': 'Eyewitness vignette added.'
+    },
+    {
       'date': '1.06.2015',
       'update': 'Layer toggle added.'
     },
