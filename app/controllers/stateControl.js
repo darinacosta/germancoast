@@ -50,8 +50,7 @@ define(['jquery',
     	var lat = args['lat'],
     	    lng = args['lng'],
     	    zoom = args['zoom'],  
-          clearLayers = args['clearLayerControl'],
-          viewEquality = currentMapView.lat === lat && currentMapView.lng === lng && currentMapView.zoom === zoom;
+          clearLayers = args['clearLayerControl'];
 
       hideStaticContent();
       clearLayerControl(clearLayers);
@@ -65,9 +64,7 @@ define(['jquery',
       map.setView(new L.LatLng(lat, lng), zoom);
       $mapHomeButton.unbind();
       $mapHomeButton.on('click', function(){
-        if (viewEquality === false){
-          map.setView(new L.LatLng(lat, lng), zoom);
-        };
+        map.setView(new L.LatLng(lat, lng), zoom);
       });
     };
 

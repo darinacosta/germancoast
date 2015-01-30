@@ -22,10 +22,10 @@ define(['jquery',
         }else if (event.target.id === 'erosion-geofeature-event'){
           map.setView([30.046, -90.330], 14);
         } else if (event.target.id === 'ej-geofeature-event'){
-          map.setView([30.004, -90.414], 14);
-          videoEventPopup.setLatLng([30.001, -90.409]);
-          videoEventPopup.openOn(map);
+          map.setView([29.99958087, -90.414], 14);
+          videoEventPopup.setLatLng([29.99958087, -90.397052]);
           videoEventPopup.setContent(returnVideoString('norco_flaring_v1'));
+          videoEventPopup.openOn(map);
         }else if (event.target.id === 'suburb-geofeature-event'){
           map.setView([30.088, -90.446], 14);
         }else if (event.target.id === 'parishline-geofeature-event'){

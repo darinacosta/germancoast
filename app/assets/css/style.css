@@ -188,7 +188,7 @@
     }
 
     .geometry-link{
-      color:#3C8E56;
+      color: #FF8966;
       cursor: pointer;
       font-weight:bold;
     }
@@ -200,7 +200,20 @@
       .geometry-link:hover {
         color: rgb(255, 243, 20);
       }
+   
+  .external-link{
+    color: white;
+    font-weight:bold;
+    text-decoration: underline;
+  }
 
+    .external-link:focus {
+        color: white;
+      }
+
+    .external-link:hover {
+      color: white;
+    }
 
   .video-wrap {
     float: left;
@@ -231,6 +244,12 @@
 
   .vignette-header{
     text-align:center;
+  }
+
+  .content-image{
+    padding:5px; 
+    max-width:365px; 
+    width:100%
   }
 
   #hurricane-context-visual{
@@ -375,10 +394,6 @@
       z-index:9999;
     }
 
-    .geometry-link {
-      color: #FF8966
-    }
-  
   .leaflet-container .leaflet-control-attribution{
     display:none;
     color:white;
