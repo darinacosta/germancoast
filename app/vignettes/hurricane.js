@@ -2,12 +2,11 @@ define(['jquery',
         'map',
         'controllers/layerStateControl',
         'controllers/stateControl',
-        'text!assets/html/hurricane.html',
         'helpers/layerHelpers',
         'helpers/videoHelpers',
         'helpers/pathAnimator'],
 
-  function($, map, layerStateControl, stateControl, hurricaneHtml, layerHelpers, videoHelpers, pathAnimator){
+  function($, map, layerStateControl, stateControl, layerHelpers, videoHelpers, pathAnimator){
 
       var map = map.map,
           layers = layerStateControl.layers,

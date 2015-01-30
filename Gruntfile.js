@@ -42,6 +42,7 @@ module.exports = function(grunt) {
             geoeyewitness: 'empty:',
             map: "./controllers/map",
             text: './assets/plugins/text',
+            hbs: './assets/lib/require-handlebars-plugin/hbs',
             leaflet: 'empty:',
             esriLeaflet: 'empty:',
             minimap: 'empty:',
@@ -50,6 +51,10 @@ module.exports = function(grunt) {
             bootstrap: 'empty:',
             magnificent: 'empty:'
         },
+          hbs: { 
+              templateExtension: 'html', // default: 'hbs'
+          },
+          exclude: ['hbs'],
           name: "index",
           out: "app/index-min.js"
         }

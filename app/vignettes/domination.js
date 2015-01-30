@@ -56,41 +56,48 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
     },
 
     initializeClickEvents = $('.map-tab-content').on("click",  "#domination a", function(event){
-      if ($(event.target).hasClass('levee-domination')){
+      if ($(event.target).hasClass('domination.levee-domination')){
         stateControl.zoomAndHideLayers({
           'lat': 30.001,
           'lng': -90.405, 
           'zoom': 14
         });
         layers['norcoLandUse'].addTo(map);
-      }else if ($(event.target).hasClass('industrial-facilities')){
+      }else if ($(event.target).hasClass('domination.industrial-facilities')){
         stateControl.zoomAndHideLayers({
           'lat':30.0039,
           'lng':-90.4108, 
           'zoom':13,
         });
         layers['industrialFacilities'].addTo(map);
-      }else if ($(event.target).hasClass('goodhope')){
+      }else if ($(event.target).hasClass('domination.goodhope')){
         stateControl.zoomAndHideLayers({
           'lat': 29.992,
           'lng': -90.4001, 
           'zoom': 16
         });
-      }else if ($(event.target).hasClass('ex-town')){
+      }else if ($(event.target).hasClass('domination.ex-town')){
         stateControl.zoomAndHideLayers({
           'lat': 30.004,
           'lng': -90.418, 
           'zoom': 16
         });
         layers['shellProperties'].addTo(map);
-      }else if ($(event.target).hasClass('norco-boundary')){
+      }else if ($(event.target).hasClass('domination.norco-boundary')){
         stateControl.zoomAndHideLayers({
           'lat': 30.001,
           'lng': -90.42, 
           'zoom': 14
         });
         layers['norcoBoundary'].addTo(map);
-      }else if ($(event.target).hasClass('land-use-switch')){
+      }else if ($(event.target).hasClass('domination.buyout')){
+        stateControl.zoomAndHideLayers({
+          'lat': 30.001,
+          'lng': -90.42, 
+          'zoom': 15
+        });
+        layers['shellProperties'].addTo(map);
+      }else if ($(event.target).hasClass('domination.land-use-switch')){
         if (landUseDisplayStatus == 'full'){
           layers['floodLandUse'].addTo(map);
           map.removeLayer(layers['norcoLandUse']);

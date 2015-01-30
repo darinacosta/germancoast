@@ -5,9 +5,9 @@ define(['leaflet',
         'controllers/stateControl',
         'helpers/layerHelpers',
         'helpers/imageHelpers',
-        'text!assets/html/eyewitness.html'],
+        'hbs!assets/html/eyewitness'],
 
-function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers, eyewitnessHtml){
+function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers, template){
 	        
 	var map = map.map,
   $mapTab = stateControl.$mapTab,
@@ -70,7 +70,9 @@ function(L, $, map, layerStateControl, stateControl, layerHelpers, imageHelpers,
 
 	init = function(){
     
-    $mapTab.html(eyewitnessHtml);
+    $mapTab.html(template({'title':'Eyewitness Reporting',
+      'subtitle': 'The Louisiana Bucket Brigade iWitness Pollution Map Project'})
+    );
 
     stateControl.defaultState({
       'lat':30.0039,
