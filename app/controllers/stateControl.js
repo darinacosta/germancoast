@@ -7,7 +7,8 @@ define(['jquery',
     
     var layerControl = map.layerControl,
         map = map.map,
-        $mapTab = $('#map-tab-content-dynamic'),
+        $mapTab = $('#map-tab-content-dynamic'), //clean this up: defining map tab twice
+        $mapTabContent = $('.map-tab-content'),
         $mainMapTopRight = $('#map .leaflet-top.leaflet-right').not('.leaflet-control-minimap .leaflet-top.leaflet-right'),
         $mapHomeButton = $('#map-home-button'),
         $mapLegend = $('#map-legend'),
@@ -59,8 +60,8 @@ define(['jquery',
       map.doubleClickZoom.enable();
       layerHelpers.hideAllLayers();
       videoHelpers.videoEventPopup._close();
-      //$mainMapTopRight.html('');
-      $('.map-tab-content').scrollTop(0);
+      map.off('overlayadd');
+      $mapTabContent.scrollTop(0);
       map.setView(new L.LatLng(lat, lng), zoom);
       $mapHomeButton.unbind();
       $mapHomeButton.on('click', function(){

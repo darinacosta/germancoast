@@ -26,7 +26,7 @@ define(['jquery',
           if (activationTriggered && !developmentLayersInitialized){
             developmentLayersInitialized = true;
 
-            require(['layers/norco_landuses_general_v1',
+            require(['layers/norcoLandUse',
                      'layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1',
                      'layers/norcoBoundary_v1',
                      'layers/industrialFacilities'],

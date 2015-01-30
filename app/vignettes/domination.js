@@ -12,6 +12,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
     var layerControl = map.layerControl,
         map = map.map,
         $mapTab = stateControl.$mapTab,
+        $mapLegend = stateControl.$mapLegend,
         $growth = $('#growth'),
         $norcoGrowth = $('.norco-growth'),
         $norcoGrowthContext = $('#norco-growth-context'),
@@ -19,6 +20,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
         layers = layerStateControl.layers,
         layerState = 'uninitialized',
         moduleLayers, 
+
 
     initializeLayers = function(callback){
       if (layerState === 'uninitialized'){
@@ -55,60 +57,108 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
       }
     },
 
-    initializeClickEvents = $('.map-tab-content').on("click",  "#domination a", function(event){
-      if ($(event.target).hasClass('domination.levee-domination')){
-        stateControl.zoomAndHideLayers({
-          'lat': 30.001,
-          'lng': -90.405, 
-          'zoom': 14
-        });
-        layers['norcoLandUse'].addTo(map);
-      }else if ($(event.target).hasClass('domination.industrial-facilities')){
-        stateControl.zoomAndHideLayers({
-          'lat':30.0039,
-          'lng':-90.4108, 
-          'zoom':13,
-        });
-        layers['industrialFacilities'].addTo(map);
-      }else if ($(event.target).hasClass('domination.goodhope')){
-        stateControl.zoomAndHideLayers({
-          'lat': 29.992,
-          'lng': -90.4001, 
-          'zoom': 16
-        });
-      }else if ($(event.target).hasClass('domination.ex-town')){
-        stateControl.zoomAndHideLayers({
-          'lat': 30.004,
-          'lng': -90.418, 
-          'zoom': 16
-        });
-        layers['shellProperties'].addTo(map);
-      }else if ($(event.target).hasClass('domination.norco-boundary')){
-        stateControl.zoomAndHideLayers({
-          'lat': 30.001,
-          'lng': -90.42, 
-          'zoom': 14
-        });
-        layers['norcoBoundary'].addTo(map);
-      }else if ($(event.target).hasClass('domination.buyout')){
-        stateControl.zoomAndHideLayers({
-          'lat': 30.001,
-          'lng': -90.42, 
-          'zoom': 15
-        });
-        layers['shellProperties'].addTo(map);
-      }else if ($(event.target).hasClass('domination.land-use-switch')){
-        if (landUseDisplayStatus == 'full'){
-          layers['floodLandUse'].addTo(map);
-          map.removeLayer(layers['norcoLandUse']);
-          landUseDisplayStatus = 'partial';
-        }else if (landUseDisplayStatus == 'partial'){
-          layers['norcoLandUse'].addTo(map);
-          map.removeLayer(layers['floodLandUse']);
-          landUseDisplayStatus = 'full';
-        }
+    buildLegendCategoryArray = function(){
+      if (layerState === 'initialized' || layerState === 'configured'){
+        var categories = {}, 
+            legendLayers = layers['norcoLandUse']._layers;
+        $.each(legendLayers, function(key, value){
+          if (legendLayers[key].feature.properties.color_qgis2leaf !== undefined){
+            var category = legendLayers[key].feature.properties.ACT_CODE,
+              color = legendLayers[key].feature.properties.color_qgis2leaf;
+            categories[category] = color;
+          }
+        })
+        return categories;
       }
-    }),
+    },
+
+    buildLegend = function(){
+      var categories = buildLegendCategoryArray(),
+          htmlString = "<h5>Land Uses</h5>";
+      $.each(categories, function(key, value){
+        htmlString += "<div class='row'><div class='col-xs-1' style='width:15px; height:12px;border:1px solid black;background-color:" + value +
+          "'></div><div class='col-xs-9'>" + key + "</div>"
+      });
+      $mapLegend.append(htmlString);
+    },
+
+    controlLegend = function(){
+      var landUseActive = 0;
+      buildLegend();
+      map.on('overlayadd', function(layer){
+        if (layer.name === 'Norco Land Use' || layer.name === 'Flood Land Use'){
+          landUseActive += 1;
+          $mapLegend.css('display','block')
+          console.log(landUseActive);
+        }
+      });
+      map.on('overlayremove', function(layer){
+        if (layer.name === 'Norco Land Use' || layer.name === 'Flood Land Use'){
+          landUseActive -= 1;
+          if (landUseActive === 0){
+            $mapLegend.css('display','none')
+          }
+          console.log(landUseActive);
+        }
+      });
+    },
+
+    initializeClickEvents = 
+
+      $('.map-tab-content').on("click",  "#domination a", function(event){
+        if ($(event.target).hasClass('domination.levee-domination')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.001,
+            'lng': -90.405, 
+            'zoom': 14
+          });
+          layers['norcoLandUse'].addTo(map);
+        }else if ($(event.target).hasClass('domination.industrial-facilities')){
+          stateControl.zoomAndHideLayers({
+            'lat':30.0039,
+            'lng':-90.4108, 
+            'zoom':13,
+          });
+          layers['industrialFacilities'].addTo(map);
+        }else if ($(event.target).hasClass('domination.goodhope')){
+          stateControl.zoomAndHideLayers({
+            'lat': 29.992,
+            'lng': -90.4001, 
+            'zoom': 16
+          });
+        }else if ($(event.target).hasClass('domination.ex-town')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.004,
+            'lng': -90.418, 
+            'zoom': 16
+          });
+          layers['shellProperties'].addTo(map);
+        }else if ($(event.target).hasClass('domination.norco-boundary')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.001,
+            'lng': -90.42, 
+            'zoom': 14
+          });
+          layers['norcoBoundary'].addTo(map);
+        }else if ($(event.target).hasClass('domination.buyout')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.001,
+            'lng': -90.42, 
+            'zoom': 15
+          });
+          layers['shellProperties'].addTo(map);
+        }else if ($(event.target).hasClass('domination.land-use-switch')){
+          if (landUseDisplayStatus == 'full'){
+            layers['floodLandUse'].addTo(map);
+            map.removeLayer(layers['norcoLandUse']);
+            landUseDisplayStatus = 'partial';
+          }else if (landUseDisplayStatus == 'partial'){
+            layers['norcoLandUse'].addTo(map);
+            map.removeLayer(layers['floodLandUse']);
+            landUseDisplayStatus = 'full';
+          }
+        }
+      }),
 
     init = function(){
         
@@ -119,6 +169,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
       });
 
       initializeLayers(function(){
+        controlLegend();
         configureLayers();
       });
       
