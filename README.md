@@ -1,2 +1,2 @@
-vignettes_bootstrap
-===================
+Louisiana's German Coast
+========================
