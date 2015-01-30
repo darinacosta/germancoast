@@ -52,7 +52,9 @@ module.exports = function(grunt) {
             magnificent: 'empty:'
         },
           hbs: { 
-              templateExtension: 'html', // default: 'hbs'
+              templateExtension: 'html', // default: 'hbs',
+              partialsUrl: ''           // default: ''
+
           },
           exclude: ['hbs'],
           name: "index",
