@@ -33,7 +33,7 @@ define(['jquery', 'vignettes/hurricane'],
     },
 
     initializeVideoControls = (function(){
-      $('a.newpage').on("click", function(){
+      $('#navigation-menu a.newpage').on("click", function(){
         videoControls.pause();
       });
 
