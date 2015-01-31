@@ -28,7 +28,7 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, pl
 	  });
     map.doubleClickZoom.disable();
 	  plantationsLayer.addTo(map);
-	  initializeOpacityControl;
+    plantationsLayer.setOpacity(10);
     $('.map-tab-content .image-link').magnificPopup({type:'image'});
 	};
 

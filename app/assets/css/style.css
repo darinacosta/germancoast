@@ -246,6 +246,13 @@
     text-align:center;
   }
 
+  .quote{
+    font-size: 14px;
+    font-style: italic;
+    line-height: 18px;
+    padding: 0px 11px;
+  }
+
   .content-image{
     padding:5px; 
     max-width:365px; 
