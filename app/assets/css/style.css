@@ -10,15 +10,15 @@
   body, #map{
     background-color:rgb(36, 44, 36);
     background-image:url('../i/grid.png');
- }
+  }
 
- #map{
-  overflow:hidden;
- }
+  #map{
+    overflow:hidden;
+  }
 
   body{
     color: white;
-    font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-family: Candara,Calibri,Segoe,"Segoe UI",Optima,Arial,sans-serif;
     font-size:17px;
     padding: 0;
     margin: 0;
@@ -44,6 +44,10 @@
 
   h4{
     margin-bottom: 0px;
+  }
+
+  .emphasis{
+    font-size:22px;
   }
 
   #content-toggle{
@@ -368,7 +372,7 @@
       overflow:scroll;
       overflow-x:hidden;
       padding:0px 15px 15px 15px;
-      background-color: rgba(36, 44, 36,.7);
+      background-color: rgba(36, 44, 36,.8);
       background-image:url('../i/grid.png');
       color: #fff;
       text-shadow: 0 0 1px rgba(0,0,0,.8), 0 0 1px rgba(0,0,0,.8);

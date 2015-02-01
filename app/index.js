@@ -10,7 +10,7 @@ require(['jquery',
          'controllers/menuController',
          'magnificent'],
 
-  function($, home, imageHelpers, contentToggleControl, persistenceControl){
+  function($, home, imageHelpers, contentToggleControl, persistenceControl, hurricaneVideoControl){
     
     persistenceControl.init();
     if (window.location.hash == ''){ home.init(); };
@@ -20,6 +20,7 @@ require(['jquery',
         //Preload plantation base layer
         imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
       });
+      hurricaneVideoControl.initializeVideoControls();
       $('.map-tab-content .image-link').magnificPopup({type:'image'});
       $('.video-link').magnificPopup({type:'iframe'});
       $('[data-toggle="popover"]').popover({

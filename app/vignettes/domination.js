@@ -147,16 +147,28 @@ function($, map, layerStateControl, stateControl, layerHelpers, imageHelpers, do
             'zoom': 15
           });
           layers['shellProperties'].addTo(map);
-        }else if ($(event.target).hasClass('domination.land-use-switch')){
-          if (landUseDisplayStatus == 'full'){
-            layers['floodLandUse'].addTo(map);
-            map.removeLayer(layers['norcoLandUse']);
-            landUseDisplayStatus = 'partial';
-          }else if (landUseDisplayStatus == 'partial'){
-            layers['norcoLandUse'].addTo(map);
-            map.removeLayer(layers['floodLandUse']);
-            landUseDisplayStatus = 'full';
-          }
+        }else if ($(event.target).hasClass('domination.land-use')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.001,
+            'lng': -90.42, 
+            'zoom': 14
+          });
+          layers['norcoLandUse'].addTo(map);
+        }else if ($(event.target).hasClass('domination.flood-land-use')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.001,
+            'lng': -90.42, 
+            'zoom': 14
+          });
+          layers['floodLandUse'].addTo(map);
+        }else if ($(event.target).hasClass('domination.buyout-overlay')){
+          stateControl.zoomAndHideLayers({
+            'lat': 30.001,
+            'lng': -90.42, 
+            'zoom': 14
+          });
+          layers['floodLandUse'].addTo(map);
+          layers['shellProperties'].addTo(map);
         }
       }),
 
