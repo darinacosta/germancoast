@@ -406,7 +406,6 @@
     }
 
   .leaflet-container .leaflet-control-attribution{
-    display:none;
     color:white;
     background-color: rgba(36, 44, 36,.7);
   }

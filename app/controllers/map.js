@@ -11,7 +11,7 @@ define(['leaflet',
       scrollWheelZoom: false
     }).setView([30.0339, -90.4008],11),
 
-    baseMap = L.esri.basemapLayer("Imagery",{attribution:'<a class="video-link" href="./bibliography.html">Bibliography & Attribution</a> | Contact'}),
+    baseMap = L.esri.basemapLayer("Imagery",{attribution:'New Orleans 2015'}),
     imageryLabels = new L.esri.BasemapLayer('ImageryLabels'),
     miniMapLayer = new L.esri.basemapLayer("Imagery",{attribution:'Basemap: ESRI'}),
 
