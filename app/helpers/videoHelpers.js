@@ -40,7 +40,7 @@ define(['leaflet'],
       var videoString = '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.webm" type="video/webm"><source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/'+video+'.ogv" type="video/ogg">Your browser does not support the video tag.</video>';
       return videoString
     }else{
-      var videoString = 'The application has detected that your browser does not support ogg or webm video formats. Please visit this application in a Google Chrome or Safari browser for full support.'
+      var videoString = 'The application has detected that your browser does not support ogg or webm video formats. Please visit this application in a Google Chrome or Firefox browser for full support.'
     }
       return videoString
   },
