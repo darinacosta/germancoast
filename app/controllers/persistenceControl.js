@@ -11,7 +11,7 @@ define(['jquery',
   })();
 
   init = function(){
-    var hash = window.location.hash;
+    var hash = window.location.hash.replace('!/','');
     $('.main-menu a[href="' + hash + '"]').trigger('click');
 
     $(document).on('click', '.main-menu', function (e) {
