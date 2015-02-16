@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://germancoast.verylongroad.com/#domination -->
+<html><script async="" src="./domination_files/analytics.js"></script><script type="text/javascript">window["_gaUserPrefs"] = { ioo : function() { return true; } }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The German Coast</title>
+    <meta charset="utf-8">
+    <meta name="description" content="An interactive multi-media exploration of Louisiana&#39;s German Coast region.">
+
+
+    <!--CSS-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css">
+    <link rel="stylesheet" href="http://germancoast.verylongroad.com/assets/plugins/minimap/Control.MiniMap.css">
+    <link rel="stylesheet" type="text/css" href="./domination_files/magnificent.css">
+    <link rel="stylesheet" href="http://germancoast.verylongroad.com/assets/css/style.css">
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="index-min" src="./domination_files/index-min.js"></script><meta name="chromesniffer" id="chromesniffer_meta" content="{}"><script type="text/javascript" src="chrome-extension://homgcnaoacgigpkkljjjekpignblkeae/detector.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./domination_files/jquery.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="leaflet" src="./domination_files/leaflet.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="minimap" src="./domination_files/Control.MiniMap.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="hbs" src="./domination_files/hbs.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="hbs/handlebars" src="./domination_files/handlebars.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="hbs/underscore" src="./domination_files/underscore.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="hbs/i18nprecompile" src="./domination_files/i18nprecompile.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="hbs/json2" src="./domination_files/json2.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="esriLeaflet" src="./domination_files/esri-leaflet.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="omnivore" src="./domination_files/leaflet-omnivore.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="bootstrap" src="./domination_files/bootstrap.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="magnificent" src="./domination_files/magnificent.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="layers/airlineLevee" src="./domination_files/airlineLevee.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="layers/labrancheDevelopmentsV1" src="./domination_files/labrancheDevelopmentsV1.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="layers/norcoLandUse" src="./domination_files/norcoLandUse.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="layers/norcolanduses_100YRFLOODPLAINDISSOLVE_v1" src="./domination_files/norcolanduses_100YRFLOODPLAINDISSOLVE_v1.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="layers/norcoBoundary_v1" src="./domination_files/norcoBoundary_v1.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="layers/industrialFacilities" src="./domination_files/industrialFacilities.js"></script></head>
+  <body>
+
+    <!--JavaScript Disabled View-->
+    <!--Load Screen-->
+    <div id="load-screen" style="display: none;">
+      <div id="load-text-wrapper">  
+        <h1>LOADING</h1>      
+        <noscript>
+          It seems your browser does not have Javascript enabled. To view the German Coast, please enable Javascript and &lt;a href="http://germancoast.verylongroad.com"&gt;try again&lt;/a&gt;.
+        </noscript>
+      </div>
+    </div>
+
+    <!--Map-->
+    <div id="map-home-button" class="leaflet-panel-item">
+      <span class="glyphicon glyphicon-home"></span>
+    </div>
+    <div id="map-legend" class="leaflet-panel-item" style="display: none;"><h5>Land Uses</h5><div class="row"><div class="col-xs-1" style="width:15px; height:12px;border:1px solid black;background-color:#dcbd54"></div><div class="col-xs-9">Non-industrial</div><div class="row"><div class="col-xs-1" style="width:15px; height:12px;border:1px solid black;background-color:#96404d"></div><div class="col-xs-9">Industrial</div><div class="row"><div class="col-xs-1" style="width:15px; height:12px;border:1px solid black;background-color:#e8e5da"></div><div class="col-xs-9">Vacant</div></div></div></div></div>
+    <div id="map" class="leaflet-container leaflet-fade-anim" tabindex="0" style="position: relative;"><div class="leaflet-map-pane" style="transform: translate3d(-6px, -22px, 0px);"><div class="leaflet-tile-pane"><div class="leaflet-layer"><div class="leaflet-tile-container leaflet-zoom-animated"></div><div class="leaflet-tile-container leaflet-zoom-animated"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: 394px;" src="./domination_files/1019"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: 138px;" src="./domination_files/1019(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: 394px;" src="./domination_files/1020"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: 138px;" src="./domination_files/1018"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: 138px;" src="./domination_files/1020(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: 394px;" src="./domination_files/1018(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: -118px;" src="./domination_files/1019(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: 650px;" src="./domination_files/1019(3)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: -118px;" src="./domination_files/1018(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: -118px;" src="./domination_files/1020(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: 650px;" src="./domination_files/1020(3)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: 650px;" src="./domination_files/1018(3)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: 138px;" src="./domination_files/1021"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: 138px;" src="./domination_files/1017"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: 394px;" src="./domination_files/1017(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: 394px;" src="./domination_files/1021(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: -118px;" src="./domination_files/1017(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: 650px;" src="./domination_files/1021(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: -118px;" src="./domination_files/1021(3)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: 650px;" src="./domination_files/1017(3)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: 394px;" src="./domination_files/1022"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: 138px;" src="./domination_files/1022(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: 138px;" src="./domination_files/1016"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: 394px;" src="./domination_files/1016(1)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: 650px;" src="./domination_files/1016(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: -118px;" src="./domination_files/1016(3)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: -118px;" src="./domination_files/1022(2)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: 650px;" src="./domination_files/1022(3)"></div></div><div class="leaflet-layer" style="z-index: 1;"><div class="leaflet-tile-container leaflet-zoom-animated"></div><div class="leaflet-tile-container leaflet-zoom-animated"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: 394px;" src="./domination_files/1019(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: 138px;" src="./domination_files/1019(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: 394px;" src="./domination_files/1020(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: 138px;" src="./domination_files/1018(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: 138px;" src="./domination_files/1020(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: 394px;" src="./domination_files/1018(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: -118px;" src="./domination_files/1019(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 637px; top: 650px;" src="./domination_files/1019(7)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: -118px;" src="./domination_files/1018(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: -118px;" src="./domination_files/1020(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 893px; top: 650px;" src="./domination_files/1020(7)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 381px; top: 650px;" src="./domination_files/1018(7)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: 138px;" src="./domination_files/1021(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: 138px;" src="./domination_files/1017(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: 394px;" src="./domination_files/1017(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: 394px;" src="./domination_files/1021(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: -118px;" src="./domination_files/1017(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: 650px;" src="./domination_files/1021(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1149px; top: -118px;" src="./domination_files/1021(7)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 125px; top: 650px;" src="./domination_files/1017(7)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: 394px;" src="./domination_files/1022(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: 138px;" src="./domination_files/1022(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: 138px;" src="./domination_files/1016(4)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: 394px;" src="./domination_files/1016(5)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: 650px;" src="./domination_files/1016(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -131px; top: -118px;" src="./domination_files/1016(7)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: -118px;" src="./domination_files/1022(6)"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: 1405px; top: 650px;" src="./domination_files/1022(7)"></div></div></div><div class="leaflet-objects-pane"><div class="leaflet-shadow-pane"></div><div class="leaflet-overlay-pane"><svg class="leaflet-zoom-animated" width="1983" height="931" viewBox="-272 -108 1983 931" style="transform: translate3d(-272px, -108px, 0px);"></svg></div><div class="leaflet-marker-pane"></div><div class="leaflet-popup-pane"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="http://germancoast.verylongroad.com/#" title="Zoom in">+</a><a class="leaflet-control-zoom-out" href="http://germancoast.verylongroad.com/#" title="Zoom out">-</a></div><div class="leaflet-control-layers leaflet-control" aria-haspopup="true"><a class="leaflet-control-layers-toggle" href="http://germancoast.verylongroad.com/#" title="Layers"></a><form class="leaflet-control-layers-list"><div class="leaflet-control-layers-base"></div><div class="leaflet-control-layers-separator" style="display: none;"></div><div class="leaflet-control-layers-overlays"><label><input type="checkbox" class="leaflet-control-layers-selector" checked=""><span> Labels</span></label><label><input type="checkbox" class="leaflet-control-layers-selector"><span> Norco Land Use</span></label><label><input type="checkbox" class="leaflet-control-layers-selector"><span> Flood Land Use</span></label><label><input type="checkbox" class="leaflet-control-layers-selector"><span> Norco Boundary</span></label><label><input type="checkbox" class="leaflet-control-layers-selector"><span> Industrial Facilities</span></label><label><input type="checkbox" class="leaflet-control-layers-selector"><span> Shell Properties</span></label></div></form></div></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="esri-leaflet-logo leaflet-control" style="margin: 0px;"><a href="https://developers.arcgis.com/" style="border: none;"><img src="./domination_files/logo-med.png" style="border: none;"></a></div><div class="leaflet-control-minimap leaflet-container leaflet-fade-anim leaflet-control" tabindex="0" style="width: 150px; height: 150px; position: relative;"><div class="leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-tile-pane"><div class="leaflet-layer"><img class="leaflet-tile leaflet-tile-loaded" style="height: 256px; width: 256px; left: -108px; top: -85px;" src="./domination_files/63"></div></div><div class="leaflet-objects-pane"><div class="leaflet-shadow-pane"></div><div class="leaflet-overlay-pane"><svg class="leaflet-zoom-hide" width="203" height="203" viewBox="-28 -28 203 203" style="transform: translate3d(-28px, -28px, 0px);"><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" pointer-events="none" stroke="#ff7800" stroke-opacity="0.5" stroke-width="1" fill="#ff7800" fill-opacity="0.2" d="M29 94L29 52L118 52L118 94z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" pointer-events="none" stroke="#000000" stroke-opacity="0" stroke-width="1" fill="#000000" fill-opacity="0" d="M-15 111L-15 22L165 22L165 111z"></path></g></svg></div><div class="leaflet-marker-pane"></div><div class="leaflet-popup-pane"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="esri-leaflet-logo leaflet-control" style="margin: 0px;"><a href="https://developers.arcgis.com/" style="border: none;"><img src="./domination_files/logo-med.png" style="border: none;"></a></div></div></div><a class="leaflet-control-minimap-toggle-display" href="http://germancoast.verylongroad.com/#" title="Hide MiniMap"></a></div><div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com/" title="A JS library for interactive maps">Leaflet</a> | <span class="esri-attributions" style="line-height:14px; vertical-align: -3px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; display:inline-block;">New Orleans 2015</span>, <span class="esri-attributions" style="line-height:14px; vertical-align: -3px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; display:inline-block;"></span></div></div></div></div>
+
+    <!--Navigation-->
+    <div id="navigation-menu"><!--Navigation Menu Full Screen-->
+<ul class="nav nav-tabs main-menu hidden-xs main-menu" id="tabset" style="position:absolute;top: 0px;width: 100%;">
+  <li class="">
+    <a data-toggle="tab" class="home-location-button newpage" href="http://germancoast.verylongroad.com/#home"><span class="glyphicon glyphicon-home">
+      </span> GERMAN COAST 
+    </a>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="http://germancoast.verylongroad.com/#">SWAMP &amp; SUBURB <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li data-toggle="popover" data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems." data-original-title="" title="" class=""><a href="http://germancoast.verylongroad.com/#speculation" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+      <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac." data-original-title="" title="" class=""><a href="http://germancoast.verylongroad.com/#hurricane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
+      <li data-toggle="popover" data-content="" data-original-title="" title=""><a class="newpage inactive"><span>Crash</span></a></li>
+    </ul><!-- end of dropdown menu -->
+  </li>
+  <li class="dropdown active">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="http://germancoast.verylongroad.com/#">INDUSTRY &amp; DISASTER <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li data-toggle="popover" data-content="See the spatial patterns that emerge as a product of industrial growth." data-original-title="" title="" class="active"><a href="./domination_files/domination.html" data-toggle="tab" class="norco-location-button newpage">Domination</a></li>
+      <li data-toggle="popover" data-content="Learn about crowd-sourced efforts to hold industry accountable." data-original-title="" title=""><a href="http://germancoast.verylongroad.com/#eyewitness" data-toggle="tab" class="eyewitness newpage">Eyewitness</a></li>
+      <li data-toggle="popover" data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents." data-original-title="" title=""><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+    </ul><!-- end of dropdown menu -->
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="http://germancoast.verylongroad.com/#">SLAVERY &amp; REVOLT <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li data-toggle="popover" data-content="Explore the pre-industrial plantation lands of the River Parishes." data-original-title="" title=""><a href="http://germancoast.verylongroad.com/#plantation-land" data-toggle="tab" class="plantation-location-button newpage">Plantations</a></li>
+      <li><a class="inactive"><i>1811</i></a></li>
+      <li><a class="inactive"><i>Maroon</i></a></li>
+    </ul><!-- end of dropdown menu -->
+  </li>
+</ul>
+
+<!--Navigation Menu Mobile-->
+<ul class="nav nav-tabs hidden-xl hidden-lg hidden-md hidden-sm main-menu" id="tabset" style="position: absolute;top: 0px;width: 100%;">
+  <li class="active home-location-button newpage"><a href="http://germancoast.verylongroad.com/#" class="home-location-button newpage" data-toggle="tab">The German Coast</a></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="http://germancoast.verylongroad.com/#">Module <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li data-toggle="popover" data-content="The cypress swamps and marsh prairies of the LaBranche Wetlands have so far survived the real-estate ventures that have consumed neighboring ecosystems." data-original-title="" title=""><a href="http://germancoast.verylongroad.com/#speculation" data-toggle="tab" class="labranche-location-button newpage">Speculation</a></li>
+      <li data-toggle="popover" data-content="A story about a hurricane told through dynamic map events, animation, and film. Featuring an interview with long-time St. Charles Parish resident Donald Tregre, as well as footage from Hurricane Isaac." data-original-title="" title=""><a href="http://germancoast.verylongroad.com/#hurricane" data-toggle="tab" class="hurricane-location-button newpage">Hurricane</a></li>
+      <li data-toggle="popover" data-content="" data-original-title="" title=""><a class="newpage inactive"><span>Crash</span></a></li>
+      <li data-toggle="popover" data-content="See the spatial patterns that emerge as a product of industrial growth." data-original-title="" title=""><a href="./domination_files/domination.html" data-toggle="tab" class="norco-location-button newpage">Domination</a></li>
+      <li data-toggle="popover" data-content="Learn about crowd-sourced efforts to hold industry accountable." data-original-title="" title=""><a href="http://germancoast.verylongroad.com/#eyewitness" data-toggle="tab" class="eyewitness newpage">Eyewitness</a></li>
+      <li data-toggle="popover" data-content="An exploration of the Shell Oil Refinery explosion of 1988 featuring contemporary news footage and interviews with local residents." data-original-title="" title=""><a class="video-link newpage inactive">Explosion <span class="glyphicon glyphicon-film"></span></a></li>
+      <li data-toggle="popover" data-content="Explore the pre-industrial plantation lands of the River Parishes." data-original-title="" title=""><a href="http://germancoast.verylongroad.com/#plantations" data-toggle="tab" class="plantation-location-button newpage">Plantations</a></li>
+      <li><a class="inactive"><i>1811</i></a></li>
+      <li><a class="inactive"><i>Maroon</i></a></li>
+    </ul><!-- end of dropdown menu -->
+  </li>
+</ul>
+<!--/Navigation--></div>
+    
+    <!--Sidebar-->
+    <div id="content-toggle">
+      <img src="./domination_files/3-lines_v1.png">
+    </div>
+    <div class="map-tab-content scrollflip">
+
+      <!--*******************************************-->
+      <!--************DYNAMIC CONTENT****************-->
+      <!--*******************************************-->
+      <div id="map-tab-content-dynamic" class="live-content"><!--*******************************************-->
+<!--*****************NORCO*********************-->
+<!--*******************************************-->
+
+<div id="domination" class="tab-pane scrollflip-content active">
+  <div class="vignette-header">
+    <h1>Levee Domination</h1>
+    <h2>&amp; Other Spatial Influences of Industrialization</h2>
+  </div>
+  <hr>
+  <h2 style="text-align:center">Growth</h2>
+  <p>
+    <span style="font-size:22px">A</span>s petroleum companies moved into Louisiana, they sought land that was plentiful and cheap in order to construct refineries. The "River Parishes" between Baton Rouge and New Orleans along the Mississippi River were an ideal location. They hosted vast acres of idle land, a legacy of Louisiana's once-robust plantation economy. The river itself provided access to Gulf oil fields, and could serve as a coolant for machinery as well as a toxic waste sink. The land nearest the river was also the most elevated and least flood-prone in the region due to many hundreds of years of sediment deposition by the Mississppi River, which built up natural levees along its banks.
+  </p>
+  <p>
+    Due to these siting benefits, <a class="domination.industrial-facilities geometry-link">industrial facilities spread rapidly across the German Coast's riverfront</a> throughout the 20th century. The Mexican Petroleum Company initiated this trend in 1913 after purchasing the Destrehan Plantation. Royal Dutch Shell moved into the parish shortly after when it purchased the 366 acre Good Hope plantation tract. Over time the tract grew into a massive oil refinery that bought out and ultimately devoured what was once the small port town of <a class="geometry-link domination.goodhope">Good Hope</a>.
+  </p>
+  <p><a href="./domination_files/good_hope_change_v1.jpg" class="image-link goodhope" title="This series of topographical maps documents the gradual disappearance of Good Hope, highlighted in red."><img src="./domination_files/good_hope_change_v1.jpg" style="width:100%"></a></p>
+  <h2 style="text-align:center">Fencelines</h2>
+  <p>
+    <span style="font-size:22px">M</span>any former slaves settled the plantation land upon which they once labored following the Civil War, often occupying towns and villages directly along the riverfront. When the lower Mississippi became a site of rapid petro-industrial development, these freed slave communities became the unwitting neighbors of heavy industry. Such was the case for the village of Sellers, in the town now called <a class="geometry-link domination.norco-boundary">Norco</a>, an acronym for 'New Orleans Refining Company'. After purchasing the site of the former Trepagnier plantation, Shell relocated Sellers residents to an area slightly downriver from their original settlement. This community became known as Diamond.
+  </p>
+  <p>
+    Shell did not begin the development of their chemical facility on the Trepagnier site until the early 1950s, and soon following its construction, industrial disamenities began to burden the Diamond community. Shortly after the facility's construction, many residents sold their properties to Shell at an extremely low price in order to escape health and environmental threats. Begining in the late 1990s and continuing into the early 2000s, after much pressure by Diamond residents and their allies, Shell entered into a negotiated buyout with the remaining residents and <a class="domination.buyout geometry-link">purchased many residential lots along the industrial fenceline</a>.
+  </p>
+  <h2 style="text-align:center">Ex-town</h2>
+  <p>
+    Diamond is now what some scholars refer to as an 'ex-town', a geographic phenomenon along the lower Mississippi River characterized only by the things that have disappeared. The homes in Diamond have been moved or destroyed; the church has shut its doors; and the people have gone away. All that remain is a vacant buffer of land that skirts the refinery. Rigamer (1977) succinctly summarizes the totality of the fence line experience for these former communities:
+  </p>
+  <p class="quote">
+    “As industrial operations expand, they become more obtrusive and force residents to leave the community. As they do, the industry buys the property, and it remains vacant. The vacant homes add to the deterioration of the area and accelerate the exodus of the remaining residents. As they leave, the cycle is repeated. The industrial concern quickly gains control of the area, and the community is displaced.”  
+  </p>
+  <h2 style="text-align:center">Levee Domination</h2>
+  <p>
+    The Diamond buyout has increased Shell's hold on the area's "500 year floodplain", a technical term used by the Army Corps of Engineers to refer to an area of land that has a 1% chance of flooding in any 500 year period. This land is the most environmentally secure in the region. In total, industrial <a class="domination.land-use geometry-link">land uses in Norco</a> account for approximately 51% of the total land base; while industrial <a class="domination.flood-land-use geometry-link">land uses within the 500 year flood plain</a> account for 73% of the land base. Overlaying the <a class="domination.buyout-overlay geometry-link">buyout properties</a>, it is evident that a vast majority of these purchases fall within the 500 year flood plain.
+  </p>
+  <p>
+    Thus, the expansion of industry has not only displaced residents from the community, but has increased the net vulnerability of residential areas to flooding.
+  </p>               
+
+</div>
+</div>
+
+      <!--*******************************************-->
+      <!--************STATIC CONTENT*****************-->
+      <!--*******************************************-->
+      <div id="hurricane" class="tab-pane scrollflip-content live-content map-tab-content-static active" style="text-align: center; display: none;">
+        <div id="hurricane-video-wrapper">
+          <h1>The West Indian Hurricane of 1915</h1>
+          <hr>
+          <div id="hurricane-video-inner-wrapper">
+            <video id="hurricane-video" style="width:99%;box-shadow: 6px 7px 8px rgba(13, 15, 13, 0.7)" preload="auto"> <!--(removed controls)-->
+              <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.ogv" type="video/ogg">
+              <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.webm" type="video/webm">
+              <source src="https://s3-us-west-2.amazonaws.com/darinacostamediafiles/video/donald_interview_v1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <hr style="margin-bottom:0">
+          </div>
+          <div id="hurricane-video-control">
+            <div style="float: left;">
+              <span id="hurricane-play"><span class="glyphicon glyphicon-play"></span></span> 
+              <span id="hurricane-replay" class="glyphicon glyphicon-repeat pointer"></span></div>  <div style="float: right;">
+              <input type="range" id="hurricane-volume-bar" min="0" max="1" step="0.1" value="1" style="float: right;">
+            </div>
+          </div>
+          <hr style="margin-bottom:0">
+          <div id="hurricane-context-visual">
+            <span style="font-size:17px">The West Indian Hurricane of 1915 followed a virtually identical course to that of Hurricane Isaac (2012). Click play to begin a multi-media exploration of these catastrophic storms, narrated by longtime river parish resident Donald Tregre.
+            </span>
+          </div>
+          <div id="hurricane-context-text"></div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="./domination_files/config.js"></script>
+    <script data-main="index-min" src="./domination_files/require.js"></script>
+    <script>
+       //Analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-56503938-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+
+</body></html>
