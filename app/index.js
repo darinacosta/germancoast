@@ -18,7 +18,7 @@ require(['jquery',
     $(document).ready( function (){
       $('#load-screen').fadeOut( "slow", function(){
         //Preload plantation base layer
-        imageHelpers.preload(['http://verylongroad.com/gis/services/plantation_test_v1.jpg']);
+        imageHelpers.preload(['assets/layers/plantation_v1.jpg']);
       });
       hurricaneVideoControl.initializeVideoControls();
       $('.map-tab-content .image-link').magnificPopup({type:'image'});

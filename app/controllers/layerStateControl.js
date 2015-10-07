@@ -178,7 +178,7 @@ define(['jquery',
     };
 
     layers['plantationsLayer'] = (function(){
-      this.url = 'http://verylongroad.com/gis/services/plantation_test_v1.jpg';
+      this.url = '../assets/layers/plantation_v1.jpg';
       this.bounds = [[29.70323, -91.45075,29.70323], [30.46062, -89.96876]];
       return new L.imageOverlay(this.url, this.bounds,{opacity: 1});
     })();
