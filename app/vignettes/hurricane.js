@@ -33,10 +33,11 @@ define(['jquery',
         }, 2),
 
         videoSec1_0 = new videoUpdateHandler(function() {
+          var videoString = '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="assets/vids/shell_at_the_tracks_v1.webm" type="video/webm">Your browser does not support the video tag.</video>'
           map.setView(new L.LatLng(30.001, -90.409), 16);
           videoEventPopup.setLatLng([30.001, -90.405]);
           $hurricaneContextVisual.html('The Shell Oil Refinery in Norco, Louisiana.');
-          videoEventPopup.setContent(returnVideoString('shell_at_the_tracks_v1'));
+          videoEventPopup.setContent(videoString);
         }, 8),
 
         videoSec1_1 = new videoUpdateHandler(function() {
@@ -44,17 +45,19 @@ define(['jquery',
         }, 10),
 
         videoSec2_0 = new videoUpdateHandler(function(){
+          var videoString = '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="assets/vids/I-10_traffic_v1.webm" type="video/webm">Your browser does not support the video tag.</video>'
           map.setView(new L.LatLng(30.063, -90.386), 15);
           videoEventPopup.setLatLng([30.063, -90.383]);
           $hurricaneContextVisual.html('Interstate 10 at the Bonnet Carre Spillway.');
-          videoEventPopup.setContent(returnVideoString('I-10_traffic_v1'));
+          videoEventPopup.setContent(videoString);
         }, 27),
 
         videoSec3_0 = new videoUpdateHandler(function (){
+          var videoString = '<video muted style="width:100%;" autoplay="autoplay" loop=""><source src="assets/vids/dad_on_roof_v1.webm" type="video/webm">Your browser does not support the video tag.</video>'
           map.setView(new L.LatLng(30.005, -90.419), 15);
           videoEventPopup.setLatLng([30.005, -90.412]);
           $hurricaneContextVisual.html('The approach of Hurricane Isaac.');
-          videoEventPopup.setContent(returnVideoString('dad_on_roof_v1'));
+          videoEventPopup.setContent(videoString);
         }, 48),
 
         videoSec4_0 = new videoUpdateHandler(function(){
