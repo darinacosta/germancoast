@@ -126,8 +126,8 @@ define(['jquery',
                 onEachFeature: function(feature, layer){
                   layer.bindPopup('<h4>' + feature.properties.title.toUpperCase() + '</h4>' + 
                     feature.properties.pubDate  + '<br>' +
-                    '<br>"' + feature.properties.description + '"</br>' +
-                    '<br>View the complete incident report at:<br><a class="geometry-link" target="_blank" href="' + feature.properties.link + '">' + feature.properties.link + '</a></br>'
+                    '<br>"' + feature.properties.description + '"</br>' /*+
+                    '<br>View the complete incident report at:<br><a class="geometry-link" target="_blank" href="' + feature.properties.link + '">' + feature.properties.link + '</a></br>'*/
                     )
                 }
               });
